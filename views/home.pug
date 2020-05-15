@@ -1,0 +1,119 @@
+extends header
+
+
+block content
+  
+  .container-fluid
+    .row
+      .col-3.bodyleft
+        a(href="#")
+          i.fas.fa-home  Trang chủ 
+        a(href="#") 
+          i.fas.fa-border-all  Bảng 
+        p   CÁC NHÓM 
+        a(href="#")
+          i.fas.fa-users  Nhóm 1
+        a(href="#")
+          i.fas.fa-users  Nhóm 2 
+      .col-9.bodyright
+        p
+          i.fas.fa-user  Bảng cá nhân 
+        a(href="#") Tên bảng 1 
+        a.new(href="#") Tạo bảng mới
+        p
+          i.fas.fa-users  Tên nhóm 1
+          a.gr(href="#") 
+            i.fas.fa-user  Thành viên 
+          a.gr(href="#") 
+            i.fas.fa-cog  Cài đặt 
+          a.gr(href="#") 
+            i.fas.fa-border-all  Bảng
+        a(href="#")  Tên bảng của nhóm 1
+        a.new(href="#")  Tạo bảng mới
+  style.
+    .bodyleft a{
+    display: block;
+    color: black;
+    text-align: left;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 22px;
+    border-radius: 4px;
+    background-color: #ecf9f9;
+    margin: 4px;
+    box-shadow: 1px 1px 5px #888888;
+    } 
+    .bodyleft a:hover {
+    background-color: #e5fff9;
+    line-height: 24px;
+    box-shadow: 1px 1px 8px #888888;
+    }
+    .bodyleft p{
+    padding-left: 10px;
+    margin-bottom: 0px;
+    margin-top: 15px;
+    }
+    .bodyright a{
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 5px 10px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 120px;
+    border-radius: 4px;
+    background-color: #ecf9f9;
+    margin: 5px;
+    width: 250px;
+    height: 120px;
+    box-shadow: 1px 1px 5px #888888;
+    }
+    .bodyright a:hover {
+    width: 255px;
+    height: 125px;
+    box-shadow: 1px 1px 8px #888888;
+    }
+    .bodyright p {
+    padding-left: 20px;
+    margin-top: 25px;
+    }
+    .bodyright a.gr {
+    float: right;
+    overflow: hidden;
+    display: inline-block;
+    color: black;
+    text-align: left;
+    padding: 0px 10px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 20px;
+    border-radius: 4px;
+    background-color: #e1eaea;
+    margin: 0px 5px;
+    width: auto;
+    height: auto;
+    }
+    .bodyright i {
+    overflow: hidden;
+    display: inline-block;
+    color: black;
+    text-align: left;
+    padding: 5px 10px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 30px;
+    border-radius: 4px;
+    margin: 0px;
+    width: auto;
+    height: auto;
+    }
+    .bodyright a.new {
+    text-align: center;
+    line-height:120px;
+    background-color: #c3d5d5;
+    }
+    .bodyright a.new:hover {
+    background-color: #d2e0e0;
+    }
+    

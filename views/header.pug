@@ -1,0 +1,74 @@
+html
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    script(src='https://kit.fontawesome.com/a076d05399.js')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js')
+
+    style.
+      * {box-sizing: border-box;}
+      body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: rgb(219,235,233);
+      background: linear-gradient(90deg, rgba(219,235,233,1) 0%, rgba(216,252,242,1) 49%, rgba(227,241,237,1) 100%);
+      }
+      .header {
+      overflow: hidden;
+      background-color: #006666;
+      padding: 2px;
+      margin-bottom: 40px;
+      }
+      
+      .header a {
+      float: left;
+      color: white;
+      text-align: center;
+      padding: 12px;
+      text-decoration: none;
+      font-size: 18px;
+      line-height: 25px;
+      border-radius: 4px;
+      background-color: #009999;
+      margin: 2px;
+      }
+      .header a:hover {
+      background-color: #008080;
+      margin: 2px;
+      }
+      .header a.logo {
+      font-size: 26px;
+      font-weight: bold;
+      background-color: #006666;
+      padding:10px;
+      }
+      .header a.logo:hover {
+      font-size: 30px;
+      font-weight: bold;
+      background-color: #006666;
+      padding:7.5px;
+      }
+      .header-right {
+      float: right;
+      }
+      .header-right a{
+      padding:12px;
+      }
+      .header-right i{
+      font-size:20px;
+      }
+
+
+      }
+  body
+    .header
+      a.logo(href='#default')
+        i.fas.fa-home  Aloso
+      .header-right
+        a(href='#home')
+          i.far.fa-plus-square  Tạo bảng
+        a(href='#contact')
+          i.far.fa-bell  Thông báo 
+        a(href='#about')
+          i.far.fa-user-circle  Tài khoản 
+    block content
+      
