@@ -23,7 +23,7 @@ html
       height: 52px;
       background-color: #006666;
       padding: 2px;
-      margin-bottom: 40px;
+      margin-bottom: 0px;
       }
       
       .header button {
@@ -78,14 +78,13 @@ html
       margin-right: -2px;
       box-shadow: 2px 2px 8px #888888
       }
-      .dropdown-menu button {
+      .header-right .dropdown .dropdown-menu button {
       background-color: white;
       text-align: left;
       color: #003333;
       margin: 0px;
       }
-      .dropdown-menu button:hover {
-      background-color: white;
+      .header-right .dropdown .dropdown-menu button:hover {
       text-align: left;
       color: #003333;
       background-color: #e6ffff;
@@ -129,7 +128,7 @@ html
           button(type='button' data-toggle="dropdown")
             i.far.fa-bell  Thông báo
           .dropdown-menu.dropdown-menu-right
-            p(style='text-align:center;background-color:#ccffff; margin: 0px; padding: 5px;')      Thông báo 
+            p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 5px;')      Thông báo 
             p.dropdown-item(href='#') Thông báo 1
             p.dropdown-item(href='#') Thông báo 2
             p.dropdown-item(href='#') Thông báo 3
@@ -137,7 +136,7 @@ html
           button(type='button' data-toggle="dropdown")
             i.far.fa-user-circle  Tài khoản 
           .dropdown-menu.dropdown-menu-right(style='color=#003333')
-            p(style='text-align:center;background-color:#ccffff; margin: 0px; padding: 5px;')     Tài khoản  
+            p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 5px;')     Tài khoản  
             a.dropdown-item(href='#') Hồ sơ và lý lịch 
             a.dropdown-item(href='#') Hoạt động
             hr
@@ -150,17 +149,16 @@ html
             input.modal-title.form-control(placeholder='Thêm tiêu đề bảng')
             button.close(type='button', data-dismiss='modal') &times;
           // Modal body
-          .modal-body.dropdown
-            button.btn.btn-basic.dropdown-toggle(data-toggle='dropdown') Hiện với nhóm 
-            .dropdown-menu
-              button.dropdown-item Riêng tư 
-              button.dropdown-item Nhóm  
-              button.dropdown-item Công khai 
+          .modal-body
+            select.browser-default.custom-select Nhóm 
+              option(selected='') Không có nhóm nào 
+              option(value='1') Nhóm 1
+              option(value='2') Nhóm 2 
             select.browser-default.custom-select
-              option.dropdown-item(selected='') Open this select menu
-              option.dropdown-item(value='1') One
-              option.dropdown-item(value='2') Two
-              option.dropdown-item(value='3') Three
+              option(selected='') Hiện với nhóm  
+              option(value='1') Riêng tư 
+              option(value='2') Nhóm 
+              option(value='3') Công khai 
 
           // Modal footer
           .modal-footer

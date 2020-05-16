@@ -2,4 +2,60 @@ extends header
 
 
 block content
-  
+  style.
+    .board-header {
+    background: rgba(0,0,0,.05);
+    padding: 10px;
+    }
+    .board-header-btn {
+        border-radius: 6px;
+        font-size: 16px;
+        display: inline-block;
+        background: rgba(0,0,0,.06);
+        color: #172b4d;
+        margin-left: 10px;
+        padding:8px;
+        border: 0px;
+        font-family: "Lucida Console", Courier, monospace;
+    }
+    .board-header-btn:hover {
+        background: rgba(0,0,0,.08);
+    }
+    .board-header-btn .right {
+      float: right;
+    }
+    .board-header .dropdown button:focus {
+      outline: 0;
+      box-shadow: none;
+    }
+
+
+
+  .board-header
+    span(style='padding:5px') Tên bảng 
+    .dropdown
+      button.board-header-btn(type='button' data-toggle="dropdown")
+        i.fas.fa-user-friends  Tên nhóm 
+      .dropdown-menu.dropdown-menu-left(style='color=#003333')
+        p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 5px;')     Tên nhóm  
+        a.dropdown-item(href='#') Đổi nhóm 
+        a.dropdown-item(href='#') Xem trang của nhóm
+    .dropdown
+      button.board-header-btn(type='button' data-toggle="dropdown")
+        i.fas.fa-users  Hiện với nhóm 
+      .dropdown-menu.dropdown-menu-left(style='color=#003333')
+        a.dropdown-item(href='#') Riêng tư 
+        a.dropdown-item(href='#') Nhóm 
+        a.dropdown-item(href='#') Công khai
+    .dropdown
+      button.board-header-btn(type='button' data-toggle="dropdown")
+        i.fas.fa-star-of-david  Mời 
+      .dropdown-menu.dropdown-menu-left(style='color=#003333')
+        p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 5px;')     Mời vào bảng  
+        input.form-control(placeholder='Địa chỉ email hoặc tên ...')
+        hr
+        button.btn.btn-info(style='float: right; margin: 8px;') Gửi lời mời 
+
+    button.board-header-btn.right(style='float: right;')
+        i.fas.fa-ellipsis-h  Hiện menu
+
