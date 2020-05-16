@@ -17,7 +17,6 @@ app.get('/', function(req, res) {
 	res.render('home');
 });
 
-
 app.listen(port, function () {
 	console.log('Server listening on port '+ port);
 });
