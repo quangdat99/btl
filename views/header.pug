@@ -10,7 +10,7 @@ html
 
     style.
       body {
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: "Lucida Console", Courier, monospace;
       background: rgb(219,235,233);
       background: linear-gradient(90deg, rgba(219,235,233,1) 0%, rgba(216,252,242,1) 49%, rgba(227,241,237,1) 100%);
       }
@@ -25,7 +25,7 @@ html
       padding: 2px;
       margin-bottom: 0px;
       }
-      
+
       .header button {
       float: left;
       color: white;
@@ -71,7 +71,7 @@ html
       .dropdown {
       display: inline-block;
       }
-      .dropdown-menu {
+      .header .dropdown-menu {
       width: 400px;
       padding: 0px;
       margin-top: 7px;
@@ -89,16 +89,16 @@ html
       color: #003333;
       background-color: #e6ffff;
       }
-      .dropdown-menu p {
+      .header .dropdown-menu p {
       font-size: 16px;
       color: #003333;
       }
-      .dropdown-menu i{
+      .header .dropdown-menu i{
       font-size:18px;
       font-weight:bold;
       padding: 5px;
       }
-      .dropdown-menu a{
+      .header .dropdown-menu a{
       color: #003333;
       }
 
@@ -111,22 +111,22 @@ html
       .header-right
         .dropdown
           button(type='button' data-toggle="dropdown")
-            i.far.fa-plus-square     Tạo bảng
+            i.far.fa-plus-square    &nbsp; Tạo bảng
           .dropdown-menu.dropdown-menu-right
             button(data-toggle="modal" data-target="#taobang")
-              i.far.fa-plus-square     Tạo bảng...
+              i.far.fa-plus-square    &nbsp; Tạo bảng...
               p
                 | M&#x1ED9;t b&#x1EA3;ng &dstrok;&#x1B0;&#x1EE3;c t&#x1EA1;o th&agrave;nh t&#x1EEB; c&aacute;c th&#x1EBB; &dstrok;&#x1B0;&#x1EE3;c s&#x1EAF;p x&#x1EBF;p trong danh s&aacute;ch. S&#x1EED; d&#x1EE5;ng b&#x1EA3;ng &dstrok;&#x1EC3; qu&#x1EA3;n l&yacute; c&aacute;c d&#x1EF1; &aacute;n, theo d&otilde;i th&ocirc;ng tin, ho&#x1EB7;c t&#x1ED5; ch&#x1EE9;c b&#x1EA5;t c&#x1EE9; vi&#x1EC7;c g&igrave;.
          
             button(data-toggle="modal" data-target="#taonhom")
-              i.fas.fa-users  Tạo nhóm...
+              i.fas.fa-users &nbsp; Tạo nhóm...
               p
                 | M&#x1ED9;t nh&oacute;m l&agrave; t&#x1EAD;p h&#x1EE3;p c&aacute;c b&#x1EA3;ng v&agrave; m&#x1ECD;i ng&#x1B0;&#x1EDD;i. S&#x1EED; d&#x1EE5;ng nh&oacute;m &dstrok;&#x1EC3; t&#x1ED5; ch&#x1EE9;c c&ocirc;ng ty c&#x1EE7;a b&#x1EA1;n, h&#x1ED7; tr&#x1EE3; ng&#x1B0;&#x1EDD;i b&#x1EAD;n r&#x1ED9;n, gia &dstrok;&igrave;nh ho&#x1EB7;c b&#x1EA1;n b&egrave;.
        
 
         .dropdown
           button(type='button' data-toggle="dropdown")
-            i.far.fa-bell  Thông báo
+            i.far.fa-bell &nbsp; Thông báo
           .dropdown-menu.dropdown-menu-right
             p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 5px;')      Thông báo 
             p.dropdown-item(href='#') Thông báo 1
@@ -134,7 +134,7 @@ html
             p.dropdown-item(href='#') Thông báo 3
         .dropdown
           button(type='button' data-toggle="dropdown")
-            i.far.fa-user-circle  Tài khoản 
+            i.far.fa-user-circle &nbsp; Tài khoản 
           .dropdown-menu.dropdown-menu-right(style='color=#003333')
             p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 5px;')     Tài khoản  
             a.dropdown-item(href='#') Hồ sơ và lý lịch 
