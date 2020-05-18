@@ -2,34 +2,6 @@ extends header
 
 
 block content
-  
-  .container-fluid(style='margin-top:40px')
-    .row
-      .col-3.bodyleft
-        a(href="#")
-          i.fas.fa-home  Trang chủ 
-        a(href="#") 
-          i.fas.fa-border-all  Bảng 
-        p   CÁC NHÓM 
-        a(href="#")
-          i.fas.fa-users  Nhóm 1
-        a(href="#")
-          i.fas.fa-users  Nhóm 2 
-      .col-9.bodyright
-        p
-          i.fas.fa-user  Bảng cá nhân 
-        a(href="#") Tên bảng 1 
-        a.new(href="#") Tạo bảng mới
-        p
-          i.fas.fa-users  Tên nhóm 1
-          a.gr(href="#") 
-            i.fas.fa-user  Thành viên 
-          a.gr(href="#") 
-            i.fas.fa-cog  Cài đặt 
-          a.gr(href="#") 
-            i.fas.fa-border-all  Bảng
-        a(href="#")  Tên bảng của nhóm 1
-        a.new(href="#")  Tạo bảng mới
   style.
     .bodyleft a{
     display: block;
@@ -117,3 +89,32 @@ block content
     background-color: #d2e0e0;
     }
     
+  .container-fluid(style='margin-top:40px')
+    .row
+      .col-3.bodyleft
+        a(href="#")
+          i.fas.fa-home  Trang chủ 
+        a(href="#") 
+          i.fas.fa-border-all  Bảng 
+        p   CÁC NHÓM 
+        a(href="#")
+          i.fas.fa-users  Nhóm 1
+        a(href="#")
+          i.fas.fa-users  Nhóm 2 
+      .col-9.bodyright
+        p
+          i.fas.fa-user  Bảng cá nhân 
+        each _board in boards  
+            a(href="/list")=_board.name 
+        a.new(href="#") Tạo bảng mới
+        p
+          i.fas.fa-users  Tên nhóm 1
+          a.gr(href="#") 
+            i.fas.fa-user  Thành viên 
+          a.gr(href="#") 
+            i.fas.fa-cog  Cài đặt 
+          a.gr(href="#") 
+            i.fas.fa-border-all  Bảng
+        a(href="#")  Tên bảng của nhóm 1
+        a.new(href="#")  Tạo bảng mới
+  

@@ -1,0 +1,175 @@
+extends header
+
+
+block content
+  style.
+    .board-header {
+    background: rgba(0,0,0,.05);
+    padding: 10px;
+    }
+    .board-header-btn {
+        border-radius: 6px;
+        font-size: 16px;
+        display: inline-block;
+        background: rgba(0,0,0,.06);
+        color: #172b4d;
+        margin-left: 10px;
+        padding:8px;
+        border: 0px;
+        font-family: "Lucida Console", Courier, monospace;
+    }
+    .board-header-btn:hover {
+        background: rgba(0,0,0,.08);
+    }
+    .board-header-btn .right {
+      float: right;
+    }
+    .board-header .dropdown button:focus {
+      outline: 0;
+      box-shadow: none;
+      
+    }
+   .board-header .dropdown-menu {
+    width: 400px;
+    padding: 0px;
+    margin-top: 7px;
+    margin-right: -2px;
+    box-shadow: 2px 2px 8px #888888
+    }
+    .board-header .dropdown-menu p {
+    font-size: 16px;
+    color: #003333;
+    }
+    .board-header .dropdown-menu i{
+    font-size:18px;
+    font-weight:bold;
+    padding: 5px;
+    }
+    .board-header .dropdown-menu a{
+    color: #003333;
+    }
+
+
+    .board-body {
+    padding: 10px;
+    }
+
+    .board-body .board-list{
+    width: 272px;
+    margin: 0px 4px;
+    height: 100%;
+    display: inline-block;
+
+    }
+    .board-body .board-list .board-list-content {
+    background-color: #d9e6f2;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    padding: 4px;
+    box-shadow: 1px 1px 2px #888888;
+
+    }
+    .list-title {
+    height:50px;
+    }
+    .list-title .title{
+    text-align: center;
+    width: 84%;
+    display: inline-block;
+    padding: 5px;
+    }
+    .list-title .mn{
+    float: right;
+    width: 16%;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 4px;
+    text-align: center;
+    height: 60%;
+    }
+    .list-title .mn:hover{
+    background: rgba(0,0,0,.05);
+    }
+
+    .list-card .card-name {
+    margin: 3px;
+    padding: 10px;
+    background-color: #ecf2f8;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #888888;
+    }
+    .list-card .card-name:hover {
+    background: rgba(0,0,0,.01);
+    }
+    
+    .list-add {
+    border-radius: 5px;
+    margin: 8px;
+    padding: 8px;
+    color: #5e6c84;
+    }
+    .list-add:hover{
+    background: rgba(0,0,0,.08);
+    }
+    .board-list .add-list{
+    background-color: rgba(0,0,0,.11);
+    padding: 14px;
+    color:#172b4d;
+    margin: 4px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #888888;
+    }
+    .board-list .add-list:hover{
+    background-color: rgba(0,0,0,.14);
+    }
+    .board-list .add-list i{
+    font-weight: 900;
+    color: #004466;
+    }
+  .board-header
+    span(style='padding:5px') Tên bảng 
+    .dropdown
+      button.board-header-btn(type='button' data-toggle="dropdown")
+        i.fas.fa-user-friends &nbsp; Tên nhóm 
+      .dropdown-menu.dropdown-menu-left(style='color=#003333')
+        p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 5px;')     Tên nhóm  
+        a.dropdown-item(href='#') Đổi nhóm 
+        a.dropdown-item(href='#') Xem trang của nhóm
+    .dropdown
+      button.board-header-btn(type='button' data-toggle="dropdown")
+        i.fas.fa-users &nbsp; Hiện với nhóm 
+      .dropdown-menu.dropdown-menu-left(style='color=#003333')
+        a.dropdown-item(href='#') Riêng tư 
+        a.dropdown-item(href='#') Nhóm 
+        a.dropdown-item(href='#') Công khai
+    .dropdown
+      button.board-header-btn(type='button' data-toggle="dropdown")
+        i.fas.fa-star-of-david &nbsp; Mời 
+      .dropdown-menu.dropdown-menu-left(style='color=#003333')
+        p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 5px;')     Mời vào bảng  
+        input.form-control(placeholder='Địa chỉ email hoặc tên ...')
+        hr
+        button.btn.btn-info(style='float: right; margin: 8px;') Gửi lời mời 
+
+    button.board-header-btn.right(style='float: right;')
+        i.fas.fa-ellipsis-h &nbsp; Hiện menu
+
+  .board-body
+    each _list in lists  
+      .board-list
+        .board-list-content
+          .list-title
+            .title= _list.name 
+            .mn
+              i.fas.fa-ellipsis-h
+
+          .list-card
+            .card-name Tên thẻ 1
+            .card-name Tên thẻ 2
+          .list-add
+            i.fas.fa-plus &nbsp; Thêm thẻ khác
+    .board-list
+      .add-list
+        i.fas.fa-plus  &nbsp;   Thêm danh sách khác 
