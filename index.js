@@ -19,7 +19,9 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(cookieParser("abc123xyz"));
 app.use(express.static('public'));
 
-
+app.get('/', function(req, res) {
+	res.render('home');
+});
 
 app.use('/board', boardRoute);
 app.use('/user', userRoute);
