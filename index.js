@@ -6,7 +6,7 @@ mongoose.connect('mongodb://localhost/btl');
 var boardRoute = require('./routes/board.route');
 var groupRoute = require('./routes/group.route');
 var userRoute = require('./routes/user.route');
-
+var loginRoute = require("./routes/authentication.route");
 
 var port = 3001;
 
@@ -26,6 +26,7 @@ app.get('/', function(req, res) {
 app.use('/board', boardRoute);
 app.use('/user', userRoute);
 app.use('/group', groupRoute);
+app.use('/authentication', loginRoute);
 
 app.listen(port, function () {
 	console.log('Server listening on port '+ port);

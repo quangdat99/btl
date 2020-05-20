@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var boardSchema = new mongoose.Schema({
-	userId: String,
+	// userId: String,
 	groupId: String,
 	boardId: String,
 	name: String
