@@ -35,10 +35,10 @@ module.exports.postLogin = async function(req, res){
 	});
 
 
-	var groups = 
+	var groups = null;
 
 	res.render("home", {
-		groups: 
+		groups: groups
 	})
 }
 
