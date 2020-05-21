@@ -1,12 +1,20 @@
 var express = require('express');
 // var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser')
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/btl');
+mongoose.connect('mongodb://localhost/work_management').then(()=>{
+	console.log("Connect db success");
+	app.listen(port, function () {
+		console.log('Server listening on port '+ port);
+	});
+}).catch(e=>{
+	console.log("Connect db fail");
+});
 
 var boardRoute = require('./routes/board.route');
 var groupRoute = require('./routes/group.route');
 var userRoute = require('./routes/user.route');
-var loginRoute = require("./routes/authentication.route");
+var authenticationRoute = require("./routes/authentication.route");
 
 var port = 3001;
 
@@ -14,9 +22,13 @@ var app = express();
 app.set('view engine', 'pug');
 app.set('views', './views');
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-// app.use(cookieParser("abc123xyz"));
+app.use(bodyParser())
+
+// var jsonParser = bodyParser.json();
+// var urlencodedParser = bodyParser.urlencoded({ extended: false })
+// app.use(jsonParser);
+// app.use(urlencodedParser);
+
 app.use(express.static('public'));
 
 app.get('/', function(req, res) {
@@ -26,8 +38,5 @@ app.get('/', function(req, res) {
 app.use('/board', boardRoute);
 app.use('/user', userRoute);
 app.use('/group', groupRoute);
-app.use('/authentication', loginRoute);
+app.use('/authentication', authenticationRoute);
 
-app.listen(port, function () {
-	console.log('Server listening on port '+ port);
-});

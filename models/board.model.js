@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 var boardSchema = new mongoose.Schema({
 	// userId: String,
+	// _id: mongoose.Schema.Types.ObjectId,
 	groupId: String,
 	boardId: String,
 	name: String
