@@ -36,6 +36,7 @@ module.exports.postLogin = async function(req, res){
 		signed: true
 	});
 
+	// send displayName, list Group, list private Board, list shared Board, list Recently Board
 	var groups = null;
 	res.status(200);
 	res.render("home", {
@@ -44,7 +45,7 @@ module.exports.postLogin = async function(req, res){
 }
 
 module.exports.register = async function(req, res) {
-	res.render('register');
+	res.render('authentication/register');
 };
 module.exports.postRegister = async function(req, res){
 	var email = req.body.email;
@@ -85,8 +86,8 @@ module.exports.postRegister = async function(req, res){
 }
 
 module.exports.forgetPassword = async function(req, res){
-	res.render('forgetPassword');
+	res.render('authentication/forgetPassword');
 }
 module.exports.postForgetPassword = async function(req, res){
-	res.render('forgetPassword');
+	res.render('authentication/forgetPassword');
 }

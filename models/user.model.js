@@ -6,7 +6,8 @@ var userSchema = new mongoose.Schema({
 	email: String,
 	displayName: String,
 	password: String,
+	groupId: String
 });
-var User = mongoose.model('user', userSchema, 'user');
+var User = mongoose.model('User', userSchema, 'user');
 
 module.exports = User;
