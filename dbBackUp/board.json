@@ -1,0 +1,3 @@
+{"_id":{"$oid":"5ec6bcade0af9557584b9b17"},"title":"Thiết Kế CSDL","timeCreated":1590082683690,"boardType":"PRIVATE","groupId":"none","userId":"5ec63fecf2cde62bb40ac911"}
+{"_id":{"$oid":"5ec6bdaae0af9557584b9b86"},"title":"Back End","timeCreated":1590082683690,"boardType":"SHARED","groupId":"5ec6bba8e0af9557584b9ab3","userId":"none"}
+{"_id":{"$oid":"5ec6bdc8e0af9557584b9b9e"},"title":"Front end","timeCreated":1590082683690,"boardType":"SHARED","groupId":"5ec6bba8e0af9557584b9ab3","userId":"none"}

@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 
 var boardSchema = new mongoose.Schema({
-	name: String,
-	timeCreate: Number,
-	type: Boolean,
+	title: String,
+	timeCreated: Number,
+	boardType: String,
 	groupId: String,
 	userId: String
 });

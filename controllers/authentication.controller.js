@@ -2,7 +2,9 @@ var User = require('../models/user.model');
 var List = require('../models/list.model');
 var Board = require('../models/board.model');
 var Group = require('../models/group.model');
-const mongoose = require("mongoose");
+var Recent = require("../models/recent.model");
+
+const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
 
 
 module.exports.login = async function(req, res) {
@@ -36,12 +38,49 @@ module.exports.postLogin = async function(req, res){
 		signed: true
 	});
 
-	// send displayName, list Group, list private Board, list shared Board, list Recently Board
-	var groups = null;
-	res.status(200);
+	// private board
+	var privateBoards = await Board.find({boardType: BOARD_TYPE.PRIVATE, userId: user._id});
+	// group & shared-board
+	var groups = await Group.find({_id: user.groupId});
+	var sharedBoards = [];
+	for (var g in groups){
+		var group = groups[g];
+		var groupBoard = await Board.find({boardType: BOARD_TYPE.SHARED, groupId: group._id});
+		var sBoard = {
+			groupId: group._id,
+			boards: JSON.parse(JSON.stringify(groupBoard))
+		};
+		sharedBoards.push(sBoard);
+	}
+	var recents = await Recent.find({userId: user._id});
+	recents.sort((r0, r1)=>{
+		return r1.timeVisited - r0.timeVisited
+	});
+	var slicer = Math.min(recents.length, MAX_RECENT);
+	recents = recents.slice(0, slicer);
+
+	// render
 	res.render("home", {
-		groups: groups
-	})
+		err: "none",
+		value: {
+			privateBoards: privateBoards,
+			sharedBoards: sharedBoards,
+			groups: groups,
+			recents: recents,
+		},
+	});
+
+
+	// post man
+	// res.send({
+	// 	err: "none",
+	// 	value: {
+	// 		privateBoards: privateBoards,
+	// 		sharedBoards: sharedBoards,
+	// 		groups: groups,
+	// 		recents: recents,
+	// 	},
+	// });
 }
 
 module.exports.register = async function(req, res) {

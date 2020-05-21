@@ -1,5 +1,5 @@
 var express = require('express');
-// var cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser')
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/work_management').then(()=>{
@@ -23,6 +23,7 @@ app.set('view engine', 'pug');
 app.set('views', './views');
 
 app.use(bodyParser())
+app.use(cookieParser('MY SECRET'))
 
 // var jsonParser = bodyParser.json();
 // var urlencodedParser = bodyParser.urlencoded({ extended: false })

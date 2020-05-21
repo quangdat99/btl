@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 var recentSchema = new mongoose.Schema({
-    content: String,
-    timeCreated: Number,
-    count: Number,
+    boardId: String,
+    boardTitle: String,
+    timeVisited: Number,
     userId: String
 })
 
