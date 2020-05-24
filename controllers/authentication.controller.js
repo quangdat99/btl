@@ -8,7 +8,7 @@ const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
 
 
 module.exports.login = async function(req, res) {
-	res.render('account');
+	res.render('authentication/login');
 };
 module.exports.postLogin = async function(req, res){
 	var email = req.body.email;

@@ -1,13 +1,14 @@
 doctype html
 head
-  meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
-  title &Dstrok;&abreve;ng k&yacute; t&agrave;i kho&#x1EA3;n m&#x1EDB;i.
+
+  title &Dstrok;&abreve;ng nh&#x1EAD;p.
   meta(name='viewport', content='width=device-width, initial-scale=1')
   script(src='https://kit.fontawesome.com/a076d05399.js')
   link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css')
   script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js')
   script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js')
+    
   style.
     body{
     background: linear-gradient(90deg, rgba(219,235,233,1) 0%, rgba(216,252,242,1) 49%, rgba(227,241,237,1) 100%);
@@ -178,40 +179,58 @@ head
     max-width: 30%;
     overflow: hidden;
     }
+
 body
   .container
     .logo(style="text-align:center;")
       img(src="/image/logo-green.png", alt="")
-    form.frm_Login(action='/authentication/register', method='POST') 
-      h2.alignCenter( style='margin-top: 0') &Dstrok;&abreve;ng k&yacute; t&agrave;i kho&#x1EA3;n m&#x1EDB;i
+    form.frm_Login(method="POST" action="/authentication/login")
+      h2.alignCenter(style='margin-top: 0') &Dstrok;&abreve;ng nh&#x1EAD;p t&agrave;i kho&#x1EA3;n
       br
       .form-group
-        label(for='') Tên t&agrave;i kho&#x1EA3;n
-        input.form-control(name='displayName', type='text', id='')
-      .form-group
-        label(for='') Email
+        label(for='') Email 
         input.form-control(name='email', type='text', id='')
       .form-group
         label(for='') M&#x1EAD;t kh&#x1EA9;u
         input.form-control(name='password', type='password', id='')
-      .form-group
-        label(for='') Nh&#x1EAD;p l&#x1EA1;i m&#x1EAD;t kh&#x1EA9;u
-        input.form-control(name='password', type='password', id='')
-
+      .form-group.row
+        .col-sm-6.alignCenter
+          .checkbox
+            a(href='ForgotPassword.html') Qu&ecirc;n m&#x1EAD;t kh&#x1EA9;u?
+        .col-sm-6.alignCenter
+          .checkbox
+            label
+              input(type='checkbox', value='')
+              | Ghi nh&#x1EDB; m&#x1EAD;t kh&#x1EA9;u
       .alignCenter
-        small -----------Ho&#x1EB7;c &dstrok;&abreve;ng k&yacute; nhanh v&#x1EDB;i-----------
+        small -----------Ho&#x1EB7;c &dstrok;&abreve;ng nh&#x1EAD;p nhanh v&#x1EDB;i-----------
         br
         br
       .form-group.row
         
         .col-sm-6.alignCenter
-          button.btn-auth.facebook(onclick='')
+          button.facebook(onclick='')
             span Facebook
         .col-sm-6.alignCenter
-          button.btn-auth.google(onclick='')
+          button.google(onclick='')
             span Gmail
       br
+      b
+      .alignCenter
+        small N&#x1EBF;u b&#x1EA1;n ch&#x1B0;a c&oacute; t&agrave;i kho&#x1EA3;n, h&atilde;y t&#x1EA1;o cho m&igrave;nh m&#x1ED9;t t&agrave;i kho&#x1EA3;n.
+      br
+      .alignCenter
+        a.btn.signup(href='/authentication/register') &Dstrok;&abreve;ng k&yacute; t&#x1EA3;i kho&#x1EA3;n m&#x1EDB;i
       br
       input(type='hidden', value='login', name='command')
-      input#btn_Login.btn.btn-primary(type='submit', value='Đăng ký')
+      input#btn_Login.btn.btn-primary(type='submit', value='Đăng nhập')
       a.btn.btn-warning(href='/') Tr&#x1EDF; v&#x1EC1;
+
+    
+
+
+  //- .backgroud
+  //-   .leftLarge
+  //-     img(src="/image/anh1.png", alt="")(style="overflow:hidden;")
+  //-   .rightLarge
+  //-     img(src="/image/anh1.png", alt="")(style="overflow:hidden;")
