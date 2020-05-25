@@ -92,7 +92,6 @@ module.exports.postRegister = async function(req, res){
 	var displayName = req.body.displayName;
 	var password = req.body.password;
 
-	console.log(JSON.stringify(req.body))
 
 	var user = await User.findOne({email: email});
 	if (user != null){
@@ -125,7 +124,6 @@ module.exports.postRegister = async function(req, res){
 			],
 			value: req.body
 		});
-		console.log("save fail " + e)
 	}
 }
 

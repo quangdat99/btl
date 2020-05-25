@@ -1,0 +1,128 @@
+extends header
+
+block header
+  style.
+    .tabbed-pane-header {
+    background: rgba(0, 0, 0, 0.04);
+    }
+    .tabbed-pane-header-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 auto;
+        max-width: 650px;
+        padding: 32px;
+        position: relative;
+    }
+    .tabbed-pane-header-content {
+        display: flex;
+    }
+    .tabbed-pane-header-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 0 0 20px;
+    }
+    ._1mh0u4cBAMhD4p {
+        margin-bottom: 8px;
+        font-weight: 900;
+        height: 40px;
+        font-size: 30px;
+
+    }
+    ._2DZdmHnY2Nw7gI {
+        margin-top: 8px;
+    }
+    ._2DZdmHnY2Nw7gI:hover{
+    background: rgba(9, 30, 66, 0.09);
+    }
+    .org-profile-avatar{
+    background-color: white;
+    height: 120px;
+    width: 120px;
+    }
+    .tabbed-pane-nav {
+    background: rgba(0, 0, 0, 0.04);
+    position: relative;
+    text-align: center;
+    border-bottom: 1px solid #00b3b3;
+    }
+    .tabbed-pane-nav-item {
+        display: inline-block;
+    }
+    .tabbed-pane-nav-item-button {
+        background: rgba(9, 30, 66, 0.04);
+        border: 1px solid #00b3b3;
+        border-bottom: 0px;
+        border-radius: 4px 4px 0 0;
+        display: inline-block;
+        font-weight: 700;
+        margin: 2px 2px -1px;
+        padding: 8px 20px;
+        text-decoration: none;
+        box-sizing: border-box;
+    }
+    .tabbed-pane-nav-item-button {
+    border-bottom: 0;
+    }
+    .css-1a1cwqg {
+        -webkit-box-align: baseline;
+        align-items: baseline;
+        box-sizing: border-box;
+        display: inline-flex;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: normal;
+        max-width: 100%;
+        text-align: center;
+        white-space: nowrap;
+        box-shadow: none;
+        color: rgb(23, 43, 77);
+        cursor: default;
+        height: 2.28571em;
+        line-height: 20px;
+        vertical-align: middle;
+        width: auto;
+        border-width: 0px;
+        text-decoration: none;
+        background: rgba(9, 30, 66, 0.04);
+        border-radius: 4px;
+        padding: 6px 12px;
+        transition: background 0.1s ease-out 0s, box-shadow 0.15s cubic-bezier(0.47, 0.03, 0.49, 1.38) 0s;
+        outline: none !important;
+    }
+    .tabbed-pane-nav-item a {
+    color: #003333;
+    }
+    .a2:hover {
+     text-decoration: none;
+     background: rgba(9, 30, 66, 0.09);
+    }
+
+    .a1 {
+        background: rgba(216,252,242,1);
+    }
+    .tabbed-pane-main {
+    background: #f2f2f2;
+    }
+
+
+  .tabbed-pane-header
+    .tabbed-pane-header-wrapper
+      .tabbed-pane-header-content
+        .org-profile-avatar
+          //- img(src="/image/avatar-group.png", alt="")
+        .tabbed-pane-header-details
+          .js-current-details
+            .js-react-root
+              ._1mh0u4cBAMhD4p Tên nhóm 
+              button._2DZdmHnY2Nw7gI.css-1a1cwqg
+                i.fas.fa-pencil-alt   
+                span &nbsp; Chỉnh Sửa Lý Lịch Nhóm 
+  .tabbed-pane-nav
+    ul(style='margin-bottom: 0px;')
+      li.tabbed-pane-nav-item
+        a(href="/group").tabbed-pane-nav-item-button.a2 Bảng 
+      li.tabbed-pane-nav-item
+        a.disabled.tabbed-pane-nav-item-button.a1 Thành viên 
+  .tabbed-pane-main

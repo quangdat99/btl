@@ -97,13 +97,12 @@ block header
         a(href="/board") 
           i.fas.fa-border-all  Bảng 
         p   CÁC NHÓM 
-        a(href="/group")
-          i.fas.fa-users  Nhóm 1
-        a(href="#")
-              i.fas.fa-users  Nhóm 2 
+        each _group in groups
+          a(href="/group")
+            i.fas.fa-users=_group.title 
       .col-9.bodyright
         p
-          i.fas.fa-history  Xem gần đây 
+          i.fas.fa-history  Đã xem gần đây 
         each _recent in recents  
             a(href="/board/list")=_recent.boardId
         p

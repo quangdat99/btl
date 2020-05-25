@@ -149,28 +149,53 @@ html
             a.dropdown-item(href='#') Hoạt động
             hr
             a.dropdown-item(href='#') Đăng xuất 
+
+
+
     #taobang.modal.fade
+      form(action="")
+        .modal-dialog
+          .modal-content
+            // Modal Header
+            .modal-header
+              input.modal-title.form-control(placeholder='Thêm tiêu đề bảng')
+              button.close(type='button', data-dismiss='modal') &times;
+            // Modal body
+            .modal-body
+              select.browser-default.custom-select Nhóm 
+                option(selected='') Không có nhóm nào 
+                option(value='1') Nhóm 1
+                option(value='2') Nhóm 2 
+              select.browser-default.custom-select
+                option(selected='') Hiện với nhóm  
+                option(value='1') Riêng tư 
+                option(value='2') Nhóm 
+                option(value='3') Công khai 
+
+     
+              button.btn.btn-info(style='float: right;margin-top:10px;' type='button', data-dismiss='modal') Tạo bảng
+
+    #taonhom.modal.fade
       .modal-dialog
         .modal-content
           // Modal Header
           .modal-header
-            input.modal-title.form-control(placeholder='Thêm tiêu đề bảng')
+            h5.modal-title(style='display:inline-block;') Hãy xây dựng một nhóm giúp tăng năng suất của bạn
             button.close(type='button', data-dismiss='modal') &times;
           // Modal body
           .modal-body
-            select.browser-default.custom-select Nhóm 
-              option(selected='') Không có nhóm nào 
-              option(value='1') Nhóm 1
-              option(value='2') Nhóm 2 
-            select.browser-default.custom-select
-              option(selected='') Hiện với nhóm  
-              option(value='1') Riêng tư 
-              option(value='2') Nhóm 
-              option(value='3') Công khai 
+            form(action="" method="")
+              .form-group
+                label(for='exampleFormControlInput1') Tên nhóm 
+                input#exampleFormControlInput1.form-control(type='email', placeholder='')
+              .form-group
+                label(for='exampleFormControlTextarea1') Mô tả của nhóm 
+                textarea#exampleFormControlTextarea1(placeholder='Nhóm của chúng tôi tổ chức mọi thứ ở đây.' rows='3').form-control
+                       
 
-          // Modal footer
-          .modal-footer
-            button.btn.btn-info(type='button', data-dismiss='modal') Tạo bảng
+         
+              button.btn.btn-info(style='float: right;' type='button', data-dismiss='modal') Tạo Nhóm 
+
 
     block header
       

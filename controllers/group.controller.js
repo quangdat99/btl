@@ -12,6 +12,15 @@ module.exports.index = async function(req, res) {
 	});
 };
 
+
+module.exports.member = async function(req, res) {
+	var user = await User.find();
+	res.render('member',{
+		
+	});
+};
+
+
 module.exports.create = async (req, res)=>{
 	var title = req.body.title;
 	var description = req.body.description;

@@ -3,11 +3,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser')
 var mongoose = require('mongoose');
 
-var User = require('./models/user.model');
-var List = require('./models/list.model');
-var Board = require('./models/board.model');
-var Group = require('./models/group.model');
-var Recent = require("./models/recent.model");
+// var User = require('./models/user.model');
+// var List = require('./models/list.model');
+// var Board = require('./models/board.model');
+// var Group = require('./models/group.model');
+// var Recent = require("./models/recent.model");
 
 
 mongoose.connect('mongodb://localhost/work_management').then(()=>{
@@ -21,6 +21,7 @@ var boardRoute = require('./routes/board.route');
 var groupRoute = require('./routes/group.route');
 var userRoute = require('./routes/user.route');
 var authenticationRoute = require("./routes/authentication.route");
+var homeRoute = require('./routes/home.route');
 
 var port = 3001;
 
@@ -41,19 +42,13 @@ app.use(express.static('public'));
 app.get('/', function(req, res) {
 	res.render('index');
 });
-app.get('/home',async function(req, res) {
-	var boards = await Board.find();
-	var recents = await Recent.find();
-	res.render('home',{
-		boards: boards,
-		recents:recents
-	});
-});
+
 
 app.use('/board', boardRoute);
 app.use('/user', userRoute);
 app.use('/group', groupRoute);
 app.use('/authentication', authenticationRoute);
+app.use('/home',homeRoute);
 
 var server = app.listen(port, function () {
 	console.log('Server listening on port '+ port);
