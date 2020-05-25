@@ -7,14 +7,9 @@ var Recent = require("../models/recent.model");
 const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
 
 
-module.exports.login = async function(req, res) {
-	res.render('authentication/login');
-};
-module.exports.postLogin = async function(req, res){
-	var email = req.body.email;
-	var password = req.body.password;
+module.exports.index = async function(req, res){
 
-	var user = await User.findOne({email: email});
+	var user = await User.findOne({_id: req.signCookies.userId});
 	if (user == undefined){
 		res.render("authentication/login", {
 			error: [
@@ -60,17 +55,17 @@ module.exports.postLogin = async function(req, res){
 	recents = recents.slice(0, slicer);
 
 	// render
-	// res.render("home", {
-	// 	err: "none",
-	// 	value: {
-	// 		privateBoards: privateBoards,
-	// 		sharedBoards: sharedBoards,
-	// 		groups: groups,
-	// 		recents: recents,
-	// 	},
-	// });
+	res.render("home", {
+		err: "none",
+		value: {
+			privateBoards: privateBoards,
+			sharedBoards: sharedBoards,
+			groups: groups,
+			recents: recents,
+		},
+	});
 
-	res.redirect("/home")
+	// res.redirect("home")
 
 	// post man
 	// res.send({
