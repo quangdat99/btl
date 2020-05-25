@@ -21,6 +21,7 @@ var boardRoute = require('./routes/board.route');
 var groupRoute = require('./routes/group.route');
 var userRoute = require('./routes/user.route');
 var authenticationRoute = require("./routes/authentication.route");
+var searchRoute = require("./routes/search.route");
 
 var port = 3001;
 
@@ -54,6 +55,7 @@ app.use('/board', boardRoute);
 app.use('/user', userRoute);
 app.use('/group', groupRoute);
 app.use('/authentication', authenticationRoute);
+app.use('/search', searchRoute);
 
 var server = app.listen(port, function () {
 	console.log('Server listening on port '+ port);
