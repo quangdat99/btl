@@ -16,7 +16,7 @@ module.exports.create = async (req, res)=>{
 	var memberCount = 0;
 
 	var group = new Group({
-		title: name,
+		title: title,
 		description: description,
 		memberCount: memberCount
 	})
