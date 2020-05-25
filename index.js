@@ -2,11 +2,11 @@ var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser')
 var mongoose = require('mongoose');
+
+
 mongoose.connect('mongodb://localhost/work_management').then(()=>{
 	console.log("Connect db success");
-	app.listen(port, function () {
-		console.log('Server listening on port '+ port);
-	});
+	
 }).catch(e=>{
 	console.log("Connect db fail");
 });
@@ -43,4 +43,28 @@ app.use('/board', boardRoute);
 app.use('/user', userRoute);
 app.use('/group', groupRoute);
 app.use('/authentication', authenticationRoute);
+
+var server = app.listen(port, function () {
+	console.log('Server listening on port '+ port);
+});
+
+const io = require("socket.io")(server);
+io.on("connection", (socket) => {
+  console.log("== new connection _ session id: " + socket.id);
+  socket.emit("news", { route: "first connect" });
+  socket.on('disconnect', ()=>{
+	  console.log("socket disconnect");
+  })
+  socket.on("my other event", (data) => {
+    console.log(data);
+  });
+});
+io.on('disconnect', (_socket) => {
+	console.log("socket disconnect");
+  });
+
+
+var pS = require("./socketMapper");
+global.socketMapper = new pS();
+global.socketMapper.appendSocket(100, 5);
 

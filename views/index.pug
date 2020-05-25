@@ -162,3 +162,11 @@ body
             a.btn.btn-outline-secondary(href='#') Google play
             a.btn.btn-outline-secondary(href='#') App store
   jsp:include(page='footer.jsp')
+script(src='/socket.io/socket.io.js')
+script.
+  const socket = io.connect('http://localhost:3001');
+  socket.on('news', (data) => {
+    console.log(data);
+    console.log("socket session id " + socket.id);
+    socket.emit('my other event', { my: 'data' });
+  });

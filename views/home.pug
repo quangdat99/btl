@@ -40,3 +40,10 @@ block header
         a(href="#")
           i.fas.fa-users  Nhóm 2 
       block home
+
+      script(src='/socket.io/socket.io.js')
+  script.
+    const socket = io.connect('http://localhost:3001');
+    socket.on('broadcast', (data) => {
+    console.log(" // "  + data);
+    });
