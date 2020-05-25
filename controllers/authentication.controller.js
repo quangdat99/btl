@@ -111,9 +111,10 @@ module.exports.postRegister = async function(req, res){
 
 	try {
 		await user.save();
-		res.render("authentication/register", {
-			value: req.body
-		});
+		// res.render("authentication/register", {
+		// 	value: req.body
+		// });
+		res.redirect("/authentication/login")
 	}
 	catch (e){
 		res.render("authentication/register", {
