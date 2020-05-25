@@ -1,7 +1,9 @@
+var User = require('../models/user.model');
+var List = require('../models/list.model');
 var Board = require('../models/board.model');
 var Group = require('../models/group.model');
-var User = require("../models/user.model");
-
+var Recent = require("../models/recent.model");
+const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
 
 module.exports.index = async function(req, res) {
 	var boards = await Board.find();
@@ -12,7 +14,7 @@ module.exports.index = async function(req, res) {
 
 module.exports.create = async (req, res)=>{
 	var title = req.body.title;
-	var description = req.boty.description;
+	var description = req.body.description;
 	var memberCount = 0;
 
 	var group = new Group({
