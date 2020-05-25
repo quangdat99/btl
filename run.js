@@ -1,7 +1,8 @@
 const axios = require('axios');
 
-axios.post('http://localhost:3001/search/allUser', {
+axios.post('http://localhost:3001/search/groupUser', {
     field: '@',
+    userId: '5ec63fecf2cde62bb40ac911'
   })
   .then(function (response) {
     console.log(response.data);

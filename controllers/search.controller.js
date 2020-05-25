@@ -12,7 +12,17 @@ const filterUser = (users, field)=>{
 
 module.exports.postSearchAllUser = async function(req, res) {
 	var field = req.body.field;
-	var users = await User.find({});
+	var userId = req.signedCookies.userId;
+	var user = await User.find({_id: userId});
+
+	var groupId = user.groupId;
+	if (groupId == undefined || groupId == null){
+		var users = await User.find({_id: {$ne: userId}});
+	}
+	else {
+		var users = await User.find({groupId: {$ne: groupId}});
+	}
+	
 	users = filterUser(users, field);
 	res.send({
 		users: users
@@ -21,8 +31,11 @@ module.exports.postSearchAllUser = async function(req, res) {
 
 module.exports.postSearchGroupUser = async function(req, res) {
 	var field = req.body.field;
-	var group = await Group.find({_id: req.signedCookies.userId});
-	users = await User.find({groupId: group._id});
+	var userId = req.signedCookies.userId;
+	var user = await User.findOne({_id: userId});
+
+	var group = await Group.findOne({_id: user.groupId});
+	users = await User.find({groupId: group._id, _id: {$ne: userId}});
 	users = filterUser(users, field);
 	res.send({
 		users: users
