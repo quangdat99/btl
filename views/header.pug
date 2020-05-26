@@ -177,7 +177,7 @@ html
 
     #taonhom.modal.fade
       .modal-dialog
-        .modal-content
+        .modal-content.row 
           // Modal Header
           .modal-header
             h5.modal-title(style='display:inline-block;') Hãy xây dựng một nhóm giúp tăng năng suất của bạn
@@ -187,14 +187,50 @@ html
             form(action="" method="")
               .form-group
                 label(for='exampleFormControlInput1') Tên nhóm 
-                input#exampleFormControlInput1.form-control(type='email', placeholder='')
+                input#exampleFormControlInput1.form-control(type='text', placeholder='')
               .form-group
                 label(for='exampleFormControlTextarea1') Mô tả của nhóm 
                 textarea#exampleFormControlTextarea1(placeholder='Nhóm của chúng tôi tổ chức mọi thứ ở đây.' rows='3').form-control
-                       
+              .form-group
+                label(for='search-member') Thêm Thành viên
+                input#search-member.form-control(type='text', placeholder='') 
+                .col-md-9(style='position: relative;padding-left: 0px;')
+                  #show-list.list-group
+                    if users
+                      each _user in users 
+                        a.list-group-item.list-group-item-action.border-1(href="") = _user.displayName
+                   
+                script.
+                  $(document).ready(function(){
+                    $('#search-member').keyup(function(){
+                      var searchText = $(this).val();
+                      if(searchText!=''){
+                        $.ajax({
+                          url: 'http://localhost:3001/search/groupUser',
+                          method: 'post',
+                          data:{field:searchText},
+                          success: function(response){
+                            $("#show-list").html(response);
+                          }
+
+                        });
+                      }
+                      else{
+                        $("#show-list").html('');
+                      }
+                    });
+                    $(document).on('click','a',function(){
+                      $("search-member").val($(this).text());
+                      $("#show-list").html(response);
+                    })
+                  });
+
+
+                                   
 
          
               button.btn.btn-info(style='float: right;' type='button', data-dismiss='modal') Tạo Nhóm 
+
 
 
     block header

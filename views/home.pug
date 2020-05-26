@@ -93,31 +93,32 @@ block header
     .row
       .col-3.bodyleft
         a(href="/")
-          i.fas.fa-home  Trang chủ 
+          i.fas.fa-home  &nbsp; Trang chủ 
         a(href="/board") 
-          i.fas.fa-border-all  Bảng 
+          i.fas.fa-border-all  &nbsp; Bảng 
         p   CÁC NHÓM 
         each _group in groups
           a(href="/group")
-            i.fas.fa-users=_group.title 
+            i.fas.fa-users  &nbsp;
+              span=_group.title 
       .col-9.bodyright
         p
-          i.fas.fa-history  Đã xem gần đây 
+          i.fas.fa-history  &nbsp; Đã xem gần đây 
         each _recent in recents  
             a(href="/board/list")=_recent.boardId
         p
-          i.fas.fa-user  Bảng cá nhân 
+          i.fas.fa-user  &nbsp; Bảng cá nhân 
         each _board in boards  
             a(href="/board/list")=_board.title 
         a.new(href="#") Tạo bảng mới
         p
-          i.fas.fa-users  Tên nhóm 1
+          i.fas.fa-users  &nbsp; Tên nhóm 1
           a.gr(href="#") 
-            i.fas.fa-user  Thành viên 
+            i.fas.fa-user  &nbsp; Thành viên 
           a.gr(href="#") 
-            i.fas.fa-cog  Cài đặt 
+            i.fas.fa-cog  &nbsp; Cài đặt 
           a.gr(href="#") 
-            i.fas.fa-border-all  Bảng
+            i.fas.fa-border-all  &nbsp; Bảng
         a(href="#")  Tên bảng của nhóm 1
         a.new(href="#")  Tạo bảng mới
 

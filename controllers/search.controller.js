@@ -31,6 +31,7 @@ module.exports.postSearchAllUser = async function(req, res) {
 
 module.exports.postSearchGroupUser = async function(req, res) {
 	var field = req.body.field;
+	console.log(field);
 	var userId = req.signedCookies.userId;
 	var user = await User.findOne({_id: userId});
 
