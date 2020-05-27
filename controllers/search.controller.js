@@ -1,6 +1,6 @@
 var User = require('../models/user.model');
 var Group = require('../models/group.model');
-
+var User_Group = require("../models/user_group.model");
 
 
 const filterUser = (users, field)=>{
@@ -10,34 +10,70 @@ const filterUser = (users, field)=>{
 	});
 }
 
+// tìm user không trong nhóm này để thêm vào nhóm group
+// tìm partners =>> trả về những ai không phải parter
 module.exports.postSearchAllUser = async function(req, res) {
 	var field = req.body.field;
-	var userId = req.signedCookies.userId;
-	var user = await User.find({_id: userId});
+	var groupId = req.body.groupId;
 
-	var groupId = user.groupId;
-	if (groupId == undefined || groupId == null){
-		var users = await User.find({_id: {$ne: userId}});
+	var userId = req.signedCookies.userId;
+	// var userId = req.body.userId;
+
+	if (groupId == "#null"){
+		var users = await User.find({_id: {$not: userId}});
 	}
 	else {
-		var users = await User.find({groupId: {$ne: groupId}});
+		var partnersGroup = await User_Group.find({groupId: groupId});
+		partnerIds = partnersGroup.map((partnerGroup)=>{
+			return partnerGroup.userId;
+		});
+		
+		var users = await User.find({_id: {$nin: partnerIds}});
+		users = users.map((user)=>{
+			return {
+				_id: user._id,
+				displayName: user.displayName,
+				email: user.email
+			}
+		})
 	}
 	
-	users = filterUser(users, field);
+	if (field != "#null")
+		users = filterUser(users, field);
 	res.send({
 		users: users
 	})
 };
 
+// tìm user trong group để chỉ định công việc
 module.exports.postSearchGroupUser = async function(req, res) {
 	var field = req.body.field;
-	console.log(field);
-	var userId = req.signedCookies.userId;
-	var user = await User.findOne({_id: userId});
+	var groupId = req.body.groupId;
 
-	var group = await Group.findOne({_id: user.groupId});
-	users = await User.find({groupId: group._id, _id: {$ne: userId}});
-	users = filterUser(users, field);
+	var userId = req.signedCookies.userId;
+	// var userId = req.body.userId;
+
+	if (groupId == "#null"){
+		var users = await User.find({_id: {$not: userId}});
+	}
+	else {
+		var partnersGroup = await User_Group.find({groupId: groupId, userId: {$ne: userId}});
+		partnerIds = partnersGroup.map((partnerGroup)=>{
+			return partnerGroup.userId;
+		});
+		
+		var users = await User.find({_id: {$in: partnerIds}});
+		users = users.map((user)=>{
+			return {
+				_id: user._id,
+				displayName: user.displayName,
+				email: user.email
+			}
+		})
+	}
+	
+	if (field != "#null")
+		users = filterUser(users, field);
 	res.send({
 		users: users
 	})
