@@ -53,7 +53,7 @@ app.use('/user', userRoute);
 app.use('/group', groupRoute);
 app.use('/authentication', authenticationRoute);
 
-app.use('/home',homeRoute);
+app.use('/home', homeRoute);
 
 app.use('/search', searchRoute);
 
