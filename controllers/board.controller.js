@@ -9,9 +9,18 @@ const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
 
 
 module.exports.index = async function(req, res){
-	var boards = await Board.find();
-	var recents = await Recent.find();
-	var groups = await Group.find();
+	var boardId = req.signedCookies.boardId;
+
+	var lists = await List.find({boardId: boardId});
+	lists = lists.map((list)=>{
+		return {
+			_id: list.id,
+			title: list.title,
+			cardCount: list.cardCount,
+			boardId: list.boardId
+		}
+	});
+	
 	res.render('board',{
 		boards: boards,
 		recents:recents,
