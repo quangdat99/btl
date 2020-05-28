@@ -26,11 +26,13 @@ module.exports.index = async function(req, res) {
 
 
 module.exports.member = async function(req, res) {
-	var groupId = req.body.groupId;
+	var groupId = req.params.groupId;
 
-	var user = await User.find({groupId: groupId});
+	var groupId = req.params.groupId;
+	var partners = await User.find({groupId: groupId});
+
 	res.render('member',{
-		
+		mambers: partners	
 	});
 };
 
