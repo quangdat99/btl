@@ -29,6 +29,37 @@ module.exports.index = async function(req, res){
 	});
 
 }
+module.exports.create = async (req, res)=>{
+	var userId = req.signedCookies.userId;
+	var title = req.body.title;
+	var timeCreated = new Date().getTime();
+	var groupId = req.body.groupId;
+
+	console.log("// " + groupId)
+
+	if (groupId == "#null"){
+		var boardType = BOARD_TYPE.PRIVATE;
+	}
+	else {
+		var boardType = BOARD_TYPE.SHARED;
+	};
+
+	var board = new Board({
+		title: title,
+		boardType: boardType,
+		groupId: groupId,
+		userId: userId
+	});
+
+	try {
+		board.save();
+		res.redirect("/home");
+	}
+	catch (e){
+
+	}
+};
+
 module.exports.list = async function(req, res) {
 	var lists = await List.find();
 	res.render('list',{

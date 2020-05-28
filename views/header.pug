@@ -153,27 +153,22 @@ html
 
 
     #taobang.modal.fade
-      form(action="")
+      form(action="/board/create" method='POST')
         .modal-dialog
           .modal-content
             // Modal Header
             .modal-header
-              input.modal-title.form-control(placeholder='Thêm tiêu đề bảng')
+              input.modal-title.form-control(placeholder='Thêm tiêu đề bảng' name='title')
               button.close(type='button', data-dismiss='modal') &times;
             // Modal body
             .modal-body
-              select.browser-default.custom-select Nhóm 
-                option(selected='') Không có nhóm nào 
-                option(value='1') Nhóm 1
-                option(value='2') Nhóm 2 
-              select.browser-default.custom-select
-                option(selected='') Hiện với nhóm  
-                option(value='1') Riêng tư 
-                option(value='2') Nhóm 
-                option(value='3') Công khai 
+              select.browser-default.custom-select(name='groupId') Nhóm 
+                option(selected='#null' value='#null') Không có nhóm nào 
+                each _group in groups
+                  option(value=_group._id)=_group.title  
 
      
-              button.btn.btn-info(style='float: right;margin-top:10px;' type='button', data-dismiss='modal') Tạo bảng
+              button.btn.btn-info(style='float: right;margin-top:10px;') Tạo bảng
 
     #taonhom.modal.fade
       .modal-dialog
