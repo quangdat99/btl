@@ -20,7 +20,7 @@ module.exports.index = async function(req, res) {
 		title: group.title,
 		description: group.description,
 		boards: boards,
-		memberCount: partners.memberCount,
+		memberCount: partners.length,
 	});
 };
 
@@ -32,7 +32,7 @@ module.exports.member = async function(req, res) {
 	var partners = await User.find({groupId: groupId});
 
 	res.render('member',{
-		mambers: partners	
+		members: partners	
 	});
 };
 
