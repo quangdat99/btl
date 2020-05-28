@@ -6,15 +6,29 @@ var Recent = require("../models/recent.model");
 const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
 
 module.exports.index = async function(req, res) {
-	var boards = await Board.find();
+	var groupId = req.body.groupId;
+
+	var partners = await User.find({groupId: groupId});
+
+	var group = await Group.findOne({_id: groupId});
+
+	var boards = await Board.find({boardType: BOARD_TYPE.SHARED, groupId: groupId});
+	boards = JSON.stringify(boards);
+
 	res.render('group',{
-		
+		_id: group._id,
+		title: group.title,
+		description: group.description,
+		boards: boards,
+		memberCount: partners.memberCount,
 	});
 };
 
 
 module.exports.member = async function(req, res) {
-	var user = await User.find();
+	var groupId = req.body.groupId;
+
+	var user = await User.find({groupId: groupId});
 	res.render('member',{
 		
 	});

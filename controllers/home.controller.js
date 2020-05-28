@@ -20,25 +20,11 @@ module.exports.index = async function(req, res){
 		return user_group.groupId;
 	})
 	var groups = await Group.find({_id: {$in: groupIds}});
-	groups = groups.map((group)=>{
-		return {
-			_id: group._id,
-			title: group.title,
-			description: group.description,
-			memberCount: group.memberCount
-		}
-	});
+	groups = JSON.parse(JSON.stringify(groups));
 
 	for (var g in groups){
 		var group = groups[g];
 		var boards = await Board.find({boardType: BOARD_TYPE.SHARED, groupId: group._id});
-		boards = boards.map((board)=>{
-			return {
-				_id: board._id,
-				title: board.title,
-				timeCreated: board.timeCreated
-			}
-		});
 		group.boards = JSON.parse(JSON.stringify(boards));
 	}
 

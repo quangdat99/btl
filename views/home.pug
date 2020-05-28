@@ -114,9 +114,10 @@ block header
         p
         each _group in groups
           i.fas.fa-users  &nbsp;
-              span= _group.title 
+            span= _group.title 
+          br
           each _board in _group.boards 
-            a(href="/board") _board.title
+            a(href="/board")=_board.title
           a.new(href="#" data-toggle="modal" data-target="#taobang")  Tạo bảng mới
 
 
