@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 var recentSchema = new mongoose.Schema({
     boardId: String,
-    boardTitle: String,
+    title: String,
     timeVisited: Number,
     userId: String
 })

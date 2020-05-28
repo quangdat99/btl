@@ -105,10 +105,10 @@ block header
         p
           i.fas.fa-history  &nbsp; Đã xem gần đây 
         each _recent in recents  
-            a(href="/board/list")=_recent.boardId
+            a(href="/board/list")=_recent.title
         p
           i.fas.fa-user  &nbsp; Bảng cá nhân 
-        each _board in boards  
+        each _board in privateBoards  
             a(href="/board/list")=_board.title 
         a.new(href="#") Tạo bảng mới
         p
