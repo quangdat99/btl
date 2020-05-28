@@ -164,8 +164,9 @@ html
             .modal-body
               select.browser-default.custom-select(name='groupId') Nhóm 
                 option(selected='#null' value='#null') Không có nhóm nào 
-                each _group in groups
-                  option(value=_group._id)=_group.title  
+                if groups
+                  each _group in groups
+                    option(value=_group._id)=_group.title  
 
      
               button.btn.btn-info(style='float: right;margin-top:10px;') Tạo bảng
