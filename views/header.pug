@@ -184,52 +184,48 @@ html
             button.close(type='button', data-dismiss='modal') &times;
           // Modal body
           .modal-body
-            form(action="" method="")
+            form(action="/group/create" method="POST")
               .form-group
                 label(for='exampleFormControlInput1') Tên nhóm 
-                input#exampleFormControlInput1.form-control(type='text', placeholder='')
+                input#exampleFormControlInput1.form-control(type='text', placeholder='', name="title")
               .form-group
                 label(for='exampleFormControlTextarea1') Mô tả của nhóm 
-                textarea#exampleFormControlTextarea1(placeholder='Nhóm của chúng tôi tổ chức mọi thứ ở đây.' rows='3').form-control
-              .form-group
-                label(for='search-member') Thêm Thành viên
-                input#search-member.form-control(type='text', placeholder='') 
-                .col-md-9(style='position: relative;padding-left: 0px;')
-                  #show-list.list-group
-                    if users
-                      each _user in users 
-                        a.list-group-item.list-group-item-action.border-1(href="") = _user.displayName
-                   
-                script.
-                  $(document).ready(function(){
-                    $('#search-member').keyup(function(){
-                      var searchText = $(this).val();
-                      if(searchText!=''){
-                        $.ajax({
-                          url: 'http://localhost:3001/search/groupUser',
-                          method: 'post',
-                          data:{field:searchText},
-                          success: function(response){
-                            $("#show-list").html(response);
-                          }
+                textarea#exampleFormControlTextarea1(placeholder='Nhóm của chúng tôi tổ chức mọi thứ ở đây.' rows='3', name="description").form-control
+              //- .form-group
+              //-   label(for='search-member') Thêm Thành viên
+              //-   input#search-member.form-control(type='text', placeholder='') 
+              //-   .col-md-9(style='position: relative;padding-left: 0px;')
+              //-     #show-list.list-group
+              //-       if users
+              //-         each _user in users 
+              //-           a.list-group-item.list-group-item-action.border-1(href="") = _user.displayName
+              //- button Tạo Nhóm
+              button.btn.btn-info(style='float: right;') Tạo Nhóm
+                //- script.
+                //-   $(document).ready(function(){
+                //-     $('#search-member').keyup(function(){
+                //-       var searchText = $(this).val();
+                //-       if(searchText!=''){
+                //-         $.ajax({
+                //-           url: 'http://localhost:3001/search/groupUser',
+                //-           method: 'post',
+                //-           data:{field:searchText, },
+                //-           success: function(response){
+                //-             $("#show-list").html(response);
+                //-           }
 
-                        });
-                      }
-                      else{
-                        $("#show-list").html('');
-                      }
-                    });
-                    $(document).on('click','a',function(){
-                      $("search-member").val($(this).text());
-                      $("#show-list").html(response);
-                    })
-                  });
-
-
-                                   
-
-         
-              button.btn.btn-info(style='float: right;' type='button', data-dismiss='modal') Tạo Nhóm 
+                //-         });
+                //-       }
+                //-       else{
+                //-         $("#show-list").html('');
+                //-       }
+                //-     });
+                //-     $(document).on('click','a',function(){
+                //-       $("search-member").val($(this).text());
+                //-       $("#show-list").html(response);
+                //-     })
+                //-   });
+              
 
 
 
