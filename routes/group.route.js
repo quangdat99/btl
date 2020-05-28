@@ -4,7 +4,7 @@ var controller = require('../controllers/group.controller');
 
 var router = express.Router();
 
-router.post('/', controller.index);
+router.get('/:groupId', controller.index);
 router.post('/member', controller.member);
 
 router.post("/create", controller.create);

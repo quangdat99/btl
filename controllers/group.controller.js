@@ -6,7 +6,7 @@ var Recent = require("../models/recent.model");
 const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
 
 module.exports.index = async function(req, res) {
-	var groupId = req.body.groupId;
+	var groupId = req.params.groupId;
 
 	var partners = await User.find({groupId: groupId});
 
