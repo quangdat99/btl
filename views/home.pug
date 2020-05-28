@@ -105,22 +105,19 @@ block header
         p
           i.fas.fa-history  &nbsp; Đã xem gần đây 
         each _recent in recents  
-            a(href="/board/list")=_recent.title
+          a(href="/board")=_recent.title
         p
           i.fas.fa-user  &nbsp; Bảng cá nhân 
         each _board in privateBoards  
-            a(href="/board/list")=_board.title 
-        a.new(href="#") Tạo bảng mới
+          a(href="/board")=_board.title 
+        a.new(href="#" data-toggle="modal" data-target="#taobang")  Tạo bảng mới
         p
-          i.fas.fa-users  &nbsp; Tên nhóm 1
-          a.gr(href="#") 
-            i.fas.fa-user  &nbsp; Thành viên 
-          a.gr(href="#") 
-            i.fas.fa-cog  &nbsp; Cài đặt 
-          a.gr(href="#") 
-            i.fas.fa-border-all  &nbsp; Bảng
-        a(href="#")  Tên bảng của nhóm 1
-        a.new(href="#")  Tạo bảng mới
+        each _group in groups
+          i.fas.fa-users  &nbsp;
+              span= _group.title 
+          each _board in _group.boards 
+            a(href="/board") _board.title
+          a.new(href="#" data-toggle="modal" data-target="#taobang")  Tạo bảng mới
 
 
       script(src='/socket.io/socket.io.js')
