@@ -3,4 +3,4 @@ module.exports.BOARD_TYPE = {
     SHARED: "SHARED"
 }
 
-module.exports.MAX_RECENT = 5;
+module.exports.MAX_RECENT = 4;
