@@ -14,7 +14,9 @@ module.exports.index = async function(req, res) {
 	var group = await Group.findOne({_id: groupId});
 
 	var boards = await Board.find({boardType: BOARD_TYPE.SHARED, groupId: groupId});
-	boards = JSON.stringify(boards);
+
+
+	// boards = JSON.stringify(boards);
 
 	res.render('group',{
 		_id: group._id,
@@ -33,7 +35,8 @@ module.exports.member = async function(req, res) {
 	var partners = await User.find({groupId: groupId});
 
 	res.render('member',{
-		members: partners	
+		members: partners	,
+		groupId: groupId
 	});
 };
 

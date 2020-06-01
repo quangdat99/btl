@@ -105,13 +105,17 @@ block header
     .tabbed-pane-main {
     background: #f2f2f2;
     }
+    img.avt{
+    height: 120px;
+    width: 120px;
+    }
 
 
   .tabbed-pane-header
     .tabbed-pane-header-wrapper
       .tabbed-pane-header-content
         .org-profile-avatar
-          //- img(src="/image/avatar-group.png", alt="")
+          img.avt(src="/image/group.png", alt="")
         .tabbed-pane-header-details
           .js-current-details
             .js-react-root
@@ -122,7 +126,55 @@ block header
   .tabbed-pane-nav
     ul(style='margin-bottom: 0px;')
       li.tabbed-pane-nav-item
-        a(href="/group").tabbed-pane-nav-item-button.a2 Bảng 
+        a(href="/group/"+groupId).tabbed-pane-nav-item-button.a2 Bảng 
       li.tabbed-pane-nav-item
         a.disabled.tabbed-pane-nav-item-button.a1 Thành viên 
-  .tabbed-pane-main
+  .tabbed-pane-
+    .container
+      .member(style='margin-top:20px;')
+        h4 Thành viên của nhóm (
+          span=members.length 
+          span )
+        p Các thành viên trong nhóm có thể xem và tham gia tất cả các bảng Nhóm Hiển Thị và tạo ra các bảng mới trong nhóm.
+        form(action="/search/groupUser" method="post")
+          .input-group.mb-3
+            input#add.form-control.col-6(placeholder='Thêm thành viên mới...' name='field')
+            .input-group-append
+              button.btn.btn-outline-secondary Thêm 
+
+        script.
+          $( function() {
+            $( "#add" ).autocomplete({
+              source: function(req,res){
+                $.ajax({
+                  url: "/search/allUser",
+                  dataType: "jsonp",
+                  type: "GET",
+                  data:req,
+                  success: function(data){
+                    res(data)
+                  },
+                  eror: function(err){
+                    console.log(err.status);
+                  }
+                });
+              },
+              minLength:1,
+              select: function(event,ui){
+                if(ui.item){
+                  $('#add').val(ui.item.label);
+                }
+              }
+
+
+            });
+          });
+
+        
+        if members
+          each _member in members
+            p=_member.displayName 
+
+        if user
+          each _member in user
+            p=_member 

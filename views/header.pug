@@ -6,7 +6,10 @@ html
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js')
-    
+    link(rel='stylesheet', href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css')
+    link(rel='stylesheet', href='/resources/demos/style.css')
+    script(src='https://code.jquery.com/jquery-1.12.4.js')
+    script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')   
 
     style.
       body {
@@ -119,7 +122,7 @@ html
       .header-right
         .dropdown
           button(type='button' data-toggle="dropdown")
-            i.far.fa-plus-square    &nbsp; Tạo bảng
+            i.far.fa-plus-square    
           .dropdown-menu.dropdown-menu-right
             button(data-toggle="modal" data-target="#taobang")
               i.far.fa-plus-square    &nbsp; Tạo bảng...
