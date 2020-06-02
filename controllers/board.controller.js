@@ -11,6 +11,7 @@ const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
 module.exports.index = async function(req, res){
 	var boardId = req.params.boardId;
 
+	var board = await Board.findOne({_id: boardId})
 	var lists = await List.find({boardId: boardId});
 	lists = lists.map((list)=>{
 		return {
@@ -22,8 +23,9 @@ module.exports.index = async function(req, res){
 	});
 	
 	res.render('board',{
-
+		board: board
 	});
+	console.log(board);
 
 }
 module.exports.create = async (req, res)=>{
@@ -32,6 +34,7 @@ module.exports.create = async (req, res)=>{
 	var timeCreated = new Date().getTime();
 	var groupId = req.body.groupId;
 
+	var image = "/image/bg/"+(Math.floor(Math.random() *11)+1) +".jpg";
 	console.log("// " + groupId)
 
 	if (groupId == "#null"){
@@ -45,8 +48,10 @@ module.exports.create = async (req, res)=>{
 		title: title,
 		boardType: boardType,
 		groupId: groupId,
-		userId: userId
+		userId: userId,
+		image: image
 	});
+	console.log(image);
 
 	try {
 		board.save();

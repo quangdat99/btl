@@ -5,7 +5,8 @@ var boardSchema = new mongoose.Schema({
 	timeCreated: Number,
 	boardType: String,
 	groupId: String,
-	userId: String
+	userId: String,
+	image: String
 });
 var Board = mongoose.model('Board', boardSchema, 'board');
 

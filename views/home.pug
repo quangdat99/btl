@@ -28,22 +28,26 @@ block header
     }
     .bodyright a{
     display: inline-block;
-    color: #003333;
+    color: #fff;
     text-align: center;
     padding: 5px 10px;
     text-decoration: none;
     font-size: 18px;
     line-height: 120px;
     border-radius: 4px;
-    background-color: #ecf9f9;
+    //- background-color: #ecf9f9;
     margin: 5px;
     width: 250px;
     height: 120px;
     box-shadow: 1px 1px 5px #888888;
+    background-size: cover;
+    font-weight: bold;
+    background-position: center;
+    text-shadow: 3px 3px 30px #000000;
     }
     .bodyright a:hover {
-    width: 255px;
-    height: 125px;
+    width: 251px;
+    height: 121px;
     box-shadow: 1px 1px 8px #888888;
     }
     .bodyright p {
@@ -81,17 +85,21 @@ block header
     height: auto;
     }
     .bodyright a.new {
+    color: #003333;
     text-align: center;
     line-height:120px;
-    background-color: #c3d5d5;
+    background-color: rgba(9,30,66,.06);
+    box-shadow: 0px 0px 0px #888888;
+    font-weight: normal;
+    text-shadow: 0px 0px 0px #000000;
     }
     .bodyright a.new:hover {
-    background-color: #d2e0e0;
+    background-color: rgba(9,30,66,.09);
     }
 
   .container-fluid(style='margin-top:40px')
     .row
-      .col-3.bodyleft
+      .col-2.bodyleft
         a(href="/home")
           i.fas.fa-home  &nbsp; Trang chủ 
         a(href="/home") 
@@ -102,17 +110,21 @@ block header
             a(href="/group/"+_group._id)
               i.fas.fa-users  &nbsp;
                 span=_group.title 
-      .col-9.bodyright
+
+      .col-10.bodyright
         p
           i.fas.fa-history  &nbsp; Đã xem gần đây 
         if recents
           each _recent in recents  
-            a(href="/board/"+_recent._id)=_recent.title
+            a(href="/board/"+_recent._id style='background-image:url('+_recent.image+')')=_recent.title
+              
+
         p
           i.fas.fa-user  &nbsp; Bảng cá nhân
         if privateBoards 
           each _board in privateBoards  
-            a(href="/board/"+_board._id)=_board.title 
+            a(href="/board/"+_board._id style='background-image:url('+_board.image+')')=_board.title 
+              
         a.new(href="#" data-toggle="modal" data-target="#taobang")  Tạo bảng mới
         p
         if groups
@@ -121,7 +133,7 @@ block header
               span= _group.title 
             br
             each _board in _group.boards 
-              a(href="/board/"+_board._id)=_board.title
+              a(href="/board/"+_board._id style='background-image:url('+_board.image+')')=_board.title
             a.new(href="#" data-toggle="modal" data-target="#taobang")  Tạo bảng mới
             br
 

@@ -4,16 +4,16 @@ extends header
 block header
   style.
     .board-header {
-    background: rgba(0,0,0,.05);
+    background: rgba(0,0,0,.24);
     padding: 10px;
     }
     .board-header-btn {
         border-radius: 6px;
         font-size: 16px;
         display: inline-block;
-        background: rgba(0,0,0,.06);
-        color: #172b4d;
-        margin-left: 10px;
+        background-color: hsla(0,0%,100%,.24);
+        color: #fff;
+        margin-left: 15px;
         padding:8px;
         border: 0px;
     }
@@ -54,7 +54,7 @@ block header
     }
 
     .board-body .board-list{
-    width: 272px;
+    width: 300px;
     margin: 0px 4px;
     height: 100%;
     display: inline-block;
@@ -177,95 +177,65 @@ block header
     outline: 0;
     box-shadow: none;
     }
+    .board{
+    background-position: center;
+    background-size: cover;
+    }
 
+  .board(style='background-image:url('+board.image+')')
+    .board-header
+      span(style='padding:5px; color:#fff;') Tên bảng 
+      .dropdown
+        button.board-header-btn(type='button' data-toggle="dropdown")
+          i.fas.fa-user-friends &nbsp; Tên nhóm 
+        .dropdown-menu.dropdown-menu-left(style='color=#003333')
+          p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 5px;')     Tên nhóm  
+          a.dropdown-item(href='#') Đổi nhóm 
+          a.dropdown-item(href='#') Xem trang của nhóm
+      .dropdown
+        button.board-header-btn(type='button' data-toggle="dropdown")
+          i.fas.fa-users &nbsp; Hiện với nhóm 
+        .dropdown-menu.dropdown-menu-left(style='color=#003333')
+          a.dropdown-item(href='#') Riêng tư 
+          a.dropdown-item(href='#') Nhóm 
+          a.dropdown-item(href='#') Công khai
+      .dropdown
+        button.board-header-btn(type='button' data-toggle="dropdown")
+          i.fas.fa-star-of-david &nbsp; Mời 
+        .dropdown-menu.dropdown-menu-left(style='color=#003333')
+          p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 5px;')     Mời vào bảng  
+          input.form-control(placeholder='Địa chỉ email hoặc tên ...')
+          hr
+          button.btn.btn-info(style='float: right; margin: 8px;') Gửi lời mời 
 
-  .board-header
-    span(style='padding:5px') Tên bảng 
-    .dropdown
-      button.board-header-btn(type='button' data-toggle="dropdown")
-        i.fas.fa-user-friends &nbsp; Tên nhóm 
-      .dropdown-menu.dropdown-menu-left(style='color=#003333')
-        p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 5px;')     Tên nhóm  
-        a.dropdown-item(href='#') Đổi nhóm 
-        a.dropdown-item(href='#') Xem trang của nhóm
-    .dropdown
-      button.board-header-btn(type='button' data-toggle="dropdown")
-        i.fas.fa-users &nbsp; Hiện với nhóm 
-      .dropdown-menu.dropdown-menu-left(style='color=#003333')
-        a.dropdown-item(href='#') Riêng tư 
-        a.dropdown-item(href='#') Nhóm 
-        a.dropdown-item(href='#') Công khai
-    .dropdown
-      button.board-header-btn(type='button' data-toggle="dropdown")
-        i.fas.fa-star-of-david &nbsp; Mời 
-      .dropdown-menu.dropdown-menu-left(style='color=#003333')
-        p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 5px;')     Mời vào bảng  
-        input.form-control(placeholder='Địa chỉ email hoặc tên ...')
-        hr
-        button.btn.btn-info(style='float: right; margin: 8px;') Gửi lời mời 
+      button.board-header-btn.right(style='float: right;')
+          i.fas.fa-ellipsis-h &nbsp; Hiện menu
 
-    button.board-header-btn.right(style='float: right;')
-        i.fas.fa-ellipsis-h &nbsp; Hiện menu
+    .board-body
+      if lists
+        each _list in lists  
+          .board-list
+            .board-list-content
+              .list-title
+                .title= _list.title 
+                .mn
+                  i.fas.fa-ellipsis-h
 
-  .board-body
-    if lists
-      each _list in lists  
-        .board-list
-          .board-list-content
-            .list-title
-              .title= _list.title 
-              .mn
-                i.fas.fa-ellipsis-h
+              .list-card
+                a.card-name(href="" data-toggle="modal" data-target="#myModal") Tên thẻ 1
+                a.card-name(href="") Tên thẻ 2
+                .card-composer
+                  .js-composer
+                    textarea(placeholder="Nhập tiêu đề cho thẻ này..." dir="auto" style="")
+                  .cc-controls
+                    .cc-controls-section
+                      input.primary(type="submit" value="Thêm thẻ")
+                      a(href="" style="display:inline-block;padding-left: 5px;")
+                        i.fas.fa-times
+              .list-add
+                a(href="")
+                  i.fas.fa-plus &nbsp; Thêm thẻ khác
+      .board-list
+        .add-list
+          i.fas.fa-plus(style='color: #fff;')  &nbsp;   Thêm danh sách khác 
 
-            .list-card
-              a.card-name(href="" data-toggle="modal" data-target="#myModal") Tên thẻ 1
-              a.card-name(href="") Tên thẻ 2
-              .card-composer
-                .js-composer
-                  textarea(placeholder="Nhập tiêu đề cho thẻ này..." dir="auto" style="")
-                .cc-controls
-                  .cc-controls-section
-                    input.primary(type="submit" value="Thêm thẻ")
-                    a(href="")(style="display:inline-block;padding-left: 5px;")
-                      i.fas.fa-times
-            .list-add
-              a(href="")
-                i.fas.fa-plus &nbsp; Thêm thẻ khác
-    .board-list
-      .add-list
-        i.fas.fa-plus  &nbsp;   Thêm danh sách khác 
-
-    //- #myModal.modal.fade
-    //-   .modal-dialog.modal-lg
-    //-     .modal-content
-    //-       .modal-header
-    //-         h4.modal-title Tên thẻ 
-    //-         button.close(type='button', data-dismiss='modal') &times;
-    //-       .modal-body
-    //-         | Modal body..
-    //-       .modal-footer
-    //-         button.btn.btn-secondary(type='button', data-dismiss='modal') Close
-
-
-    //- #myaodal.modal.fade
-    //-   .modal-dialog
-    //-     .modal-content
-    //-       // Modal Header
-    //-       .modal-header
-    //-         input.modal-title.form-control(placeholder='Thêm tiêu đề bảng')
-    //-         button.close(type='button', data-dismiss='modal') &times;
-    //-       // Modal body
-    //-       .modal-body
-    //-         select.browser-default.custom-select Nhóm 
-    //-           option(selected='') Không có nhóm nào 
-    //-           option(value='1') Nhóm 1
-    //-           option(value='2') Nhóm 2 
-    //-         select.browser-default.custom-select
-    //-           option(selected='') Hiện với nhóm  
-    //-           option(value='1') Riêng tư 
-    //-           option(value='2') Nhóm 
-    //-           option(value='3') Công khai 
-
-    //-       // Modal footer
-    //-       .modal-footer
-    //-         button.btn.btn-info(type='button', data-dismiss='modal') Tạo bảng
