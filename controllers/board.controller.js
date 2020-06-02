@@ -9,7 +9,7 @@ const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
 
 
 module.exports.index = async function(req, res){
-	var boardId = req.body.boardId;
+	var boardId = req.params.boardId;
 
 	var lists = await List.find({boardId: boardId});
 	lists = lists.map((list)=>{
@@ -22,9 +22,6 @@ module.exports.index = async function(req, res){
 	});
 	
 	res.render('board',{
-		boards: boards,
-		recents:recents,
-		groups:groups
 
 	});
 

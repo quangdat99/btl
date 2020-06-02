@@ -3,120 +3,269 @@ extends header
 
 block header
   style.
-    .bodyleft a{
-    display: block;
+    .board-header {
+    background: rgba(0,0,0,.05);
+    padding: 10px;
+    }
+    .board-header-btn {
+        border-radius: 6px;
+        font-size: 16px;
+        display: inline-block;
+        background: rgba(0,0,0,.06);
+        color: #172b4d;
+        margin-left: 10px;
+        padding:8px;
+        border: 0px;
+    }
+    .board-header-btn:hover {
+        background: rgba(0,0,0,.08);
+    }
+    .board-header-btn .right {
+      float: right;
+    }
+    .board-header .dropdown button:focus {
+      outline: 0;
+      box-shadow: none;
+      
+    }
+   .board-header .dropdown-menu {
+    width: 400px;
+    padding: 0px;
+    margin-top: 7px;
+    margin-right: -2px;
+    box-shadow: 2px 2px 8px #888888
+    }
+    .board-header .dropdown-menu p {
+    font-size: 16px;
     color: #003333;
-    text-align: left;
-    padding: 12px;
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 22px;
-    border-radius: 4px;
-    background-color: #ecf9f9;
-    margin: 4px;
-    box-shadow: 1px 1px 5px #888888;
-    } 
-    .bodyleft a:hover {
-    background-color: #e5fff9;
-    line-height: 24px;
-    box-shadow: 1px 1px 8px #888888;
     }
-    .bodyleft p{
-    padding-left: 10px;
-    margin-bottom: 0px;
-    margin-top: 15px;
+    .board-header .dropdown-menu i{
+    font-size:18px;
+    font-weight:bold;
+    padding: 5px;
     }
-    .bodyright a{
-    display: inline-block;
+    .board-header .dropdown-menu a{
     color: #003333;
-    text-align: center;
-    padding: 5px 10px;
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 120px;
-    border-radius: 4px;
-    background-color: #ecf9f9;
-    margin: 5px;
-    width: 250px;
-    height: 120px;
-    box-shadow: 1px 1px 5px #888888;
-    }
-    .bodyright a:hover {
-    width: 255px;
-    height: 125px;
-    box-shadow: 1px 1px 8px #888888;
-    }
-    .bodyright p {
-    padding-left: 20px;
-    margin-top: 25px;
-    }
-    .bodyright a.gr {
-    float: right;
-    overflow: hidden;
-    display: inline-block;
-    color: #003333;
-    text-align: left;
-    padding: 0px 10px;
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 20px;
-    border-radius: 4px;
-    background-color: #e1eaea;
-    margin: 0px 5px;
-    width: auto;
-    height: auto;
-    }
-    .bodyright i {
-    overflow: hidden;
-    display: inline-block;
-    color: #003333;
-    text-align: left;
-    padding: 5px 10px;
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 30px;
-    border-radius: 4px;
-    margin: 0px;
-    width: auto;
-    height: auto;
-    }
-    .bodyright a.new {
-    text-align: center;
-    line-height:120px;
-    background-color: #c3d5d5;
-    }
-    .bodyright a.new:hover {
-    background-color: #d2e0e0;
     }
 
-  .container-fluid(style='margin-top:40px')
-    .row
-      .col-3.bodyleft
-        a(href="/")
-          i.fas.fa-home  Trang chủ 
-        a(href="/board") 
-          i.fas.fa-border-all  Bảng 
-        p   CÁC NHÓM 
-        each _group in groups
-          a(href="/group")
-            i.fas.fa-users=_group.title 
-      .col-9.bodyright
-        p
-          i.fas.fa-history  Đã xem gần đây 
-        each _recent in recents  
-            a(href="/board/list")=_recent.boardId
-        p
-          i.fas.fa-user  Bảng cá nhân 
-        each _board in boards  
-            a(href="/board/list")=_board.title 
-        a.new(href="#") Tạo bảng mới
-        p
-          i.fas.fa-users  Tên nhóm 1
-          a.gr(href="#") 
-            i.fas.fa-user  Thành viên 
-          a.gr(href="#") 
-            i.fas.fa-cog  Cài đặt 
-          a.gr(href="#") 
-            i.fas.fa-border-all  Bảng
-        a(href="#")  Tên bảng của nhóm 1
-        a.new(href="#")  Tạo bảng mới
+
+    .board-body {
+    padding: 10px;
+    }
+
+    .board-body .board-list{
+    width: 272px;
+    margin: 0px 4px;
+    height: 100%;
+    display: inline-block;
+
+    }
+    .board-body .board-list .board-list-content {
+    background-color: #d9e6f2;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    padding: 4px;
+    box-shadow: 1px 1px 2px #888888;
+
+    }
+    .list-title {
+    height:50px;
+    }
+    .list-title .title{
+    text-align: center;
+    width: 84%;
+    display: inline-block;
+    padding: 5px;
+    }
+    .list-title .mn{
+    float: right;
+    width: 16%;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 4px;
+    text-align: center;
+    height: 60%;
+    }
+    .list-title .mn:hover{
+    background: rgba(0,0,0,.05);
+    }
+
+    .list-card .card-name {
+    margin: 3px;
+    padding: 10px;
+    background-color: #ecf2f8;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #888888;
+    display:block;
+    color:#172b4d;
+    }
+    .list-card .card-name:hover {
+    background: rgba(0,0,0,.01);
+    }
+    
+    .list-add a{
+    border-radius: 5px;
+    margin: 8px;
+    padding: 8px;
+    color: #5e6c84;
+    display:block;
+    }
+    .list-add a:hover{
+    background: rgba(0,0,0,.08);
+    }
+    .board-list .add-list{
+    background-color: rgba(0,0,0,.11);
+    padding: 14px;
+    color:#172b4d;
+    margin: 4px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #888888;
+    }
+    .board-list .add-list:hover{
+    background-color: rgba(0,0,0,.14);
+    }
+    .board-list .add-list i{
+    font-weight: 900;
+    color: #004466;
+    }
+    input[type=submit] {
+    background-color: rgba(9,30,66,.04);
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 20px;
+    margin: 8px 4px 0 0;
+    padding: 6px 12px;
+    text-align: center;
+    }
+    input[type=submit].primary {
+    background-color: #5aac44;
+    box-shadow: none;
+    border: none;
+    border-radius:5px;
+    color: #fff;
+    }
+    .cc-controls-section {
+    float: left;
+    }
+    .card-composer {
+    padding-bottom: 8px;
+        margin: 3px;
+    border-radius: 3px;
+    }
+    .fa-times{
+    height: 32px;
+    line-height: 32px;
+    width: 32px;
+    color: #6b778c;    
+    font-size: 24px;
+    }
+    .js-composer textarea{
+    overflow:hidden;
+    overflow-wrap:break-word;
+    resize:none;
+    height: 60px;
+    width:100%;
+    border-radius: 8px;
+    padding: 10px;
+    }
+    .js-composer textarea:focus{
+    outline: 0;
+    box-shadow: none;
+    }
+
+
+  .board-header
+    span(style='padding:5px') Tên bảng 
+    .dropdown
+      button.board-header-btn(type='button' data-toggle="dropdown")
+        i.fas.fa-user-friends &nbsp; Tên nhóm 
+      .dropdown-menu.dropdown-menu-left(style='color=#003333')
+        p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 5px;')     Tên nhóm  
+        a.dropdown-item(href='#') Đổi nhóm 
+        a.dropdown-item(href='#') Xem trang của nhóm
+    .dropdown
+      button.board-header-btn(type='button' data-toggle="dropdown")
+        i.fas.fa-users &nbsp; Hiện với nhóm 
+      .dropdown-menu.dropdown-menu-left(style='color=#003333')
+        a.dropdown-item(href='#') Riêng tư 
+        a.dropdown-item(href='#') Nhóm 
+        a.dropdown-item(href='#') Công khai
+    .dropdown
+      button.board-header-btn(type='button' data-toggle="dropdown")
+        i.fas.fa-star-of-david &nbsp; Mời 
+      .dropdown-menu.dropdown-menu-left(style='color=#003333')
+        p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 5px;')     Mời vào bảng  
+        input.form-control(placeholder='Địa chỉ email hoặc tên ...')
+        hr
+        button.btn.btn-info(style='float: right; margin: 8px;') Gửi lời mời 
+
+    button.board-header-btn.right(style='float: right;')
+        i.fas.fa-ellipsis-h &nbsp; Hiện menu
+
+  .board-body
+    if lists
+      each _list in lists  
+        .board-list
+          .board-list-content
+            .list-title
+              .title= _list.title 
+              .mn
+                i.fas.fa-ellipsis-h
+
+            .list-card
+              a.card-name(href="" data-toggle="modal" data-target="#myModal") Tên thẻ 1
+              a.card-name(href="") Tên thẻ 2
+              .card-composer
+                .js-composer
+                  textarea(placeholder="Nhập tiêu đề cho thẻ này..." dir="auto" style="")
+                .cc-controls
+                  .cc-controls-section
+                    input.primary(type="submit" value="Thêm thẻ")
+                    a(href="")(style="display:inline-block;padding-left: 5px;")
+                      i.fas.fa-times
+            .list-add
+              a(href="")
+                i.fas.fa-plus &nbsp; Thêm thẻ khác
+    .board-list
+      .add-list
+        i.fas.fa-plus  &nbsp;   Thêm danh sách khác 
+
+    //- #myModal.modal.fade
+    //-   .modal-dialog.modal-lg
+    //-     .modal-content
+    //-       .modal-header
+    //-         h4.modal-title Tên thẻ 
+    //-         button.close(type='button', data-dismiss='modal') &times;
+    //-       .modal-body
+    //-         | Modal body..
+    //-       .modal-footer
+    //-         button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+
+
+    //- #myaodal.modal.fade
+    //-   .modal-dialog
+    //-     .modal-content
+    //-       // Modal Header
+    //-       .modal-header
+    //-         input.modal-title.form-control(placeholder='Thêm tiêu đề bảng')
+    //-         button.close(type='button', data-dismiss='modal') &times;
+    //-       // Modal body
+    //-       .modal-body
+    //-         select.browser-default.custom-select Nhóm 
+    //-           option(selected='') Không có nhóm nào 
+    //-           option(value='1') Nhóm 1
+    //-           option(value='2') Nhóm 2 
+    //-         select.browser-default.custom-select
+    //-           option(selected='') Hiện với nhóm  
+    //-           option(value='1') Riêng tư 
+    //-           option(value='2') Nhóm 
+    //-           option(value='3') Công khai 
+
+    //-       // Modal footer
+    //-       .modal-footer
+    //-         button.btn.btn-info(type='button', data-dismiss='modal') Tạo bảng

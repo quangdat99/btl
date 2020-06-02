@@ -92,9 +92,9 @@ block header
   .container-fluid(style='margin-top:40px')
     .row
       .col-3.bodyleft
-        a(href="/")
+        a(href="/home")
           i.fas.fa-home  &nbsp; Trang chủ 
-        a(href="/board") 
+        a(href="/home") 
           i.fas.fa-border-all  &nbsp; Bảng 
         p   CÁC NHÓM 
         if groups
@@ -107,21 +107,21 @@ block header
           i.fas.fa-history  &nbsp; Đã xem gần đây 
         if recents
           each _recent in recents  
-            a(href="/board")=_recent.title
+            a(href="/board/"+_recent._id)=_recent.title
         p
           i.fas.fa-user  &nbsp; Bảng cá nhân
         if privateBoards 
           each _board in privateBoards  
-            a(href="/board")=_board.title 
+            a(href="/board/"+_board._id)=_board.title 
         a.new(href="#" data-toggle="modal" data-target="#taobang")  Tạo bảng mới
         p
         if groups
           each _group in groups
-            i.fas.fa-users  &nbsp;
+            i.fas.fa-users.ml-3  &nbsp;
               span= _group.title 
             br
             each _board in _group.boards 
-              a(href="/board")=_board.title
+              a(href="/board/"+_board._id)=_board.title
             a.new(href="#" data-toggle="modal" data-target="#taobang")  Tạo bảng mới
             br
 

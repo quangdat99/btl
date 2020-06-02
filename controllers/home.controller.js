@@ -41,5 +41,4 @@ module.exports.index = async function(req, res){
 		recents:recents,
 		groups:groups
 	});
-	console.log(privateBoards.length);
 }
