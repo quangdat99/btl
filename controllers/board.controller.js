@@ -34,7 +34,7 @@ module.exports.create = async (req, res)=>{
 	var timeCreated = new Date().getTime();
 	var groupId = req.body.groupId;
 
-	var image = "/image/bg/"+(Math.floor(Math.random() *11)+1) +".jpg";
+	var image = "/image/bg/"+(Math.floor(Math.random() *13)+1) +".jpg";
 	console.log("// " + groupId)
 
 	if (groupId == "#null"){

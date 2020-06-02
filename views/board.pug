@@ -58,7 +58,7 @@ block header
     margin: 0px 4px;
     height: 100%;
     display: inline-block;
-
+    vertical-align: top;
     }
     .board-body .board-list .board-list-content {
     background-color: #d9e6f2;
@@ -116,20 +116,32 @@ block header
     background: rgba(0,0,0,.08);
     }
     .board-list .add-list{
-    background-color: rgba(0,0,0,.11);
+    background-color: hsla(0,0%,100%,.24);
     padding: 14px;
     color:#172b4d;
-    margin: 4px;
     border-radius: 5px;
     box-shadow: 1px 1px 1px #888888;
+    display: block;
     }
     .board-list .add-list:hover{
-    background-color: rgba(0,0,0,.14);
+    background-color: hsla(0,0%,100%,.3);
     }
     .board-list .add-list i{
     font-weight: 900;
     color: #004466;
     }
+    .submit{
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #888888;
+    padding: 6px;
+    display:none;
+    }
+    .submit .form-control{
+    box-shadow: inset 0 0 0 2px #0079bf; 
+    }
+
+
     input[type=submit] {
     background-color: rgba(9,30,66,.04);
     box-shadow: none;
@@ -151,18 +163,19 @@ block header
     }
     .cc-controls-section {
     float: left;
+    padding-bottom: 6px;
     }
     .card-composer {
     padding-bottom: 8px;
         margin: 3px;
     border-radius: 3px;
+    display:none;
     }
     .fa-times{
     height: 32px;
     line-height: 32px;
     width: 32px;
     color: #6b778c;    
-    font-size: 24px;
     }
     .js-composer textarea{
     overflow:hidden;
@@ -184,7 +197,7 @@ block header
 
   .board(style='background-image:url('+board.image+')')
     .board-header
-      span(style='padding:5px; color:#fff;') Tên bảng 
+      span(style='padding:5px; color:#fff;')=board.title 
       .dropdown
         button.board-header-btn(type='button' data-toggle="dropdown")
           i.fas.fa-user-friends &nbsp; Tên nhóm 
@@ -212,30 +225,86 @@ block header
           i.fas.fa-ellipsis-h &nbsp; Hiện menu
 
     .board-body
-      if lists
-        each _list in lists  
-          .board-list
-            .board-list-content
-              .list-title
-                .title= _list.title 
-                .mn
-                  i.fas.fa-ellipsis-h
-
-              .list-card
-                a.card-name(href="" data-toggle="modal" data-target="#myModal") Tên thẻ 1
-                a.card-name(href="") Tên thẻ 2
-                .card-composer
-                  .js-composer
-                    textarea(placeholder="Nhập tiêu đề cho thẻ này..." dir="auto" style="")
-                  .cc-controls
-                    .cc-controls-section
-                      input.primary(type="submit" value="Thêm thẻ")
-                      a(href="" style="display:inline-block;padding-left: 5px;")
-                        i.fas.fa-times
-              .list-add
-                a(href="")
-                  i.fas.fa-plus &nbsp; Thêm thẻ khác
+      // if lists
+      //   each _list in lists  
       .board-list
-        .add-list
-          i.fas.fa-plus(style='color: #fff;')  &nbsp;   Thêm danh sách khác 
+        .board-list-content
+          .list-title
+            .title _list.title 
+            .mn
+              i.fas.fa-ellipsis-h
 
+          .list-card
+            a.card-name(href="" data-toggle="modal" data-target="#the") Tên thẻ 
+            .card-composer
+              .js-composer
+                textarea.form-control(placeholder="Nhập tiêu đề cho thẻ này..." dir="auto" style="")
+              .cc-controls
+                .cc-controls-section
+                  input.primary(type="submit" value="Thêm thẻ")
+                  a(href="#" style="display:inline-block;padding-left: 5px;")
+                    i#thoat.fas.fa-times
+          .list-add
+            a(href="#")
+              i.fas.fa-plus &nbsp; Thêm thẻ khác
+
+
+      .board-list
+        form()
+          a#them1(href='#').add-list
+            i.fas.fa-plus(style='color: #fff;')  &nbsp;   Thêm danh sách khác 
+          .submit
+            input.form-control(type="text" name="" autocomplete="off" dir="auto" placeholder="Nhập tiêu đề danh sách... ")
+            .list-add-controls
+              input.primary(type="submit" value="Thêm danh sách")
+              a#them2(href="#" style="padding: 8px;")
+                i.fas.fa-times
+
+
+    #the.modal.fade
+      form(action="/board/create" method='POST')
+        .modal-dialog
+          .modal-content
+            // Modal Header
+            .modal-header
+              input.modal-title.form-control(placeholder='Thêm tiêu đề bảng' name='title')
+              button.close(type='button', data-dismiss='modal') &times;
+            // Modal body
+            .modal-body
+              select.browser-default.custom-select(name='groupId') Nhóm 
+                option(selected='#null' value='#null') Không có nhóm nào 
+                if groups
+                  each _group in groups
+                    option(value=_group._id)=_group.title  
+              p aaaaaaaaa
+              p bbbbbbbbbb
+              p ddddddddddddddddd
+
+     
+              button.btn.btn-info(style='float: right;margin-top:10px;') Lưu
+
+    script.
+      $(document).ready(function(){
+        $("#them1").click(function(){
+          $(".submit").fadeIn(300);
+          $("#them1").fadeOut(0);
+        });
+        $("#them2").click(function(){
+          $(".submit").fadeOut(0);
+          $("#them1").fadeIn(0);
+        });
+        
+        $(".list-add").click(function(){
+          $(".card-composer").fadeIn(0);
+          $(".list-add").fadeOut(0);
+          
+        });
+
+        $("#thoat").click(function(){
+          $(".card-composer").fadeOut(0);
+          $(".list-add").fadeIn(0);
+        });
+
+
+
+      });
