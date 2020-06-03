@@ -40,7 +40,7 @@ module.exports.postSearchGroupUser = async function(req, res, next) {
 	var userId = req.signedCookies.userId;
 	// var userId = req.body.userId;
 
-	if (groupId == "#null"){
+	if (groupId == "#null" || groupId == ""){
 		var users = await User.find({_id: {$not: userId}});
 	}
 	else {
@@ -59,7 +59,7 @@ module.exports.postSearchGroupUser = async function(req, res, next) {
 		})
 	}
 	
-	if (field != "#null")
+	if (field != "#null" && field != "")
 		users = filterUser(users, field);
 	res.send({
 		users: users

@@ -37,7 +37,7 @@ module.exports.create = async (req, res)=>{
 	var image = "/image/bg/"+(Math.floor(Math.random() *13)+1) +".jpg";
 	console.log("// " + groupId)
 
-	if (groupId == "#null"){
+	if (groupId == "#null" || groupId == ""){
 		var boardType = BOARD_TYPE.PRIVATE;
 	}
 	else {
