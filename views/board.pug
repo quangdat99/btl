@@ -61,7 +61,7 @@ block header
     vertical-align: top;
     }
     .board-body .board-list .board-list-content {
-    background-color: #d9e6f2;
+    background-color: #ebecf0;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -95,7 +95,7 @@ block header
     .list-card .card-name {
     margin: 3px;
     padding: 10px;
-    background-color: #ecf2f8;
+    background-color: #fff;
     border-radius: 5px;
     box-shadow: 1px 1px 1px #888888;
     display:block;
@@ -177,7 +177,7 @@ block header
     width: 32px;
     color: #6b778c;    
     }
-    .js-composer textarea{
+    textarea{
     overflow:hidden;
     overflow-wrap:break-word;
     resize:none;
@@ -185,16 +185,293 @@ block header
     width:100%;
     border-radius: 8px;
     padding: 10px;
+    box-shadow: inset 0 0 0 2px #0079bf;
     }
-    .js-composer textarea:focus{
+    textarea:focus{
     outline: 0;
-    box-shadow: none;
+    box-shadow: inset 0 0 0 2px #0079bf; 
     }
     .board{
     background-position: center;
     background-size: cover;
     }
+    //- .mod-card-back-title{
+    //- display:none;
+    //- }
+    .mod-card-back-title {
+    background: transparent;
+    border-radius: 3px;
+    box-shadow: none;
+    font-size: 20px;
+    font-weight: 600;
+    height: 32px;
+    line-height: 24px;
+    margin: -4px -8px;
+    min-height: 24px;
+    padding: 4px 8px;
+    resize: none;
+    outline:none;
+    border: 0px;
+    }
+    .mod-card-back-title:focus{
+    box-shadow: inset 0 0 0 2px #0079bf;
+    }
 
+    .window-main-col {
+    float: none;
+    max-height: none;
+    padding: 8px;
+    max-width: none;
+    min-width: 0;
+    width: auto;
+    }
+    .card-detail-data {
+    margin: 8px;
+    }
+    .window-module {
+    clear: both;
+    margin-bottom: 24px;
+    position: relative;
+    }
+    .window-module-title {
+    display: flex;
+    align-items: center;
+    min-height: 32px;
+    margin-bottom: 15px;
+    }
+    .window-module-title h3 {
+    display: inline-block;
+    width: auto;
+    margin: 0;
+    min-height: 18px;
+    min-width: 40px;
+    }
+    .u-gutter{
+    margin-left: 53px;
+    }
+    a{
+    color: #172b4d;
+    }
+    a:hover{
+    color: #172b4d;
+    }
+    .modal i{
+    font-size:24px;
+    }
+    .modal h1,h2,h3,h4,h5{
+    font-weight:600;
+    margin-bottom: 0px;
+    }
+    a.description-fake-text-area {
+    background-color: rgba(9,30,66,.1);
+    box-shadow: none;
+    border: none;
+    border-radius: 3px;
+    display: block;
+    min-height: 70px;
+    padding: 8px 12px;
+    text-decoration: none;
+    }
+    .checklist-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row wrap;
+    width: 100%;
+    }
+
+    .button.subtle {
+    background-color: rgba(9,30,66,.1);
+    box-shadow: none;
+    border: none;
+    padding: 8px;
+    float: right;
+        margin-bottom: 20px;
+    }
+
+    .description-edit{
+    display: none;
+    }
+    .checklist-progress {
+    margin-bottom: 6px;
+    position: relative;
+    }
+    .checklist-progress-percentage {
+    color: #5e6c84;
+    font-size: 11px;
+    line-height: 10px;
+    position: absolute;
+    left: 0;
+    top: -1px;
+    text-align: center;
+    width: 32px;
+    }
+    .checklist-progress-bar {
+    background: rgba(9,30,66,.08);
+    border-radius: 4px;
+    clear: both;
+    height: 8px;
+    margin: 0 0 0 30px;
+    overflow: hidden;
+    position: relative;
+    }
+    .checklist-progress-bar-current {
+    background: #5ba4cf;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: width .14s ease-in,background .14s ease-in;
+    }
+    .checklist-items-list {
+    min-height: 8px;
+    margin-left: 30px;
+    }
+    .checklist-item{
+    background-color: rgba(9,30,66,.1);
+    box-shadow: none;
+    border: none;
+    border-radius: 3px;
+    display: block;
+    min-height: 30px;
+    padding: 8px 12px;
+    text-decoration: none;
+    margin-left:0px;
+    overflow: hidden;
+    margin-bottom: 0px;
+    padding: 5px;
+    }
+    .button.subtla {
+    background-color: rgba(9,30,66,.1);
+    box-shadow: none;
+    border: none;
+    padding: 0px;
+    float: right;
+    }
+    .checklist-item .fa-times{
+    text-align: center;
+    font-size: 15px;
+    }
+    .new-comment {
+    position: relative;
+    margin: 0 0 8px 40px;
+    }
+    .new-comment .member {
+    position: absolute;
+    left: -40px;
+    }
+    //- .member-initials {
+    //- display: block;
+    //- font-size: 12px;
+    //- font-weight: 700;
+    //- height: 32px;
+    //- left: 0;
+    //- line-height: 32px;
+    //- overflow: hidden;
+    //- position: absolute;
+    //- text-align: center;
+    //- top: 0;
+    //- width: 100%;
+    }
+    //- .member-gold-badge {
+    //- display: none;
+    //- height: 7px;
+    //- position: absolute;
+    //- right: 1px;
+    //- top: 1px;
+    //- width: 11px;
+    //- z-index: 3;
+    //- }
+    //- .comment-frame {
+    //- background-color: #fff;
+    //- border-radius: 3px;
+    //- box-shadow: 0 1px 2px -1px rgba(9,30,66,.25), 0 0 0 1px rgba(9,30,66,.08);
+    //- margin: 4px 4px 12px 0;
+    //- overflow: hidden;
+    //- position: relative;
+    //- transition: box-shadow 85ms ease;
+    //- }
+    //- .comment-box {
+    //- padding: 8px 12px;
+    //- position: relative;
+    //- transition-duration: 85ms;
+    //- transition-timing-function: ease;
+    //- transition-property: padding-bottom;
+    //- }
+    //- textarea.new-comment:not(.is-focused):not(.is-show-controls) .comment-box-input {
+    //- padding: 8px 12px;
+    //- margin: -8px -12px;
+    //- }
+    .member {
+    background-color: #dfe1e6;
+    border-radius: 25em;
+    color: #172b4d;
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 32px;
+    margin: 0 4px 4px 0;
+    overflow: visible;
+    position: relative;
+    width: 32px;
+    text-decoration: none;
+    -webkit-user-select: none;
+    user-select: none;
+    z-index: 0;
+    }
+    .member-initials {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    height: 32px;
+    left: 0;
+    line-height: 32px;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    }
+    .editable .current {
+    cursor: pointer;
+    display: none;
+    }
+    .window-sidebar h3 {
+    color: #5e6c84;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .04em;
+    line-height: 16px;
+    margin-top: 16px;
+    text-transform: uppercase;
+    line-height: 20px;
+    margin-bottom: -4px;
+    }
+    .button-link {
+    background-color: rgba(9,30,66,.1);
+    box-shadow: none;
+    border: none;
+    border-radius: 3px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: 32px;
+    margin-top: 8px;
+    max-width: 300px;
+    overflow: hidden;
+    padding: 6px 12px;
+    position: relative;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    -webkit-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+    transition-property: background-color,border-color,box-shadow;
+    transition-duration: 85ms;
+    transition-timing-function: ease;
+    color: #172b4d;
+
+    }
   .board(style='background-image:url('+board.image+')')
     .board-header
       span(style='padding:5px; color:#fff;')=board.title 
@@ -230,7 +507,8 @@ block header
       .board-list
         .board-list-content
           .list-title
-            .title _list.title 
+            .title 
+              input.mod-card-back-title(dir='auto' value='Ten danh sach' style='overflow: hidden; overflow-wrap: break-word; height: 32px;width: 100%;color: #5e6c84;')
             .mn
               i.fas.fa-ellipsis-h
 
@@ -262,23 +540,101 @@ block header
 
 
     #the.modal.fade
-      form(action="/board/create" method='POST')
-        .modal-dialog
+      form(action="" method='POST')
+        .modal-dialog.modal-lg
           .modal-content
             // Modal Header
             .modal-header
-              input.modal-title.form-control(placeholder='Thêm tiêu đề bảng' name='title')
+              span(style='margin-right: 15px;padding: 5px;')
+                i.fas.fa-window-restore 
+              .window-title
+                // h3.card-detail-title-assist Ten the 
+                input.mod-card-back-title(dir='auto' value='Ten the' style='overflow: hidden; overflow-wrap: break-word; height: 32px;')
               button.close(type='button', data-dismiss='modal') &times;
             // Modal body
             .modal-body
-              select.browser-default.custom-select(name='groupId') Nhóm 
-                option(selected='#null' value='#null') Không có nhóm nào 
-                if groups
-                  each _group in groups
-                    option(value=_group._id)=_group.title  
-              p aaaaaaaaa
-              p bbbbbbbbbb
-              p ddddddddddddddddd
+              .row
+                .window-main-col.col-9
+                  .card-detail-data
+                  .js-fill-card-detail-desc
+                    .window-module
+                      .window-module-title
+                        span(style='margin-right: 15px;padding: 5px;')
+                          i.fas.fa-bars &nbsp; 
+                        h5 Mô tả
+                      .u-gutter
+                        .editable
+                          .description-content
+                            .current
+                              p lam bai tap
+                            p.u-bottom
+                              a(href="#").description-fake-text-area Thêm mô tả chi tiết hơn...
+                            
+                              
+                            .description-edit
+                              textarea.form-control(type="text" name="" autocomplete="off" dir="auto" placeholder="Thêm mô tả chi tiết hơn... ")
+                              .list-add-controls
+                                input.primary(type="submit" value="Lưu")
+                                a#xxx(href="#" style="padding: 8px;")
+                                  i.fas.fa-times
+                  .checklist-list
+                    .checklist
+                      .window-module-title
+                        span(style='margin-right: 15px;padding: 5px;')
+                          i.fas.fa-tasks &nbsp; 
+                        .editable.checklist-title
+                          h5 Việc cần làm
+                          .window-module-title-options
+                            a(href='#').button.subtle Xóa
+                      .checklist-progress
+                        span.checklist-progress-percentage 0%
+                        .checklist-progress-bar
+                          .checklist-progress-bar-current
+                      .checklist-items-list.custom-control.custom-checkbox
+                        input#customCheck.custom-control-input(type='checkbox')
+                        label.custom-control-label(for="customCheck")
+                        p(href="#").checklist-item work 1
+                          a(href='#').button.subtla 
+                            i.fas.fa-times
+                      .checklist-new-item
+                        a#themm.button.subtle(href="#" style
+                        ="float: left; margin-left: 53px; margin-top: 10px") Thêm một mục 
+                        .description-editt(style="margin-left: 53px; display:none;")
+                          textarea.form-control(type="text" name="" autocomplete="off" dir="auto" placeholder="Thêm mô tả chi tiết hơn... ")
+                          .list-add-controls
+                            input.primary(type="submit" value="Lưu")
+                            a#xxy(href="#" style="padding: 8px;")
+                              i.fas.fa-times
+                  .window-module(style='margin-top:20px')
+                    .window-module-title
+                      span(style='margin-right:15px;padding: 5px;')
+                        i.fas.fa-comments  
+                      h5 Hoạt động 
+                    .new-comment
+                      .member
+                        span.member-initials(title='Quang Dat (quangdat9)', aria-label='Quang Dat (quangdat9)') QD
+                      form
+                        input.form-control(placeholder='Viết bình luận...', dir='auto', style='')
+                           
+
+
+
+
+                .col-3
+                  .window-sidebar
+                    h3 THÊM VÀO THẺ 
+                  .u-clearfix
+                    a.button-link
+                      i.fas.fa-user(style='font-size: 18;font-weight: 400;') &nbsp; Thành viên 
+
+                    a.button-link
+                      i.far.fa-address-book(style='font-size: 18;font-weight: 400;') &nbsp; Việc cần làm
+
+                    a.button-link
+                      i.fas.fa-clock(style='font-size: 18;font-weight: 400;') &nbsp; Ngày hết hạn
+
+             
+              
 
      
               button.btn.btn-info(style='float: right;margin-top:10px;') Lưu
@@ -293,6 +649,7 @@ block header
           $(".submit").fadeOut(0);
           $("#them1").fadeIn(0);
         });
+
         
         $(".list-add").click(function(){
           $(".card-composer").fadeIn(0);
@@ -304,7 +661,24 @@ block header
           $(".card-composer").fadeOut(0);
           $(".list-add").fadeIn(0);
         });
+        
+        $(".u-bottom").click(function(){
+          $(".u-bottom").fadeOut(0);
+          $(".description-edit").fadeIn(0);
+        });
+        $("#xxx").click(function(){
+          $(".description-edit").fadeOut(0);
+          $(".u-bottom").fadeIn(0);
+        });
 
-
+        $("#themm").click(function(){
+          $("#themm").fadeOut(0);
+          $(".description-editt").fadeIn(0);
+        });
+        $("#xxy").click(function(){
+          $(".description-editt").fadeOut(0);
+          $("#themm").fadeIn(0);
+        });
+     
 
       });
