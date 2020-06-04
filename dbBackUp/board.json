@@ -1,3 +1,18 @@
-{"_id":{"$oid":"5ec6bcade0af9557584b9b17"},"title":"Thiết Kế CSDL","timeCreated":1590082683690,"boardType":"PRIVATE","groupId":"none","userId":"5ec63fecf2cde62bb40ac911"}
-{"_id":{"$oid":"5ec6bdaae0af9557584b9b86"},"title":"Back End","timeCreated":1590082683690,"boardType":"SHARED","groupId":"5ec6bba8e0af9557584b9ab3","userId":"none"}
-{"_id":{"$oid":"5ec6bdc8e0af9557584b9b9e"},"title":"Front end","timeCreated":1590082683690,"boardType":"SHARED","groupId":"5ecb881dcd05e60d98e6052b","userId":"none"}
+{"_id":{"$oid":"5ec6bcade0af9557584b9b17"},"title":"Thiết Kế CSDL","timeCreated":{"$numberLong":"1590082683690"},"boardType":"PRIVATE","groupId":"none","userId":"5ec63fecf2cde62bb40ac911"}
+{"_id":{"$oid":"5ec6bdaae0af9557584b9b86"},"title":"Back End","timeCreated":{"$numberLong":"1590082683690"},"boardType":"SHARED","groupId":"5ec6bba8e0af9557584b9ab3","userId":"none"}
+{"_id":{"$oid":"5ec6bdc8e0af9557584b9b9e"},"title":"Front end","timeCreated":{"$numberLong":"1590082683690"},"boardType":"SHARED","groupId":"5ec6bba8e0af9557584b9ab3","userId":"none"}
+{"_id":{"$oid":"5ecfe4630fce3209c74f801c"},"title":"Front End","boardType":"PRIVATE","groupId":"#null","userId":"5ec63fecf2cde62bb40ac911","__v":0}
+{"_id":{"$oid":"5ecfe720f3ea890babb5bc0e"},"title":"làm bài tập web","boardType":"SHARED","groupId":"5ecfe702f3ea890babb5bc0c","userId":"5ec63fecf2cde62bb40ac911","__v":0}
+{"_id":{"$oid":"5ed4f80d5e2bf50bd135ae14"},"title":"thuyết trình btl","boardType":"SHARED","groupId":"5ecfe702f3ea890babb5bc0c","userId":"5ec63fecf2cde62bb40ac911","__v":0}
+{"_id":{"$oid":"5ed5fa11b5df18248570ce5c"},"title":"bt tuan","boardType":"PRIVATE","groupId":"#null","userId":"5ec63fecf2cde62bb40ac911","image":"/image/bg/9.jpg","__v":0}
+{"_id":{"$oid":"5ed608dcb5df18248570ce5d"},"title":"ahihi","boardType":"SHARED","groupId":"5ecfe702f3ea890babb5bc0c","userId":"5ec63fecf2cde62bb40ac911","image":"/image/bg/7.jpg","__v":0}
+{"_id":{"$oid":"5ed612654db8013f77e8e743"},"title":"aheeh","boardType":"PRIVATE","groupId":"#null","userId":"5ec63fecf2cde62bb40ac911","image":"/image/bg/4.jpg","__v":0}
+{"_id":{"$oid":"5ed64928494ee30a2da0f0a0"},"title":"Front End","boardType":"PRIVATE","groupId":"#null","userId":"5ecb941ae0753921940fb82d","image":"/image/bg/2.jpg","__v":0}
+{"_id":{"$oid":"5ed6497f494ee30a2da0f0a3"},"title":"làm bài tập web","boardType":"SHARED","groupId":"5ed64964494ee30a2da0f0a1","userId":"5ecb941ae0753921940fb82d","image":"/image/bg/2.jpg","__v":0}
+{"_id":{"$oid":"5ed6498c494ee30a2da0f0a4"},"title":"thuyết trình btl","boardType":"PRIVATE","groupId":"#null","userId":"5ecb941ae0753921940fb82d","image":"/image/bg/4.jpg","__v":0}
+{"_id":{"$oid":"5ed64998494ee30a2da0f0a5"},"title":"ahihi","boardType":"SHARED","groupId":"5ed64964494ee30a2da0f0a1","userId":"5ecb941ae0753921940fb82d","image":"/image/bg/10.jpg","__v":0}
+{"_id":{"$oid":"5ed649e5373d7e0b6e834360"},"title":"bt tuan","boardType":"PRIVATE","groupId":"#null","userId":"5ecb941ae0753921940fb82d","image":"/image/bg/1.jpg","__v":0}
+{"_id":{"$oid":"5ed649f9373d7e0b6e834361"},"title":"Back End","boardType":"SHARED","groupId":"5ed64964494ee30a2da0f0a1","userId":"5ecb941ae0753921940fb82d","image":"/image/bg/10.jpg","__v":0}
+{"_id":{"$oid":"5ed64a37373d7e0b6e834364"},"title":"Thuyết trình nhóm ","boardType":"SHARED","groupId":"5ed64a23373d7e0b6e834362","userId":"5ecb941ae0753921940fb82d","image":"/image/bg/9.jpg","__v":0}
+{"_id":{"$oid":"5ed64b1c373d7e0b6e834365"},"title":"Aloso","boardType":"SHARED","groupId":"5ed64964494ee30a2da0f0a1","userId":"5ecb941ae0753921940fb82d","image":"/image/bg/8.jpg","__v":0}
+{"_id":{"$oid":"5ed64b91373d7e0b6e834366"},"title":"hichic","boardType":"SHARED","groupId":"5ed64a23373d7e0b6e834362","userId":"5ecb941ae0753921940fb82d","image":"/image/bg/4.jpg","__v":0}
