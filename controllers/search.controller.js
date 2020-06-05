@@ -12,10 +12,10 @@ const filterUser = (users, field)=>{
 
 // tìm user không trong nhóm này để thêm vào nhóm group
 // tìm partners =>> trả về những ai không phải parter
+
 module.exports.postSearchAllUser = async function(req, res, next ) {
   var field = req.body.name;
 
-  
   var users = await User.find(function(err, data){
     var data =data.filter(function(user){
       return (user.displayName.toLowerCase()

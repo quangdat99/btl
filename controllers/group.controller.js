@@ -2,7 +2,7 @@ var User = require('../models/user.model');
 var List = require('../models/list.model');
 var Board = require('../models/board.model');
 var Group = require('../models/group.model');
-var USer_Group = require('../models/user_group.model');
+var User_Group = require('../models/user_group.model');
 var Recent = require("../models/recent.model");
 const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
 
@@ -55,9 +55,9 @@ module.exports.create = async (req, res)=>{
 	})
 
 	try {
-		group.save();
+		await group.save();
 
-		var user_group = new USer_Group({
+		var user_group = new User_Group({
 			userId: userId,
 			groupId: group._id
 		});
@@ -68,4 +68,23 @@ module.exports.create = async (req, res)=>{
 	catch (e){
 		console.log(e)
 	}
+}
+
+module.exports.addMember = async(req, res)=>{
+	var groupId = req.params.groupId;
+	var userId = req.params.userId;
+
+	var user_group = new User_Group({
+		userId: userId,
+		groupId: groupId
+	})
+
+	try {
+		await user_group.save();
+		res.redirect("/group/member/" + groupId)
+	}
+	catch (e){
+		res.send("Add user Faild " + e.toString());
+	}
+
 }
