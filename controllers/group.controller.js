@@ -9,14 +9,12 @@ const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
 module.exports.index = async function(req, res) {
 	var groupId = req.params.groupId;
 
-	var partners = await User.find({groupId: groupId});
+	var partners = await User_Group.find({groupId: groupId});
 
 	var group = await Group.findOne({_id: groupId});
 
 	var boards = await Board.find({boardType: BOARD_TYPE.SHARED, groupId: groupId});
 
-	console.log(group);
-	// boards = JSON.stringify(boards);
 
 	res.render('group',{
 		group: group,

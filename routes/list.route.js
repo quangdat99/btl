@@ -5,6 +5,7 @@ var authMiddleware = require('../middlewares/auth.middleware');
 
 var router = express.Router();
 
+
 router.post('/create',authMiddleware.req, authMiddleware.requireLogin, controller.create);
 
 module.exports = router;

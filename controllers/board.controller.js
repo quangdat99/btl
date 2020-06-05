@@ -12,6 +12,7 @@ const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
 
 module.exports.index = async function(req, res){
 	var boardId = req.params.boardId;
+	var userId = req.signedCookies.userId;
 
 	var board = await Board.findOne({_id: boardId})
 	var lists = await List.find({boardId: boardId});
@@ -43,18 +44,34 @@ console.log(lists);
 		group: group
 	});
 
-	var recent = new Recent({
-		boardId: boardId,
-		title: board.title,
-		timeVisited: new Date().getTime(),
-		userId: req.signedCookies.userId,
-		image: board.image
-	});
-	try {
-		recent.save();
+	var recents = await Recent.find({userId: userId});
+	if (recents.filter((recent)=>{
+		return (recent.userId == userId && recent.boardId == boardId)
+	}).length !=0 ){
+		await Recent.updateOne(
+			{ userId: userId, boardId: boardId },
+			{ $set: { timeVisited : new Date().getTime() } }
+		);	
 	}
-	catch (e) {
-		console.log("save recents failed " + e.toString());
+	else {
+		recents.sort((r0, r1)=>(r1.timeVisited-r0.timeVisited));
+		if (recents.length > 5) {
+			var recentOut = recents[0];
+			await Recent.updateOne(
+				{ userId: recentOut.userId, boardId: recentOut.boardId },
+				{ $set: { timeVisited : new Date().getTime(), userId: userId, boardId: boardId } }
+			);	
+		}
+		else {
+			var recent = new Recent({
+				boardId: boardId,
+				title: board.title,
+				timeVisited: new Date().getTime(),
+				userId: req.signedCookies.userId,
+				image: board.image
+			});
+			recent.save();
+		}
 	}
 }
 module.exports.create = async (req, res)=>{

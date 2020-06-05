@@ -1,1 +1,2 @@
-{"_id":{"$oid":"5ec6bcade0af9557584b9b17"},"title":"Thiết Kế CSDL","timeVisited":{"$numberLong":"1590082683690"},"userId":"5ec63fecf2cde62bb40ac911","boardId":"5ec6bcade0af9557584b9b17"}
+{"_id":{"$oid":"5eda68d12a723e116890dd34"},"boardId":"5ed8ab4c67907635cc4c58e9","title":"Bảng của Dev 3","timeVisited":1.591372004201E+12,"userId":"5ecd2aaa7073f5ee1326e657","image":"/image/bg/13.jpg","__v":0}
+{"_id":{"$oid":"5eda68d42a723e116890dd35"},"boardId":"5ed8ab8167907635cc4c58ea","title":"Bảng 2 của Dev 3","timeVisited":1.591372001492E+12,"userId":"5ecd2aaa7073f5ee1326e657","image":"/image/bg/13.jpg","__v":0}

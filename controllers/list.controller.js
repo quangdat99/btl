@@ -30,11 +30,16 @@ module.exports.create = async (req, res)=>{
 	// var user = await User.findOne({_id: req.signedCookies.userId });
 	// var board = await Board.findOne({_id: boardId});
 
-	// var header = user.displayName  + " Đã thêm danh sách " + title + " vào bảng " + board.title;
-	// var recent = new Recent({
-	// 	header: header,
-	// 	content: "",
-	// 	timeCreated: new Date().getTime(),
-	// 	cardId: ""
-	// })
+
+	var displayName = req.locals.user.displayName;
+	var board = await Board.find({_id: boardId});
+
+	var header = displayName  + " Đã thêm danh sách " + title + " vào bảng " + board.title;
+	var history = new Recent({
+		header: header,
+		content: "",
+		timeCreated: new Date().getTime(),
+		cardId: ""
+	});
+	history.save()
 }
