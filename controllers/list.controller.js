@@ -31,10 +31,11 @@ module.exports.create = async (req, res)=>{
 	var board = await Board.find({_id: boardId});
 
 	var header = displayName  + " Đã thêm danh sách " + title + " vào bảng " + board.title;
-	var recent = new Recent({
+	var history = new Recent({
 		header: header,
 		content: "",
 		timeCreated: new Date().getTime(),
 		cardId: ""
-	})
+	});
+	history.save()
 }
