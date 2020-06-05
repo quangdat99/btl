@@ -70,7 +70,7 @@ module.exports.create = async (req, res)=>{
 	}
 }
 
-module.exports.addMember = async(req, res){
+module.exports.addMember = async(req, res)=>{
 	var groupId = req.params.groupId;
 	var userId = req.params.userId;
 
