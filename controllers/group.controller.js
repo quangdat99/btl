@@ -31,10 +31,12 @@ module.exports.index = async function(req, res) {
 module.exports.member = async function(req, res) {
 	var groupId = req.params.groupId;
 	var group = await Group.findOne({_id: groupId});
+
 	var user_group = await User_Group.find({groupId: groupId});
 	var userIds = user_group.map((u_g)=>u_g.userId);
 	
 	var members = await User.find({_id: {$in: userIds}});
+
 	console.log(members);
 	res.render('member',{
 		members: members,
