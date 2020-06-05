@@ -39,33 +39,29 @@ module.exports.postSearchGroupUser = async function(req, res, next) {
 
   var userId = req.signedCookies.userId;
   // var userId = req.body.userId;
-
-  if (groupId == "#null"){
-    var users = await User.find({_id: {$not: userId}});
-  }
-  else {
-    var partnersGroup = await User_Group.find({groupId: groupId, userId: {$ne: userId}});
-    partnerIds = partnersGroup.map((partnerGroup)=>{
-      return partnerGroup.userId;
-    });
-    
-    var users = await User.find({_id: {$in: partnerIds}});
-    users = users.map((user)=>{
-      return {
-        _id: user._id,
-        displayName: user.displayName,
-        email: user.email
-      }
-    })
-  }
-  
-  if (field != "#null")
-    users = filterUser(users, field);
-  res.send({
-    users: users
-  })
-
-
-
+	if (groupId == "#null" || groupId == ""){
+		var users = await User.find({_id: {$not: userId}});
+	}
+	else {
+		var partnersGroup = await User_Group.find({groupId: groupId, userId: {$ne: userId}});
+		partnerIds = partnersGroup.map((partnerGroup)=>{
+			return partnerGroup.userId;
+		});
+		
+		var users = await User.find({_id: {$in: partnerIds}});
+		users = users.map((user)=>{
+			return {
+				_id: user._id,
+				displayName: user.displayName,
+				email: user.email
+			}
+		})
+	}
+	
+	if (field != "#null" && field != "")
+		users = filterUser(users, field);
+	res.send({
+		users: users
+	})
 
 };
