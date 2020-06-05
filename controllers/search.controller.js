@@ -17,9 +17,9 @@ module.exports.postSearchAllUser = async (req, res)=>{
   var field = req.body.name;
   var groupId = req.body.groupId;
 
-
   var parters = await User_Group.find({groupId: groupId});
-  var partnerIds = parters.map((partner)=>partner._id);
+  var partnerIds = parters.map((partner)=>partner.userId);
+  console.log(partnerIds)
   var users = await User.find({_id: {$nin: partnerIds}});
   
   users = JSON.parse(JSON.stringify(users));
@@ -28,7 +28,7 @@ module.exports.postSearchAllUser = async (req, res)=>{
     users = filterUser(users, field);
   }
   
-  res.jsonp({users: users});
+  res.jsonp(users);
 }
 
 module.exports._postSearchAllUser = async function(req, res, next ) {
@@ -80,7 +80,7 @@ module.exports._postSearchAllUser = async function(req, res, next ) {
 };
 
 // tìm user trong group để chỉ định công việc
-module.exports._postSearchGroupUser = async function(req, res, next) {
+module.exports.postSearchGroupUser = async function(req, res, next) {
   var field = req.body.field;
   var groupId = req.params.groupId;
 
