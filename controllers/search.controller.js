@@ -13,7 +13,25 @@ const filterUser = (users, field)=>{
 // tìm user không trong nhóm này để thêm vào nhóm group
 // tìm partners =>> trả về những ai không phải parter
 
-module.exports.postSearchAllUser = async function(req, res, next ) {
+module.exports.postSearchAllUser = async (req, res)=>{
+  var field = req.body.name;
+  var groupId = req.body.groupId;
+
+
+  var parters = await User_Group.find({groupId: groupId});
+  var partnerIds = parters.map((partner)=>partner._id);
+  var users = await User.find({_id: {$nin: partnerIds}});
+  
+  users = JSON.parse(JSON.stringify(users));
+
+  if (field != ""){
+    users = filterUser(users, field);
+  }
+  
+  res.jsonp({users: users});
+}
+
+module.exports._postSearchAllUser = async function(req, res, next ) {
   var field = req.body.name;
 
   var users = await User.find(function(err, data){
@@ -60,7 +78,7 @@ module.exports.postSearchAllUser = async function(req, res, next ) {
 };
 
 // tìm user trong group để chỉ định công việc
-module.exports.postSearchGroupUser = async function(req, res, next) {
+module.exports._postSearchGroupUser = async function(req, res, next) {
   var field = req.body.field;
   var groupId = req.params.groupId;
 
