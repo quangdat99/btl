@@ -19,7 +19,6 @@ module.exports.postSearchAllUser = async (req, res)=>{
 
   var parters = await User_Group.find({groupId: groupId});
   var partnerIds = parters.map((partner)=>partner.userId);
-  console.log(partnerIds)
   var users = await User.find({_id: {$nin: partnerIds}});
   
   users = JSON.parse(JSON.stringify(users));
