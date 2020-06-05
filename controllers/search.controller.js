@@ -14,8 +14,10 @@ const filterUser = (users, field)=>{
 // tìm partners =>> trả về những ai không phải parter
 module.exports.postSearchAllUser = function(req, res, next ) {
   var field= new RegExp(req.query["term"],'i');
+  // var field = req.body.name;
   console.log(req.body.name);
-  var users =User.find({displayName:field},{'displayName':1}).sort({"updated_at":-1}).sort({"created_at":-1}).limit(20);
+  console.log(field);
+  var users = User.find({displayName:field},{'displayName':1});
   users.exec(function(err,data){
 
     var result=[];
