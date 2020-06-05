@@ -4,6 +4,8 @@ var List = require('../models/list.model');
 var Board = require('../models/board.model');
 var Group = require('../models/group.model');
 var Recent = require("../models/recent.model");
+var Card = require("../models/card.model");
+var Comment = require('../models/comment.model');
 
 const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
 
@@ -13,20 +15,42 @@ module.exports.index = async function(req, res){
 
 	var board = await Board.findOne({_id: boardId})
 	var lists = await List.find({boardId: boardId});
-	lists = lists.map((list)=>{
+
+	lists = lists.map(async (list)=>{
+		var cards = await Card.find({listId: list._id});
+		cards = JSON.parse(JSON.stringify(cards));
+
+		var cardIds = cards.map((card)=>card._id);
+		var comments = await Comment.find({cardId: {$in: cardIds}});
+
 		return {
 			_id: list.id,
 			title: list.title,
-			cardCount: list.cardCount,
-			boardId: list.boardId
-		}
+			cardCount: cards.length,
+			cards: cards,
+			commentsCount: comments.length
+		};
+
 	});
+	board = JSON.parse(JSON.stringify(board));
+	board.lists = lists;
 	
 	res.render('board',{
 		board: board
 	});
-	console.log(board);
 
+	var recent = new Recent({
+		boardId: boardId,
+		title: board.title,
+		timeVisited: new Date().getTime(),
+		userId: req.signedCookies.userId
+	});
+	try {
+		recent.save();
+	}
+	catch (e) {
+		console.log("save recents failed " + e.toString());
+	}
 }
 module.exports.create = async (req, res)=>{
 	var userId = req.signedCookies.userId;
