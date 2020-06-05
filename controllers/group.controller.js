@@ -32,10 +32,13 @@ module.exports.member = async function(req, res) {
 	var groupId = req.params.groupId;
 
 	var groupId = req.params.groupId;
-	var partners = await User.find({groupId: groupId});
-
+	var user_group = await User_Group.find({groupId: groupId});
+	var userIds = user_group.map((u_g)=>u_g.userId);
+	
+	var members = await User.find({_id: {$in: userIds}});
+	
 	res.render('member',{
-		members: partners	,
+		members: members	,
 		groupId: groupId
 	});
 };
