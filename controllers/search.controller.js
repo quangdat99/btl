@@ -12,26 +12,51 @@ const filterUser = (users, field)=>{
 
 // tìm user không trong nhóm này để thêm vào nhóm group
 // tìm partners =>> trả về những ai không phải parter
-module.exports.postSearchAllUser = function(req, res, next ) {
-  var field= new RegExp(req.query["term"],'i');
-  // var field = req.body.name;
-  console.log(req.body.name);
-  console.log(field);
-  var users = User.find({displayName:field},{'displayName':1});
-  users.exec(function(err,data){
+module.exports.postSearchAllUser = async function(req, res, next ) {
+  var field = req.body.name;
 
+  
+  var users = await User.find(function(err, data){
+    var data =data.filter(function(user){
+      return (user.displayName.toLowerCase()
+                .normalize("NFD")
+                  .replace(/[\u0300-\u036f]/g, "")
+                  .replace(/đ/g, "d")
+                  .replace(/Đ/g, "D")
+                  
+
+                  .indexOf(field
+                  .toLowerCase()
+                  .normalize("NFD")
+                  .replace(/[\u0300-\u036f]/g, "")
+                  .replace(/đ/g, "d")
+                  .replace(/Đ/g, "D")) !== -1)
+    })
     var result=[];
-    if(!err){
+    if(!err && field !==''){
       if(data && data.length && data.length>0){
         data.forEach(user=>{
-         result.push(user.displayName);
+         result.push(user);
        });
 
       }
-      res.jsonp(result);
+      res.json(result);
     }
-
   });
+  // users.exec(function(err,data){
+
+  //   var result=[];
+  //   if(!err){
+  //     if(data && data.length && data.length>0){
+  //       data.forEach(user=>{
+  //        result.push(user.displayName);
+  //      });
+
+  //     }
+  //     res.jsonp(result);
+  //   }
+
+  // });
 };
 
 // tìm user trong group để chỉ định công việc

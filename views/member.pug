@@ -109,7 +109,19 @@ block header
     height: 120px;
     width: 120px;
     }
-
+    #result{
+    position: absolute;
+    width: 740px;
+    cursor: pointer;
+    overflow-y: auto;
+    max-height: 500px;
+    box-sizing: border-box;
+    z-index: 1001;
+    margin-top: -1rem;
+    }
+    .list-group-item:hover{
+    background-color: #f1f1f1;
+    }
 
   .tabbed-pane-header
     .tabbed-pane-header-wrapper
@@ -138,15 +150,22 @@ block header
         p Các thành viên trong nhóm có thể xem và tham gia tất cả các bảng Nhóm Hiển Thị và tạo ra các bảng mới trong nhóm.
         form(action="" method="post")
           .input-group.mb-3
-            input#add.form-control.col-6(placeholder='Thêm thành viên mới...' name='field')
+            input#add.form-control.col-8(placeholder='Thêm thành viên mới...' name='field')
+            
             .input-group-append
               button.btn.btn-outline-secondary Thêm 
+          ul#result.list-group
+              //- if data 
+              //-   each _user in data
+              //-     li.list-group-item _user.displayName
+
+
 
         script.
           $(document).ready(function(){
             $('#add').keyup(function(){
-              $(this).css("background-color", "pink");
               var value = $(this).val();
+              $('#result').html('');
               console.log(value);
               $.ajax({
                 url: "/search/allUser",
@@ -155,9 +174,28 @@ block header
                 data: { name: value},
                 success: function(data){
                   console.log(data);
+                  data.forEach(user =>{
+                    $('#result').append("<li idUser="+ user._id+" class='list-group-item'><img src='/image/group.png' style='height:40px; width:40px; class='img-thumbnail'> &nbsp;"+ user.displayName+ "</li>")
+                  })
                 },
                 eror: function(err){
                   console.log(err.status);
+                }
+              });
+            });
+
+            $('#result').on('click','li',function(){
+              var click_text =$(this).text();
+              $('#add').val(click_text);
+              var idUser=($(this).attr('idUser'));
+              $('#result').html('');
+
+              $.ajax({
+                url: "/search/allUser",
+                method: 'POST',
+                dataType: "json",
+                data: { name: value},
+                success: function(data){
                 }
               });
             })
