@@ -17,7 +17,7 @@ module.exports.postSearchAllUser = function(req, res, next ) {
   // var field = req.body.name;
   console.log(req.body.name);
   console.log(field);
-  var users = User.find({displayName:field},{'displayName':1});
+  var users = await User.find({displayName:field},{'displayName':1});
   users.exec(function(err,data){
 
     var result=[];
