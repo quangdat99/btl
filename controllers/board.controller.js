@@ -43,7 +43,8 @@ module.exports.index = async function(req, res){
 		boardId: boardId,
 		title: board.title,
 		timeVisited: new Date().getTime(),
-		userId: req.signedCookies.userId
+		userId: req.signedCookies.userId,
+		image: board.image
 	});
 	try {
 		recent.save();

@@ -208,5 +208,5 @@ block header
     .bodyright
       if boards 
         each _board in boards  
-          a(href="/board"  style='background-image:url('+_board.image+')')=_board.title 
+          a(href="/board/"+ _board._id  style='background-image:url('+_board.image+')')=_board.title 
       a.new(href="#" data-toggle="modal" data-target="#taobang")  Tạo bảng mới      
