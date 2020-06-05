@@ -17,6 +17,7 @@ mongoose.connect('mongodb://localhost/work_management').then(()=>{
 	console.log("Connect db fail");
 });
 
+var listRoute = require('./routes/list.route');
 var boardRoute = require('./routes/board.route');
 var groupRoute = require('./routes/group.route');
 var userRoute = require('./routes/user.route');
@@ -47,7 +48,7 @@ app.get('/', function(req, res) {
 	res.render('index');
 });
 
-
+app.use('/list', listRoute);
 app.use('/board', boardRoute);
 app.use('/user', userRoute);
 app.use('/group', groupRoute);
