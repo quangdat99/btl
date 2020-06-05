@@ -30,14 +30,17 @@ module.exports.index = async function(req, res) {
 
 module.exports.member = async function(req, res) {
 	var groupId = req.params.groupId;
-
-	var groupId = req.params.groupId;
-	var partners = await User.find({groupId: groupId});
-
+	var group = await Group.findOne({_id: groupId});
+	var user_group = await User_Group.find({groupId: groupId});
+	var userIds = user_group.map((u_g)=>u_g.userId);
+	
+	var members = await User.find({_id: {$in: userIds}});
+	console.log(members);
 	res.render('member',{
-		members: partners	,
-		groupId: groupId
+		members: members,
+		group: group
 	});
+	
 };
 
 
@@ -71,8 +74,9 @@ module.exports.create = async (req, res)=>{
 }
 
 module.exports.addMember = async(req, res)=>{
-	var groupId = req.params.groupId;
-	var userId = req.params.userId;
+	var groupId = req.body.groupId;
+	var userId = req.body.userId;
+	console.log(req.body);
 
 	var user_group = new User_Group({
 		userId: userId,

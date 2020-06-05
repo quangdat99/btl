@@ -7,7 +7,7 @@ var router = express.Router();
 
 router.get('/:groupId',authMiddleware.req, authMiddleware.requireLogin, controller.index);
 router.get('/member/:groupId',authMiddleware.req, authMiddleware.requireLogin, controller.member);
-router.get('/addMember/:groupId/:userId',authMiddleware.req, authMiddleware.requireLogin, controller.addMember);
+router.post('/addMember',authMiddleware.req, authMiddleware.requireLogin, controller.addMember);
 
 router.post("/create",authMiddleware.requireLogin, controller.create);
 

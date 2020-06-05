@@ -131,18 +131,22 @@ block header
         .tabbed-pane-header-details
           .js-current-details
             .js-react-root
-              ._1mh0u4cBAMhD4p Tên nhóm 
+              #groupId._1mh0u4cBAMhD4p(groupId=group._id)=group.title 
               button._2DZdmHnY2Nw7gI.css-1a1cwqg
                 i.fas.fa-pencil-alt   
                 span &nbsp; Chỉnh Sửa Lý Lịch Nhóm 
   .tabbed-pane-nav
     ul(style='margin-bottom: 0px;')
       li.tabbed-pane-nav-item
-        a(href="/group/"+groupId).tabbed-pane-nav-item-button.a2 Bảng 
+        a(href="/group/"+group._id).tabbed-pane-nav-item-button.a2 Bảng 
       li.tabbed-pane-nav-item
         a.disabled.tabbed-pane-nav-item-button.a1 Thành viên 
   .tabbed-pane-
     .container
+      if members
+        each _member in members
+          p=_member.displayName 
+
       .member(style='margin-top:20px;')
         h4 Thành viên của nhóm (
           span=members.length 
@@ -159,8 +163,7 @@ block header
               //-   each _user in data
               //-     li.list-group-item _user.displayName
 
-
-
+      
         script.
           $(document).ready(function(){
             $('#add').keyup(function(){
@@ -175,7 +178,7 @@ block header
                 success: function(data){
                   console.log(data);
                   data.forEach(user =>{
-                    $('#result').append("<li idUser="+ user._id+" class='list-group-item'><img src='/image/group.png' style='height:40px; width:40px; class='img-thumbnail'> &nbsp;"+ user.displayName+ "</li>")
+                    $('#result').append("<li userId="+ user._id+" class='list-group-item'><img src='/image/group.png' style='height:40px; width:40px; class='img-thumbnail'> &nbsp;"+ user.displayName+ "</li>")
                   })
                 },
                 eror: function(err){
@@ -187,14 +190,15 @@ block header
             $('#result').on('click','li',function(){
               var click_text =$(this).text();
               $('#add').val(click_text);
-              var idUser=($(this).attr('idUser'));
+              var userId=($(this).attr('userId'));
+              var groupId=($('#groupId').attr('groupId'));
               $('#result').html('');
-
+              console.log(groupId);
               $.ajax({
-                url: "/search/allUser",
+                url: "/group/addMember",
                 method: 'POST',
                 dataType: "json",
-                data: { name: value},
+                data: { groupId: groupId, userId: userId},
                 success: function(data){
                 }
               });
@@ -228,6 +232,4 @@ block header
           //- });
 
         
-        if members
-          each _member in members
-            p=_member.displayName 
+        
