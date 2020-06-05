@@ -134,9 +134,22 @@ block header
             br
             each _board in _group.boards 
               a(href="/board/"+_board._id style='background-image:url('+_board.image+')')=_board.title
-            a.new(href="#" data-toggle="modal" data-target="#taobang")  Tạo bảng mới
+            a.new(href="#" data-toggle="modal" data-target="#taobangnhom"+_group._id)  Tạo bảng mới
             br
-
+            div(id="taobangnhom"+_group._id).modal.fade
+              form(action="/board/create" method='POST')
+                .modal-dialog
+                  .modal-content
+                    // Modal Header
+                    .modal-header
+                      input.modal-title.form-control(placeholder='Thêm tiêu đề bảng' name='title')
+                      button.close(type='button', data-dismiss='modal') &times;
+                    // Modal body
+                    .modal-body
+                      select.browser-default.custom-select(name='groupId') Nhóm 
+                        option(selected='' value=_group._id)= _group.title
+             
+                      button.btn.btn-info(style='float: right;margin-top:10px;') Tạo bảng   
 
       script(src='/socket.io/socket.io.js')
   script.

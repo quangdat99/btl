@@ -266,7 +266,7 @@ block header
 
       .members(style='margin-top:20px;')
         h4 Thành viên của nhóm (
-          span=members.length 
+          span#count=members.length 
           span )
         p Các thành viên trong nhóm có thể xem và tham gia tất cả các bảng Nhóm Hiển Thị và tạo ra các bảng mới trong nhóm.
       
@@ -322,7 +322,8 @@ block header
               var userId=($(this).attr('userId'));
               var groupId=($('#groupId').attr('groupId'));
               $('#result').html('');
-              console.log(groupId);
+              var num = Number($("#count").text()) + 1;
+              $("#count").text(num);
               $.ajax({
                 url: "/group/addMember",
                 method: 'POST',
