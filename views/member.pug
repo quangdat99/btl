@@ -299,11 +299,12 @@ block header
               var value = $(this).val();
               $('#result').html('');
               console.log(value);
+              var groupId=($('#groupId').attr('groupId'));
               $.ajax({
                 url: "/search/allUser",
                 method: 'POST',
                 dataType: "json",
-                data: { name: value},
+                data: { name: value, groupId: groupId},
                 success: function(data){
                   console.log(data);
                   data.forEach(user =>{
