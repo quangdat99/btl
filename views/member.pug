@@ -123,6 +123,126 @@ block header
     background-color: #f1f1f1;
     }
 
+
+    .org-members-list{
+        border-top: 1px solid #dfe1e6;
+        margin-top: 50px;
+    }
+    .member-list-item-detail {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(9,30,66,.13);
+    min-height: 40px;
+    padding: 12px 0 12px 40px;
+    position: relative;
+    }
+    .member-list-item-detail .member {
+    position: absolute;
+    top: 16px;
+    left: 0;
+    margin: 0;
+    }
+    .member-list-item-detail .details {
+    float: left;
+    flex: 1 0 auto;
+    }
+    .member-list-item-detail .options {
+    flex: 0;
+    }
+    .member-initials {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    height: 32px;
+    left: 0;
+    line-height: 32px;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    }
+    .member-list-item-detail .name-line {
+    margin-bottom: 0;
+    }
+    .quiet {
+    color: #5e6c84;
+    }
+    .member-list-item-detail .options .option.quiet-button {
+    padding: 7px 9px;
+    }
+    ._1Q1Tsm1-Mf2yjR {
+    float: left;
+    position: relative;
+    }
+    ._2QHGiFeX1fe40- {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: rgba(9,30,66,.04);
+    border-radius: 3px;
+    border: none;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #a5adba;
+    display: block;
+    height: 32px;
+    margin: 4px 0 2px 8px;
+    min-width: 95px;
+    padding: 6px 12px;
+    position: relative;
+    -webkit-user-select: none;
+    user-select: none;
+    }
+    .member-list-item-detail .options .option .button-link.remove-button {
+    min-width: 115px;
+    }
+    .member-list-item-detail .options .option.button-link {
+    padding-right: 12px;
+    }
+    .button-link {
+    background-color: rgba(9,30,66,.04);
+    box-shadow: none;
+    border: none;
+    border-radius: 3px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: 32px;
+    margin-top: 8px;
+    max-width: 300px;
+    overflow: hidden;
+    padding: 6px 12px;
+    position: relative;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    -webkit-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+    transition-property: background-color,border-color,box-shadow;
+    transition-duration: 85ms;
+    transition-timing-function: ease;
+    }
+
+    .member  {
+    background-color: #dfe1e6;
+    border-radius: 25em;
+    color: #172b4d;
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 32px;
+    margin: 0 4px 4px 0;
+    overflow: visible;
+    position: relative;
+    width: 32px;
+    text-decoration: none;
+    -webkit-user-select: none;
+    user-select: none;
+    z-index: 0;
+    }
+
   .tabbed-pane-header
     .tabbed-pane-header-wrapper
       .tabbed-pane-header-content
@@ -143,25 +263,34 @@ block header
         a.disabled.tabbed-pane-nav-item-button.a1 Thành viên 
   .tabbed-pane-
     .container
-      if members
-        each _member in members
-          p=_member.displayName 
 
-      .member(style='margin-top:20px;')
+      .members(style='margin-top:20px;')
         h4 Thành viên của nhóm (
           span=members.length 
           span )
         p Các thành viên trong nhóm có thể xem và tham gia tất cả các bảng Nhóm Hiển Thị và tạo ra các bảng mới trong nhóm.
-        form(action="" method="post")
-          .input-group.mb-3
-            input#add.form-control.col-8(placeholder='Thêm thành viên mới...' name='field')
-            
-            .input-group-append
-              button.btn.btn-outline-secondary Thêm 
-          ul#result.list-group
-              //- if data 
+      
+        .input-group.mb-3
+          input#add.form-control.col-8(placeholder='Thêm thành viên mới...' name='field')
+
+        ul#result.list-group
+            //- if data 
               //-   each _user in data
               //-     li.list-group-item _user.displayName
+      .org-members-list
+        if members
+          each _member in members
+            
+            .member-list-item-detail
+              .member.member-no-menu
+                span.member-initials NĐ
+              .details
+                p.name-line
+                  span.full-name= _member.displayName 
+                p.u-bottom.quiet
+                    span= _member.email
+              .options
+                a.option.button-link.remove-button(href='#' style='color:#172b4d') Lo&#x1EA1;i b&#x1ECF;...
 
       
         script.
@@ -189,7 +318,7 @@ block header
 
             $('#result').on('click','li',function(){
               var click_text =$(this).text();
-              $('#add').val(click_text);
+              $('#add').val('');
               var userId=($(this).attr('userId'));
               var groupId=($('#groupId').attr('groupId'));
               $('#result').html('');
@@ -200,6 +329,8 @@ block header
                 dataType: "json",
                 data: { groupId: groupId, userId: userId},
                 success: function(data){
+                  console.log(data);
+                  $('.org-members-list').append('<div class="member-list-item-detail"><div class="member member-no-menu"><span class="member-initials">NĐ</span></div><div class="details"><p class="name-line"><span class="full-name">'+data.displayName+'</span></p><p class="u-bottom quiet"><span>'+data.email+'</span></p></div><div class="options"><a class="option button-link remove-button" href="#" style="color:#172b4d">Loại bỏ...</a></div></div>')
                 }
               });
             })

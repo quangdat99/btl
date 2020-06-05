@@ -37,7 +37,6 @@ module.exports.member = async function(req, res) {
 	
 	var members = await User.find({_id: {$in: userIds}});
 
-	console.log(members);
 	res.render('member',{
 		members: members,
 		group: group
@@ -78,7 +77,8 @@ module.exports.create = async (req, res)=>{
 module.exports.addMember = async(req, res)=>{
 	var groupId = req.body.groupId;
 	var userId = req.body.userId;
-	console.log(req.body);
+
+	var user = await User.findOne({_id: userId});
 
 	var user_group = new User_Group({
 		userId: userId,
@@ -87,7 +87,7 @@ module.exports.addMember = async(req, res)=>{
 
 	try {
 		await user_group.save();
-		res.redirect("/group/member/" + groupId)
+		res.json(user);
 	}
 	catch (e){
 		res.send("Add user Faild " + e.toString());
