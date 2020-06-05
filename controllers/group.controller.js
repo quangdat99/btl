@@ -15,13 +15,11 @@ module.exports.index = async function(req, res) {
 
 	var boards = await Board.find({boardType: BOARD_TYPE.SHARED, groupId: groupId});
 
-
+	console.log(group);
 	// boards = JSON.stringify(boards);
 
 	res.render('group',{
-		_id: group._id,
-		title: group.title,
-		description: group.description,
+		group: group,
 		boards: boards,
 		memberCount: partners.length,
 	});

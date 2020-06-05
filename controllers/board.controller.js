@@ -15,7 +15,8 @@ module.exports.index = async function(req, res){
 
 	var board = await Board.findOne({_id: boardId})
 	var lists = await List.find({boardId: boardId});
-
+	var group = await Group.findOne({_id: board.groupId});
+console.log(lists);
 	lists = lists.map(async (list)=>{
 		var cards = await Card.find({listId: list._id});
 		cards = JSON.parse(JSON.stringify(cards));
@@ -34,9 +35,12 @@ module.exports.index = async function(req, res){
 	});
 	board = JSON.parse(JSON.stringify(board));
 	board.lists = lists;
-	
+	console.log(board);
+	console.log(group);
+
 	res.render('board',{
-		board: board
+		board: board,
+		group: group
 	});
 
 	var recent = new Recent({

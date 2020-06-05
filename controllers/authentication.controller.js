@@ -127,9 +127,16 @@ module.exports.postRegister = async function(req, res){
 	}
 }
 
+
+
 module.exports.forgetPassword = async function(req, res){
 	res.render('authentication/forgetPassword');
 }
 module.exports.postForgetPassword = async function(req, res){
 	res.render('authentication/forgetPassword');
+}
+
+module.exports.logOut=  function(req, res) {
+        res.clearCookie("userId");
+        res.redirect('/');
 }
