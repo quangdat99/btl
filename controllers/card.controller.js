@@ -33,10 +33,10 @@ module.exports.create = async (req, res)=>{
 
 
 	var displayName = res.locals.user.displayName;
-	var list = await List.find({_id: listId});
+	var list = await List.findOne({_id: listId});
 	var board = await Board.findOne({_id: list.boardId});
 
-	var header = displayName  + " Đã thêm 1 thẻ \"" + title + "\" vào danh sách \"" + list.title + "\" của bảng \"" + board.title + "\"";
+	var header = displayName  + " Đã thêm 1 thẻ \"" + title + "\" vào danh sách \"" + list.title + "\"";
 	var history = new History({
 		header: header,
 		content: "",
@@ -57,19 +57,22 @@ module.exports.create = async (req, res)=>{
 module.exports.rename = async (req, res)=>{
 	var title = req.body.title;
 	var userId = req.signedCookies.userId;
-	var listId = req.body.listId;
-	var boardId = req.body.boardId;
+	var cardId = req.body.cardId;
 	var diaplayName = res.locals.user.displayName;
 
 	try {
-		await List.updateOne({_id: listId}, {$set: {title: title}});
+		await Card.updateOne({_id: cardId}, {$set: {title: title}});
 		res.send({result: "success"});
 	}
 	catch (e){
-		console.log("rename list failed " + e.toString());
-	}
+		console.log("rename card failed " + e.toString());
+	};
 
-	var header = displayName  + " Đã đã đổi tên 1 danh sách sang \"" + title + "\"";
+	var card = await Card.findOne({_id: cardId});
+	var list = await List.findOne({_id: card.listId});
+	var board = await Board.findOne({_id: list.boardId});
+
+	var header = displayName  + " Đã đã đổi tên 1 thẻ sang \"" + title + "\" trong danh sách \"" + list.title + "\"";
 	var history = new Recent({
 		header: header,
 		content: "",
