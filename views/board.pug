@@ -53,15 +53,15 @@ block header
 
               .list-card
                 a.card-name(href="" data-toggle="modal" data-target="#the") Tên thẻ 
-                .card-composer
+                .card-composer(id='card'+_list._id)
                   .js-composer
                     textarea.form-control(placeholder="Nhập tiêu đề cho thẻ này..." dir="auto" style="")
                   .cc-controls
                     .cc-controls-section
                       input.primary(type="submit" value="Thêm thẻ")
                       a(href="#" style="display:inline-block;padding-left: 5px;")
-                        i#thoat.fas.fa-times
-              .list-add
+                        i.fas.fa-times.thoatnhe(id='thoat'+_list._id )
+              .list-add(id='add'+_list._id )
                 a(href="#")
                   i.fas.fa-plus &nbsp; Thêm thẻ khác
 
@@ -180,4 +180,4 @@ block header
               button.btn.btn-info(style='float: right;margin-top:10px;') Lưu
 
     script.
-      
+     
