@@ -9,6 +9,6 @@ var historySchema = new mongoose.Schema({
     cardId: String,
     boardId: String
 });
-var History = mongoose.model('History', listSchema, 'history');
+var History = mongoose.model('History', historySchema, 'history');
 
 module.exports = History;
