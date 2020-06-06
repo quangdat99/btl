@@ -54,7 +54,6 @@ module.exports.rename = async (req, res)=>{
 	var title = req.body.title;
 	var userId = req.signedCookies.userId;
 	var listId = req.body.listId;
-	var boardId = req.body.boardId;
 	var diaplayName = res.locals.user.displayName;
 
 	try {
@@ -65,13 +64,14 @@ module.exports.rename = async (req, res)=>{
 		console.log("rename list failed " + e.toString());
 	}
 
+	var list = await List.find({_id: listId});
 	var header = displayName  + " Đã đã đổi tên 1 danh sách sang \"" + title + "\"";
 	var history = new Recent({
 		header: header,
 		content: "",
 		timeCreated: new Date().getTime(),
 		cardId: "",
-		boardId: boardId
+		boardId: list.boardId
 	});
 	history.save()
 };
