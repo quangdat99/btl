@@ -12,8 +12,6 @@ module.exports.create = async (req, res)=>{
 	var title = req.body.title;
 	var userId = req.signedCookies.userId;
 	var boardId = req.body.boardId;
-	console.log(title);
-	console.log(boardId);
 	var list = new List({
 		title: title,
 		cardsCount: 0,
@@ -39,7 +37,65 @@ module.exports.create = async (req, res)=>{
 		header: header,
 		content: "",
 		timeCreated: new Date().getTime(),
-		cardId: ""
+		cardId: "",
+		boardId: boardId
 	});
 	history.save()
-}
+};
+
+
+module.exports.rename = async (req, res)=>{
+	var title = req.body.title;
+	var userId = req.signedCookies.userId;
+	var listId = req.body.listId;
+	var boardId = req.body.boardId;
+	var diaplayName = res.locals.user.displayName;
+
+	try {
+		await List.updateOne({_id: listId}, {$set: {title: title}});
+		res.send({result: "success"});
+	}
+	catch (e){
+		console.log("rename list failed " + e.toString());
+	}
+
+	var header = displayName  + " Đã đã đổi tên 1 danh sách sang " + title;
+	var history = new Recent({
+		header: header,
+		content: "",
+		timeCreated: new Date().getTime(),
+		cardId: "",
+		boardId: boardId
+	});
+	history.save()
+};
+
+module.exports.delete = async (req, res)=>{
+	var listTitle = req.body.title;
+	var userId = req.signedCookies.userId;
+	var listId = req.body.listId;
+	var boardId = req.body.boardId;
+	var diaplayName = res.locals.user.displayName;
+
+	try {
+		await List.remove({_id: listId});
+		res.send({result: "success"});
+	}
+	catch (e){
+		console.log("rename list failed " + e.toString());
+	}
+
+	var header = displayName  + " Đã đã xóa 1 danh sách: " + listTitle;
+	var history = new Recent({
+		header: header,
+		content: "",
+		timeCreated: new Date().getTime(),
+		cardId: "",
+		boardId: boardId
+	});
+	history.save()
+};
+
+
+
+
