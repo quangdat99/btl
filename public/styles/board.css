@@ -1,6 +1,6 @@
 
     .board-header {
-    background: rgba(0,0,0,.24);
+    background: rgba(0,0,0,.4);
     padding: 10px;
     }
     .board-header-btn {
@@ -115,7 +115,7 @@
     background: rgba(0,0,0,.08);
     }
     .board-list .add-list{
-    background-color: hsla(0,0%,100%,.24);
+    background-color: rgba(0,0,0,.24);
     padding: 14px;
     color:#172b4d;
     border-radius: 5px;
@@ -123,7 +123,7 @@
     display: block;
     }
     .board-list .add-list:hover{
-    background-color: hsla(0,0%,100%,.3);
+    background-color: rgba(0,0,0,.2);
     }
     .board-list .add-list i{
     font-weight: 900;

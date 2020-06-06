@@ -13,7 +13,8 @@ module.exports.create = async (req, res)=>{
 	var userId = req.signedCookies.userId;
 	var title = req.body.title;
 	var listId = req.body.listId;
-	console.log(req.body.title);
+	var boardId = req.body.boardId;
+	console.log(req.body);
 
 	var card = new Card({
 		title: title,
@@ -24,35 +25,34 @@ module.exports.create = async (req, res)=>{
 
 	try {
 		await card.save();
-		res.send({result: "success"});
+		res.redirect("/board/" + boardId);
 	}
 	catch (e) {
 		res.send("Create card failed " + e.toString());
 	};
-	// var user = await User.findOne({_id: req.signedCookies.userId });
-	// var board = await Board.findOne({_id: boardId});
+	var user = await User.findOne({_id: req.signedCookies.userId });
 
 
-	// var displayName = res.locals.user.displayName;
-	// var list = await List.findOne({_id: listId});
-	// var board = await Board.findOne({_id: list.boardId});
-	// console.log(list);
-	// var header = displayName  + " Đã thêm 1 thẻ \"" + title + "\" vào danh sách \"" + list.title + "\"";
-	// var history = new History({
-	// 	header: header,
-	// 	content: "",
-	// 	timeCreated: new Date().getTime(),
-	// 	cardId: "",
-	// 	boardId: board._id
-	// });
-	// try {
-	// 	history.save()
-	// }
-	// catch (e){
-	// 	res.send("Create card failed! " + e.toString());
-	// }
+	var displayName = res.locals.user.displayName;
+	var list = await List.findOne({_id: listId});
+	var board = await Board.findOne({_id: list.boardId});
 
-	// global.socket.emit("card/create", {userId: userId, title: title, boardId: board._id});
+	var header = displayName  + " Đã thêm 1 thẻ \"" + title + "\" vào danh sách \"" + list.title + "\"";
+	var history = new History({
+		header: header,
+		content: "",
+		timeCreated: new Date().getTime(),
+		cardId: "",
+		boardId: board._id
+	});
+	try {
+		history.save()
+	}
+	catch (e){
+		res.send("Create card failed! " + e.toString());
+	}
+
+	global.socket.emit("card/create", {userId: userId, title: title, boardId: board._id});
 	
 };
 

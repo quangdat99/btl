@@ -30,21 +30,24 @@ $(document).ready(function(){
     $(" #card"+id).fadeOut(0);
     $(" #add"+id).fadeIn(0);
   });
-  $("input.themthe").click(function(){
-    var id= $(this).attr("id");
-    var value = $("textarea#"+id).val();
-    console.log(id);
-    console.log(value);
-    $.ajax({
-      url: "/card/create",
-      method: "POST",
-      dataType: "json",
-      data: { title: value, listId: id},
-      success: function(data){
-        console.log(data);
-      }
-    })
-  });
+  // $("input.themthe").click(function(){
+  //   var id= $(this).attr("id");
+  //   var value = $("textarea#"+id).val();
+  //   console.log(id);
+  //   console.log(value);
+  //   $(" #card"+id).fadeOut(0);
+  //   $(" #add"+id).fadeIn(0);
+  //   $.ajax({
+  //     url: "/card/create",
+  //     method: "POST",
+  //     dataType: "json",
+  //     data: { title: value, listId: id},
+  //     success: function(data){
+  //       console.log(data);
+  //       $("")
+  //     }
+  //   })
+  // });
 
 
   

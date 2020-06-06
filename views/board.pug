@@ -54,18 +54,125 @@ block header
                       button.dropdown-item(listId=_list._id listTitle=_list.title) Xóa danh sách
 
               
-              .list-card
+              .list-card(id="list-card"+_list._id)
                 if _list.cards
                   each _card in _list.cards
-                    a.card-name(href="" data-toggle="modal" data-target="#the") = _card.title
+                    a.card-name(href="" data-toggle="modal" data-target="#the"+_card._id)= _card.title
+                    .modal.fade(id="the"+_card._id)
+                      form(action="" method='POST')
+                        .modal-dialog.modal-lg
+                          .modal-content
+                            // Modal Header
+                            .modal-header
+                              span(style='margin-right: 15px;padding: 5px;')
+                                i.fas.fa-window-restore 
+                              .window-title
+                                input.mod-card-back-title(dir='auto' value=_card.title style='overflow: hidden; overflow-wrap: break-word; height: 32px;')
+                              button.close(type='button', data-dismiss='modal') &times;
+                            // Modal body
+                            .modal-body
+                              .row
+                                .window-main-col.col-9
+                                  .card-detail-data
+                                  .js-fill-card-detail-desc
+                                    .window-module
+                                      .window-module-title
+                                        span(style='margin-right: 15px;padding: 5px;')
+                                          i.fas.fa-bars &nbsp; 
+                                        h5 Mô tả
+                                      .u-gutter
+                                        .editable
+                                          .description-content
+                                            .current
+                                              p lam bai tap
+                                            p.u-bottom
+                                              a(href="#").description-fake-text-area Thêm mô tả chi tiết hơn...
+                                            
+                                              
+                                            .description-edit
+                                              textarea.form-control(type="text" name="" autocomplete="off" dir="auto" placeholder="Thêm mô tả chi tiết hơn... ")
+                                              .list-add-controls
+                                                input.primary(type="submit" value="Lưu")
+                                                a#xxx(href="#" style="padding: 8px;")
+                                                  i.fas.fa-times
+                                  .checklist-list
+                                    .checklist
+                                      .window-module-title
+                                        span(style='margin-right: 15px;padding: 5px;')
+                                          i.fas.fa-tasks &nbsp; 
+                                        .editable.checklist-title
+                                          h5 Việc cần làm
+                                          .window-module-title-options
+                                            a(href='#').button.subtle Xóa
+                                      .checklist-progress
+                                        span.checklist-progress-percentage 0%
+                                        .checklist-progress-bar
+                                          .checklist-progress-bar-current
+                                      .checklist-items-list.custom-control.custom-checkbox
+                                        input#customCheck.custom-control-input(type='checkbox')
+                                        label.custom-control-label(for="customCheck")
+                                        p(href="#").checklist-item work 1
+                                          a(href='#').button.subtla 
+                                            i.fas.fa-times
+                                      .checklist-new-item
+                                        a#themm.button.subtle(href="#" style
+                                        ="float: left; margin-left: 53px; margin-top: 10px") Thêm một mục 
+                                        .description-editt(style="margin-left: 53px; display:none;")
+                                          textarea.form-control(type="text" name="" autocomplete="off" dir="auto" placeholder="Thêm mô tả chi tiết hơn... ")
+                                          .list-add-controls
+                                            input.primary(type="submit" value="Lưu")
+                                            a#xxy(href="#" style="padding: 8px;")
+                                              i.fas.fa-times
+                                  .window-module(style='margin-top:20px')
+                                    .window-module-title
+                                      span(style='margin-right:15px;padding: 5px;')
+                                        i.fas.fa-comments  
+                                      h5 Hoạt động 
+                                    .new-comment
+                                      .member
+                                        span.member-initials(title='Quang Dat (quangdat9)', aria-label='Quang Dat (quangdat9)') QD
+                                      form
+                                        input.form-control(placeholder='Viết bình luận...', dir='auto', style='')
+                                           
+
+
+
+
+                                .col-3
+                                  .window-sidebar
+                                    h3 THÊM VÀO THẺ 
+                                  .u-clearfix
+                                    a.button-link
+                                      i.fas.fa-user(style='font-size: 18;font-weight: 400;') &nbsp; Thành viên 
+
+                                    a.button-link
+                                      i.far.fa-address-book(style='font-size: 18;font-weight: 400;') &nbsp; Việc cần làm
+
+                                    a.button-link
+                                      i.fas.fa-clock(style='font-size: 18;font-weight: 400;') &nbsp; Ngày hết hạn
+
+                             
+                              
+
+                     
+                              button.btn.btn-info(style='float: right;margin-top:10px;') Lưu
+
+
+
+
+
+
                 .card-composer(id='card'+_list._id)
-                  .js-composer
-                    textarea.form-control.themthe(placeholder="Nhập tiêu đề cho thẻ này..." dir="auto" style="" id=_list._id)
-                  .cc-controls
-                    .cc-controls-section
-                      input.primary.themthe(type="submit" value="Thêm thẻ" id=_list._id)
-                      a(href="#" style="display:inline-block;padding-left: 5px;")
-                        i.fas.fa-times.thoatnhe(id='thoat'+_list._id )
+                  form(action="/card/create" method="POST")
+                    .js-composer
+                      textarea.form-control.themthe(name='title' placeholder="Nhập tiêu đề cho thẻ này..." dir="auto" style="" id=_list._id)
+                    .cc-controls
+                      .cc-controls-section
+                        input(type='text' name="listId" value=_list._id style="display:none;")
+                        input(type='text' name="boardId" value=board._id style="display:none;")
+                        input.primary.themthe(type="submit" value="Thêm thẻ" id=_list._id)
+                        a(href="#" style="display:inline-block;padding-left: 5px;")
+                          i.fas.fa-times.thoatnhe(id='thoat'+_list._id )
               .list-add(id='add'+_list._id )
                 a(href="#")
                   i.fas.fa-plus &nbsp; Thêm thẻ khác
@@ -84,105 +191,7 @@ block header
                 i.fas.fa-times
 
 
-    #the.modal.fade
-      form(action="" method='POST')
-        .modal-dialog.modal-lg
-          .modal-content
-            // Modal Header
-            .modal-header
-              span(style='margin-right: 15px;padding: 5px;')
-                i.fas.fa-window-restore 
-              .window-title
-                // h3.card-detail-title-assist Ten the 
-                input.mod-card-back-title(dir='auto' value='Ten the' style='overflow: hidden; overflow-wrap: break-word; height: 32px;')
-              button.close(type='button', data-dismiss='modal') &times;
-            // Modal body
-            .modal-body
-              .row
-                .window-main-col.col-9
-                  .card-detail-data
-                  .js-fill-card-detail-desc
-                    .window-module
-                      .window-module-title
-                        span(style='margin-right: 15px;padding: 5px;')
-                          i.fas.fa-bars &nbsp; 
-                        h5 Mô tả
-                      .u-gutter
-                        .editable
-                          .description-content
-                            .current
-                              p lam bai tap
-                            p.u-bottom
-                              a(href="#").description-fake-text-area Thêm mô tả chi tiết hơn...
-                            
-                              
-                            .description-edit
-                              textarea.form-control(type="text" name="" autocomplete="off" dir="auto" placeholder="Thêm mô tả chi tiết hơn... ")
-                              .list-add-controls
-                                input.primary(type="submit" value="Lưu")
-                                a#xxx(href="#" style="padding: 8px;")
-                                  i.fas.fa-times
-                  .checklist-list
-                    .checklist
-                      .window-module-title
-                        span(style='margin-right: 15px;padding: 5px;')
-                          i.fas.fa-tasks &nbsp; 
-                        .editable.checklist-title
-                          h5 Việc cần làm
-                          .window-module-title-options
-                            a(href='#').button.subtle Xóa
-                      .checklist-progress
-                        span.checklist-progress-percentage 0%
-                        .checklist-progress-bar
-                          .checklist-progress-bar-current
-                      .checklist-items-list.custom-control.custom-checkbox
-                        input#customCheck.custom-control-input(type='checkbox')
-                        label.custom-control-label(for="customCheck")
-                        p(href="#").checklist-item work 1
-                          a(href='#').button.subtla 
-                            i.fas.fa-times
-                      .checklist-new-item
-                        a#themm.button.subtle(href="#" style
-                        ="float: left; margin-left: 53px; margin-top: 10px") Thêm một mục 
-                        .description-editt(style="margin-left: 53px; display:none;")
-                          textarea.form-control(type="text" name="" autocomplete="off" dir="auto" placeholder="Thêm mô tả chi tiết hơn... ")
-                          .list-add-controls
-                            input.primary(type="submit" value="Lưu")
-                            a#xxy(href="#" style="padding: 8px;")
-                              i.fas.fa-times
-                  .window-module(style='margin-top:20px')
-                    .window-module-title
-                      span(style='margin-right:15px;padding: 5px;')
-                        i.fas.fa-comments  
-                      h5 Hoạt động 
-                    .new-comment
-                      .member
-                        span.member-initials(title='Quang Dat (quangdat9)', aria-label='Quang Dat (quangdat9)') QD
-                      form
-                        input.form-control(placeholder='Viết bình luận...', dir='auto', style='')
-                           
 
-
-
-
-                .col-3
-                  .window-sidebar
-                    h3 THÊM VÀO THẺ 
-                  .u-clearfix
-                    a.button-link
-                      i.fas.fa-user(style='font-size: 18;font-weight: 400;') &nbsp; Thành viên 
-
-                    a.button-link
-                      i.far.fa-address-book(style='font-size: 18;font-weight: 400;') &nbsp; Việc cần làm
-
-                    a.button-link
-                      i.fas.fa-clock(style='font-size: 18;font-weight: 400;') &nbsp; Ngày hết hạn
-
-             
-              
-
-     
-              button.btn.btn-info(style='float: right;margin-top:10px;') Lưu
 
     script.
      
