@@ -1,2 +1,7 @@
-{"_id":{"$oid":"5eda68d12a723e116890dd34"},"boardId":"5ed8ab4c67907635cc4c58e9","title":"Bảng của Dev 3","timeVisited":1.591372004201E+12,"userId":"5ecd2aaa7073f5ee1326e657","image":"/image/bg/13.jpg","__v":0}
-{"_id":{"$oid":"5eda68d42a723e116890dd35"},"boardId":"5ed8ab8167907635cc4c58ea","title":"Bảng 2 của Dev 3","timeVisited":1.591372001492E+12,"userId":"5ecd2aaa7073f5ee1326e657","image":"/image/bg/13.jpg","__v":0}
+{"_id":{"$oid":"5eda68d12a723e116890dd34"},"boardId":"5ed8ab4c67907635cc4c58e9","title":"Bảng của Dev 3","timeVisited":1.591431766069E+12,"userId":"5ecd2aaa7073f5ee1326e657","image":"/image/bg/13.jpg","__v":0}
+{"_id":{"$oid":"5eda68d42a723e116890dd35"},"boardId":"5ed8ab8167907635cc4c58ea","title":"Bảng 2 của Dev 3","timeVisited":1.591429985376E+12,"userId":"5ecd2aaa7073f5ee1326e657","image":"/image/bg/13.jpg","__v":0}
+{"_id":{"$oid":"5edb4b5701549b37a8bbc59d"},"boardId":"5edb4add09ca532e80a56dc1","title":"bảng 4","timeVisited":1.59142997548E+12,"userId":"5ecd2aaa7073f5ee1326e657","image":"/image/bg/8.jpg","__v":0}
+{"_id":{"$oid":"5edb4b5b01549b37a8bbc59e"},"boardId":"5edb4ae809ca532e80a56dc2","title":"bảng 5","timeVisited":1.591429979924E+12,"userId":"5ecd2aaa7073f5ee1326e657","image":"/image/bg/4.jpg","__v":0}
+{"_id":{"$oid":"5edb4b6c01549b37a8bbc59f"},"boardId":"5edb4b4e01549b37a8bbc59c","title":"bảng 6","timeVisited":1.591430002944E+12,"userId":"5ecd2aaa7073f5ee1326e657","image":"/image/bg/8.jpg","__v":0}
+{"_id":{"$oid":"5edb4befc9512b3dcc07f56e"},"__v":0}
+{"_id":{"$oid":"5edb50662d9a40395c9f2cdc"},"boardId":"5ed8ab4c67907635cc4c58e9","__v":0}
