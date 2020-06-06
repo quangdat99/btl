@@ -64,7 +64,7 @@ module.exports.rename = async (req, res)=>{
 		console.log("rename list failed " + e.toString());
 	}
 
-	var list = await List.find({_id: listId});
+	var list = await List.findOne({_id: listId});
 	var header = displayName  + " Đã đã đổi tên 1 danh sách sang \"" + title + "\"";
 	var history = new Recent({
 		header: header,
@@ -80,8 +80,7 @@ module.exports.delete = async (req, res)=>{
 	var listTitle = req.body.title;
 	var userId = req.signedCookies.userId;
 	var listId = req.body.listId;
-	var boardId = req.body.boardId;
-	var diaplayName = res.locals.user.displayName;
+	var displayName = res.locals.user.displayName;
 
 	try {
 		await List.remove({_id: listId});
@@ -91,13 +90,14 @@ module.exports.delete = async (req, res)=>{
 		console.log("rename list failed " + e.toString());
 	}
 
+	var list = await List.findOne({_id: listId});
 	var header = displayName  + " Đã đã xóa 1 danh sách: " + listTitle;
 	var history = new Recent({
 		header: header,
 		content: "",
 		timeCreated: new Date().getTime(),
 		cardId: "",
-		boardId: boardId
+		boardId: list.boardId
 	});
 	history.save()
 };
