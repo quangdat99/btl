@@ -31,7 +31,7 @@ module.exports.create = async (req, res)=>{
 	// var board = await Board.findOne({_id: boardId});
 
 
-	var displayName = req.locals.user.displayName;
+	var displayName = res.locals.user.displayName;
 	var board = await Board.find({_id: boardId});
 
 	var header = displayName  + " Đã thêm danh sách " + title + " vào bảng " + board.title;
