@@ -42,13 +42,13 @@ module.exports.create = async (req, res)=>{
 		content: "",
 		timeCreated: new Date().getTime(),
 		cardId: "",
-		boardId: boardId
+		boardId: board._id
 	});
 	try {
 		history.save()
 	}
 	catch (e){
-		console.log("save history failed " + e.toString());
+		res.send("Create card failed! " + e.toString());
 	}
 	
 };
@@ -65,7 +65,7 @@ module.exports.rename = async (req, res)=>{
 		res.send({result: "success"});
 	}
 	catch (e){
-		console.log("rename card failed " + e.toString());
+		res.send("Rename card failed! " + e.toString());
 	};
 
 	var card = await Card.findOne({_id: cardId});
@@ -78,36 +78,39 @@ module.exports.rename = async (req, res)=>{
 		content: "",
 		timeCreated: new Date().getTime(),
 		cardId: "",
-		boardId: boardId
+		boardId: board._id
 	});
 	history.save()
 };
 
-module.exports.delete = async (req, res)=>{
-	var listTitle = req.body.title;
-	var userId = req.signedCookies.userId;
-	var listId = req.body.listId;
-	var boardId = req.body.boardId;
-	var diaplayName = res.locals.user.displayName;
+module.exports.updateDescription = async (req, res, next) => {
+	var description = req.body.description;
+	var cardId = req.body.cardId;
+
+	var displayName = res.locals.user.displayName;
 
 	try {
-		await List.remove({_id: listId});
+		await Card.updateOne({_id: cardId}, {$set: {description: description}});
 		res.send({result: "success"});
 	}
-	catch (e){
-		console.log("rename list failed " + e.toString());
-	}
+	catch (e) {
+		res.send("update description failed !");
+	};
 
-	var header = displayName  + " Đã đã xóa 1 danh sách: " + listTitle;
+	var card = await Card.findOne({_id: cardId});
+	var list = await List.findOne({_id: card.listId});
+	var board = await Board.findOne({_id: list.boardId});
+
+	var header = diaplayName + " đã đổi mô tả của thẻ \"" + card.title + "\"sang \"" + description + "\" trong danh sách \"" + list.title + "\"";
 	var history = new Recent({
 		header: header,
 		content: "",
 		timeCreated: new Date().getTime(),
 		cardId: "",
-		boardId: boardId
+		boardId: board._id
 	});
 	history.save()
-};
+}
 
 
 
