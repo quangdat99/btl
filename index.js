@@ -67,21 +67,17 @@ var server = app.listen(port, function () {
 
 const io = require("socket.io")(server);
 io.on("connection", (socket) => {
-  console.log("== new connection _ session id: " + socket.id);
-  socket.emit("news", { route: "first connect" });
-  socket.on('disconnect', ()=>{
-	  console.log("socket disconnect");
-  })
-  socket.on("my other event", (data) => {
-    console.log(data);
-  });
+  // socket.emit("news", { route: "first connect" });
+  // socket.on('disconnect', ()=>{
+	//   console.log("socket disconnect");
+  // })
+  // socket.on("my other event", (data) => {
+  //   console.log(data);
+  // });
 });
 io.on('disconnect', (_socket) => {
-	console.log("socket disconnect");
+	// console.log("socket disconnect");
   });
 
-
-var pS = require("./socketMapper");
-global.socketMapper = new pS();
-global.socketMapper.appendSocket(100, 5);
+global.socket = io;
 

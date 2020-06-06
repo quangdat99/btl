@@ -43,22 +43,6 @@ module.exports.index = async function(req, res){
 		});
 	}
 
-	// lists = lists.map(async (list)=>{
-	// 	var cards = await Card.find({listId: list._id});
-	// 	cards = JSON.parse(JSON.stringify(cards));
-
-	// 	var cardIds = cards.map((card)=>card._id);
-	// 	var comments = await Comment.find({cardId: {$in: cardIds}});
-
-	// 	return {
-	// 		_id: list.id,
-	// 		title: list.title,
-	// 		cardCount: cards.length,
-	// 		cards: cards,
-	// 		commentsCount: comments.length
-	// 	};
-
-	// });
 	board = JSON.parse(JSON.stringify(board));
 	board.lists = _lists;
 	

@@ -50,6 +50,8 @@ module.exports.create = async (req, res)=>{
 	catch (e){
 		res.send("Create card failed! " + e.toString());
 	}
+
+	global.socket.emit("card/create", {userId: userId, title: title, boardId: board._id});
 	
 };
 

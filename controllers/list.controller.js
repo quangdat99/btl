@@ -54,7 +54,7 @@ module.exports.rename = async (req, res)=>{
 	var title = req.body.title;
 	var userId = req.signedCookies.userId;
 	var listId = req.body.listId;
-	var diaplayName = res.locals.user.displayName;
+	var displayName = res.locals.user.displayName;
 
 	try {
 		await List.updateOne({_id: listId}, {$set: {title: title}});
@@ -73,7 +73,9 @@ module.exports.rename = async (req, res)=>{
 		cardId: "",
 		boardId: list.boardId
 	});
-	history.save()
+	history.save();
+
+	global.socket.emit("list/create", {userId: userId, title: title, boardId: list.boardId});
 };
 
 module.exports.delete = async (req, res)=>{
@@ -87,7 +89,7 @@ module.exports.delete = async (req, res)=>{
 		res.send({result: "success"});
 	}
 	catch (e){
-		console.log("rename list failed " + e.toString());
+		console.log("delete list failed " + e.toString());
 	}
 
 	var list = await List.findOne({_id: listId});
@@ -99,7 +101,13 @@ module.exports.delete = async (req, res)=>{
 		cardId: "",
 		boardId: list.boardId
 	});
-	history.save()
+	try {
+		history.save();
+	}
+	catch (e) {
+		console.log(e.toString());
+	}
+
 };
 
 
