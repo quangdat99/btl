@@ -15,7 +15,7 @@ block header
           .dropdown-menu.dropdown-menu-left(style='color=#003333')
             p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 5px;')=group.title  
             a.dropdown-item(href='#') Đổi nhóm 
-            a.dropdown-item(href='#') Xem trang của nhóm
+            a.dropdown-item(href='/group/'+group._id) Xem trang của nhóm
         else 
           button.board-header-btn(type='button' data-toggle="dropdown")
             i.fas.fa-user-friends &nbsp; 
