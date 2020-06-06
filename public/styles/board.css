@@ -47,6 +47,9 @@
 
     .board-body {
     padding: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
     }
 
     .board-body .board-list{

@@ -16,28 +16,52 @@ module.exports.index = async function(req, res){
 
 	var board = await Board.findOne({_id: boardId})
 	var lists = await List.find({boardId: boardId});
-	var group = await Group.findOne({_id: board.groupId});
-console.log(lists);
-	lists = lists.map(async (list)=>{
+	var group;
+	if (board.groupId!== '#null'){
+		group = await Group.findOne({_id: board.groupId});
+		console.log(group);
+	} else {
+		group=0;
+	}
+	
+
+	var _lists = [];
+	for (var l in lists){
+		var list = lists[l];
 		var cards = await Card.find({listId: list._id});
 		cards = JSON.parse(JSON.stringify(cards));
 
 		var cardIds = cards.map((card)=>card._id);
 		var comments = await Comment.find({cardId: {$in: cardIds}});
 
-		return {
+		_lists.push({
 			_id: list.id,
 			title: list.title,
 			cardCount: cards.length,
 			cards: cards,
 			commentsCount: comments.length
-		};
+		});
+	}
 
-	});
+	// lists = lists.map(async (list)=>{
+	// 	var cards = await Card.find({listId: list._id});
+	// 	cards = JSON.parse(JSON.stringify(cards));
+
+	// 	var cardIds = cards.map((card)=>card._id);
+	// 	var comments = await Comment.find({cardId: {$in: cardIds}});
+
+	// 	return {
+	// 		_id: list.id,
+	// 		title: list.title,
+	// 		cardCount: cards.length,
+	// 		cards: cards,
+	// 		commentsCount: comments.length
+	// 	};
+
+	// });
 	board = JSON.parse(JSON.stringify(board));
-	board.lists = lists;
-	console.log(board);
-	console.log(group);
+	board.lists = _lists;
+	
 
 	res.render('board',{
 		board: board,

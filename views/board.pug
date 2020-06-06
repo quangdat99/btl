@@ -8,13 +8,19 @@ block header
     .board-header
       span(style='padding:5px; color:#fff;')=board.title 
       .dropdown
-        button.board-header-btn(type='button' data-toggle="dropdown")
-          i.fas.fa-user-friends &nbsp; 
-            span= group.title
-        .dropdown-menu.dropdown-menu-left(style='color=#003333')
-          p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 5px;')=group.title  
-          a.dropdown-item(href='#') Đổi nhóm 
-          a.dropdown-item(href='#') Xem trang của nhóm
+        if group 
+          button.board-header-btn(type='button' data-toggle="dropdown")
+            i.fas.fa-user-friends &nbsp; 
+              span= group.title
+          .dropdown-menu.dropdown-menu-left(style='color=#003333')
+            p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 5px;')=group.title  
+            a.dropdown-item(href='#') Đổi nhóm 
+            a.dropdown-item(href='#') Xem trang của nhóm
+        else 
+          button.board-header-btn(type='button' data-toggle="dropdown")
+            i.fas.fa-user-friends &nbsp; 
+              span Bảng cá nhân 
+
       .dropdown
         button.board-header-btn(type='button' data-toggle="dropdown")
           i.fas.fa-users &nbsp; Hiện với nhóm 
@@ -35,29 +41,29 @@ block header
           i.fas.fa-ellipsis-h &nbsp; Hiện menu
 
     .board-body
-      // if lists
-      //   each _list in lists  
-      .board-list
-        .board-list-content
-          .list-title
-            .title 
-              input.mod-card-back-title(dir='auto' value='Ten danh sach' style='overflow: hidden; overflow-wrap: break-word; height: 32px;width: 100%;color: #5e6c84;')
-            .mn
-              i.fas.fa-ellipsis-h
+      if board.lists
+        each _list in board.lists  
+          .board-list
+            .board-list-content
+              .list-title
+                .title 
+                  input.mod-card-back-title(dir='auto' value=_list.title style='overflow: hidden; overflow-wrap: break-word; height: 32px;width: 100%;color: #5e6c84;')
+                .mn
+                  i.fas.fa-ellipsis-h
 
-          .list-card
-            a.card-name(href="" data-toggle="modal" data-target="#the") Tên thẻ 
-            .card-composer
-              .js-composer
-                textarea.form-control(placeholder="Nhập tiêu đề cho thẻ này..." dir="auto" style="")
-              .cc-controls
-                .cc-controls-section
-                  input.primary(type="submit" value="Thêm thẻ")
-                  a(href="#" style="display:inline-block;padding-left: 5px;")
-                    i#thoat.fas.fa-times
-          .list-add
-            a(href="#")
-              i.fas.fa-plus &nbsp; Thêm thẻ khác
+              .list-card
+                a.card-name(href="" data-toggle="modal" data-target="#the") Tên thẻ 
+                .card-composer
+                  .js-composer
+                    textarea.form-control(placeholder="Nhập tiêu đề cho thẻ này..." dir="auto" style="")
+                  .cc-controls
+                    .cc-controls-section
+                      input.primary(type="submit" value="Thêm thẻ")
+                      a(href="#" style="display:inline-block;padding-left: 5px;")
+                        i#thoat.fas.fa-times
+              .list-add
+                a(href="#")
+                  i.fas.fa-plus &nbsp; Thêm thẻ khác
 
 
       .board-list
