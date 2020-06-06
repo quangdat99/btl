@@ -43,22 +43,27 @@ block header
     .board-body
       if board.lists
         each _list in board.lists  
-          .board-list
+          .board-list(id='list'+_list._id)
             .board-list-content
               .list-title
                 .title 
-                  input.mod-card-back-title(dir='auto' value=_list.title style='overflow: hidden; overflow-wrap: break-word; height: 32px;width: 100%;color: #5e6c84;')
-                .mn
-                  i.fas.fa-ellipsis-h
+                  input.mod-card-back-title(dir='auto' value=_list.title style='overflow: hidden; overflow-wrap: break-word; height: 32px;width: 100%;color: #5e6c84;' listId=_list._id)
+                .mn.dropdown
+                  i.fas.fa-ellipsis-h(type='button' data-toggle="dropdown")
+                    .dropdown-menu.dropdown-menu-left(style="border: 2px solid red;")
+                      button.dropdown-item(listId=_list._id listTitle=_list.title) Xóa danh sách
 
+              
               .list-card
-                a.card-name(href="" data-toggle="modal" data-target="#the") Tên thẻ 
+                if _list.cards
+                  each _card in _list.cards
+                    a.card-name(href="" data-toggle="modal" data-target="#the") = _card.title
                 .card-composer(id='card'+_list._id)
                   .js-composer
-                    textarea.form-control(placeholder="Nhập tiêu đề cho thẻ này..." dir="auto" style="")
+                    textarea.form-control.themthe(placeholder="Nhập tiêu đề cho thẻ này..." dir="auto" style="" id=_list._id)
                   .cc-controls
                     .cc-controls-section
-                      input.primary(type="submit" value="Thêm thẻ")
+                      input.primary.themthe(type="submit" value="Thêm thẻ" id=_list._id)
                       a(href="#" style="display:inline-block;padding-left: 5px;")
                         i.fas.fa-times.thoatnhe(id='thoat'+_list._id )
               .list-add(id='add'+_list._id )

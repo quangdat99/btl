@@ -10,4 +10,6 @@ router.post('/create',authMiddleware.req, authMiddleware.requireLogin, controlle
 
 router.post('/rename',authMiddleware.req, authMiddleware.requireLogin, controller.rename);
 
+router.post('/delete',authMiddleware.req, authMiddleware.requireLogin, controller.delete);
+
 module.exports = router;
