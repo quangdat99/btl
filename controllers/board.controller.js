@@ -39,7 +39,9 @@ module.exports.index = async function(req, res){
 			title: list.title,
 			cardCount: cards.length,
 			cards: cards,
-			commentsCount: comments.length
+			commentsCount: comments.length,			// số lượng comment trong 1 card
+			completedIndex: 0,						// số index đã hoàn thành
+			indexsCount: 10							// tổng số index
 		});
 	}
 
