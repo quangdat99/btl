@@ -1,5 +1,5 @@
 var express = require('express');
-var controller = require('../controllers/list.controller');
+var controller = require('../controllers/card.controller');
 var authMiddleware = require('../middlewares/auth.middleware');
 
 

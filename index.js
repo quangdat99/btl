@@ -21,6 +21,7 @@ var listRoute = require('./routes/list.route');
 var boardRoute = require('./routes/board.route');
 var groupRoute = require('./routes/group.route');
 var userRoute = require('./routes/user.route');
+var cardRoute = require('./routes/card.route');
 var authenticationRoute = require("./routes/authentication.route");
 
 var homeRoute = require('./routes/home.route');
@@ -52,6 +53,7 @@ app.use('/list', listRoute);
 app.use('/board', boardRoute);
 app.use('/user', userRoute);
 app.use('/group', groupRoute);
+app.use('/card', cardRoute);
 app.use('/authentication', authenticationRoute);
 
 app.use('/home', homeRoute);
@@ -65,21 +67,17 @@ var server = app.listen(port, function () {
 
 const io = require("socket.io")(server);
 io.on("connection", (socket) => {
-  console.log("== new connection _ session id: " + socket.id);
-  socket.emit("news", { route: "first connect" });
-  socket.on('disconnect', ()=>{
-	  console.log("socket disconnect");
-  })
-  socket.on("my other event", (data) => {
-    console.log(data);
-  });
+  // socket.emit("news", { route: "first connect" });
+  // socket.on('disconnect', ()=>{
+	//   console.log("socket disconnect");
+  // })
+  // socket.on("my other event", (data) => {
+  //   console.log(data);
+  // });
 });
 io.on('disconnect', (_socket) => {
-	console.log("socket disconnect");
+	// console.log("socket disconnect");
   });
 
-
-var pS = require("./socketMapper");
-global.socketMapper = new pS();
-global.socketMapper.appendSocket(100, 5);
+global.socket = io;
 

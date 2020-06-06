@@ -27,3 +27,6 @@
 {"_id":{"$oid":"5ed64a37373d7e0b6e834364"},"title":"Thuyết trình nhóm ","boardType":"SHARED","groupId":"5ed64a23373d7e0b6e834362","userId":"5ecb941ae0753921940fb82d","image":"/image/bg/9.jpg","__v":0}
 {"_id":{"$oid":"5ed64b1c373d7e0b6e834365"},"title":"Aloso","boardType":"SHARED","groupId":"5ed64964494ee30a2da0f0a1","userId":"5ecb941ae0753921940fb82d","image":"/image/bg/8.jpg","__v":0}
 {"_id":{"$oid":"5ed64b91373d7e0b6e834366"},"title":"hichic","boardType":"SHARED","groupId":"5ed64a23373d7e0b6e834362","userId":"5ecb941ae0753921940fb82d","image":"/image/bg/4.jpg","__v":0}
+{"_id":{"$oid":"5edb4add09ca532e80a56dc1"},"title":"bảng 4","boardType":"PRIVATE","groupId":"#null","userId":"5ecd2aaa7073f5ee1326e657","image":"/image/bg/8.jpg","__v":0}
+{"_id":{"$oid":"5edb4ae809ca532e80a56dc2"},"title":"bảng 5","boardType":"PRIVATE","groupId":"#null","userId":"5ecd2aaa7073f5ee1326e657","image":"/image/bg/4.jpg","__v":0}
+{"_id":{"$oid":"5edb4b4e01549b37a8bbc59c"},"title":"bảng 6","boardType":"PRIVATE","groupId":"#null","userId":"5ecd2aaa7073f5ee1326e657","image":"/image/bg/8.jpg","__v":0}
