@@ -3,8 +3,6 @@ var addEventRenameTask = ()=>{
   $("input.title-task").focus(function(){
     var value = $(this).val();
     var taskId = $(this).attr("taskId");
-    console.log(" ?? " + value);
-    console.log(" ?? " + taskId);
     $(this).focusout(function(){
       var valuee = $(this).val();
       if (valuee==''){
@@ -233,5 +231,11 @@ $(document).ready(function(){
   });
 
 
+});
+
+// socket io
+const socket = io.connect('http://localhost:3001');
+socket.on('NEW_HISTORY', (data) => {
+    console.log(data);
 });
 

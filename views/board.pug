@@ -2,6 +2,7 @@ extends header
 
 
 block header
+  script(src='/socket.io/socket.io.js')
   script(type='text/javascript', src='/js/board.js')
   link(rel='stylesheet', href='/styles/board.css')
   .board(style='background-image:url('+board.image+')')

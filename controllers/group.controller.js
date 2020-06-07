@@ -15,7 +15,6 @@ module.exports.index = async function(req, res) {
 
 	var boards = await Board.find({boardType: BOARD_TYPE.SHARED, groupId: groupId});
 
-	console.log(group);
 	res.render('group',{
 		group: group,
 		boards: boards,

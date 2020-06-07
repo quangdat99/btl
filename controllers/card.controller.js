@@ -36,7 +36,6 @@ module.exports.create = async (req, res)=>{
 	var title = req.body.title;
 	var listId = req.body.listId;
 	var boardId = req.body.boardId;
-	console.log(req.body);
 
 	var card = new Card({
 		title: title,
@@ -111,7 +110,6 @@ module.exports.rename = async (req, res)=>{
 module.exports.updateDescription = async (req, res, next) => {
 	var description = req.body.description;
 	var cardId = req.body.cardId;
-	console.log(res.locals);
 	var displayName = res.locals.user.displayName;
 
 	try {

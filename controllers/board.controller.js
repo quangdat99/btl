@@ -17,11 +17,9 @@ module.exports.index = async function(req, res){
 
 	var board = await Board.findOne({_id: boardId})
 	var lists = await List.find({boardId: boardId});
-	// console.log(board);
 	var group;
 	if (board.groupId!== '#null'){
 		group = await Group.findOne({_id: board.groupId});
-		console.log(group);
 	} else {
 		group=0;
 	}
@@ -97,7 +95,6 @@ module.exports.create = async (req, res)=>{
 	var groupId = req.body.groupId;
 
 	var image = "/image/bg/"+(Math.floor(Math.random() *13)+1) +".jpg";
-	console.log("// " + groupId)
 
 	if (groupId == "#null" || groupId == ""){
 		var boardType = BOARD_TYPE.PRIVATE;
@@ -113,7 +110,6 @@ module.exports.create = async (req, res)=>{
 		userId: userId,
 		image: image
 	});
-	console.log(image);
 
 	try {
 		board.save();

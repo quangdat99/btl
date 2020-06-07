@@ -15,7 +15,6 @@ module.exports.create = async (req, res)=>{
 	var title = req.body.title;
 	var userId = req.signedCookies.userId;
 	var cardId = req.body.cardId;
-	console.log(req.body);
 	var task = new Task({
 		title: title,
 		completedIndexsCount: 0,
@@ -27,7 +26,6 @@ module.exports.create = async (req, res)=>{
 	var displayName = res.locals.user.displayName;
 	var card = await Card.findOne({_id: cardId});
 	var list = await List.findOne({_id: card.listId})
-console.log(card);
 	var header = displayName  + " đã thêm công việc \"" + title + "\" vào thẻ \"" + card.title + "\" của danh sách \"" + list.title + "\"";
 
 	try {
@@ -52,6 +50,10 @@ console.log(card);
 		console.log("save history failed " + e.toString());
 	}
 	
+	global.socket.emit("NEW_HISTORY", {
+		userId: userId,
+		history: history,
+	})
 };
 
 

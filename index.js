@@ -75,6 +75,7 @@ var server = app.listen(port, function () {
 
 const io = require("socket.io")(server);
 io.on("connection", (socket) => {
+  console.log("new Connection")
   // socket.emit("news", { route: "first connect" });
   // socket.on('disconnect', ()=>{
 	//   console.log("socket disconnect");

@@ -33,7 +33,6 @@ module.exports.postSearchAllUser = async (req, res)=>{
 module.exports._postSearchAllUser = async function(req, res, next ) {
   var field = req.body.name;
   var groupId = req.body.groupId;
-  console.log(req.body);
 
   var users = await User.find(function(err, data){
     var data =data.filter(function(user){

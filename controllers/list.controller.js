@@ -56,7 +56,6 @@ module.exports.rename = async (req, res)=>{
 	var userId = req.signedCookies.userId;
 	var listId = req.body.listId;
 	var displayName = res.locals.user.displayName;
-	console.log(req.body);
 	try {
 		await List.updateOne({_id: listId}, {$set: {title: title}});
 		res.send({result: "success"});
@@ -84,7 +83,6 @@ module.exports.delete = async (req, res)=>{
 	var userId = req.signedCookies.userId;
 	var listId = req.body.listId;
 	var displayName = res.locals.user.displayName;
-	console.log(req.body);
 	
 
 	var list = await List.findOne({_id: listId});
