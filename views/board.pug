@@ -155,14 +155,20 @@ block header
                                   .window-sidebar
                                     h3 THÊM VÀO THẺ 
                                   .u-clearfix
-                                    a.button-link
-                                      i.fas.fa-user(style='font-size: 18;font-weight: 400;') &nbsp; Thành viên 
-
-                                    a.button-link
-                                      i.far.fa-address-book(style='font-size: 18;font-weight: 400;') &nbsp; Việc cần làm
-
-                                    a.button-link
-                                      i.fas.fa-clock(style='font-size: 18;font-weight: 400;') &nbsp; Ngày hết hạn
+                                    .dropdown
+                                      a.button-link(type='button' data-toggle="dropdown")
+                                        i.fas.fa-address-book(style='font-size: 18;font-weight: 400;') &nbsp; Việc cần làm 
+                                      .dropdown-menu.dropdown-menu-left(style='color=#003333; width: 300px; padding: 10px;')
+                                        h6(style="text-align: center; color: #666;") Thêm danh sách công việc
+                                        input.vieccanlam.form-control(placeholder='Việc cần làm')
+                                        br
+                                        button.themcongviec.btn.btn-success(style='float: right; margin: 8px;' cardId=_card._id) Thêm 
+                                    .dropdown
+                                      a.button-link
+                                        i.far.fa-user(style='font-size: 18;font-weight: 400;') &nbsp; Thành viên 
+                                    .dropdown
+                                      a.button-link
+                                        i.fas.fa-clock(style='font-size: 18;font-weight: 400;') &nbsp; Ngày hết hạn
 
                              
                               

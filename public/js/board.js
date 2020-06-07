@@ -50,6 +50,23 @@ $(document).ready(function(){
   //   })
   // });
 
+  //create Task
+  $('button.themcongviec').click(function(){
+    var title = $('input.vieccanlam').val();
+    var cardId = $(this).attr('cardId');
+    console.log(title);
+    console.log(cardId);
+    $.ajax({
+      url: "/task/create",
+      method: "POST",
+      dataType: "json",
+      data: { title: title, cardId: cardId},
+      success: function(data){
+        console.log(data);
+      }
+    })
+  })
+
   //rename card
   $("input.title-card").focus(function(){
     var value = $(this).val();

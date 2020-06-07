@@ -479,3 +479,6 @@
         color: #777;
         margin-left: 15px;
     }
+    .u-clearfix .dropdown{
+        display: block;
+    }
