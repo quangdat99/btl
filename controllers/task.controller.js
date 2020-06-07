@@ -6,6 +6,7 @@ var User_Group = require('../models/user_group.model');
 var Recent = require("../models/recent.model");
 var History = require("../models/history.model");
 var Task = require("../models/task.model");
+var Index = require("../models/index.model");
 
 const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
 

@@ -6,8 +6,30 @@ var Group = require('../models/group.model');
 var User_Group = require('../models/user_group.model');
 var Recent = require("../models/recent.model");
 var History = require("../models/history.model");
+var Task = require("../models/task.model");
+var Index = require("../models/index.model");
 
 const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
+
+module.exports.index = async (req, res)=>{
+	var cardId = req.body.cardId;
+	var card = await Card.findOne({_id: cardId});
+	card = JSON.parse(JSON.stringify(card))
+	var histories = await History.find({cardId: cardId});
+	card.histories = JSON.parse(JSON.stringify(histories));
+
+	var tasks = await Task.find({cardId: cardId});
+	for (var t in tasks){
+		var taskId = tasks[t]._id;
+		var indexs = await Index.find({taskId: taskId});
+		var completedIndexsCount = indexs.filter((index)=>index.status == 1);
+		tasks[t].indexs = JSON.stringify(indexs);
+		tasks[t].completedIndexsCount = completedIndexsCount;
+		tasks[t].indexsCount = indexs.length - completedIndexsCount;
+	}
+	card.tasks = JSON.parse(JSON.stringify(tasks));
+	res.send({card: card});
+}
 
 module.exports.create = async (req, res)=>{
 	var userId = req.signedCookies.userId;
