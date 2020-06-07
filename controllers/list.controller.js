@@ -31,6 +31,7 @@ module.exports.create = async (req, res)=>{
 
 	var displayName = res.locals.user.displayName;
 	var board = await Board.findOne({_id: boardId});
+	await Board.updateOne({_id: boardId}, {$set: {cardsCount: board.cardsCount + 1}});
 
 	var header = displayName  + " Đã thêm danh sách \"" + title + "\" vào bảng \"" + board.title + "\"";
 	var history = new History({
