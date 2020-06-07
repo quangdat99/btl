@@ -1,11 +1,12 @@
 $(document).ready(function(){
-  $("#them1").click(function(){
+  // create list
+  $("a#them1").click(function(){
     $(".submit").fadeIn(300);
-    $("#them1").fadeOut(0);
+    $("a#them1").fadeOut(0);
   });
-  $("#them2").click(function(){
+  $("a#them2").click(function(){
     $(".submit").fadeOut(0);
-    $("#them1").fadeIn(0);
+    $("a#them1").fadeIn(0);
   });
 
   //ceate card
@@ -49,10 +50,34 @@ $(document).ready(function(){
   //   })
   // });
 
-
+  //rename card
+  $("input.title-card").focus(function(){
+    var value = $(this).val();
+    var cardId = $(this).attr("cardId");
+    console.log(value);
+    console.log(cardId);
+    $(this).focusout(function(){
+      var valuee = $(this).val();
+      if (valuee==''){
+        valuee = value;
+        $(this).val(valuee);
+      }
+      $("a#card-name"+cardId).text(valuee);
+      console.log(valuee);
+      $.ajax({
+        url: "/card/rename",
+        method: "POST",
+        dataType: "json",
+        data: {title: valuee, cardId: cardId},
+        success: function(data){
+          console.log(data);
+        }
+      })
+    })
+  });
   
   //rename list
-  $("input.mod-card-back-title").focus(function(){
+  $("input.title-list").focus(function(){
     var value = $(this).val();
     var listId = $(this).attr("listId");
     console.log(value);
@@ -62,6 +87,7 @@ $(document).ready(function(){
       if (valuee=='') {
         valuee = value;
         $(this).val(valuee);
+
       }
       console.log(valuee);
       $.ajax({
@@ -95,16 +121,17 @@ $(document).ready(function(){
   })
 
 
-
-  $(".u-bottom").click(function(){
-    $(".u-bottom").fadeOut(0);
+  //update description
+  $("p.u-bottom").click(function(){
+    $("p.u-bottom").fadeOut(0);
     $(".description-edit").fadeIn(0);
   });
-  $("#xxx").click(function(){
+  $("a#xxx").click(function(){
     $(".description-edit").fadeOut(0);
-    $(".u-bottom").fadeIn(0);
+    $("p.u-bottom").fadeIn(0);
   });
 
+  //update viec can lam
   $("#themm").click(function(){
     $("#themm").fadeOut(0);
     $(".description-editt").fadeIn(0);

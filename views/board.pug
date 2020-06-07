@@ -47,7 +47,7 @@ block header
             .board-list-content
               .list-title
                 .title 
-                  input.mod-card-back-title(dir='auto' value=_list.title style='overflow: hidden; overflow-wrap: break-word; height: 32px;width: 100%;color: #5e6c84;' listId=_list._id)
+                  input.title-list.mod-card-back-title(dir='auto' value=_list.title style='overflow: hidden; overflow-wrap: break-word; height: 32px;width: 100%;color: #5e6c84;' listId=_list._id)
                 .mn.dropdown
                   i.fas.fa-ellipsis-h(type='button' data-toggle="dropdown")
                     .dropdown-menu.dropdown-menu-left(style="border: 2px solid red;")
@@ -57,9 +57,9 @@ block header
               .list-card(id="list-card"+_list._id)
                 if _list.cards
                   each _card in _list.cards
-                    a.card-name(href="" data-toggle="modal" data-target="#the"+_card._id)= _card.title
+                    a.card-name(id="card-name"+_card._id href="" data-toggle="modal" data-target="#the"+_card._id)= _card.title
                     .modal.fade(id="the"+_card._id)
-                      form(action="" method='POST')
+                      form
                         .modal-dialog.modal-lg
                           .modal-content
                             // Modal Header
@@ -67,7 +67,7 @@ block header
                               span(style='margin-right: 15px;padding: 5px;')
                                 i.fas.fa-window-restore 
                               .window-title
-                                input.mod-card-back-title(dir='auto' value=_card.title style='overflow: hidden; overflow-wrap: break-word; height: 32px;')
+                                input.title-card.mod-card-back-title(dir='auto'  value=_card.title style='overflow: hidden; overflow-wrap: break-word; height: 32px;' cardId=_card._id)
                               button.close(type='button', data-dismiss='modal') &times;
                             // Modal body
                             .modal-body
@@ -86,11 +86,13 @@ block header
                                             .current
                                               p lam bai tap
                                             p.u-bottom
-                                              a(href="#").description-fake-text-area Thêm mô tả chi tiết hơn...
-                                            
+                                              if _card.description='0'
+                                                a(href="#").description-fake-text-area Thêm mô tả chi tiết hơn...
+                                              else 
+                                                a(href="#").description-fake-text-area=_card.description
                                               
                                             .description-edit
-                                              textarea.form-control(type="text" name="" autocomplete="off" dir="auto" placeholder="Thêm mô tả chi tiết hơn... ")
+                                              textarea.form-control(type="text" name="description" autocomplete="off" dir="auto" placeholder="Thêm mô tả chi tiết hơn... " value=_card.description )
                                               .list-add-controls
                                                 input.primary(type="submit" value="Lưu")
                                                 a#xxx(href="#" style="padding: 8px;")
@@ -109,7 +111,7 @@ block header
                                         .checklist-progress-bar
                                           .checklist-progress-bar-current
                                       .checklist-items-list.custom-control.custom-checkbox
-                                        input#customCheck.custom-control-input(type='checkbox')
+                                        input.customCheck.custom-control-input(type='checkbox')
                                         label.custom-control-label(for="customCheck")
                                         p(href="#").checklist-item work 1
                                           a(href='#').button.subtla 
@@ -155,7 +157,7 @@ block header
                               
 
                      
-                              button.btn.btn-info(style='float: right;margin-top:10px;') Lưu
+                              //- button.btn.btn-info(style='float: right;margin-top:10px;') Lưu
 
 
 
@@ -165,7 +167,7 @@ block header
                 .card-composer(id='card'+_list._id)
                   form(action="/card/create" method="POST")
                     .js-composer
-                      textarea.form-control.themthe(name='title' placeholder="Nhập tiêu đề cho thẻ này..." dir="auto" style="" id=_list._id)
+                      textarea.form-control.themthe(name='title' placeholder="Nhập tiêu đề cho thẻ này..." dir="auto" style="")
                     .cc-controls
                       .cc-controls-section
                         input(type='text' name="listId" value=_list._id style="display:none;")

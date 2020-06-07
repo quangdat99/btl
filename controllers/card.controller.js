@@ -18,7 +18,7 @@ module.exports.create = async (req, res)=>{
 
 	var card = new Card({
 		title: title,
-		description: 0,
+		description: '',
 		deadlineTime: -1,
 		listId: listId
 	});
