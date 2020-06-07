@@ -16,7 +16,7 @@ module.exports.index = async function(req, res){
 
 	var board = await Board.findOne({_id: boardId})
 	var lists = await List.find({boardId: boardId});
-	console.log(board);
+	// console.log(board);
 	var group;
 	if (board.groupId!== '#null'){
 		group = await Group.findOne({_id: board.groupId});
@@ -49,7 +49,8 @@ module.exports.index = async function(req, res){
 	board = JSON.parse(JSON.stringify(board));
 	board.lists = _lists;
 	
-	console.log(board);
+	// console.log(board);
+	// console.log(res.locals);
 	res.render('board',{
 		board: board,
 		group: group

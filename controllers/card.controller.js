@@ -89,7 +89,7 @@ module.exports.rename = async (req, res)=>{
 module.exports.updateDescription = async (req, res, next) => {
 	var description = req.body.description;
 	var cardId = req.body.cardId;
-
+	console.log(res.locals);
 	var displayName = res.locals.user.displayName;
 
 	try {
@@ -104,7 +104,7 @@ module.exports.updateDescription = async (req, res, next) => {
 	var list = await List.findOne({_id: card.listId});
 	var board = await Board.findOne({_id: list.boardId});
 
-	var header = diaplayName + " đã đổi mô tả của thẻ \"" + card.title + "\"sang \"" + description + "\" trong danh sách \"" + list.title + "\"";
+	var header = displayName + " đã đổi mô tả của thẻ \"" + card.title + "\"sang \"" + description + "\" trong danh sách \"" + list.title + "\"";
 	var history = new Recent({
 		header: header,
 		content: "",

@@ -125,11 +125,33 @@ $(document).ready(function(){
   $("p.u-bottom").click(function(){
     $("p.u-bottom").fadeOut(0);
     $(".description-edit").fadeIn(0);
+    $('textarea.update-des').focus();
   });
   $("a#xxx").click(function(){
     $(".description-edit").fadeOut(0);
     $("p.u-bottom").fadeIn(0);
   });
+
+  $("button.update-description").click(function(){
+    var cardId = $(this).attr("cardId");
+    var description = $('textarea.update-des').val();
+    $(".description-edit").fadeOut(0);
+    $("p.u-bottom").fadeIn(0);
+    if (description==''){
+      $('a.description-fake-text-area').text("Thêm mô tả chi tiết hơn...")
+    } else {
+      $('a.description-fake-text-area').text(description);
+    }
+    $.ajax({
+      url: "/card/updateDescription",
+      method: "POST",
+      dataType: "json",
+      data: {description: description, cardId: cardId},
+      success: function(data){
+        console.log(data);
+      }
+    })
+  })
 
   //update viec can lam
   $("#themm").click(function(){

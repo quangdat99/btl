@@ -103,7 +103,9 @@
     .list-card .card-name:hover {
     background: rgba(0,0,0,.01);
     }
-    
+    .list-add-controls{
+        margin-top: 5px;
+    }
     .list-add a{
     border-radius: 5px;
     margin: 8px;
@@ -469,4 +471,11 @@
     transition-duration: 85ms;
     transition-timing-function: ease;
     color: #172b4d;
+    }
+    .check-comment{
+    margin-left: 140px;
+    }
+    .check-comment i{
+        color: #777;
+        margin-left: 15px;
     }
