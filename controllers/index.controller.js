@@ -7,7 +7,7 @@ var Recent = require("../models/recent.model");
 var History = require("../models/history.model");
 var Task = require("../models/task.model");
 var Index = require("../models/index.model");
-var Card = require("../models/Card.model");
+var Card = require("../models/card.model");
 
 const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
 
