@@ -115,6 +115,48 @@ html
       color: #003333;
       }
 
+    script.
+      $(document).ready(function({
+      }))
+      $('#demoBasic').ddslick({
+          var ddData = [
+            {
+                text: "Facebook",
+                value: 1,
+                selected: false,
+                description: "Description with Facebook",
+                imageSrc: "https://i.imgur.com/XkuTj3B.png"
+            },
+            {
+                text: "Twitter",
+                value: 2,
+                selected: false,
+                description: "Description with Twitter",
+                imageSrc: "https://i.imgur.com/8ScLNnk.png"
+            },
+            {
+                text: "LinkedIn",
+                value: 3,
+                selected: true,
+                description: "Description with LinkedIn",
+                imageSrc: "https://i.imgur.com/aDNdibj.png"
+            },
+            {
+                text: "Foursquare",
+                value: 4,
+                selected: false,
+                description: "Description with Foursquare",
+                imageSrc: "https://i.imgur.com/kFAk2DX.png"
+            }
+        ];
+          data: ddData,
+          width: 300,
+          imagePosition: "left",
+          selectText: "Select your favorite social network",
+          onSelected: function (data) {
+              console.log(data);
+          }
+      });      
 
   body
     .header
@@ -173,7 +215,8 @@ html
                 option(selected='#null' value='#null') Không có nhóm nào 
                 if groups
                   each _group in groups
-                    option(value=_group._id)=_group.title  
+                    option(value=_group._id)=_group.title 
+              #demoBasic 
 
               //- select(name='image' style='height: 45px; font-family:Arial, FontAwesome;')
               //-   option(selected='' value='') Nền mặc định
@@ -210,7 +253,7 @@ html
               //-           a.list-group-item.list-group-item-action.border-1(href="") = _user.displayName
               //- button Tạo Nhóm
               button.btn.btn-info(style='float: right;') Tạo Nhóm
-   
+  
 
     block header
       
