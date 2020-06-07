@@ -14,16 +14,6 @@ $(document).ready(function(){
     var id= $(this).attr("id").slice(3);
     $(" #card"+id).fadeIn(0);
     $(" #add"+id).fadeOut(0);  
-    // $(document).mouseup(function(evt){
-    //   var target = evt.currentTarget;
-    //   var inside = $(" #card"+id);
-    //   if (target !== inside){
-    //     console.log("hello");
-    //     $(" #card"+id).fadeOut(0);
-    //     $(" #add"+id).fadeIn(0);
-    //   }
-      
-    // });  
   });
   $(".thoatnhe").click(function(){
     var id= $(this).attr("id").slice(5);
@@ -31,24 +21,48 @@ $(document).ready(function(){
     $(" #card"+id).fadeOut(0);
     $(" #add"+id).fadeIn(0);
   });
-  // $("input.themthe").click(function(){
-  //   var id= $(this).attr("id");
-  //   var value = $("textarea#"+id).val();
-  //   console.log(id);
-  //   console.log(value);
-  //   $(" #card"+id).fadeOut(0);
-  //   $(" #add"+id).fadeIn(0);
-  //   $.ajax({
-  //     url: "/card/create",
-  //     method: "POST",
-  //     dataType: "json",
-  //     data: { title: value, listId: id},
-  //     success: function(data){
-  //       console.log(data);
-  //       $("")
-  //     }
-  //   })
-  // });
+
+  //create Task
+  $('button.themcongviec').click(function(){
+    var cardId = $(this).attr('cardId');
+    var title = $('input#themviec'+cardId).val();
+    console.log(title);
+    console.log(cardId);
+    $.ajax({
+      url: "/task/create",
+      method: "POST",
+      dataType: "json",
+      data: { title: title, cardId: cardId},
+      success: function(data){
+        console.log(data);
+        $("#checklist"+cardId).append('<div class="window-module-title"><span style="margin-right: 15px;padding: 5px;"><i class="fas fa-tasks" aria-hidden="true">&nbsp; </i></span><div class="editable checklist-title"><input type="text" class="title-task mod-card-back-title " value="' + data.task.title +'" taskId="'+data.task._id+'" dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84;"  > <a class="button subtle" href="#">X&oacute;a</a></div></div>')
+
+      }
+    })
+    $('input.vieccanlam').val('');
+  })
+
+  //index card
+  $("a.card-name").click(function(){
+    var cardId = $(this).attr('cardId');
+    console.log(cardId);
+    $("#checklist"+cardId).html('');
+    $.ajax({
+      url: "/card/index",
+      method: "POST",
+      dataType: "json",
+      data: {cardId: cardId},
+      success: function(data){
+        console.log(data);
+        data.card.tasks.forEach(task =>{
+          $("#checklist"+cardId).append('<div class="window-module-title"><span style="margin-right: 15px;padding: 5px;"><i class="fas fa-tasks" aria-hidden="true">&nbsp; </i></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84;" taskId="'+task._id+'" value="'+task.title+'" ><a class="button subtle" href="#">X&oacute;a</a></div></div>')
+
+        })
+      }
+    })
+
+  })
+
 
   //rename card
   $("input.title-card").focus(function(){
@@ -75,7 +89,31 @@ $(document).ready(function(){
       })
     })
   });
-  
+
+  //rename task
+  $("input.title-task").focus(function(){
+    var value = $(this).val();
+    var taskId = $(this).attr("taskId");
+    console.log(value);
+    console.log(taskId);
+    $(this).focusout(function(){
+      var valuee = $(this).val();
+      if (valuee==''){
+        valuee = value;
+        $(this).val(valuee);
+      }
+      $.ajax({
+        url: "/task/rename",
+        method: "POST",
+        dataType: "json",
+        data: {title: valuee, taskId: taskId},
+        success: function(data){
+          console.log(data);
+        }
+      })
+    })
+  })
+
   //rename list
   $("input.title-list").focus(function(){
     var value = $(this).val();

@@ -114,7 +114,7 @@ html
       .header .dropdown-menu a{
       color: #003333;
       }
-
+     
 
   body
     .header
@@ -173,7 +173,8 @@ html
                 option(selected='#null' value='#null') Không có nhóm nào 
                 if groups
                   each _group in groups
-                    option(value=_group._id)=_group.title  
+                    option(value=_group._id)=_group.title 
+              #demoBasic 
 
               //- select(name='image' style='height: 45px; font-family:Arial, FontAwesome;')
               //-   option(selected='' value='') Nền mặc định
@@ -210,7 +211,7 @@ html
               //-           a.list-group-item.list-group-item-action.border-1(href="") = _user.displayName
               //- button Tạo Nhóm
               button.btn.btn-info(style='float: right;') Tạo Nhóm
-   
+  
 
     block header
       

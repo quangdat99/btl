@@ -63,7 +63,7 @@ block header
               .list-card(id="list-card"+_list._id)
                 if _list.cards
                   each _card in _list.cards
-                    a.card-name(id="card-name"+_card._id href="" data-toggle="modal" data-target="#the"+_card._id)= _card.title
+                    a.card-name(id="card-name"+_card._id href="" data-toggle="modal" data-target="#the"+_card._id cardId=_card._id)= _card.title
                       .check-comment
                         i.far.fa-comment &nbsp; 1
                         i.far.fa-check-square &nbsp; 1/3
@@ -109,33 +109,32 @@ block header
                                                 a#xxx(href="#" style="padding: 8px;")
                                                   i.fas.fa-times
                                   .checklist-list
-                                    .checklist
+                                    .checklist(id="checklist"+_card._id)
                                       .window-module-title
                                         span(style='margin-right: 15px;padding: 5px;')
                                           i.fas.fa-tasks &nbsp; 
                                         .editable.checklist-title
-                                          h5 Việc cần làm
-                                          .window-module-title-options
-                                            a(href='#').button.subtle Xóa
-                                      .checklist-progress
-                                        span.checklist-progress-percentage 0%
-                                        .checklist-progress-bar
-                                          .checklist-progress-bar-current
-                                      .checklist-items-list.custom-control.custom-checkbox
-                                        input.customCheck.custom-control-input(type='checkbox')
-                                        label.custom-control-label(for="customCheck")
-                                        p(href="#").checklist-item work 1
-                                          a(href='#').button.subtla 
-                                            i.fas.fa-times
-                                      .checklist-new-item
-                                        a#themm.button.subtle(href="#" style
-                                        ="float: left; margin-left: 53px; margin-top: 10px") Thêm một mục 
-                                        .description-editt(style="margin-left: 53px; display:none;")
-                                          textarea.form-control(type="text" name="" autocomplete="off" dir="auto" placeholder="Thêm mô tả chi tiết hơn... ")
-                                          .list-add-controls
-                                            input.primary(type="submit" value="Lưu")
-                                            a#xxy(href="#" style="padding: 8px;")
-                                              i.fas.fa-times
+                                          input.title-list.mod-card-back-title(dir='auto' value=_list.title style='overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84;' listId=_list._id)
+                                          a(href='#').button.subtle Xóa
+                                      //- .checklist-progress
+                                      //-   span.checklist-progress-percentage 0%
+                                      //-   .checklist-progress-bar
+                                      //-     .checklist-progress-bar-current
+                                      //- .checklist-items-list.custom-control.custom-checkbox
+                                      //-   input.customCheck.custom-control-input(type='checkbox')
+                                      //-   label.custom-control-label(for="customCheck")
+                                      //-   p(href="#").checklist-item work 1
+                                      //-     a(href='#').button.subtla 
+                                      //-       i.fas.fa-times
+                                      //- .checklist-new-item
+                                      //-   a#themm.button.subtle(href="#" style
+                                      //-   ="float: left; margin-left: 53px; margin-top: 10px") Thêm một mục 
+                                      //-   .description-editt(style="margin-left: 53px; display:none;")
+                                      //-     textarea.form-control(type="text" name="" autocomplete="off" dir="auto" placeholder="Thêm mô tả chi tiết hơn... ")
+                                      //-     .list-add-controls
+                                      //-       input.primary(type="submit" value="Lưu")
+                                      //-       a#xxy(href="#" style="padding: 8px;")
+                                      //-         i.fas.fa-times
                                   .window-module(style='margin-top:20px')
                                     .window-module-title
                                       span(style='margin-right:15px;padding: 5px;')
@@ -155,14 +154,20 @@ block header
                                   .window-sidebar
                                     h3 THÊM VÀO THẺ 
                                   .u-clearfix
-                                    a.button-link
-                                      i.fas.fa-user(style='font-size: 18;font-weight: 400;') &nbsp; Thành viên 
-
-                                    a.button-link
-                                      i.far.fa-address-book(style='font-size: 18;font-weight: 400;') &nbsp; Việc cần làm
-
-                                    a.button-link
-                                      i.fas.fa-clock(style='font-size: 18;font-weight: 400;') &nbsp; Ngày hết hạn
+                                    .dropdown
+                                      a.button-link(type='button' data-toggle="dropdown")
+                                        i.fas.fa-address-book(style='font-size: 18;font-weight: 400;') &nbsp; Việc cần làm 
+                                      .dropdown-menu.dropdown-menu-left(style='color=#003333; width: 300px; padding: 10px;')
+                                        h6(style="text-align: center; color: #666;") Thêm danh sách công việc
+                                        input.vieccanlam.form-control(id="themviec"+_card._id  placeholder='Việc cần làm')
+                                        br
+                                        button.themcongviec.btn.btn-success(type="button" style='float: right; margin: 8px;' cardId=_card._id) Thêm 
+                                    .dropdown
+                                      a.button-link
+                                        i.far.fa-user(style='font-size: 18;font-weight: 400;') &nbsp; Thành viên 
+                                    .dropdown
+                                      a.button-link
+                                        i.fas.fa-clock(style='font-size: 18;font-weight: 400;') &nbsp; Ngày hết hạn
 
                              
                               

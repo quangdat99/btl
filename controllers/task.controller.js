@@ -6,6 +6,7 @@ var User_Group = require('../models/user_group.model');
 var Recent = require("../models/recent.model");
 var History = require("../models/history.model");
 var Task = require("../models/task.model");
+var Card = require("../models/card.model");
 var Index = require("../models/index.model");
 
 const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
@@ -14,7 +15,7 @@ module.exports.create = async (req, res)=>{
 	var title = req.body.title;
 	var userId = req.signedCookies.userId;
 	var cardId = req.body.cardId;
-
+	console.log(req.body);
 	var task = new Task({
 		title: title,
 		completedIndexsCount: 0,
@@ -26,12 +27,12 @@ module.exports.create = async (req, res)=>{
 	var displayName = res.locals.user.displayName;
 	var card = await Card.findOne({_id: cardId});
 	var list = await List.findOne({_id: card.listId})
-
+console.log(card);
 	var header = displayName  + " đã thêm công việc \"" + title + "\" vào thẻ \"" + card.title + "\" của danh sách \"" + list.title + "\"";
 
 	try {
 		await task.save();
-		res.send({task: task, header: header});
+		res.json({task: task, header: header});
 	}
 	catch (e) {
 		res.send("Create task failed " + e.toString());

@@ -287,7 +287,6 @@
     border: none;
     padding: 8px;
     float: right;
-        margin-bottom: 20px;
     }
 
     .description-edit{
@@ -478,4 +477,7 @@
     .check-comment i{
         color: #777;
         margin-left: 15px;
+    }
+    .u-clearfix .dropdown{
+        display: block;
     }
