@@ -28,7 +28,7 @@ module.exports.index = async (req, res)=>{
 		tasks[t].indexsCount = indexs.length - completedIndexsCount;
 	}
 	card.tasks = JSON.parse(JSON.stringify(tasks));
-	res.send({card: card});
+	res.json({card: card});
 }
 
 module.exports.create = async (req, res)=>{
