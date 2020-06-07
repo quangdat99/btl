@@ -86,7 +86,7 @@ module.exports.delete = async (req, res)=>{
 	var displayName = res.locals.user.displayName;
 	console.log(req.body);
 	try {
-		await List.remove({_id: listId});
+		await List.deleteOne({_id: listId});
 		res.send({result: "success"});
 	}
 	catch (e){

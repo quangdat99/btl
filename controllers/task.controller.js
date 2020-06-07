@@ -60,9 +60,11 @@ module.exports.rename = async (req, res)=>{
 	var userId = req.signedCookies.userId;
 	var taskId = req.body.taskId;
 
+	console.log("rename task " + title + " :: " + taskId);
 	var task = await Task.updateOne({_id: taskId}, {$set: {title: title}});
 	
 	var displayName = res.locals.user.displayName;
+	var task = await Task.findOne({_id: taskId});
 	var card = await Card.findOne({_id: task.cardId});
 	var list = await List.findOne({_id: card.listId})
 
@@ -79,7 +81,7 @@ module.exports.rename = async (req, res)=>{
 		header: header,
 		content: "",
 		timeCreated: new Date().getTime(),
-		cardId: cardId,
+		cardId: card.cardId,
 		boardId: list.boardId
 	});
 	try {
@@ -95,15 +97,17 @@ module.exports.delete = async (req, res)=>{
 	var userId = req.signedCookies.userId;
 	var taskId = req.body.taskId;
 
-	var task = await Task.remove({_id: taskId});
+	
 
 	var displayName = res.locals.user.displayName;
+	var task = await Task.findOne({_id: taskId});
 	var card = await Card.findOne({_id: task.cardId});
 	var list = await List.findOne({_id: card.listId})
 
 	var header = displayName  + " đã xóa công việc \"" + title + "\" trong thẻ \"" + card.title + "\" của danh sách \"" + list.title + "\"";
 
 	try {
+		await Task.deleteOne({_id: taskId});
 		res.send({task: task, header: header});
 	}
 	catch (e) {
@@ -114,7 +118,7 @@ module.exports.delete = async (req, res)=>{
 		header: header,
 		content: "",
 		timeCreated: new Date().getTime(),
-		cardId: cardId,
+		cardId: card.cardId,
 		boardId: list.boardId
 	});
 	try {

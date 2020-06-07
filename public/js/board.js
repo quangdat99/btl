@@ -1,3 +1,50 @@
+var addEventRenameTask = ()=>{
+  //rename task
+  $("input.title-task").focus(function(){
+    var value = $(this).val();
+    var taskId = $(this).attr("taskId");
+    console.log(" ?? " + value);
+    console.log(" ?? " + taskId);
+    $(this).focusout(function(){
+      var valuee = $(this).val();
+      if (valuee==''){
+        valuee = value;
+        $(this).val(valuee);
+      }
+      $.ajax({
+        url: "/task/rename",
+        method: "POST",
+        dataType: "json",
+        data: {title: valuee, taskId: taskId},
+        success: function(data){
+          console.log(data);
+        }
+      })
+    })
+  })
+}
+
+var addEventDeleteTask =()=>{
+  // delete task
+  $("a.delete-task").click(function(){
+    var taskId =$(this).attr("taskId");
+    var taskTitle = $(this).attr("taskTitle");
+    $("#task"+taskId).remove();
+    console.log(taskId);
+    console.log(taskTitle);
+    $.ajax({
+      url: "/task/delete",
+      method: "POST",
+      dataType:"json",
+      data: {taskTitle: taskTitle, taskId: taskId},
+      success: function(data){
+        console.log(data);
+      }
+    })
+  })  
+}
+
+
 $(document).ready(function(){
   // create list
   $("a#them1").click(function(){
@@ -35,8 +82,9 @@ $(document).ready(function(){
       data: { title: title, cardId: cardId},
       success: function(data){
         console.log(data);
-        $("#checklist"+cardId).append('<div class="window-module-title"><span style="margin-right: 15px;padding: 5px;"><i class="fas fa-tasks" aria-hidden="true">&nbsp; </i></span><div class="editable checklist-title"><input type="text" class="title-task mod-card-back-title " value="' + data.task.title +'" taskId="'+data.task._id+'" dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84;"  > <a class="button subtle" href="#">X&oacute;a</a></div></div>')
-
+        $("#checklist"+cardId).append('<div id="task'+data.task._id+'" class="window-module-title"><span style="margin-right: 15px;padding: 5px;"><i class="fas fa-tasks" aria-hidden="true">&nbsp; </i></span><div class="editable checklist-title"><input type="text" class="title-task mod-card-back-title " value="' + data.task.title +'" taskId="'+data.task._id+'" dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84;"  > <a class="delete-task button subtle" taskTitle="'+data.task.title+'" taskId="'+data.task._id+'" href="#">X&oacute;a</a></div></div>')
+        addEventRenameTask();
+        addEventDeleteTask();
       }
     })
     $('input.vieccanlam').val('');
@@ -55,9 +103,12 @@ $(document).ready(function(){
       success: function(data){
         console.log(data);
         data.card.tasks.forEach(task =>{
-          $("#checklist"+cardId).append('<div class="window-module-title"><span style="margin-right: 15px;padding: 5px;"><i class="fas fa-tasks" aria-hidden="true">&nbsp; </i></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84;" taskId="'+task._id+'" value="'+task.title+'" ><a class="button subtle" href="#">X&oacute;a</a></div></div>')
+          $("#checklist"+cardId).append('<div id="task'+task._id+'" class="window-module-title"><span style="margin-right: 15px;padding: 5px;"><i class="fas fa-tasks" aria-hidden="true">&nbsp; </i></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84;" taskId="'+task._id+'" value="'+task.title+'" ><a class="delete-task button subtle" taskId="'+task._id+'" taskTitle="'+task.title+'" href="#">X&oacute;a</a></div></div>')
 
-        })
+        });
+
+        addEventRenameTask();
+        addEventDeleteTask();
       }
     })
 
@@ -90,29 +141,7 @@ $(document).ready(function(){
     })
   });
 
-  //rename task
-  $("input.title-task").focus(function(){
-    var value = $(this).val();
-    var taskId = $(this).attr("taskId");
-    console.log(value);
-    console.log(taskId);
-    $(this).focusout(function(){
-      var valuee = $(this).val();
-      if (valuee==''){
-        valuee = value;
-        $(this).val(valuee);
-      }
-      $.ajax({
-        url: "/task/rename",
-        method: "POST",
-        dataType: "json",
-        data: {title: valuee, taskId: taskId},
-        success: function(data){
-          console.log(data);
-        }
-      })
-    })
-  })
+  
 
   //rename list
   $("input.title-list").focus(function(){
@@ -156,7 +185,9 @@ $(document).ready(function(){
         console.log(data);
       }
     })
-  })
+  });
+
+
 
 
   //update description
