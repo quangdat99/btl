@@ -83,7 +83,7 @@ module.exports.rename = async (req, res)=>{
 	var title = req.body.title;
 	var userId = req.signedCookies.userId;
 	var cardId = req.body.cardId;
-	var diaplayName = res.locals.user.displayName;
+	var displayName = res.locals.user.displayName;
 
 	try {
 		await Card.updateOne({_id: cardId}, {$set: {title: title}});
@@ -98,7 +98,7 @@ module.exports.rename = async (req, res)=>{
 	var board = await Board.findOne({_id: list.boardId});
 
 	var header = displayName  + " Đã đã đổi tên 1 thẻ sang \"" + title + "\" trong danh sách \"" + list.title + "\"";
-	var history = new Recent({
+	var history = new History({
 		header: header,
 		content: "",
 		timeCreated: new Date().getTime(),
@@ -127,7 +127,7 @@ module.exports.updateDescription = async (req, res, next) => {
 	var board = await Board.findOne({_id: list.boardId});
 
 	var header = displayName + " đã đổi mô tả của thẻ \"" + card.title + "\"sang \"" + description + "\" trong danh sách \"" + list.title + "\"";
-	var history = new Recent({
+	var history = new History({
 		header: header,
 		content: "",
 		timeCreated: new Date().getTime(),

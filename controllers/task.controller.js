@@ -106,13 +106,7 @@ module.exports.delete = async (req, res)=>{
 
 	var header = displayName  + " đã xóa công việc \"" + title + "\" trong thẻ \"" + card.title + "\" của danh sách \"" + list.title + "\"";
 
-	try {
-		await Task.deleteOne({_id: taskId});
-		res.send({task: task, header: header});
-	}
-	catch (e) {
-		res.send("Rename task failed " + e.toString());
-	};
+	
 
 	var history = new History({
 		header: header,
@@ -127,6 +121,14 @@ module.exports.delete = async (req, res)=>{
 	catch (e){
 		console.log("save history failed " + e.toString());
 	}
+
+	try {
+		await Task.deleteOne({_id: taskId});
+		res.send({task: task, header: header});
+	}
+	catch (e) {
+		res.send("Rename task failed " + e.toString());
+	};
 };
 
 

@@ -67,7 +67,7 @@ module.exports.rename = async (req, res)=>{
 
 	var list = await List.findOne({_id: listId});
 	var header = displayName  + " Đã đã đổi tên 1 danh sách sang \"" + title + "\"";
-	var history = new Recent({
+	var history = new History({
 		header: header,
 		content: "",
 		timeCreated: new Date().getTime(),
@@ -85,17 +85,11 @@ module.exports.delete = async (req, res)=>{
 	var listId = req.body.listId;
 	var displayName = res.locals.user.displayName;
 	console.log(req.body);
-	try {
-		await List.deleteOne({_id: listId});
-		res.send({result: "success"});
-	}
-	catch (e){
-		console.log("delete list failed " + e.toString());
-	}
+	
 
 	var list = await List.findOne({_id: listId});
 	var header = displayName  + " Đã đã xóa 1 danh sách: " + listTitle;
-	var history = new Recent({
+	var history = new History({
 		header: header,
 		content: "",
 		timeCreated: new Date().getTime(),
@@ -108,7 +102,13 @@ module.exports.delete = async (req, res)=>{
 	catch (e) {
 		console.log(e.toString());
 	}
-
+	try {
+		await List.deleteOne({_id: listId});
+		res.send({result: "success"});
+	}
+	catch (e){
+		console.log("delete list failed " + e.toString());
+	}
 };
 
 
