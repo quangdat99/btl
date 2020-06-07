@@ -91,7 +91,12 @@ module.exports.rename = async (req, res)=>{
 	}
 	catch (e){
 		console.log("save history failed " + e.toString());
-	}
+	};
+
+	global.socket.emit("NEW_HISTORY", {
+		userId: userId,
+		history: history,
+	})
 };
 
 module.exports.delete = async (req, res)=>{
@@ -131,6 +136,11 @@ module.exports.delete = async (req, res)=>{
 	catch (e) {
 		res.send("Rename task failed " + e.toString());
 	};
+
+	global.socket.emit("NEW_HISTORY", {
+		userId: userId,
+		history: history,
+	})
 };
 
 

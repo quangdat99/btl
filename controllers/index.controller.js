@@ -54,6 +54,10 @@ module.exports.create = async (req, res)=>{
 		console.log("save history failed " + e.toString());
 	}
 	
+	global.socket.emit("NEW_HISTORY", {
+		userId: userId,
+		history: history,
+	})
 };
 
 
@@ -90,7 +94,12 @@ module.exports.rename = async (req, res)=>{
 	}
 	catch (e){
 		console.log("save history failed " + e.toString());
-	}
+	};
+
+	global.socket.emit("NEW_HISTORY", {
+		userId: userId,
+		history: history,
+	})
 };
 
 module.exports.delete = async (req, res)=>{
@@ -126,7 +135,12 @@ module.exports.delete = async (req, res)=>{
 	}
 	catch (e){
 		console.log("save history failed " + e.toString());
-	}
+	};
+
+	global.socket.emit("NEW_HISTORY", {
+		userId: userId,
+		history: history,
+	})
 };
 
 module.exports.toggleStatus = async (req, res)=>{
@@ -162,7 +176,12 @@ module.exports.toggleStatus = async (req, res)=>{
 	}
 	catch (e){
 		console.log("save history failed " + e.toString());
-	}
+	};
+
+	global.socket.emit("NEW_HISTORY", {
+		userId: userId,
+		history: history,
+	})
 };
 
 

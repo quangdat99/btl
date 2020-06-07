@@ -47,6 +47,11 @@ module.exports.create = async (req, res)=>{
 	catch (e){
 		console.log("save history failed " + e.toString());
 	}
+
+	global.socket.emit("NEW_HISTORY", {
+		userId: userId,
+		history: history,
+	})
 	
 };
 
@@ -75,7 +80,10 @@ module.exports.rename = async (req, res)=>{
 	});
 	history.save();
 
-	global.socket.emit("list/create", {userId: userId, title: title, boardId: list.boardId});
+	global.socket.emit("NEW_HISTORY", {
+		userId: userId,
+		history: history,
+	})
 };
 
 module.exports.delete = async (req, res)=>{
@@ -106,7 +114,12 @@ module.exports.delete = async (req, res)=>{
 	}
 	catch (e){
 		console.log("delete list failed " + e.toString());
-	}
+	};
+
+	global.socket.emit("NEW_HISTORY", {
+		userId: userId,
+		history: history,
+	})
 };
 
 

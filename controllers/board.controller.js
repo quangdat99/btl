@@ -115,8 +115,28 @@ module.exports.create = async (req, res)=>{
 		board.save();
 		res.redirect("/home");
 	}
-	catch (e){
+	catch (e){	
+		console.log("save board failed " + e.toString());
+	};
 
+	if (boardType == BOARD_TYPE.SHARED){
+		var displayName = res.locals.displayName;
+		var group = await Group.findOne({_id: groupId});
+
+		var header = displayName  + " Đã tạo bảng \"" + title + "\" với nhóm \"" + group.title + "\"";
+		var history = new History({
+			header: header,
+			content: "",
+			timeCreated: new Date().getTime(),
+			cardId: "",
+			boardId: board._id
+		});
+		history.save();
+
+		global.socket.emit("NEW_HISTORY", {
+			userId: userId,
+			history: history,
+		})
 	}
 };
 
