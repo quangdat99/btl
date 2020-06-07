@@ -6,6 +6,7 @@ var Group = require('../models/group.model');
 var Recent = require("../models/recent.model");
 var Card = require("../models/card.model");
 var Comment = require('../models/comment.model');
+var History = require('../models/history.model');
 
 const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
 
@@ -46,11 +47,14 @@ module.exports.index = async function(req, res){
 		});
 	}
 
+	var _histories = await History.find({boardId: boardId});
+	_histories = JSON.parse(JSON.stringify(_histories));
+
 	board = JSON.parse(JSON.stringify(board));
 	board.lists = _lists;
-	
-	// console.log(board);
-	// console.log(res.locals);
+
+	board.histories = _histories;
+
 	res.render('board',{
 		board: board,
 		group: group
