@@ -81,7 +81,7 @@ module.exports.rename = async (req, res)=>{
 		header: header,
 		content: "",
 		timeCreated: new Date().getTime(),
-		cardId: card.cardId,
+		cardId: task.cardId,
 		boardId: list.boardId
 	});
 	try {
@@ -118,7 +118,7 @@ module.exports.delete = async (req, res)=>{
 		header: header,
 		content: "",
 		timeCreated: new Date().getTime(),
-		cardId: card.cardId,
+		cardId: task.cardId,
 		boardId: list.boardId
 	});
 	try {
