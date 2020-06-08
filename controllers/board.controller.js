@@ -48,8 +48,6 @@ module.exports.index = async function(req, res){
 			cards[c].completedIndexCount = completedIndexCount;
 			cards[c].indexsCount = indexs.length;
 			cards[c].commentsCount = commentsCount;
-
-			console.log(">> " + JSON.stringify(indexs) + " :: " +indexs.length + " <> "+ completedIndexCount + " && "+ commentsCount)
 		}
 
 		
