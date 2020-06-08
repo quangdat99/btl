@@ -87,10 +87,31 @@ $(document).ready(function(){
     })
     $('input.vieccanlam').val('');
   })
-
-  //index card
   var his_cardId;
   
+  //create comment
+  $("input.comment-his").on("keydown", function search(e){
+    if (e.keyCode == 13){
+      var content = $(this).val();
+      var cardId = $(this).attr("cardId");
+      his_cardId=cardId;
+      console.log(content);
+      console.log(cardId);
+      $.ajax({
+        url: "/comment/create",
+        method: "POST",
+        dataType: "json",
+        data: {content: content, cardId: cardId},
+        success: function(data){
+          console.log(data);
+        }
+      })
+
+    }
+  })
+
+  //index card
+
   console.log(his_boardId);
   $("a.card-name").click(function(){
     var cardId = $(this).attr('cardId');

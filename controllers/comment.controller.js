@@ -15,7 +15,7 @@ module.exports.create = async (req, res)=>{
 	var content = req.body.content;
 	var userId = req.signedCookies.userId;
 	var cardId = req.body.cardId;
-
+	console.log(req.body);
 	var displayName = res.locals.user.displayName;
 	var card = await Card.findOne({_id: cardId});
 	var list = await List.findOne({_id: card.listId})
@@ -30,6 +30,7 @@ module.exports.create = async (req, res)=>{
 	});
 	try {
 		history.save()
+		res.send({history: history});
 	}
 	catch (e){
 		console.log("save history failed " + e.toString());
