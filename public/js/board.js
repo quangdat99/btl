@@ -44,6 +44,7 @@ var addEventDeleteTask =()=>{
 
 
 $(document).ready(function(){
+  
   // create list
   $("a#them1").click(function(){
     $(".submit").fadeIn(300);

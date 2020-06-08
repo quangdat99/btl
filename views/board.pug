@@ -106,8 +106,12 @@ block header
                   each _card in _list.cards
                     a.card-name(id="card-name"+_card._id href="" data-toggle="modal" data-target="#the"+_card._id cardId=_card._id boardId=board._id)= _card.title
                       .check-comment
-                        i.far.fa-comment &nbsp; 1
-                        i.far.fa-check-square &nbsp; 1/3
+                        i.far.fa-comment &nbsp; 
+                          span= _card.commentsCount
+                        i.far.fa-check-square &nbsp;
+                          span= _card.completedIndexCount
+                          span /
+                          span= _card.indexsCount
                         
 
                     .modal.fade(id="the"+_card._id)
