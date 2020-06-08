@@ -22,7 +22,7 @@ module.exports.index = async (req, res)=>{
 	for (var t in tasks){
 		var taskId = tasks[t]._id;
 		var indexs = await Index.find({taskId: taskId});
-		var completedIndexsCount = indexs.filter((index)=>index.status == 1);
+		// var completedIndexsCount = indexs.filter((index)=>index.status == 1);
 		tasks[t].indexs = JSON.stringify(indexs);
 		// tasks[t].completedIndexsCount = completedIndexsCount;
 		// tasks[t].indexsCount = indexs.length - completedIndexsCount;
