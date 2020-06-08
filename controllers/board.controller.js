@@ -35,15 +35,21 @@ module.exports.index = async function(req, res){
 		for (var c in cards){
 			
 			var cardId = cards[c]._id;
-			var taskIds = await Task.find({cardId: cardId}).map((task)=>task._id);
+			var tasks = await Task.find({cardId: cardId});
+			taskIds = tasks.map((task)=>task._id);
+			console.log(".. " + cardId);
+			console.log("<< " + JSON.stringify(taskIds));
 			var indexs = await Index.find({taskId: {$in: taskIds}});
-			var completedIndexCount = indexs.filter((index)=>index.status == 1);
+			var completedIndexCount = indexs.filter((index)=>index.status == 1).length;
 
-			var comments = await (await History.find({cardId: cardId})).filter((history)=>history.content != "").length;
+			var comments = await (await History.find({cardId: cardId}));
+			var commentsCount = comments.filter((history)=>history.content != "").length;
 
 			cards[c].completedIndexCount = completedIndexCount;
 			cards[c].indexsCount = indexs.length;
-			cards[c].commentsCount = comments.length;
+			cards[c].commentsCount = commentsCount;
+
+			console.log(">> " + JSON.stringify(indexs) + " :: " +indexs.length + " <> "+ completedIndexCount + " && "+ commentsCount)
 		}
 
 		
@@ -67,6 +73,7 @@ module.exports.index = async function(req, res){
 		group: group
 	});
 
+	// console.log(board);
 	var recents = await Recent.find({userId: userId});
 	if (recents.filter((recent)=>{
 		return (recent.userId == userId && recent.boardId == boardId)
