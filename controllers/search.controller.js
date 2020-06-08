@@ -17,6 +17,11 @@ module.exports.postSearchAllUser = async (req, res)=>{
   var field = req.body.name;
   var groupId = req.body.groupId;
 
+  if (field == ""){
+    res.jsonp([]);
+    return;
+  }
+
   var parters = await User_Group.find({groupId: groupId});
   var partnerIds = parters.map((partner)=>partner.userId);
   var users = await User.find({_id: {$nin: partnerIds}});
@@ -82,6 +87,11 @@ module.exports.postSearchGroupUser = async function(req, res, next) {
   var field = req.body.field;
   var groupId = req.params.groupId;
 
+  if (field == ""){
+    res.jsonp([]);
+    return;
+  }
+
   var userId = req.signedCookies.userId;
   // var userId = req.body.userId;
 	if (groupId == "#null" || groupId == ""){
@@ -105,8 +115,6 @@ module.exports.postSearchGroupUser = async function(req, res, next) {
 	
 	if (field != "#null" && field != "")
 		users = filterUser(users, field);
-	res.send({
-		users: users
-	})
+	res.send(users)
 
 };
