@@ -9,15 +9,18 @@ var addEventRenameTask = ()=>{
         valuee = value;
         $(this).val(valuee);
       }
-      $.ajax({
-        url: "/task/rename",
-        method: "POST",
-        dataType: "json",
-        data: {title: valuee, taskId: taskId},
-        success: function(data){
-          console.log(data);
-        }
-      })
+      if(valuee!==value){
+        $.ajax({
+          url: "/task/rename",
+          method: "POST",
+          dataType: "json",
+          data: {title: valuee, taskId: taskId},
+          success: function(data){
+            console.log(data);
+          }
+        })
+      }
+      
     })
   })
 }
@@ -81,7 +84,7 @@ $(document).ready(function(){
       data: { title: title, cardId: cardId},
       success: function(data){
         console.log(data);
-        $("#checklist"+cardId).append('<div id="task'+data.task._id+'" class="window-module-title"><span style="margin-right: 15px;padding: 5px;"><i class="fas fa-check-square" aria-hidden="true">&nbsp; </i></span><div class="editable checklist-title"><input type="text" class="title-task mod-card-back-title " value="' + data.task.title +'" taskId="'+data.task._id+'" dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84;"  > <a class="delete-task button subtle" taskTitle="'+data.task.title+'" taskId="'+data.task._id+'" href="#">X&oacute;a</a></div></div>')
+        $("#checklist"+cardId).append('<div id="task'+data.task._id+'" class="window-module-title" style="display:block; overflow: hidden;"><div style="display:flex;"><span style="margin-right: 15px;padding: 5px;"><input type="checkbox" style="zoom:2"></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84;" taskId="'+data.task._id+'" value="'+data.task.title+'" ><a class="delete-task button subtle" taskId="'+data.task._id+'" taskTitle="'+data.task.title+'" href="#">X&oacute;a</a></div></div><div><a class="button subtle" id="themm" href="#" style="float: left; margin-left: 53px; margin-top: 10px">Chỉ định </a></div></div>')
         addEventRenameTask();
         addEventDeleteTask();
       }
@@ -129,7 +132,7 @@ $(document).ready(function(){
       success: function(data){
         console.log(data);
         data.card.tasks.forEach(task =>{
-          $("#checklist"+cardId).append('<div id="task'+task._id+'" class="window-module-title"><span style="margin-right: 15px;padding: 5px;"><i class="fas fa-check-square" aria-hidden="true">&nbsp; </i></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84;" taskId="'+task._id+'" value="'+task.title+'" ><a class="delete-task button subtle" taskId="'+task._id+'" taskTitle="'+task.title+'" href="#">X&oacute;a</a></div></div>')
+          $("#checklist"+cardId).append('<div id="task'+task._id+'" class="window-module-title" style="display:block; overflow: hidden;"><div style="display:flex;"><span style="margin-right: 15px;padding: 5px;"><input type="checkbox" style="zoom:2"></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84;" taskId="'+task._id+'" value="'+task.title+'" ><a class="delete-task button subtle" taskId="'+task._id+'" taskTitle="'+task.title+'" href="#">X&oacute;a</a></div></div><div><a class="button subtle" id="themm" href="#" style="float: left; margin-left: 53px; margin-top: 10px">Chỉ định </a></div></div>')
         });
 
         for(var i=data.card.histories.length-1; i>=0; i--){
@@ -171,16 +174,18 @@ $(document).ready(function(){
         $(this).val(valuee);
       }
       $("a#card-name"+cardId).text(valuee);
-      console.log(valuee);
-      $.ajax({
-        url: "/card/rename",
-        method: "POST",
-        dataType: "json",
-        data: {title: valuee, cardId: cardId},
-        success: function(data){
-          console.log(data);
-        }
-      })
+      if(valuee!==value){
+        $.ajax({
+          url: "/card/rename",
+          method: "POST",
+          dataType: "json",
+          data: {title: valuee, cardId: cardId},
+          success: function(data){
+            console.log(data);
+          }
+        })
+      }
+      
     })
   });
 
@@ -199,16 +204,18 @@ $(document).ready(function(){
         $(this).val(valuee);
 
       }
-      console.log(valuee);
-      $.ajax({
-        url: "/list/rename",
-        method: 'POST',
-        dataType: "json",
-        data: { title: valuee, listId: listId},
-        success: function(data){
-          console.log(data);
-        }
-      })
+      if(valuee!==value){
+        $.ajax({
+          url: "/list/rename",
+          method: 'POST',
+          dataType: "json",
+          data: { title: valuee, listId: listId},
+          success: function(data){
+            console.log(data);
+          }
+        })
+      }
+      
     })
   });
 

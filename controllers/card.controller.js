@@ -52,7 +52,7 @@ module.exports.create = async (req, res)=>{
 		res.send("Create card failed " + e.toString());
 	};
 	var user = await User.findOne({_id: req.signedCookies.userId });
-
+	console.log(card);
 
 	var displayName = res.locals.user.displayName;
 	var list = await List.findOne({_id: listId});
@@ -63,7 +63,7 @@ module.exports.create = async (req, res)=>{
 		header: header,
 		content: "",
 		timeCreated: new Date().getTime(),
-		cardId: cardId,
+		cardId: card._id,
 		boardId: board._id
 	});
 	try {

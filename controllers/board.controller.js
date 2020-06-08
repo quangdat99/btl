@@ -37,8 +37,8 @@ module.exports.index = async function(req, res){
 			var cardId = cards[c]._id;
 			var tasks = await Task.find({cardId: cardId});
 			taskIds = tasks.map((task)=>task._id);
-			console.log(".. " + cardId);
-			console.log("<< " + JSON.stringify(taskIds));
+			// console.log(".. " + cardId);
+			// console.log("<< " + JSON.stringify(taskIds));
 			var indexs = await Index.find({taskId: {$in: taskIds}});
 			var completedIndexCount = indexs.filter((index)=>index.status == 1).length;
 
@@ -49,7 +49,7 @@ module.exports.index = async function(req, res){
 			cards[c].indexsCount = indexs.length;
 			cards[c].commentsCount = commentsCount;
 
-			console.log(">> " + JSON.stringify(indexs) + " :: " +indexs.length + " <> "+ completedIndexCount + " && "+ commentsCount)
+			// console.log(">> " + JSON.stringify(indexs) + " :: " +indexs.length + " <> "+ completedIndexCount + " && "+ commentsCount)
 		}
 
 		
