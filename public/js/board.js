@@ -95,8 +95,8 @@ $(document).ready(function(){
       var content = $(this).val();
       var cardId = $(this).attr("cardId");
       his_cardId=cardId;
-      console.log(content);
-      console.log(cardId);
+
+
       $.ajax({
         url: "/comment/create",
         method: "POST",
@@ -107,12 +107,12 @@ $(document).ready(function(){
         }
       })
 
+      $(this).val('');
     }
   })
 
   //index card
 
-  console.log(his_boardId);
   $("a.card-name").click(function(){
     var cardId = $(this).attr('cardId');
     var boardId = $(this).attr('boardId');
@@ -130,8 +130,17 @@ $(document).ready(function(){
         data.card.tasks.forEach(task =>{
           $("#checklist"+cardId).append('<div id="task'+task._id+'" class="window-module-title"><span style="margin-right: 15px;padding: 5px;"><i class="fas fa-check-square" aria-hidden="true">&nbsp; </i></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84;" taskId="'+task._id+'" value="'+task.title+'" ><a class="delete-task button subtle" taskId="'+task._id+'" taskTitle="'+task.title+'" href="#">X&oacute;a</a></div></div>')
         });
+
         for(var i=data.card.histories.length-1; i>=0; i--){
-          $("#hd"+cardId).append('<div class="js-menu-action-list"><div class="phenom"><div class="phenom-creator"><div class="member"><span class="member-initials"><i class="far fa-user" aria-hidden="true"> </i></span></div></div><div class="phenom-desc"><span class="inline-member">'+data.card.histories[i].header+'</span></div><div class="phenom-meta">H&ocirc;m qua l&uacute;c 13:36</div></div></div>')
+          var date = new Date(data.card.histories[i].timeCreated);
+          var day = date.getDate();
+          var month = date.getMonth()+1;
+          var year = date.getFullYear();
+          var hour = date.getHours();
+          var minute = date.getMinutes();
+          var second = date.getSeconds();
+
+          $("#hd"+cardId).append('<div class="js-menu-action-list"><div class="phenom"><div class="phenom-creator"><div class="member"><span class="member-initials"><i class="far fa-user" aria-hidden="true"> </i></span></div></div><div class="phenom-desc"><span class="inline-member">'+data.card.histories[i].header+'</span><div style="color:#777;">  &nbsp; '+data.card.histories[i].content +'</div></div><div class="phenom-meta">'+day+'-'+month+'-'+year+' '+hour+':'+minute+':'+second+'</div></div></div>')
         }
         // data.card.histories.forEach(history=>{
         //   $("#hd"+cardId).append('<div class="js-menu-action-list"><div class="phenom"><div class="phenom-creator"><div class="member"><span class="member-initials"><i class="far fa-user" aria-hidden="true"> </i></span></div></div><div class="phenom-desc"><span class="inline-member">'+history.header+'</span></div><div class="phenom-meta">H&ocirc;m qua l&uacute;c 13:36</div></div></div>')
@@ -278,13 +287,21 @@ $(document).ready(function(){
   const socket = io.connect('http://localhost:3001');
   socket.on('NEW_HISTORY', (data) => {
     console.log(data);
+
+    var date = new Date(data.history.timeCreated);
+    var day = date.getDate();
+    var month = date.getMonth()+1;
+    var year = date.getFullYear();
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
+
     if(data.history.cardId== his_cardId){
-      $("#hd"+his_cardId).prepend('<div class="js-menu-action-list"><div class="phenom"><div class="phenom-creator"><div class="member"><span class="member-initials"><i class="far fa-user" aria-hidden="true"> </i></span></div></div><div class="phenom-desc"><span class="inline-member">'+data.history.header+'</span></div><div class="phenom-meta">H&ocirc;m qua l&uacute;c 13:36</div></div></div>')
+      $("#hd"+his_cardId).prepend('<div class="js-menu-action-list"><div class="phenom"><div class="phenom-creator"><div class="member"><span class="member-initials"><i class="far fa-user" aria-hidden="true"> </i></span></div></div><div class="phenom-desc"><span class="inline-member">'+data.history.header+'</span><div style="color:#777;">  &nbsp; '+data.history.content +'</div></div><div class="phenom-meta">'+day+'-'+month+'-'+year+' '+hour+':'+minute+':'+second+'</div></div></div>')
     }
     var his_boardId = $(".board-header").attr("boardId");
-    console.log(his_boardId);
     if(data.history.boardId== his_boardId){
-      $("#hd"+his_boardId).prepend('<div class="js-menu-action-list"><div class="phenom"><div class="phenom-creator"><div class="member"><span class="member-initials"><i class="far fa-user" aria-hidden="true"> </i></span></div></div><div class="phenom-desc"><span class="inline-member">'+data.history.header+'</span></div><div class="phenom-meta">H&ocirc;m qua l&uacute;c 13:36</div></div></div>')
+      $("#hd"+his_boardId).prepend('<div class="js-menu-action-list"><div class="phenom"><div class="phenom-creator"><div class="member"><span class="member-initials"><i class="far fa-user" aria-hidden="true"> </i></span></div></div><div class="phenom-desc"><span class="inline-member">'+data.history.header+'</span><div style="color:#777;">  &nbsp; '+data.history.content +'</div></div><div class="phenom-meta">'+day+'-'+month+'-'+year+' '+hour+':'+minute+':'+second+'</div></div></div>')
     }
   });
 

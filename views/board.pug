@@ -62,7 +62,29 @@ block header
                             i.far.fa-user 
                       .phenom-desc
                         span.inline-member= board.histories[i].header
-                      .phenom-meta Hôm qua lúc 13:36
+                        div(style="color:#777;")= board.histories[i].content
+                        -
+                          var date = new Date(board.histories[i].timeCreated)
+                        -
+                          var day = date.getDate()
+                        -
+                          var month = date.getMonth()+1
+                        -
+                          var year = date.getFullYear()
+                        -
+                          var hour = date.getHours()
+                        -
+                          var minute = date.getMinutes()
+                        -
+                          var second = date.getSeconds()
+                      .phenom-meta 
+                        span=day+"-"
+                        span=month+"-"
+                        span=year+" "
+                        span=hour+":"
+                        span=minute+":"
+                        span=second
+
 
 
     .board-body
