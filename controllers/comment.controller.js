@@ -30,7 +30,7 @@ module.exports.create = async (req, res)=>{
 	});
 	try {
 		history.save()
-		res.send({history: history});
+		
 	}
 	catch (e){
 		console.log("save history failed " + e.toString());
