@@ -481,3 +481,22 @@
     .u-clearfix .dropdown{
         display: block;
     }
+
+    .phenom {
+    margin-left: 40px;
+    min-height: 32px;
+    padding: 8px 0;
+    position: relative;
+    }
+    .phenom-creator {
+    height: 32px;
+    left: -40px;
+    position: absolute;
+    top: 8px;
+    width: 32px;
+    }
+    .phenom-meta {
+    font-size: 12px;
+    margin: 0;
+    min-width: 110px;
+    }

@@ -50,7 +50,7 @@ module.exports.create = async (req, res)=>{
 
 	global.socket.emit("NEW_HISTORY", {
 		userId: userId,
-		history: history,
+		history: history
 	})
 	
 };
@@ -82,17 +82,15 @@ module.exports.rename = async (req, res)=>{
 
 	global.socket.emit("NEW_HISTORY", {
 		userId: userId,
-		history: history,
+		history: history
 	})
 };
 
 module.exports.delete = async (req, res)=>{
-	var listTitle = req.body.title;
+	var listTitle = req.body.listTitle;
 	var userId = req.signedCookies.userId;
 	var listId = req.body.listId;
 	var displayName = res.locals.user.displayName;
-	
-
 	var list = await List.findOne({_id: listId});
 	var header = displayName  + " Đã đã xóa 1 danh sách: " + listTitle;
 	var history = new History({
@@ -118,7 +116,7 @@ module.exports.delete = async (req, res)=>{
 
 	global.socket.emit("NEW_HISTORY", {
 		userId: userId,
-		history: history,
+		history: history
 	})
 };
 

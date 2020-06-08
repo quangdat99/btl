@@ -80,7 +80,7 @@ $(document).ready(function(){
       data: { title: title, cardId: cardId},
       success: function(data){
         console.log(data);
-        $("#checklist"+cardId).append('<div id="task'+data.task._id+'" class="window-module-title"><span style="margin-right: 15px;padding: 5px;"><i class="fas fa-tasks" aria-hidden="true">&nbsp; </i></span><div class="editable checklist-title"><input type="text" class="title-task mod-card-back-title " value="' + data.task.title +'" taskId="'+data.task._id+'" dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84;"  > <a class="delete-task button subtle" taskTitle="'+data.task.title+'" taskId="'+data.task._id+'" href="#">X&oacute;a</a></div></div>')
+        $("#checklist"+cardId).append('<div id="task'+data.task._id+'" class="window-module-title"><span style="margin-right: 15px;padding: 5px;"><i class="fas fa-check-square" aria-hidden="true">&nbsp; </i></span><div class="editable checklist-title"><input type="text" class="title-task mod-card-back-title " value="' + data.task.title +'" taskId="'+data.task._id+'" dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84;"  > <a class="delete-task button subtle" taskTitle="'+data.task.title+'" taskId="'+data.task._id+'" href="#">X&oacute;a</a></div></div>')
         addEventRenameTask();
         addEventDeleteTask();
       }
@@ -89,10 +89,16 @@ $(document).ready(function(){
   })
 
   //index card
+  var his_cardId;
+  var his_boardId;
   $("a.card-name").click(function(){
     var cardId = $(this).attr('cardId');
-    console.log(cardId);
+    var boardId = $(this).attr('boardId');
+    his_cardId = cardId;
+    his_boardId = boardId;
+
     $("#checklist"+cardId).html('');
+    $("#hd"+cardId).html('');
     $.ajax({
       url: "/card/index",
       method: "POST",
@@ -101,9 +107,15 @@ $(document).ready(function(){
       success: function(data){
         console.log(data);
         data.card.tasks.forEach(task =>{
-          $("#checklist"+cardId).append('<div id="task'+task._id+'" class="window-module-title"><span style="margin-right: 15px;padding: 5px;"><i class="fas fa-tasks" aria-hidden="true">&nbsp; </i></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84;" taskId="'+task._id+'" value="'+task.title+'" ><a class="delete-task button subtle" taskId="'+task._id+'" taskTitle="'+task.title+'" href="#">X&oacute;a</a></div></div>')
-
+          $("#checklist"+cardId).append('<div id="task'+task._id+'" class="window-module-title"><span style="margin-right: 15px;padding: 5px;"><i class="fas fa-check-square" aria-hidden="true">&nbsp; </i></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84;" taskId="'+task._id+'" value="'+task.title+'" ><a class="delete-task button subtle" taskId="'+task._id+'" taskTitle="'+task.title+'" href="#">X&oacute;a</a></div></div>')
         });
+        for(var i=data.card.histories.length-1; i>=0; i--){
+          $("#hd"+cardId).append('<div class="js-menu-action-list"><div class="phenom"><div class="phenom-creator"><div class="member"><span class="member-initials"><i class="far fa-user" aria-hidden="true"> </i></span></div></div><div class="phenom-desc"><span class="inline-member">'+data.card.histories[i].header+'</span></div><div class="phenom-meta">H&ocirc;m qua l&uacute;c 13:36</div></div></div>')
+        }
+        // data.card.histories.forEach(history=>{
+        //   $("#hd"+cardId).append('<div class="js-menu-action-list"><div class="phenom"><div class="phenom-creator"><div class="member"><span class="member-initials"><i class="far fa-user" aria-hidden="true"> </i></span></div></div><div class="phenom-desc"><span class="inline-member">'+history.header+'</span></div><div class="phenom-meta">H&ocirc;m qua l&uacute;c 13:36</div></div></div>')
+
+        // });
 
         addEventRenameTask();
         addEventDeleteTask();
@@ -111,6 +123,8 @@ $(document).ready(function(){
     })
 
   })
+
+
 
 
   //rename card
@@ -171,9 +185,18 @@ $(document).ready(function(){
   $("button.dropdown-item").click(function(){
     var listId =$(this).attr("listId");
     var listTitle = $(this).attr("listTitle");
+        his_boardId= $(this).attr("boardId");
     $("#list"+listId).remove();
     console.log(listId);
     console.log(listTitle);
+    const socket = io.connect('http://localhost:3001');
+    socket.on('NEW_HISTORY', (data) => {
+      console.log(data);
+      if(data.history.boardId== his_boardId){
+        $("#hd"+his_boardId).prepend('<div class="js-menu-action-list"><div class="phenom"><div class="phenom-creator"><div class="member"><span class="member-initials"><i class="far fa-user" aria-hidden="true"> </i></span></div></div><div class="phenom-desc"><span class="inline-member">'+data.history.header+'</span></div><div class="phenom-meta">H&ocirc;m qua l&uacute;c 13:36</div></div></div>')
+      }
+    });
+
     $.ajax({
       url: "/list/delete",
       method: "POST",
@@ -230,12 +253,39 @@ $(document).ready(function(){
     $("#themm").fadeIn(0);
   });
 
-
-});
-
-// socket io
-const socket = io.connect('http://localhost:3001');
-socket.on('NEW_HISTORY', (data) => {
+  //history board card
+  const socket = io.connect('http://localhost:3001');
+  socket.on('NEW_HISTORY', (data) => {
     console.log(data);
+    if(data.history.cardId== his_cardId){
+      $("#hd"+his_cardId).prepend('<div class="js-menu-action-list"><div class="phenom"><div class="phenom-creator"><div class="member"><span class="member-initials"><i class="far fa-user" aria-hidden="true"> </i></span></div></div><div class="phenom-desc"><span class="inline-member">'+data.history.header+'</span></div><div class="phenom-meta">H&ocirc;m qua l&uacute;c 13:36</div></div></div>')
+    }
+    if(data.history.boardId== his_boardId){
+      $("#hd"+his_boardId).prepend('<div class="js-menu-action-list"><div class="phenom"><div class="phenom-creator"><div class="member"><span class="member-initials"><i class="far fa-user" aria-hidden="true"> </i></span></div></div><div class="phenom-desc"><span class="inline-member">'+data.history.header+'</span></div><div class="phenom-meta">H&ocirc;m qua l&uacute;c 13:36</div></div></div>')
+    }
+  });
+
+
+
 });
+
+
+
+
+// // socket io
+// const socket = io.connect('http://localhost:3001');
+// socket.on('NEW_HISTORY', (data) => {
+//     console.log(data);
+//     /// api append vào lịch sử của board, card 
+//     // thêm cái header với kiểu thêm, sửa, xóa
+//     // thêm cả content với bình luận trong card 
+//     // kiểu check boardId == data.history.boardId => tạo 1 history element
+//     // xong append vào thẻ chứa history của board , còn đang bật card -> xem đúng cardId thì append 1 element vào lịch sử của card 
+// });
+
+
+
+ 
+
+
 

@@ -52,7 +52,7 @@ module.exports.index = async function(req, res){
 	board.lists = _lists;
 
 	board.histories = _histories;
-
+	console.log(board);
 	res.render('board',{
 		board: board,
 		group: group
@@ -120,7 +120,7 @@ module.exports.create = async (req, res)=>{
 	};
 
 	if (boardType == BOARD_TYPE.SHARED){
-		var displayName = res.locals.displayName;
+		var displayName = res.locals.user.displayName;
 		var group = await Group.findOne({_id: groupId});
 
 		var header = displayName  + " Đã tạo bảng \"" + title + "\" với nhóm \"" + group.title + "\"";
@@ -135,14 +135,8 @@ module.exports.create = async (req, res)=>{
 
 		global.socket.emit("NEW_HISTORY", {
 			userId: userId,
-			history: history,
+			history: history
 		})
 	}
 };
 
-module.exports.list = async function(req, res) {
-	var lists = await List.find();
-	res.render('list',{
-		lists: lists
-	});
-};

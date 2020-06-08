@@ -63,7 +63,7 @@ module.exports.create = async (req, res)=>{
 		header: header,
 		content: "",
 		timeCreated: new Date().getTime(),
-		cardId: "",
+		cardId: cardId,
 		boardId: board._id
 	});
 	try {
@@ -73,7 +73,10 @@ module.exports.create = async (req, res)=>{
 		res.send("Create card failed! " + e.toString());
 	}
 
-	global.socket.emit("card/create", {userId: userId, title: title, boardId: board._id});
+	global.socket.emit("NEW_HISTORY", {
+		userId: userId, 
+		history: history
+	});
 	
 };
 
@@ -101,10 +104,14 @@ module.exports.rename = async (req, res)=>{
 		header: header,
 		content: "",
 		timeCreated: new Date().getTime(),
-		cardId: "",
+		cardId: cardId,
 		boardId: board._id
 	});
 	history.save()
+	global.socket.emit("NEW_HISTORY", {
+		userId: userId,
+		history: history
+	})
 };
 
 module.exports.updateDescription = async (req, res, next) => {
@@ -129,10 +136,14 @@ module.exports.updateDescription = async (req, res, next) => {
 		header: header,
 		content: "",
 		timeCreated: new Date().getTime(),
-		cardId: "",
+		cardId: cardId,
 		boardId: board._id
 	});
 	history.save()
+	global.socket.emit("NEW_HISTORY", {
+		userId: userId,
+		history: history
+	})
 }
 
 

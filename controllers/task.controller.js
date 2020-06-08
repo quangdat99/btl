@@ -52,7 +52,7 @@ module.exports.create = async (req, res)=>{
 	
 	global.socket.emit("NEW_HISTORY", {
 		userId: userId,
-		history: history,
+		history: history
 	})
 };
 
@@ -95,17 +95,17 @@ module.exports.rename = async (req, res)=>{
 
 	global.socket.emit("NEW_HISTORY", {
 		userId: userId,
-		history: history,
+		history: history
 	})
 };
 
 module.exports.delete = async (req, res)=>{
-	var title = req.body.title;
+	var title = req.body.taskTitle;
 	var userId = req.signedCookies.userId;
 	var taskId = req.body.taskId;
 
 	
-
+	console.log(req.body);
 	var displayName = res.locals.user.displayName;
 	var task = await Task.findOne({_id: taskId});
 	var card = await Card.findOne({_id: task.cardId});
@@ -129,6 +129,8 @@ module.exports.delete = async (req, res)=>{
 		console.log("save history failed " + e.toString());
 	}
 
+
+
 	try {
 		await Task.deleteOne({_id: taskId});
 		res.send({task: task, header: header});
@@ -141,6 +143,7 @@ module.exports.delete = async (req, res)=>{
 		userId: userId,
 		history: history,
 	})
+
 };
 
 
