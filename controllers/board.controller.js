@@ -7,6 +7,8 @@ var Recent = require("../models/recent.model");
 var Card = require("../models/card.model");
 var Comment = require('../models/comment.model');
 var History = require('../models/history.model');
+var Index = require('../models/index.model');
+var Task = require('../models/task.model');
 
 const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
 
@@ -30,18 +32,26 @@ module.exports.index = async function(req, res){
 		var list = lists[l];
 		var cards = await Card.find({listId: list._id});
 		cards = JSON.parse(JSON.stringify(cards));
+		for (var c in cards){
+			
+			var cardId = cards[c]._id;
+			var taskIds = await Task.find({cardId: cardId}).map((task)=>task._id);
+			var indexs = await Index.find({taskId: {$in: taskIds}});
+			var completedIndexCount = indexs.filter((index)=>index.status == 1);
 
-		var cardIds = cards.map((card)=>card._id);
-		var comments = await Comment.find({cardId: {$in: cardIds}});
+			var comments = await (await History.find({cardId: cardId})).filter((history)=>history.content != "").length;
 
+			cards[c].completedIndexCount = completedIndexCount;
+			cards[c].indexsCount = indexs.length;
+			cards[c].commentsCount = comments.length;
+		}
+
+		
 		_lists.push({
-			_id: list.id,
+			_id: list._id,
 			title: list.title,
 			cardCount: cards.length,
 			cards: cards,
-			commentsCount: comments.length,			// số lượng comment trong 1 card
-			completedIndex: 0,						// số index đã hoàn thành
-			indexsCount: 10							// tổng số index
 		});
 	}
 
