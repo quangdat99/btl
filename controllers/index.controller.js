@@ -8,6 +8,7 @@ var History = require("../models/history.model");
 var Task = require("../models/task.model");
 var Index = require("../models/index.model");
 var Card = require("../models/card.model");
+var User_Index = require("../models/user_index.model");
 
 const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
 
@@ -172,7 +173,7 @@ module.exports.toggleStatus = async (req, res)=>{
 		boardId: list.boardId
 	});
 	try {
-		history.save()
+		await history.save()
 	}
 	catch (e){
 		console.log("save history failed " + e.toString());
@@ -183,6 +184,57 @@ module.exports.toggleStatus = async (req, res)=>{
 		history: history,
 	})
 };
+
+module.exports.appoint = async (req, res) => {
+	var indexId = req.body.indexId;
+	var userId = req.signedCookies.userId;
+	var appointedUserId = req.body.appointedUserId;
+
+	var user_index = new User_Index({
+		userId: appointedUserId,
+		indexId: indexId
+	})
+
+	try {
+		await user_index.save();
+		res.send({result: "success"});
+	}
+	catch (e) {
+		res.send("Bổ nhiệm không thành công " + e.toString());
+	}
+	
+
+	var appointedUser = await User.findOne({_id: appointedUserId});
+	var index = await Index.findOne({_id: indexId});
+
+	var displayName = res.locals.user.displayName;
+	var appointedUserName = appointedUser.name;
+
+	var task = await Task.findOne({_id: index.taskId});
+	var card = await Card.findOne({_id: task.cardId});
+	var list = await List.findOne({_id: card.listId})
+
+	var header = displayName  + " đã giao chỉ mục \"" + index.title + "\" cho \"" + appointedUserName + "\" trong thẻ \"" + card.title + "\"";
+
+	var history = new History({
+		header: header,
+		content: "",
+		timeCreated: new Date().getTime(),
+		cardId: task.cardId,
+		boardId: list.boardId
+	});
+	try {
+		await history.save()
+	}
+	catch (e){
+		console.log("save history failed " + e.toString());
+	};
+
+	global.socket.emit("NEW_HISTORY", {
+		userId: userId,
+		history: history,
+	})
+}
 
 
 
