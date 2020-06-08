@@ -24,8 +24,8 @@ module.exports.index = async (req, res)=>{
 		var indexs = await Index.find({taskId: taskId});
 		var completedIndexsCount = indexs.filter((index)=>index.status == 1);
 		tasks[t].indexs = JSON.stringify(indexs);
-		tasks[t].completedIndexsCount = completedIndexsCount;
-		tasks[t].indexsCount = indexs.length - completedIndexsCount;
+		// tasks[t].completedIndexsCount = completedIndexsCount;
+		// tasks[t].indexsCount = indexs.length - completedIndexsCount;
 	}
 	card.tasks = JSON.parse(JSON.stringify(tasks));
 	res.json({card: card});
