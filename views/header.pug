@@ -142,9 +142,10 @@ html
             i.far.fa-bell &nbsp; Thông báo
           .dropdown-menu.dropdown-menu-right
             p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 5px;')      Thông báo 
-            p.dropdown-item(href='#') Thông báo 1
-            p.dropdown-item(href='#') Thông báo 2
-            p.dropdown-item(href='#') Thông báo 3
+            if histories
+              each _his in histories 
+                p.dropdown-item(href='#')= _his.header
+           
         .dropdown
           button(type='button' data-toggle="dropdown")
             i.far.fa-user-circle &nbsp;
