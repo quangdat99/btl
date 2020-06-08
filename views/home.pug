@@ -116,7 +116,7 @@ block header
           i.fas.fa-history  &nbsp; Đã xem gần đây 
         if recents
           each _recent in recents  
-            a(href="/board/"+_recent._id style='background-image:url('+_recent.image+')')=_recent.title
+            a(href="/board/"+_recent.boardId  style='background-image:url('+_recent.image+')')=_recent.title
               
 
         p

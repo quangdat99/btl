@@ -90,12 +90,12 @@ $(document).ready(function(){
 
   //index card
   var his_cardId;
-  var his_boardId;
+  
+  console.log(his_boardId);
   $("a.card-name").click(function(){
     var cardId = $(this).attr('cardId');
     var boardId = $(this).attr('boardId');
     his_cardId = cardId;
-    his_boardId = boardId;
 
     $("#checklist"+cardId).html('');
     $("#hd"+cardId).html('');
@@ -260,6 +260,8 @@ $(document).ready(function(){
     if(data.history.cardId== his_cardId){
       $("#hd"+his_cardId).prepend('<div class="js-menu-action-list"><div class="phenom"><div class="phenom-creator"><div class="member"><span class="member-initials"><i class="far fa-user" aria-hidden="true"> </i></span></div></div><div class="phenom-desc"><span class="inline-member">'+data.history.header+'</span></div><div class="phenom-meta">H&ocirc;m qua l&uacute;c 13:36</div></div></div>')
     }
+    var his_boardId = $(".board-header").attr("boardId");
+    console.log(his_boardId);
     if(data.history.boardId== his_boardId){
       $("#hd"+his_boardId).prepend('<div class="js-menu-action-list"><div class="phenom"><div class="phenom-creator"><div class="member"><span class="member-initials"><i class="far fa-user" aria-hidden="true"> </i></span></div></div><div class="phenom-desc"><span class="inline-member">'+data.history.header+'</span></div><div class="phenom-meta">H&ocirc;m qua l&uacute;c 13:36</div></div></div>')
     }

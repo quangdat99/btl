@@ -6,7 +6,7 @@ block header
   script(type='text/javascript', src='/js/board.js')
   link(rel='stylesheet', href='/styles/board.css')
   .board(style='background-image:url('+board.image+')')
-    .board-header
+    .board-header(boardId=board._id)
       span(style='padding:5px; color:#fff;')=board.title 
       .dropdown
         if group 
