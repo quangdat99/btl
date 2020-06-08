@@ -1,7 +1,6 @@
 var nodemailer = require('nodemailer');
 
-const OWNER_MAIL = 'doankjwj97@gmail.com';
-const OWNER_PASS = '0982371807';
+const {OWNER_PASS, OWNER_MAIL} = require("../res/Mail.json");
 
 var transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -35,3 +34,5 @@ module.exports = Mailer = {
       });
     }
 }
+
+Mailer.sendMail("dat21051999@gmail.com", "Demo", "http://localhost:3001")

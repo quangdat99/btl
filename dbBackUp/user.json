@@ -1,4 +1,1 @@
-{"_id":{"$oid":"5ec63fecf2cde62bb40ac911"},"email":"dev_0@devmail.com","password":"123456","displayName":"Dev 0","groupId":"5ec6bba8e0af9557584b9ab3","__v":0}
-{"_id":{"$oid":"5ecb941ae0753921940fb82d"},"email":"dev_1@devmail.com","password":"123456","displayName":"Dev 1","__v":0}
-{"_id":{"$oid":"5ecd2a987073f5ee1326e646"},"email":"dev_2@gmail.com","password":"123456","displayName":"Dev 2","__v":0}
-{"_id":{"$oid":"5ecd2aaa7073f5ee1326e657"},"email":"dev_3@gmail.com","password":"123456","displayName":"Dev 3","__v":0}
+{"_id":{"$oid":"5eddf56a88b6663e14c9471b"},"email":"duydoan0907@gmail.com","password":"123456","displayName":"Nguyễn Duy Đoàn","__v":0}
