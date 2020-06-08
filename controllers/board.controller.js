@@ -52,7 +52,6 @@ module.exports.index = async function(req, res){
 	board.lists = _lists;
 
 	board.histories = _histories;
-	console.log(board);
 	res.render('board',{
 		board: board,
 		group: group
