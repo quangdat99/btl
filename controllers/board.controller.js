@@ -33,25 +33,17 @@ module.exports.index = async function(req, res){
 		var cards = await Card.find({listId: list._id});
 		cards = JSON.parse(JSON.stringify(cards));
 		for (var c in cards){
-			
 			var cardId = cards[c]._id;
 			var tasks = await Task.find({cardId: cardId});
-			taskIds = tasks.map((task)=>task._id);
-			// console.log(".. " + cardId);
-			// console.log("<< " + JSON.stringify(taskIds));
-			var indexs = await Index.find({taskId: {$in: taskIds}});
-			var completedIndexCount = indexs.filter((index)=>index.status == 1).length;
-
-			var comments = await (await History.find({cardId: cardId}));
-			var commentsCount = comments.filter((history)=>history.content != "").length;
-
-			cards[c].completedIndexCount = completedIndexCount;
-			cards[c].indexsCount = indexs.length;
-			cards[c].commentsCount = commentsCount;
-
+			var completedTasks = tasks.filte((t)=>(t.status == 1));
+			var histories = await History.find({cardId: cardId});
+			var comments = histories.filter((h)=>(h.content != ""));
+			
+			cards[c].commentsCount = comments.length;
+			cards[c].completedTasksCount = completedTasks.length;
+			cards[c].tasksCount = tasks.length;
 		}
 
-		
 		_lists.push({
 			_id: list._id,
 			title: list.title,

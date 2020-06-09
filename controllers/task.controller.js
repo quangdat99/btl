@@ -210,7 +210,6 @@ module.exports.appoint = async (req, res) => {
 		res.send("Bổ nhiệm không thành công " + e.toString());
 	}
 	
-console.log(appointedUserId);
 
 	var appointedUser = await User.findOne({_id: appointedUserId});
 	var task = await Task.findOne({_id: taskId});
