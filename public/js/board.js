@@ -47,7 +47,23 @@ var addEventDeleteTask =()=>{
 
 
 $(document).ready(function(){
-  
+  // change backgroud
+  $(".bg-change").click(function(){
+    var boardId = $(this).attr("boardId");
+    var imgUrl = $(this).css("background-image");
+    var bg = $(this).attr("bg");
+    $(".board").css("background-image", imgUrl);
+    $.ajax({
+      url: "/board/changeBackground",
+      method: "POST",
+      dataType: "json",
+      data: {boardId: boardId, imgUrl: bg},
+      success: function(data){
+        console.log(data);
+      }
+    })
+  })
+
   // create list
   $("a#them1").click(function(){
     $(".submit").fadeIn(300);
@@ -132,7 +148,25 @@ $(document).ready(function(){
       success: function(data){
         console.log(data);
         data.card.tasks.forEach(task =>{
-          $("#checklist"+cardId).append('<div id="task'+task._id+'" class="window-module-title" style="display:block; overflow: hidden;"><div style="display:flex;"><span style="margin-right: 15px;padding: 5px;"><input type="checkbox" style="zoom:2"></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84;" taskId="'+task._id+'" value="'+task.title+'" ><a class="delete-task button subtle" taskId="'+task._id+'" taskTitle="'+task.title+'" href="#">X&oacute;a</a></div></div><div><a class="button subtle" id="themm" href="#" style="float: left; margin-left: 53px; margin-top: 10px">Chỉ định </a></div></div>')
+          $("#checklist"+cardId).append('<div id="task'+task._id+'" class="window-module-title" style="display:block; overflow: hidden;"><div style="display:flex;"><span style="margin-right: 15px;padding: 5px;"><input type="checkbox" style="zoom:2"></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84; " taskId="'+task._id+'" value="'+task.title+'" ><a class="delete-task button subtle" taskId="'+task._id+'" taskTitle="'+task.title+'" href="#">X&oacute;a</a></div></div><div style="display: flex;margin-top: 10px;"><a class="button subtle appoint-member" taskId="'+task._id+'" id="chidinh'+task._id+'" href="#" style="float: left; margin-left: 53px; ">Chỉ định </a><input id="search'+task._id+'" taskId="'+task._id+'" type="text" class=" form-control search-member-group" style="width:200px; display:none; margin-left:53px;"><div id="result'+task._id+'" style="float: left;margin-left: 40px;">DEV 1234</div></div> </div>')
+        });
+        //appoint member
+        $("a.appoint-member").click(function(){
+          var taskId = $(this).attr("taskId");
+          $(this).fadeOut(0);
+          $("#search"+taskId).fadeIn(0).focus();
+        });
+        $("input.search-member-group").focusout(function(){
+          var taskId = $(this).attr("taskId");
+            $(this).fadeOut(0);
+            $("a#chidinh"+taskId).fadeIn(0);
+        });
+        $("input.search-member-group").on("keydown",function(e){
+          var taskId = $(this).attr("taskId");
+          if(e.keyCode ==13){
+            $(this).fadeOut(0);
+            $("a#chidinh"+taskId).fadeIn(0);
+          }
         });
 
         for(var i=data.card.histories.length-1; i>=0; i--){
@@ -146,10 +180,8 @@ $(document).ready(function(){
 
           $("#hd"+cardId).append('<div class="js-menu-action-list"><div class="phenom"><div class="phenom-creator"><div class="member"><span class="member-initials"><i class="far fa-user" aria-hidden="true"> </i></span></div></div><div class="phenom-desc"><span class="inline-member">'+data.card.histories[i].header+'</span><div style="color:#777;">  &nbsp; '+data.card.histories[i].content +'</div></div><div class="phenom-meta">'+day+'-'+month+'-'+year+' '+hour+':'+minute+':'+second+'</div></div></div>')
         }
-        // data.card.histories.forEach(history=>{
-        //   $("#hd"+cardId).append('<div class="js-menu-action-list"><div class="phenom"><div class="phenom-creator"><div class="member"><span class="member-initials"><i class="far fa-user" aria-hidden="true"> </i></span></div></div><div class="phenom-desc"><span class="inline-member">'+history.header+'</span></div><div class="phenom-meta">H&ocirc;m qua l&uacute;c 13:36</div></div></div>')
 
-        // });
+
 
         addEventRenameTask();
         addEventDeleteTask();

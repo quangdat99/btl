@@ -155,3 +155,35 @@ module.exports.create = async (req, res)=>{
 	}
 };
 
+module.exports.changeBackground = async (req, res) =>{
+	var userId = req.signedCookies.userId;
+	var imgUrl = req.body.imgUrl;
+	var timeCreated = new Date().getTime();
+	var boardId = req.body.boardId;
+
+	try {
+		await Board.updateOne({_id: boardId}, {$set: {image: imgUrl}});
+		res.send({result: "success"});
+	}
+	catch (e) {
+		res.send("update background failed !");
+	};
+
+	var displayName = res.locals.user.displayName;
+	var board = await Board.findOne({_id: boardId});
+
+	var header = displayName + " đã đổi Background trong bảng \"" + board.title + "\"";
+	var history = new History({
+		header: header,
+		content: "",
+		timeCreated: new Date().getTime(),
+		cardId: "",
+		boardId: boardId
+	});
+	history.save()
+	global.socket.emit("NEW_HISTORY", {
+		userId: userId,
+		history: history
+	})
+}
+

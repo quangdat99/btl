@@ -175,7 +175,13 @@ html
                 if groups
                   each _group in groups
                     option(value=_group._id)=_group.title 
-              #demoBasic 
+              //- #demoBasic 
+              //-   select(name='state', style='height: 80px; width:140px; font-family:Arial, FontAwesome;')
+              //-     option(value='') All States
+              //-     option(value='enabled', style='background-image:url("image/bg/1.ipg");')  Enabled
+              //-     option(value='paused', style='background-image:url("image/bg/1.ipg");')  Paused
+              //-     option(value='archived', style='background-image:url("image/bg/1.ipg");')  Archived
+
 
               //- select(name='image' style='height: 45px; font-family:Arial, FontAwesome;')
               //-   option(selected='' value='') Nền mặc định

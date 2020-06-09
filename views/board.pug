@@ -46,9 +46,12 @@ block header
           hr 
           .backgroud-board
             h6 Thay đổi hình nền
+            .bg-changes
+              -for(var i=1; i<=12; i++)
+                .bg-change(style='background-image:url(/image/bg/'+i+'.jpg); height: 80px; width:140px; display: inline-block; margin: 5px;background-size: cover;background-position: center; cursor: pointer; ' boardId=board._id bg="/image/bg/"+i+".jpg")
 
           hr
-          .window-module-title.history-board(style="margin-top: 250px;display: block;")
+          .window-module-title.history-board(style="margin-top: 0px;display: block;")
             div(style='padding: 5px;color: #777;margin-bottom: 5px;')
               i.fas.fa-tasks &nbsp; Hoạt động 
             .hoat-dong-boardId(id="hd"+board._id)
