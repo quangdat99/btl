@@ -132,7 +132,8 @@ $(document).ready(function(){
   })
 
   //index card
-
+  var taskPool = {};
+  
   $("a.card-name").click(function(){
     var cardId = $(this).attr('cardId');
     var boardId = $(this).attr('boardId');
@@ -193,6 +194,14 @@ $(document).ready(function(){
           $('#result-'+taskId).on("click", "li", function(){
                 
             var taskId = $(this).attr("taskId");
+            
+            if (taskPool[taskId] === true){
+              return;
+            }
+            else {
+              taskPool[taskId] = true;
+            }
+            
             $('#result-'+taskId).html('');
             $('input.search-member-group').val('');
             var userId=($(this).attr('userId'));
