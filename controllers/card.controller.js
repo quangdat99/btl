@@ -30,7 +30,7 @@ module.exports.index = async (req, res)=>{
 	for (var t in tasks){
 		var taskId = tasks[t]._id;
 		var user_task = await User_Task.findOne({taskId: taskId});
-		console.log(user_task);
+		// console.log(user_task);
 		if (user_task){
 			userId = user_task.userId;
 			// console.log(userId);
