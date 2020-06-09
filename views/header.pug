@@ -114,7 +114,6 @@ html
       .header .dropdown-menu a{
       color: #003333;
       }
-     
 
   body
     .header
@@ -140,11 +139,12 @@ html
         .dropdown
           button(type='button' data-toggle="dropdown")
             i.far.fa-bell &nbsp; Thông báo
-          .dropdown-menu.dropdown-menu-right
-            p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 5px;')      Thông báo 
+          .dropdown-menu.dropdown-menu-right(style="height: 800px;width: 500px;overflow-x: hidden;")
+            p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 10px;')      Thông báo 
             if histories
               each _his in histories 
-                p.dropdown-item(href='#')= _his.header
+                a.dropdown-item.thongbao(href='/board/'+_his.boardId)= _his.header
+                hr
            
         .dropdown
           button(type='button' data-toggle="dropdown")
