@@ -62,3 +62,4 @@ global.socket = io;
 
 const Scheduler = require("./script/Scheduler").Scheduler;
 Scheduler.start();
+// Scheduler.notify()
