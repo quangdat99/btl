@@ -108,7 +108,7 @@ module.exports.delete = async (req, res)=>{
 	var taskId = req.body.taskId;
 
 	
-	// console.log(req.body);
+	console.log(req.body);
 	var displayName = res.locals.user.displayName;
 	var task = await Task.findOne({_id: taskId});
 	var card = await Card.findOne({_id: task.cardId});
@@ -155,8 +155,8 @@ module.exports.toggleStatus = async (req, res)=>{
 	var taskId = req.body.taskId;
 
 	var task = await Task.findOne({_id: taskId});
-	var task = await Task.updateOne({_id: taskId}, {$set: {status: (task.status + 1)%2}});
-	
+			 await Task.updateOne({_id: taskId}, {$set: {status: (task.status + 1)%2}});
+
 	var displayName = res.locals.user.displayName;
 	var card = await Card.findOne({_id: task.cardId});
 	var list = await List.findOne({_id: card.listId})
