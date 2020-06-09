@@ -14,7 +14,7 @@ block header
             i.fas.fa-user-friends &nbsp; 
               span= group.title
           .dropdown-menu.dropdown-menu-left(style='color=#003333')
-            p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 5px;')=group.title  
+            p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 5px;' id="groupId" groupId=group._id)=group.title  
             a.dropdown-item(href='#') Đổi nhóm 
             a.dropdown-item(href='/group/'+group._id) Xem trang của nhóm
         else 

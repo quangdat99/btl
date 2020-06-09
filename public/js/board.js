@@ -148,8 +148,10 @@ $(document).ready(function(){
       success: function(data){
         console.log(data);
         data.card.tasks.forEach(task =>{
-          $("#checklist"+cardId).append('<div id="task'+task._id+'" class="window-module-title" style="display:block; overflow: hidden;"><div style="display:flex;"><span style="margin-right: 15px;padding: 5px;"><input type="checkbox" style="zoom:2"></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84; " taskId="'+task._id+'" value="'+task.title+'" ><a class="delete-task button subtle" taskId="'+task._id+'" taskTitle="'+task.title+'" href="#">X&oacute;a</a></div></div><div style="display: flex;margin-top: 10px;"><a class="button subtle appoint-member" taskId="'+task._id+'" id="chidinh'+task._id+'" href="#" style="float: left; margin-left: 53px; ">Chỉ định </a><input id="search'+task._id+'" taskId="'+task._id+'" type="text" class=" form-control search-member-group" style="width:200px; display:none; margin-left:53px;"><div id="result'+task._id+'" style="float: left;margin-left: 40px;">DEV 1234</div></div> </div>')
+          $("#checklist"+cardId).append('<div id="task'+task._id+'" class="window-module-title" style="display:block; overflow: hidden;"><div style="display:flex;"><span style="margin-right: 15px;padding: 5px;"><input type="checkbox" style="zoom:2"></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84; " taskId="'+task._id+'" value="'+task.title+'" ><a class="delete-task button subtle" taskId="'+task._id+'" taskTitle="'+task.title+'" href="#">X&oacute;a</a></div></div><div style="display: flex;margin-top: 10px;"><a class="button subtle appoint-member" taskId="'+task._id+'" id="chidinh'+task._id+'" href="#" style="float: left; margin-left: 53px; ">Chỉ định </a><input id="search'+task._id+'" taskId="'+task._id+'" type="text" class=" form-control search-member-group" style="width:200px; display:none; margin-left:53px;"><div id="result'+task._id+'" style="float: left;margin-left: 40px;">DEV 1234</div></div><ul class="list-group result-search-group" id="result-'+task._id+'" taskId="'+task._id+'"></ul> </div>')
         });
+
+
         //appoint member
         $("a.appoint-member").click(function(){
           var taskId = $(this).attr("taskId");
@@ -168,6 +170,49 @@ $(document).ready(function(){
             $("a#chidinh"+taskId).fadeIn(0);
           }
         });
+        //search member group
+        $("input.search-member-group").keyup(function(){
+          var value = $(this).val();
+          var taskId =$(this).attr("taskId");
+          $('#result-'+taskId).html('');
+          var groupId=($('#groupId').attr('groupId'));
+          $.ajax({
+            url: "/search/groupUser",
+            method: "POST",
+            dataType: "json",
+            data: {field: value, groupId: groupId},
+            success: function(data){
+              console.log(data);
+              data.forEach(user =>{
+                $('#result-'+taskId).append("<li userId="+ user._id+" taskId="+taskId+" class='list-group-item'><img src='/image/group.png' style='height:40px; width:40px; class='img-thumbnail'> &nbsp;"+ user.displayName+ "</li>")
+              });
+
+            }
+          })
+
+          $('#result-'+taskId).on("click", "li", function(){
+                
+            var taskId = $(this).attr("taskId");
+            $('#result-'+taskId).html('');
+            $('input.search-member-group').val('');
+            var userId=($(this).attr('userId'));
+            var groupId=($('#groupId').attr('groupId'));
+
+            
+            $.ajax({
+              url: "/task/appoint",
+              method: "POST",
+              dataType: "json",
+              data: {appointedUserId: userId, taskId: taskId},
+              success: function(data){
+                console.log(data);
+                $('#result'+taskId).html('');
+                $('#result'+taskId).append(data.displayName);
+              }
+            })
+          });
+        });
+
 
         for(var i=data.card.histories.length-1; i>=0; i--){
           var date = new Date(data.card.histories[i].timeCreated);

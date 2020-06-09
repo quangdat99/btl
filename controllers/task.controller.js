@@ -8,6 +8,7 @@ var History = require("../models/history.model");
 var Task = require("../models/task.model");
 var Card = require("../models/card.model");
 var Index = require("../models/index.model");
+var User_Task = require("../models/user_task.model");
 
 const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
 
@@ -199,14 +200,17 @@ module.exports.appoint = async (req, res) => {
 		taskId: taskId
 	})
 
+	var user = await User.findOne({_id: appointedUserId});
+
 	try {
 		await user_task.save();
-		res.send({user_task: user_task});
+		res.send(user);
 	}
 	catch (e) {
 		res.send("Bổ nhiệm không thành công " + e.toString());
 	}
 	
+console.log(appointedUserId);
 
 	var appointedUser = await User.findOne({_id: appointedUserId});
 	var task = await Task.findOne({_id: taskId});

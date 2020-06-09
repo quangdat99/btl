@@ -6,6 +6,6 @@ var authMiddleware = require('../middlewares/auth.middleware');
 var router = express.Router();
 
 router.post('/allUser', controller.postSearchAllUser);
-router.get('/groupUser', controller.postSearchGroupUser);
+router.post('/groupUser', controller.postSearchGroupUser);
 
 module.exports = router;

@@ -15,19 +15,30 @@ const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
 module.exports.index = async (req, res)=>{
 	var cardId = req.body.cardId;
 	var card = await Card.findOne({_id: cardId});
-	card = JSON.parse(JSON.stringify(card))
+	card = JSON.parse(JSON.stringify(card));
 	var histories = await History.find({cardId: cardId});
 	card.histories = JSON.parse(JSON.stringify(histories));
 
 	var tasks = await Task.find({cardId: cardId});
-	for (var t in tasks){
-		var taskId = task[t]._id;
-		var users_tasks = await User_Task.find({taskId: taskId});
-		userIds = users_tasks.map((ut)=>ut.userId);
 
-		var users = await User.find({_id: {$in: userIds}});
-		tasks[t].users = users;
+	for (var t in tasks){
+		var taskId = tasks[t]._id;
+		var user_task = await User_Task.findOne({taskId: taskId});
+		console.log(user_task);
+		if (user_task){
+			userId = user_task.userId;
+			// console.log(userId);
+
+			var user = await User.findOne({_id: userId});
+			user = JSON.parse(JSON.stringify(user));
+			// console.log(user);
+			tasks[t] = JSON.parse(JSON.stringify(tasks[t]));
+			tasks[t].user = user;
+			// console.log(tasks[t]);	
+		}
+		
 	}
+	// console.log(tasks);
 	card.tasks = tasks;
 	res.json({card: card});
 }

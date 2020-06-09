@@ -85,8 +85,9 @@ module.exports._postSearchAllUser = async function(req, res, next ) {
 // tìm user trong group để chỉ định công việc
 module.exports.postSearchGroupUser = async function(req, res, next) {
   var field = req.body.field;
-  var groupId = req.params.groupId;
+  var groupId = req.body.groupId;
 
+  console.log(req.body);
   if (field == ""){
     res.jsonp([]);
     return;

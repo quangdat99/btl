@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-var user_indexSchema = new mongoose.Schema({
+var user_taskSchema = new mongoose.Schema({
     userId: String,
     taskId: String
 })
 
-var User_index = mongoose.model("User_Index", user_indexSchema, "user_index");
-module.exports = User_index;
+var User_Task = mongoose.model("User_Task", user_taskSchema, "user_task");
+module.exports = User_Task;
