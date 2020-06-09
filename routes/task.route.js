@@ -12,4 +12,10 @@ router.post('/rename',authMiddleware.req, authMiddleware.requireLogin, controlle
 
 router.post('/delete',authMiddleware.req, authMiddleware.requireLogin, controller.delete);
 
+router.post('/toggleStatus',authMiddleware.req, authMiddleware.requireLogin, controller.toggleStatus);
+
+router.post('/appoint',authMiddleware.req, authMiddleware.requireLogin, controller.appoint);
+
+router.post('/setDeadlineTime',authMiddleware.req, authMiddleware.requireLogin, controller.setDeadlineTime);
+
 module.exports = router;
