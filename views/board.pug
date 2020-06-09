@@ -4,6 +4,7 @@ extends header
 block header
   script(src='/socket.io/socket.io.js')
   script(type='text/javascript', src='/js/board.js')
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   link(rel='stylesheet', href='/styles/board.css')
   .board(style='background-image:url('+board.image+')')
     .board-header(boardId=board._id)
@@ -91,8 +92,11 @@ block header
       .dropdown.right(style='float: right;')
         button.board-header-btn(type='button' data-toggle="dropdown")
           i.fas.fa-chart-bar &nbsp; Thống Kê
-        .dropdown-menu.dropdown-menu-right(style='color:#003333; width: 400px; height: 700px; padding: 15px; overflow: auto;')
+        .dropdown-menu.dropdown-menu-right(style='color:#003333; width: 500px; height: 900px; padding: 15px; overflow: auto;')
           p(style='text-align:center; margin: 0px; padding: 5px;')     THỐNG KÊ 
+          div#taskDistribution(style='width: 500px; height: 260px ; margin-top : 12px' passed_params=board.lists)
+          div#taskComplement(style='width: 500px; height: 260px ; margin-top : 12px')
+          div#taskOverDeadline(style='width: 500px; height: 260px ; margin-top : 12px')
 
 
 

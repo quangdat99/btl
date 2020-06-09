@@ -45,6 +45,110 @@ var addEventDeleteTask =()=>{
   })  
 }
 
+const loadChartDistribution= ()=>{
+  console.log(">> " + $("#taskDistribution").attr("passed_params"))
+
+  google.charts.load("current", { packages: ["corechart"] });
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ["Task", "Hours per Day"],
+      ["Work", 11],
+      ["Eat", 2],
+      ["Commute", 2],
+      ["Watch TV", 2],
+      ["Sleep", 7],
+    ]);
+
+    var options = {
+      title: "Phân Chia Công Việc",
+      chartArea: {
+        width: 500,
+        height: 150
+      },
+      legend: {
+        position: 'top'
+      },
+      width: 500,
+      height: 260
+    };
+
+    var chart = new google.visualization.PieChart(
+      document.getElementById("taskDistribution")
+    );
+
+    chart.draw(data, options);
+  }
+}
+const loadChartComplement= ()=>{
+  google.charts.load("current", { packages: ["corechart"] });
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ["Task", "Hours per Day"],
+      ["Work", 11],
+      ["Eat", 2],
+      ["Commute", 2],
+      ["Watch TV", 2],
+      ["Sleep", 7],
+    ]);
+
+    var options = {
+      title: "Phân Chia Công Việc",
+      chartArea: {
+        width: 500,
+        height: 150
+      },
+      legend: {
+        position: 'top'
+      },
+      width: 500,
+      height: 260
+    };
+
+    var chart = new google.visualization.PieChart(
+      document.getElementById("taskComplement")
+    );
+
+    chart.draw(data, options);
+  }
+}
+const loadChartOverDeadline= ()=>{
+  google.charts.load("current", { packages: ["corechart"] });
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ["Task", "Hours per Day"],
+      ["Work", 11],
+      ["Eat", 2],
+      ["Commute", 2],
+      ["Watch TV", 2],
+      ["Sleep", 7],
+    ]);
+
+    var options = {
+      title: "Phân Chia Công Việc",
+      chartArea: {
+        width: 500,
+        height: 150
+      },
+      legend: {
+        position: 'top'
+      },
+      width: 500,
+      height: 260
+    };
+
+    var chart = new google.visualization.PieChart(
+      document.getElementById("taskOverDeadline")
+    );
+
+    chart.draw(data, options);
+  }
+}
 
 $(document).ready(function(){
   // change backgroud
@@ -505,8 +609,9 @@ $(document).ready(function(){
     }
   });
 
-
-
+  loadChartDistribution();
+  loadChartComplement();
+  loadChartOverDeadline();
 });
 
 
