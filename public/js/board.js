@@ -132,7 +132,8 @@ $(document).ready(function(){
   })
 
   //index card
-
+  var taskPool = {};
+  
   $("a.card-name").click(function(){
     var cardId = $(this).attr('cardId');
     var boardId = $(this).attr('boardId');
@@ -192,25 +193,55 @@ $(document).ready(function(){
 
           $('#result-'+taskId).on("click", "li", function(){
                 
-                var taskId = $(this).attr("taskId");
-                $('#result-'+taskId).html('');
-                $('input.search-member-group').val('');
-                var userId=($(this).attr('userId'));
-                var groupId=($('#groupId').attr('groupId'));
+// <<<<<<< HEAD
+//                 var taskId = $(this).attr("taskId");
+//                 $('#result-'+taskId).html('');
+//                 $('input.search-member-group').val('');
+//                 var userId=($(this).attr('userId'));
+//                 var groupId=($('#groupId').attr('groupId'));
 
                 
-                $.ajax({
-                  url: "/task/appoint",
-                  method: "POST",
-                  dataType: "json",
-                  data: {appointedUserId: userId, taskId: taskId},
-                  success: function(data){
-                    console.log(data);
-                    $('#result'+taskId).html('');
-                    $('#result'+taskId).append(data.displayName);
-                  }
-                })
-              })
+//                 $.ajax({
+//                   url: "/task/appoint",
+//                   method: "POST",
+//                   dataType: "json",
+//                   data: {appointedUserId: userId, taskId: taskId},
+//                   success: function(data){
+//                     console.log(data);
+//                     $('#result'+taskId).html('');
+//                     $('#result'+taskId).append(data.displayName);
+//                   }
+//                 })
+//               })
+// =======
+            var taskId = $(this).attr("taskId");
+            
+            if (taskPool[taskId] === true){
+              return;
+            }
+            else {
+              taskPool[taskId] = true;
+            }
+            
+            $('#result-'+taskId).html('');
+            $('input.search-member-group').val('');
+            var userId=($(this).attr('userId'));
+            var groupId=($('#groupId').attr('groupId'));
+
+            
+            $.ajax({
+              url: "/task/appoint",
+              method: "POST",
+              dataType: "json",
+              data: {appointedUserId: userId, taskId: taskId},
+              success: function(data){
+                console.log(data);
+                $('#result'+taskId).html('');
+                $('#result'+taskId).append(data.displayName);
+              }
+            })
+          });
+// >>>>>>> 1438dd1ba1a809886caac631cf3527d3d53c5f32
         });
 
 
