@@ -87,6 +87,9 @@ $(document).ready(function(){
     $(" #add"+id).fadeIn(0);
   });
 
+
+  var poolTask = {};
+
   //create Task
   $('button.themcongviec').click(function(){
     var cardId = $(this).attr('cardId');
@@ -156,6 +159,13 @@ $(document).ready(function(){
             $('input.search-member-group').val('');
             var userId=($(this).attr('userId'));
             var groupId=($('#groupId').attr('groupId'));
+
+            if (poolTask[taskId] === true){
+              return;
+            }
+            else {
+              poolTask[taskId] = true;
+            };
 
             
             $.ajax({

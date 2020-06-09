@@ -200,23 +200,20 @@ module.exports.appoint = async (req, res) => {
 		taskId: taskId
 	})
 
-	var user = await User.findOne({_id: appointedUserId});
+	var appointedUser = await User.findOne({_id: appointedUserId});
 
 	try {
 		await user_task.save();
-		res.send(user);
+		res.send(appointedUser);
 	}
 	catch (e) {
 		res.send("Bổ nhiệm không thành công " + e.toString());
 	}
 	
-
-
-	var appointedUser = await User.findOne({_id: appointedUserId});
 	var task = await Task.findOne({_id: taskId});
 
 	var displayName = res.locals.user.displayName;
-	var appointedUserName = appointedUser.name;
+	var appointedUserName = appointedUser.displayName;
 
 	var card = await Card.findOne({_id: task.cardId});
 	var list = await List.findOne({_id: card.listId})
