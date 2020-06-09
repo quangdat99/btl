@@ -20,7 +20,8 @@ module.exports.create = async (req, res)=>{
 		completedIndexsCount: 0,
 		indexsCount: 0,
 		cardId: cardId,
-		status: 0
+		status: 0,
+		deadlineTime: -1
 	})
 
 

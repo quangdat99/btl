@@ -21,30 +21,14 @@ module.exports.index = async (req, res)=>{
 
 	var tasks = await Task.find({cardId: cardId});
 	for (var t in tasks){
-		var taskId = tasks[t]._id;
-		var indexs = await Index.find({taskId: taskId});
-		indexs = indexs.map(async (index)=>{
-			var user_indexs = await User_Index.find({indexId: index._id});
-			var userIds = user_indexs.map((user_index)=>{
-				return user_index.userId;
-			});
-			var users = await User.find({_id: {$in: userIds}});
-			return {
-				_id: index._id,
-				content: index.content,
-				deadlineTime: index.deadlineTime,
-				membersCount: index.membersCount,
-				status: index.status,
-				taskId: index.taskId,
-				users: users
-			}
-		});
-		// var completedIndexsCount = indexs.filter((index)=>index.status == 1);
-		tasks[t].indexs = indexs;
-		// tasks[t].completedIndexsCount = completedIndexsCount;
-		// tasks[t].indexsCount = indexs.length - completedIndexsCount;
+		var taskId = task[t]._id;
+		var users_tasks = await User_Task.find({taskId: taskId});
+		userIds = users_tasks.map((ut)=>ut.userId);
+
+		var users = await User.find({_id: {$in: userIds}});
+		tasks[t].users = users;
 	}
-	card.tasks = JSON.parse(JSON.stringify(tasks));
+	card.tasks = tasks;
 	res.json({card: card});
 }
 
