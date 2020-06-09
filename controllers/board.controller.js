@@ -35,7 +35,7 @@ module.exports.index = async function(req, res){
 		for (var c in cards){
 			var cardId = cards[c]._id;
 			var tasks = await Task.find({cardId: cardId});
-			var completedTasks = tasks.filte((t)=>(t.status == 1));
+			var completedTasks = tasks.filter((t)=>(t.status == 1));
 			var histories = await History.find({cardId: cardId});
 			var comments = histories.filter((h)=>(h.content != ""));
 			
