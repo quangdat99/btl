@@ -108,7 +108,7 @@ module.exports.delete = async (req, res)=>{
 	var taskId = req.body.taskId;
 
 	
-	console.log(req.body);
+	// console.log(req.body);
 	var displayName = res.locals.user.displayName;
 	var task = await Task.findOne({_id: taskId});
 	var card = await Card.findOne({_id: task.cardId});

@@ -87,7 +87,7 @@ module.exports.postSearchGroupUser = async function(req, res, next) {
   var field = req.body.field;
   var groupId = req.body.groupId;
 
-  console.log(req.body);
+  // console.log(req.body);
   if (field == ""){
     res.jsonp([]);
     return;

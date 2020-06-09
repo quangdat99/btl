@@ -70,7 +70,7 @@ module.exports.create = async (req, res)=>{
 		res.send("Create card failed " + e.toString());
 	};
 	var user = await User.findOne({_id: req.signedCookies.userId });
-	console.log(card);
+	// console.log(card);
 
 	var displayName = res.locals.user.displayName;
 	var list = await List.findOne({_id: listId});
