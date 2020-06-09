@@ -283,10 +283,10 @@ block header
             
             .member-list-item-detail
               .member.member-no-menu
-                span.member-initials NĐ
+                span.member-initials MB
               .details
                 p.name-line
-                  span.full-name= _member.displayName 
+                  span.full-name(style="font-weight:600;")= _member.displayName 
                 p.u-bottom.quiet
                     span= _member.email
               .options
@@ -308,7 +308,7 @@ block header
                 success: function(data){
                   console.log(data);
                   data.forEach(user =>{
-                    $('#result').append("<li userId="+ user._id+" class='list-group-item'><img src='/image/group.png' style='height:40px; width:40px; class='img-thumbnail'> &nbsp;"+ user.displayName+ "</li>")
+                    $('#result').append("<li userId="+ user._id+" class='list-group-item' style=' display:flex; '><img src='/image/group.png' style='height:40px;width:40px;' class='img-thumbnail'><div style='margin-left: 15px;'><div style='font-weight: 600;'>"+ user.displayName+ "</div><div style='font-size: 14px;color:#777;'>"+user.email+"</div></div></li>")
                   })
                 },
                 eror: function(err){
@@ -332,7 +332,7 @@ block header
                 data: { groupId: groupId, userId: userId},
                 success: function(data){
                   console.log(data);
-                  $('.org-members-list').append('<div class="member-list-item-detail"><div class="member member-no-menu"><span class="member-initials">NĐ</span></div><div class="details"><p class="name-line"><span class="full-name">'+data.displayName+'</span></p><p class="u-bottom quiet"><span>'+data.email+'</span></p></div><div class="options"><a class="option button-link remove-button" href="#" style="color:#172b4d">Loại bỏ...</a></div></div>')
+                  $('.org-members-list').append('<div class="member-list-item-detail"><div class="member member-no-menu"><span class="member-initials">MB</span></div><div class="details"><p class="name-line"><span class="full-name" style="font-weight:600;">'+data.displayName+'</span></p><p class="u-bottom quiet"><span>'+data.email+'</span></p></div><div class="options"><a class="option button-link remove-button" href="#" style="color:#172b4d">Loại bỏ...</a></div></div>')
                 }
               });
             })

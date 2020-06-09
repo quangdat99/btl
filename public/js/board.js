@@ -100,11 +100,91 @@ $(document).ready(function(){
       data: { title: title, cardId: cardId},
       success: function(data){
         console.log(data);
-        $("#checklist"+cardId).append('<div id="task'+data.task._id+'" class="window-module-title" style="display:block; overflow: hidden;"><div style="display:flex;"><span style="margin-right: 15px;padding: 5px;"><input type="checkbox" style="zoom:2"></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84;" taskId="'+data.task._id+'" value="'+data.task.title+'" ><a class="delete-task button subtle" taskId="'+data.task._id+'" taskTitle="'+data.task.title+'" href="#">X&oacute;a</a></div></div><div><a class="button subtle" id="themm" href="#" style="float: left; margin-left: 53px; margin-top: 10px">Chỉ định </a></div></div>')
+        var task=data.task;
+        console.log(task);
+        $("#checklist"+cardId).append('<div id="task'+task._id+'" class="window-module-title" style="display:block; overflow: hidden;"><div style="display:flex;"><span style="margin-right: 15px;padding: 5px;"><input type="checkbox" style="zoom:2"></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84; " taskId="'+task._id+'" value="'+task.title+'" ><a class="delete-task button subtle" taskId="'+task._id+'" taskTitle="'+task.title+'" href="#">X&oacute;a</a></div></div><div style="display: flex;margin-top: 10px;"><a class="button subtle appoint-member" taskId="'+task._id+'" id="chidinh'+task._id+'" href="#" style="float: left; margin-left: 53px; color: #777 ">Chỉ định thành viên thực hiện </a><input id="search'+task._id+'" taskId="'+task._id+'" type="text" class=" form-control search-member-group" style="width:200px; display:none; margin-left:53px;"><div id="result'+task._id+'" style="float: left;margin-left: 100px;color: #29a3a3; font-weight: 600;"  id="result'+task._id+'"></div></div><ul class="list-group result-search-group" id="result-'+task._id+'" taskId="'+task._id+'"></ul> </div>')
+        
         addEventRenameTask();
         addEventDeleteTask();
+
+            //appoint member
+        $("a.appoint-member").click(function(){
+          var taskId = $(this).attr("taskId");
+          $(this).fadeOut(0);
+          $("#search"+taskId).fadeIn(0).focus();
+        });
+        $("input.search-member-group").focusout(function(){
+          var taskId = $(this).attr("taskId");
+            $(this).fadeOut(0);
+            $("a#chidinh"+taskId).fadeIn(0);
+            // $('#result-'+taskId).fadeOut(0);
+        });
+        $("input.search-member-group").on("keydown",function(e){
+          var taskId = $(this).attr("taskId");
+          if(e.keyCode ==13){
+            $(this).fadeOut(0);
+            $("a#chidinh"+taskId).fadeIn(0);
+            // $('#result-'+taskId).fadeOut(0);
+          }
+        });
+
+
+
+        //search member group
+        $("input.search-member-group").keyup(function(search){
+          var value = $(this).val();
+          var taskId =$(this).attr("taskId");
+          $('#result-'+taskId).html('');
+          var groupId=($('#groupId').attr('groupId'));
+          $.ajax({
+            url: "/search/groupUser",
+            method: "POST",
+            dataType: "json",
+            data: {field: value, groupId: groupId},
+            success: function(data){
+              console.log(data);
+              data.forEach(user =>{
+                $('#result-'+taskId).append("<li userId="+ user._id+" taskId="+taskId+" class='list-group-item' style=' display:flex; '><img src='/image/group.png' style='height:40px;width:40px;' class='img-thumbnail'><div style='margin-left: 15px;'><div style='font-weight: 600;'>"+ user.displayName+ "</div><div style='font-size: 14px;color:#777;'>"+user.email+"</div></div></li>")
+              });
+
+            }
+          })
+
+          $('#result-'+taskId).on("click", "li", function(event){             
+            var taskId = $(this).attr("taskId");   
+            $('#result-'+taskId).html('');
+            $('input.search-member-group').val('');
+            var userId=($(this).attr('userId'));
+            var groupId=($('#groupId').attr('groupId'));
+
+            
+            $.ajax({
+              url: "/task/appoint",
+              method: "POST",
+              dataType: "json",
+              data: {appointedUserId: userId, taskId: taskId},
+              success: function(data){
+                console.log(data);
+                $('#result'+taskId).html('');
+                $('#result'+taskId).append(data.displayName+'<span  style="font-size: 14px;font-weight: 400;">&nbsp;đã được chỉ định thực hiện</span>');
+                $("#chidinh"+taskId).remove();
+              }
+            })
+            event.stopPropagation();
+          });
+        });    
+
+
+
+
+
+
       }
-    })
+    });
+
+
+
+
     $('input.vieccanlam').val('');
   })
   var his_cardId;
@@ -132,7 +212,6 @@ $(document).ready(function(){
   })
 
   //index card
-  var taskPool = {};
   
   $("a.card-name").click(function(){
     var cardId = $(this).attr('cardId');
@@ -149,7 +228,12 @@ $(document).ready(function(){
       success: function(data){
         console.log(data);
         data.card.tasks.forEach(task =>{
-          $("#checklist"+cardId).append('<div id="task'+task._id+'" class="window-module-title" style="display:block; overflow: hidden;"><div style="display:flex;"><span style="margin-right: 15px;padding: 5px;"><input type="checkbox" style="zoom:2"></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84; " taskId="'+task._id+'" value="'+task.title+'" ><a class="delete-task button subtle" taskId="'+task._id+'" taskTitle="'+task.title+'" href="#">X&oacute;a</a></div></div><div style="display: flex;margin-top: 10px;"><a class="button subtle appoint-member" taskId="'+task._id+'" id="chidinh'+task._id+'" href="#" style="float: left; margin-left: 53px; ">Chỉ định </a><input id="search'+task._id+'" taskId="'+task._id+'" type="text" class=" form-control search-member-group" style="width:200px; display:none; margin-left:53px;"><div id="result'+task._id+'" style="float: left;margin-left: 40px;">DEV 1234</div></div><ul class="list-group result-search-group" id="result-'+task._id+'" taskId="'+task._id+'"></ul> </div>')
+          if (task.user){
+            $("#checklist"+cardId).append('<div id="task'+task._id+'" class="window-module-title" style="display:block; overflow: hidden;"><div style="display:flex;"><span style="margin-right: 15px;padding: 5px;"><input type="checkbox" style="zoom:2"></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84; " taskId="'+task._id+'" value="'+task.title+'" ><a class="delete-task button subtle" taskId="'+task._id+'" taskTitle="'+task.title+'" href="#">X&oacute;a</a></div></div><div style="display: flex;margin-top: 10px;"><a class="button subtle appoint-member" taskId="'+task._id+'" id="chidinh'+task._id+'" href="#" style="float: left; margin-left: 53px;display: none; ">Chỉ định </a><input id="search'+task._id+'" taskId="'+task._id+'" type="text" class=" form-control search-member-group" style="width:200px; display:none; margin-left:53px;"><div  style="float: left;margin-left: 100px;color: #29a3a3; font-weight: 600;" id="result'+task._id+'">'+task.user.displayName+'<span  style="font-size: 14px;font-weight: 400;">&nbsp;đã được chỉ định thực hiện</span> </div></div><ul class="list-group result-search-group" id="result-'+task._id+'" taskId="'+task._id+'"></ul> </div>')
+          } else {
+            $("#checklist"+cardId).append('<div id="task'+task._id+'" class="window-module-title" style="display:block; overflow: hidden;"><div style="display:flex;"><span style="margin-right: 15px;padding: 5px;"><input type="checkbox" style="zoom:2"></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84; " taskId="'+task._id+'" value="'+task.title+'" ><a class="delete-task button subtle" taskId="'+task._id+'" taskTitle="'+task.title+'" href="#">X&oacute;a</a></div></div><div style="display: flex;margin-top: 10px;"><a class="button subtle appoint-member" taskId="'+task._id+'" id="chidinh'+task._id+'" href="#" style="float: left; margin-left: 53px; color: #777 ">Chỉ định thành viên thực hiện </a><input id="search'+task._id+'" taskId="'+task._id+'" type="text" class=" form-control search-member-group" style="width:200px; display:none; margin-left:53px;"><div id="result'+task._id+'" style="float: left;margin-left: 100px;color: #29a3a3;font-weight: 600;"  id="result'+task._id+'"></div></div><ul class="list-group result-search-group" id="result-'+task._id+'" taskId="'+task._id+'"></ul> </div>')
+           
+          }
         });
 
 
@@ -172,7 +256,7 @@ $(document).ready(function(){
           }
         });
         //search member group
-        $("input.search-member-group").keyup(function(){
+        $("input.search-member-group").keyup(function(search){
           var value = $(this).val();
           var taskId =$(this).attr("taskId");
           $('#result-'+taskId).html('');
@@ -185,23 +269,14 @@ $(document).ready(function(){
             success: function(data){
               console.log(data);
               data.forEach(user =>{
-                $('#result-'+taskId).append("<li userId="+ user._id+" taskId="+taskId+" class='list-group-item'><img src='/image/group.png' style='height:40px; width:40px; class='img-thumbnail'> &nbsp;"+ user.displayName+ "</li>")
+                $('#result-'+taskId).append("<li userId="+ user._id+" taskId="+taskId+" class='list-group-item' style=' display:flex; '><img src='/image/group.png' style='height:40px;width:40px;' class='img-thumbnail'><div style='margin-left: 15px;'><div style='font-weight: 600;'>"+ user.displayName+ "</div><div style='font-size: 14px;color:#777;'>"+user.email+"</div></div></li>")
               });
 
             }
           })
 
-          $('#result-'+taskId).on("click", "li", function(){
-                
-            var taskId = $(this).attr("taskId");
-            
-            if (taskPool[taskId] === true){
-              return;
-            }
-            else {
-              taskPool[taskId] = true;
-            }
-            
+          $('#result-'+taskId).on("click", "li", function(event){             
+            var taskId = $(this).attr("taskId");   
             $('#result-'+taskId).html('');
             $('input.search-member-group').val('');
             var userId=($(this).attr('userId'));
@@ -216,9 +291,11 @@ $(document).ready(function(){
               success: function(data){
                 console.log(data);
                 $('#result'+taskId).html('');
-                $('#result'+taskId).append(data.displayName);
+                $('#result'+taskId).append(data.displayName+'<span  style="font-size: 14px;font-weight: 400;">&nbsp;đã được chỉ định thực hiện</span>');
+                $("#chidinh"+taskId).remove();
               }
             })
+            event.stopPropagation();
           });
         });
 
