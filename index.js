@@ -23,7 +23,6 @@ var boardRoute = require('./routes/board.route');
 var groupRoute = require('./routes/group.route');
 var userRoute = require('./routes/user.route');
 var cardRoute = require('./routes/card.route');
-var indexRoute = require('./routes/index.route');
 var commentRoute = require('./routes/comment.route');
 
 
@@ -59,7 +58,6 @@ app.use('/board', boardRoute);
 app.use('/user', userRoute);
 app.use('/group', groupRoute);
 app.use('/card', cardRoute);
-app.use('/index', indexRoute);
 app.use('/comment', commentRoute);
 
 
