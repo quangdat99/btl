@@ -98,7 +98,7 @@ module.exports.postSearchGroupUser = async function(req, res, next) {
 		var users = await User.find({_id: {$not: userId}});
 	}
 	else {
-		var partnersGroup = await User_Group.find({groupId: groupId, userId: {$ne: userId}});
+		var partnersGroup = await User_Group.find({groupId: groupId});
 		partnerIds = partnersGroup.map((partnerGroup)=>{
 			return partnerGroup.userId;
 		});
