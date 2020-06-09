@@ -192,25 +192,25 @@ $(document).ready(function(){
 
           $('#result-'+taskId).on("click", "li", function(){
                 
-            var taskId = $(this).attr("taskId");
-            $('#result-'+taskId).html('');
-            $('input.search-member-group').val('');
-            var userId=($(this).attr('userId'));
-            var groupId=($('#groupId').attr('groupId'));
+                var taskId = $(this).attr("taskId");
+                $('#result-'+taskId).html('');
+                $('input.search-member-group').val('');
+                var userId=($(this).attr('userId'));
+                var groupId=($('#groupId').attr('groupId'));
 
-            
-            $.ajax({
-              url: "/task/appoint",
-              method: "POST",
-              dataType: "json",
-              data: {appointedUserId: userId, taskId: taskId},
-              success: function(data){
-                console.log(data);
-                $('#result'+taskId).html('');
-                $('#result'+taskId).append(data.displayName);
-              }
-            })
-          });
+                
+                $.ajax({
+                  url: "/task/appoint",
+                  method: "POST",
+                  dataType: "json",
+                  data: {appointedUserId: userId, taskId: taskId},
+                  success: function(data){
+                    console.log(data);
+                    $('#result'+taskId).html('');
+                    $('#result'+taskId).append(data.displayName);
+                  }
+                })
+              })
         });
 
 
