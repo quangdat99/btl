@@ -500,13 +500,14 @@
     margin: 0;
     min-width: 110px;
     }
-    .result-search-group{
+    .result-search-group {
     position: absolute;
-    width: 740px;
+    width: 400;
     cursor: pointer;
     overflow-y: auto;
     max-height: 500px;
     box-sizing: border-box;
     z-index: 1001;
-    margin-top: -1rem;
-    }
+    margin-top: 4px;
+    margin-left: 53px;
+}
