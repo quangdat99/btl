@@ -21,7 +21,7 @@ module.exports.index = async (req, res)=>{
 
 	var tasks = await Task.find({cardId: cardId});
 	for (var t in tasks){
-		var taskId = task[t]._id;
+		var taskId = tasks[t]._id;
 		var users_tasks = await User_Task.find({taskId: taskId});
 		userIds = users_tasks.map((ut)=>ut.userId);
 
