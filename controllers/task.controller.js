@@ -237,7 +237,48 @@ module.exports.appoint = async (req, res) => {
 		userId: userId,
 		history: history,
 	})
-}
+};
+
+module.exports.setDeadlineTime = async (req, res)=>{
+	var userId = req.signedCookies.userId;
+	var taskId = req.body.taskId;
+	var deadlineTime = req.body.deadlineTime;
+
+	var task = await Task.findOne({_id: taskId});
+	var task = await Task.updateOne({_id: taskId}, {$set: {deadlineTime: deadlineTime}});
+	
+	var displayName = res.locals.user.displayName;
+	var card = await Card.findOne({_id: task.cardId});
+	var list = await List.findOne({_id: card.listId})
+
+	var header = displayName  + " đã cập nhật ngày hết hạn công việc \"" + task.title + "\" trong thẻ \"" + card.title + "\" của danh sách \"" + list.title + "\"";
+
+	try {
+		res.send({task: task, header: header});
+	}
+	catch (e) {
+		res.send("Rename index failed " + e.toString());
+	};
+
+	var history = new History({
+		header: header,
+		content: "",
+		timeCreated: new Date().getTime(),
+		cardId: task.cardId,
+		boardId: list.boardId
+	});
+	try {
+		await history.save()
+	}
+	catch (e){
+		console.log("save history failed " + e.toString());
+	};
+
+	global.socket.emit("NEW_HISTORY", {
+		userId: userId,
+		history: history,
+	})
+};
 
 
 

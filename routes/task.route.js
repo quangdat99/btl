@@ -16,4 +16,6 @@ router.post('/toggleStatus',authMiddleware.req, authMiddleware.requireLogin, con
 
 router.post('/appoint',authMiddleware.req, authMiddleware.requireLogin, controller.appoint);
 
+router.post('/setDeadlineTime',authMiddleware.req, authMiddleware.requireLogin, controller.setDeadlineTime);
+
 module.exports = router;
