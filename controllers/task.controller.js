@@ -19,7 +19,8 @@ module.exports.create = async (req, res)=>{
 		title: title,
 		completedIndexsCount: 0,
 		indexsCount: 0,
-		cardId: cardId
+		cardId: cardId,
+		status: 0
 	})
 
 
@@ -145,6 +146,102 @@ module.exports.delete = async (req, res)=>{
 	})
 
 };
+
+
+module.exports.toggleStatus = async (req, res)=>{
+	var userId = req.signedCookies.userId;
+	var taskId = req.body.taskId;
+
+	var task = await Task.findOne({_id: taskId});
+	var task = await Task.updateOne({_id: taskId}, {$set: {status: (task.status + 1)%2}});
+	
+	var displayName = res.locals.user.displayName;
+	var card = await Card.findOne({_id: task.cardId});
+	var list = await List.findOne({_id: card.listId})
+
+	var header = displayName  + " đã đổi trạng thái công việc \"" + task.title + "\" sang " + (task.status == 1 ? "Hoàn Thành" : "Chưa Hoàn Thành") + " trong thẻ \"" + card.title + "\" của danh sách \"" + list.title + "\"";
+
+	try {
+		res.send({task: task, header: header});
+	}
+	catch (e) {
+		res.send("Rename index failed " + e.toString());
+	};
+
+	var history = new History({
+		header: header,
+		content: "",
+		timeCreated: new Date().getTime(),
+		cardId: task.cardId,
+		boardId: list.boardId
+	});
+	try {
+		await history.save()
+	}
+	catch (e){
+		console.log("save history failed " + e.toString());
+	};
+
+	global.socket.emit("NEW_HISTORY", {
+		userId: userId,
+		history: history,
+	})
+};
+
+module.exports.appoint = async (req, res) => {
+	var taskId = req.body.taskId;
+	var userId = req.signedCookies.userId;
+	var appointedUserId = req.body.appointedUserId;
+
+	var user_task = new User_Task({
+		userId: appointedUserId,
+		taskId: taskId
+	})
+
+	try {
+		await user_task.save();
+		res.send({user_task: user_task});
+	}
+	catch (e) {
+		res.send("Bổ nhiệm không thành công " + e.toString());
+	}
+	
+
+	var appointedUser = await User.findOne({_id: appointedUserId});
+	var task = await Task.findOne({_id: taskId});
+
+	var displayName = res.locals.user.displayName;
+	var appointedUserName = appointedUser.name;
+
+	var card = await Card.findOne({_id: task.cardId});
+	var list = await List.findOne({_id: card.listId})
+
+	var header = displayName  + " đã chỉ định công việc \"" + task.title + "\" cho \"" + appointedUserName + "\" trong thẻ \"" + card.title + "\"";
+
+	var history = new History({
+		header: header,
+		content: "",
+		timeCreated: new Date().getTime(),
+		cardId: task.cardId,
+		boardId: list.boardId
+	});
+	try {
+		await history.save()
+	}
+	catch (e){
+		console.log("save history failed " + e.toString());
+	};
+
+	global.socket.emit("NEW_HISTORY", {
+		userId: userId,
+		history: history,
+	})
+}
+
+
+
+
+
 
 
 
