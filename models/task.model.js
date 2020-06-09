@@ -5,7 +5,8 @@ var taskSchema = new mongoose.Schema({
     indexsCount: Number,
     cardId: String,
     status: Number,
-    deadlineTime: Number
+    deadlineTime: Number,
+    userId: String
 })
 
 var Task = mongoose.model("Task", taskSchema, "task");

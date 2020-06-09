@@ -46,29 +46,26 @@ var addEventDeleteTask =()=>{
 }
 
 const loadChartDistribution= ()=>{
-  console.log(">> " + $("#taskDistribution").attr("passed_params"))
+  var taskDistribution = JSON.parse($("#taskDistribution").attr("taskDistribution"));
+  var userDisplayName = JSON.parse($("#taskDistribution").attr("userDisplayName"));
+
+  var chartData = [["User Name", "Task Count"]]
+  for (var u in Object.keys(taskDistribution)){
+    var key = Object.keys(taskDistribution)[u]
+    var cData = [userDisplayName[key], Number(taskDistribution[key])];
+    chartData.push(cData)
+  }
 
   google.charts.load("current", { packages: ["corechart"] });
   google.charts.setOnLoadCallback(drawChart);
-
   function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-      ["Task", "Hours per Day"],
-      ["Work", 11],
-      ["Eat", 2],
-      ["Commute", 2],
-      ["Watch TV", 2],
-      ["Sleep", 7],
-    ]);
+    var data = google.visualization.arrayToDataTable(chartData);
 
     var options = {
       title: "Phân Chia Công Việc",
       chartArea: {
         width: 500,
         height: 150
-      },
-      legend: {
-        position: 'top'
       },
       width: 500,
       height: 260
@@ -82,33 +79,33 @@ const loadChartDistribution= ()=>{
   }
 }
 const loadChartComplement= ()=>{
+  var taskComplement = JSON.parse($("#taskComplement").attr("taskComplement"));
+  var userDisplayName = JSON.parse($("#taskComplement").attr("userDisplayName"));
+
+  var chartData = [["User Name", "Task Complement Count"]]
+  for (var u in Object.keys(taskComplement)){
+    var key = Object.keys(taskComplement)[u]
+    var cData = [userDisplayName[key], Number(taskComplement[key])];
+    chartData.push(cData);
+  }
+
   google.charts.load("current", { packages: ["corechart"] });
   google.charts.setOnLoadCallback(drawChart);
 
   function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-      ["Task", "Hours per Day"],
-      ["Work", 11],
-      ["Eat", 2],
-      ["Commute", 2],
-      ["Watch TV", 2],
-      ["Sleep", 7],
-    ]);
+    var data = google.visualization.arrayToDataTable(chartData);
 
     var options = {
-      title: "Phân Chia Công Việc",
+      title: "Số Lượng Công Việc Đúng Deadline",
       chartArea: {
         width: 500,
         height: 150
-      },
-      legend: {
-        position: 'top'
       },
       width: 500,
       height: 260
     };
 
-    var chart = new google.visualization.PieChart(
+    var chart = new google.visualization.BarChart(
       document.getElementById("taskComplement")
     );
 
@@ -116,21 +113,24 @@ const loadChartComplement= ()=>{
   }
 }
 const loadChartOverDeadline= ()=>{
+  var taskOverDeadline = JSON.parse($("#taskOverDeadline").attr("taskOverDeadline"));
+  var userDisplayName = JSON.parse($("#taskOverDeadline").attr("userDisplayName"));
+
+  var chartData = [["User Name", "Task Over Deadline"]]
+  for (var u in Object.keys(taskOverDeadline)){
+    var key = Object.keys(taskOverDeadline)[u]
+    var cData = [userDisplayName[key], Number(taskOverDeadline[key])];
+    chartData.push(cData);
+  }
+
   google.charts.load("current", { packages: ["corechart"] });
   google.charts.setOnLoadCallback(drawChart);
 
   function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-      ["Task", "Hours per Day"],
-      ["Work", 11],
-      ["Eat", 2],
-      ["Commute", 2],
-      ["Watch TV", 2],
-      ["Sleep", 7],
-    ]);
+    var data = google.visualization.arrayToDataTable(chartData);
 
     var options = {
-      title: "Phân Chia Công Việc",
+      title: "Số Lượng Công Việc Trễ Deadline",
       chartArea: {
         width: 500,
         height: 150
@@ -142,7 +142,7 @@ const loadChartOverDeadline= ()=>{
       height: 260
     };
 
-    var chart = new google.visualization.PieChart(
+    var chart = new google.visualization.BarChart(
       document.getElementById("taskOverDeadline")
     );
 

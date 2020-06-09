@@ -136,6 +136,7 @@ module.exports.updateDescription = async (req, res, next) => {
 	var description = req.body.description;
 	var cardId = req.body.cardId;
 	var displayName = res.locals.user.displayName;
+	var userId = req.signedCookies.userId;
 
 	try {
 		await Card.updateOne({_id: cardId}, {$set: {description: description}});

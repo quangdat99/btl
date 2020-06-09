@@ -22,7 +22,8 @@ module.exports.create = async (req, res)=>{
 		indexsCount: 0,
 		cardId: cardId,
 		status: 0,
-		deadlineTime: -1
+		deadlineTime: -1,
+		userId: -1
 	})
 
 
@@ -211,6 +212,7 @@ module.exports.appoint = async (req, res) => {
 	}
 	
 	var task = await Task.findOne({_id: taskId});
+	await Task.updateOne({_id: taskId}, {$set: {userId: appointedUserId}});
 
 	var displayName = res.locals.user.displayName;
 	var appointedUserName = appointedUser.displayName;

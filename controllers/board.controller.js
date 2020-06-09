@@ -7,7 +7,7 @@ var Recent = require("../models/recent.model");
 var Card = require("../models/card.model");
 var Comment = require('../models/comment.model');
 var History = require('../models/history.model');
-var Index = require('../models/index.model');
+var User_Group = require('../models/user_group.model');
 var Task = require('../models/task.model');
 
 const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
@@ -20,12 +20,29 @@ module.exports.index = async function(req, res){
 	var board = await Board.findOne({_id: boardId})
 	var lists = await List.find({boardId: boardId});
 	var group;
-	if (board.groupId!== '#null'){
+	if (board.boardType == BOARD_TYPE.SHARED){
 		group = await Group.findOne({_id: board.groupId});
+		var user_group = await User_Group.find({groupId: board.groupId});
+		var usersId = user_group.map((ug)=>ug.userId);
+		var users = await User.find({_id: {$in: usersId}});
 	} else {
 		group=0;
+		var users = [res.locals.user];
+	};
+
+
+	var taskDistribution = {};
+	var taskComplement = {};
+	var taskOverDeadline = {};
+	var userDisplayName = {};
+
+	for (var u in users){
+		var uId = users[u]._id;
+		taskDistribution[uId] = 0;
+		taskComplement[uId] = 0;
+		taskOverDeadline[uId] = 0;
+		userDisplayName[uId] = users[u].displayName;
 	}
-	
 
 	var _lists = [];
 	for (var l in lists){
@@ -42,6 +59,22 @@ module.exports.index = async function(req, res){
 			cards[c].commentsCount = comments.length;
 			cards[c].completedTasksCount = completedTasks.length;
 			cards[c].tasksCount = tasks.length;
+
+			var tasks = await Task.find({cardId: cardId});
+			for (var t in tasks){
+				var task = tasks[t];
+				var userId = task.userId;
+				if (!isNaN(taskDistribution[userId])){
+					taskDistribution[userId] ++;
+					var completed = task.status == 1 && task.deadlineTime <= new Date().getTime();
+					if (completed) {
+						taskComplement[userId] ++;
+					var overDeadline = task.status == 0 && task.deadlineTime >= new Date().getTime();
+					if (overDeadline)
+						taskOverDeadline[userId] ++;
+					}
+				}
+			}
 		}
 
 		_lists.push({
@@ -61,10 +94,13 @@ module.exports.index = async function(req, res){
 	board.histories = _histories;
 	res.render('board',{
 		board: board,
-		group: group
+		group: group,
+		taskDistribution: taskDistribution,
+		taskComplement: taskComplement,
+		taskOverDeadline: taskOverDeadline,
+		userDisplayName: userDisplayName
 	});
 
-	// console.log(board);
 	var recents = await Recent.find({userId: userId});
 	if (recents.filter((recent)=>{
 		return (recent.userId == userId && recent.boardId == boardId)
