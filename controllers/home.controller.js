@@ -98,14 +98,21 @@ const getNextDeadlineTime = async (boardId, userId)=>{
 	var tasks = await Task.find({cardId: {$in: cardsId}});
 
 	var nextDeadline = Number.MAX_SAFE_INTEGER
+	var taskTitle = '';
 
 	tasks.forEach((task)=>{
-		if (task.deadlineTime != -1 && task.userId == userId)
+		if (task.deadlineTime != -1 && task.userId == userId){
 			nextDeadline = Math.min(task.deadlineTime, nextDeadline)
+		};
 	});
 
 	if (nextDeadline == Number.MAX_SAFE_INTEGER) 
-		return -1;
-	return 
-		nextDeadline;
+		return {
+			taskTitle: taskTitle,
+			time: -1
+		}
+	return {
+		taskTitle: taskTitle,
+		time: nextDeadline
+	}
 }
