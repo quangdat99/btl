@@ -227,6 +227,8 @@ $(document).ready(function(){
 
     $("#checklist"+cardId).html('');
     $("#hd"+cardId).html('');
+    $("#select"+cardId).html('<option value="Chọn công việc" disabled selected>Chọn công việc</option>');
+
     $.ajax({
       url: "/card/index",
       method: "POST",
@@ -237,17 +239,60 @@ $(document).ready(function(){
         data.card.tasks.forEach(task =>{
           var status;
           if (task.status==1) {status="checked"} else {status ="unchecked"};
+          if (task.deadlineTime >0) {
+            task.deadlineTime= new Date(task.deadlineTime);
+            task.deadlineTime=JSON.stringify(task.deadlineTime);
+            task.deadlineTime = task.deadlineTime.substr(1, task.deadlineTime.length - 6);
+          }
+             else {task.deadlineTime='';
+           };
           if (task.user){
-            $("#checklist"+cardId).append('<div id="task'+task._id+'" class="window-module-title" style="display:block; overflow: hidden;"><div style="display:flex;"><span style="margin-right: 15px;padding: 5px;"><input type="checkbox" '+status+' class="checkbox-task" taskId="'+task._id+'"  id="checkbox'+task._id+'" style="zoom:2"></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84; " taskId="'+task._id+'" value="'+task.title+'" ><a class="delete-task button subtle" taskId="'+task._id+'" taskTitle="'+task.title+'" href="#">X&oacute;a</a></div></div><div style="display: flex;margin-top: 10px;"><a class="button subtle appoint-member" taskId="'+task._id+'" id="chidinh'+task._id+'" href="#" style="float: left; margin-left: 53px;display: none; ">Chỉ định </a><input id="search'+task._id+'" taskId="'+task._id+'" type="text" class=" form-control search-member-group" style="width:200px; display:none; margin-left:53px;"><div  style="float: left;margin-left: 100px;color: #29a3a3; font-weight: 600;" id="result'+task._id+'">'+task.user.displayName+'<span  style="font-size: 14px;font-weight: 400;">&nbsp;đã được chỉ định thực hiện</span> </div></div><ul class="list-group result-search-group" id="result-'+task._id+'" taskId="'+task._id+'"></ul> </div>')
+            $("#checklist"+cardId).append('<div id="task'+task._id+'" class="window-module-title" style="display:block; overflow: hidden;"><div style="display:flex;"><span style="margin-right: 15px;padding: 5px;"><input type="checkbox" '+status+' class="checkbox-task" taskId="'+task._id+'"  id="checkbox'+task._id+'" style="zoom:2"></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84; " taskId="'+task._id+'" value="'+task.title+'" ><a class="delete-task button subtle" taskId="'+task._id+'" taskTitle="'+task.title+'" href="#">X&oacute;a</a></div></div><div style="display: flex;margin-top: 10px;"><a class="button subtle appoint-member" taskId="'+task._id+'" id="chidinh'+task._id+'" href="#" style="float: left; margin-left: 53px;display: none; ">Chỉ định </a><input id="search'+task._id+'" taskId="'+task._id+'" type="text" class=" form-control search-member-group" style="width:200px; display:none; margin-left:53px;"><div  style="float: left;margin-left: 100px;color: #29a3a3; font-weight: 600;" id="result'+task._id+'">'+task.user.displayName+'<span  style="font-size: 14px;font-weight: 400;">&nbsp;đã được chỉ định thực hiện</span> </div></div><div id="dl-display'+task._id+'" style="margin-left: 160px;">'+task.deadlineTime+'</div><ul class="list-group result-search-group" id="result-'+task._id+'" taskId="'+task._id+'"></ul> </div>')
           } else {
-            $("#checklist"+cardId).append('<div id="task'+task._id+'" class="window-module-title" style="display:block; overflow: hidden;"><div style="display:flex;"><span style="margin-right: 15px;padding: 5px;"><input type="checkbox" '+status+' class="checkbox-task" taskId="'+task._id+'"  id="checkbox'+task._id+'" style="zoom:2"></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84; " taskId="'+task._id+'" value="'+task.title+'" ><a class="delete-task button subtle" taskId="'+task._id+'" taskTitle="'+task.title+'" href="#">X&oacute;a</a></div></div><div style="display: flex;margin-top: 10px;"><a class="button subtle appoint-member" taskId="'+task._id+'" id="chidinh'+task._id+'" href="#" style="float: left; margin-left: 53px; color: #777 ">Chỉ định thành viên thực hiện </a><input id="search'+task._id+'" taskId="'+task._id+'" type="text" class=" form-control search-member-group" style="width:200px; display:none; margin-left:53px;"><div id="result'+task._id+'" style="float: left;margin-left: 100px;color: #29a3a3;font-weight: 600;"  id="result'+task._id+'"></div></div><ul class="list-group result-search-group" id="result-'+task._id+'" taskId="'+task._id+'"></ul> </div>')
+            $("#checklist"+cardId).append('<div id="task'+task._id+'" class="window-module-title" style="display:block; overflow: hidden;"><div style="display:flex;"><span style="margin-right: 15px;padding: 5px;"><input type="checkbox" '+status+' class="checkbox-task" taskId="'+task._id+'"  id="checkbox'+task._id+'" style="zoom:2"></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84; " taskId="'+task._id+'" value="'+task.title+'" ><a class="delete-task button subtle" taskId="'+task._id+'" taskTitle="'+task.title+'" href="#">X&oacute;a</a></div></div><div style="display: flex;margin-top: 10px;"><a class="button subtle appoint-member" taskId="'+task._id+'" id="chidinh'+task._id+'" href="#" style="float: left; margin-left: 53px; color: #777 ">Chỉ định thành viên thực hiện </a><input id="search'+task._id+'" taskId="'+task._id+'" type="text" class=" form-control search-member-group" style="width:200px; display:none; margin-left:53px;"><div id="result'+task._id+'" style="float: left;margin-left: 100px;color: #29a3a3;font-weight: 600;"  id="result'+task._id+'"></div></div><div id="dl-display'+task._id+'" style="margin-left: 160px;">'+task.deadlineTime+'</div><ul class="list-group result-search-group" id="result-'+task._id+'" taskId="'+task._id+'"></ul> </div>')
           };
           // if (task.status==1){
           //   $('input#checkbox'+taskId).prop("checked", true);
           // } else {
           //   $('input#checkbox'+taskId).prop("checked", false);
           // }
+          
+
+          $("#select"+cardId).append('<option class="option-task"  value='+task._id+'> '+task.title+'</option>')
+
         });
+        addEventRenameTask();
+        addEventDeleteTask();
+        // deadline
+        $("#select"+cardId).on('change',function(){
+          var taskId = $(this).val();
+          console.log(taskId);
+          var deadlineTime = Date.parse($("#dl-input"+cardId).val());
+          console.log(deadlineTime);
+          // deadlineTime = Date.parse(deadlineTime);
+          // console.log(deadlineTime);
+          
+          $.ajax({
+            url: "/task/setDeadlineTime",
+            method: "POST",
+            dataType: "json",
+            data: {taskId: taskId, deadlineTime: deadlineTime},
+            success: function(data){
+              console.log(data);
+              var task = data.task;
+              task.deadlineTime= new Date(task.deadlineTime);
+              task.deadlineTime=JSON.stringify(task.deadlineTime);
+              task.deadlineTime = task.deadlineTime.substr(1, task.deadlineTime.length - 6);
+              $("#dl-display"+taskId).text('');
+              $("#dl-display"+taskId).text(task.deadlineTime);
+
+            }
+          });
+          // $(this).val('Chọn công việc');
+
+
+        })
+
         // update checkbox task
         $("input.checkbox-task").click(function(){
           var taskId =$(this).attr("taskId");
@@ -325,7 +370,13 @@ $(document).ready(function(){
             $('input.search-member-group').val('');
             var userId=($(this).attr('userId'));
             var groupId=($('#groupId').attr('groupId'));
-
+            
+            if (poolTask[taskId] === true){
+              return;
+            }
+            else {
+              poolTask[taskId] = true;
+            };
             
             $.ajax({
               url: "/task/appoint",
@@ -343,6 +394,9 @@ $(document).ready(function(){
           });
         });
 
+        //deadline Task
+
+
 
         for(var i=data.card.histories.length-1; i>=0; i--){
           var date = new Date(data.card.histories[i].timeCreated);
@@ -358,8 +412,7 @@ $(document).ready(function(){
 
 
 
-        addEventRenameTask();
-        addEventDeleteTask();
+
       }
     })
 
@@ -372,6 +425,7 @@ $(document).ready(function(){
     var title = $('input#themviec'+cardId).val();
     $('span#tasksCount'+cardId).text(Number($('span#tasksCount'+cardId).text())+1);
     console.log(cardId);
+
     $.ajax({
       url: "/task/create",
       method: "POST",
@@ -381,11 +435,41 @@ $(document).ready(function(){
         var task=data.task;
         var status;
         if (task.status==1) {status="checked"} else {status ="unchecked"};
-        $("#checklist"+cardId).append('<div id="task'+task._id+'" class="window-module-title" style="display:block; overflow: hidden;"><div style="display:flex;"><span style="margin-right: 15px;padding: 5px;"><input type="checkbox" '+status+' taskId="'+task._id+'" class="checkbox-task" id="checkbox'+task._id+'" style="zoom:2"></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84; " taskId="'+task._id+'" value="'+task.title+'" ><a class="delete-task button subtle" taskId="'+task._id+'" taskTitle="'+task.title+'" href="#">X&oacute;a</a></div></div><div style="display: flex;margin-top: 10px;"><a class="button subtle appoint-member" taskId="'+task._id+'" id="chidinh'+task._id+'" href="#" style="float: left; margin-left: 53px; color: #777 ">Chỉ định thành viên thực hiện </a><input id="search'+task._id+'" taskId="'+task._id+'" type="text" class=" form-control search-member-group" style="width:200px; display:none; margin-left:53px;"><div id="result'+task._id+'" style="float: left;margin-left: 100px;color: #29a3a3; font-weight: 600;"  id="result'+task._id+'"></div></div><ul class="list-group result-search-group" id="result-'+task._id+'" taskId="'+task._id+'"></ul> </div>')
+        if (task.deadlineTime >0) {
+            task.deadlineTime= new Date(task.deadlineTime);
+            task.deadlineTime=JSON.stringify(task.deadlineTime);
+            task.deadlineTime = task.deadlineTime.substr(1, task.deadlineTime.length - 6);
+          }
+             else {task.deadlineTime='';
+           };
+        $("#checklist"+cardId).append('<div id="task'+task._id+'" class="window-module-title" style="display:block; overflow: hidden;"><div style="display:flex;"><span style="margin-right: 15px;padding: 5px;"><input type="checkbox" '+status+' taskId="'+task._id+'" class="checkbox-task" id="checkbox'+task._id+'" style="zoom:2"></span><div class="editable checklist-title"><input class="title-task mod-card-back-title " dir="auto" style="overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84; " taskId="'+task._id+'" value="'+task.title+'" ><a class="delete-task button subtle" taskId="'+task._id+'" taskTitle="'+task.title+'" href="#">X&oacute;a</a></div></div><div style="display: flex;margin-top: 10px;"><a class="button subtle appoint-member" taskId="'+task._id+'" id="chidinh'+task._id+'" href="#" style="float: left; margin-left: 53px; color: #777 ">Chỉ định thành viên thực hiện </a><input id="search'+task._id+'" taskId="'+task._id+'" type="text" class=" form-control search-member-group" style="width:200px; display:none; margin-left:53px;"><div id="result'+task._id+'" style="float: left;margin-left: 100px;color: #29a3a3; font-weight: 600;"  id="result'+task._id+'"></div></div><div id="dl-display'+task._id+'" style="margin-left: 160px;">'+task.deadlineTime+'</div><ul class="list-group result-search-group" id="result-'+task._id+'" taskId="'+task._id+'"></ul> </div>')
         
         addEventRenameTask();
         addEventDeleteTask();
+        $("#select"+cardId).append('<option class="option-task"  value='+task._id+'> '+task.title+'</option>');
 
+        // deadline
+        $("#select"+cardId).on('change',function(){
+          var taskId = $(this).val();
+          console.log(taskId);
+          var deadlineTime = $("#dl-input"+cardId).val();
+          deadlineTime = Date.parse(deadlineTime);
+          console.log(deadlineTime);
+          $.ajax({
+            url: "/task/setDeadlineTime",
+            method: "POST",
+            dataType: "json",
+            data: {taskId: taskId, deadlineTime: deadlineTime},
+            success: function(data){
+              console.log(data);
+              $("#dl-display"+taskId).html('');
+              $("#dl-display"+taskId).append(new Date(data.task.deadlineTime))
+
+            }
+          });
+          $(this).val('Chọn công việc');
+
+        })
 
         // update checkbox task
         $("input.checkbox-task").click(function(){
@@ -407,7 +491,7 @@ $(document).ready(function(){
           } else {
             $("#cpl"+cardId).css({"background-color":"","color":"","padding":""});
           }
-          
+
           $.ajax({
             url: "/task/toggleStatus",
             method: "POST",

@@ -139,11 +139,12 @@ html
         .dropdown
           button(type='button' data-toggle="dropdown")
             i.far.fa-bell &nbsp; Thông báo
-          .dropdown-menu.dropdown-menu-right(style="height: 800px;width: 500px;overflow-x: hidden;")
+          .dropdown-menu.dropdown-menu-right(style="height: 800px;width: 600px;overflow-x: hidden;")
             p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 10px;')      Thông báo 
             if histories
-              each _his in histories 
-                a.dropdown-item.thongbao(href='/board/'+_his.boardId)= _his.header
+              //- each _his in histories 
+              -for ( var i=histories.length-1; i>=0; i--)
+                a.dropdown-item.thongbao(href='/board/'+histories[i].boardId)= histories[i].header
                 hr
            
         .dropdown

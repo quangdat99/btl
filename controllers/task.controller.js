@@ -248,9 +248,10 @@ module.exports.setDeadlineTime = async (req, res)=>{
 	var userId = req.signedCookies.userId;
 	var taskId = req.body.taskId;
 	var deadlineTime = req.body.deadlineTime;
-
+		deadlineTime = Number(deadlineTime);
+		console.log(req.body);
 	var task = await Task.findOne({_id: taskId});
-	var task = await Task.updateOne({_id: taskId}, {$set: {deadlineTime: deadlineTime}});
+				await Task.updateOne({_id: taskId}, {$set: {deadlineTime: deadlineTime}});
 	
 	var displayName = res.locals.user.displayName;
 	var card = await Card.findOne({_id: task.cardId});

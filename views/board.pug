@@ -180,25 +180,7 @@ block header
                                         .editable.checklist-title
                                           input.title-list.mod-card-back-title(dir='auto' value=_list.title style='overflow: hidden; overflow-wrap: break-word; height: 32px;width: 90%;color: #5e6c84;' listId=_list._id)
                                           a(href='#').button.subtle Xóa
-                                      //- .checklist-progress
-                                      //-   span.checklist-progress-percentage 0%
-                                      //-   .checklist-progress-bar
-                                      //-     .checklist-progress-bar-current
-                                      //- .checklist-items-list.custom-control.custom-checkbox
-                                      //-   input.customCheck.custom-control-input(type='checkbox')
-                                      //-   label.custom-control-label(for="customCheck")
-                                      //-   p(href="#").checklist-item work 1
-                                      //-     a(href='#').button.subtla 
-                                      //-       i.fas.fa-times
-                                      //- .checklist-new-item
-                                      //-   a#themm.button.subtle(href="#" style
-                                      //-   ="float: left; margin-left: 53px; margin-top: 10px") Thêm một mục 
-                                      //-   .description-editt(style="margin-left: 53px; display:none;")
-                                      //-     textarea.form-control(type="text" name="" autocomplete="off" dir="auto" placeholder="Thêm mô tả chi tiết hơn... ")
-                                      //-     .list-add-controls
-                                      //-       input.primary(type="submit" value="Lưu")
-                                      //-       a#xxy(href="#" style="padding: 8px;")
-                                      //-         i.fas.fa-times
+
                                   .window-module(style='margin-top:20px')
                                     .window-module-title
                                       span(style='margin-right:15px;padding: 5px; color: #777; margin-left: 10px;')
@@ -235,14 +217,14 @@ block header
                                     .dropdown(id="dl"+_card._id)
                                       a.button-link(type='button' data-toggle="dropdown")
                                         i.fas.fa-clock(style='font-size: 18;font-weight: 400;') &nbsp; Ngày hết hạn
-                                      .dropdown-menu.dropdown-menu-left(style='color=#003333; width: 400px; padding: 10px;')
+                                      .dropdown-menu.dropdown-menu-left(style='color=#003333; width: 400px; height:400px; padding: 10px;')
                                         h5(style="text-align: center; color: #666;") Thêm Deadline Việc cần làm
                                         hr
                                         .form-group(id="deadline"+_card._id)
-                                          input#example-datetime-local-input.form-control(type='datetime-local', value='2011-08-19T13:45:00')
+                                          input.form-control(type='datetime-local', value='2011-08-19T13:45:00' name="deadlineTime" id="dl-input"+_card._id)
                                           hr
-                                          select.browser-default.custom-select(name='groupId') Nhóm 
-                                            option(selected='' value _group._id)  _group.title
+                                          select.browser-default.custom-select.custom-select-lg.mb-3(name='taskId' id="select"+_card._id ) task
+                                            //- option(disabled selected)  Chọn công việc 
                                     
                                                                      
                               
