@@ -193,6 +193,7 @@ module.exports.changeBackground = async (req, res) =>{
 
 	try {
 		await Board.updateOne({_id: boardId}, {$set: {image: imgUrl}});
+		await Recent.updateOne({boardId: boardId}, {$set: {image: imgUrl}});
 		res.send({result: "success"});
 	}
 	catch (e) {
