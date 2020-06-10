@@ -289,12 +289,12 @@ $(document).ready(function(){
             success: function(data){
               console.log(data);
               var task = data.task;
-              task.deadlineTime= new Date(task.deadlineTime);
-              task.deadlineTime=JSON.stringify(task.deadlineTime);
-              task.deadlineTime = task.deadlineTime.substr(1, task.deadlineTime.length - 6);
+              // task.deadlineTime= new Date(task.deadlineTime);
+              // task.deadlineTime=JSON.stringify(task.deadlineTime);
+              // task.deadlineTime = task.deadlineTime.substr(1, task.deadlineTime.length - 6);
               $("#dl-display"+taskId).text('');
               $("#dl-display"+taskId).text(task.deadlineTime);
-              console.log($("#dl-display"+taskId).text());
+              // console.log($("#dl-display"+taskId).text());
 
             }
           });

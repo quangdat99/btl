@@ -252,7 +252,7 @@ module.exports.setDeadlineTime = async (req, res)=>{
 		console.log(req.body);
 	var task = await Task.findOne({_id: taskId});
 				await Task.updateOne({_id: taskId}, {$set: {deadlineTime: deadlineTime}});
-	
+	console.log(task);
 	var displayName = res.locals.user.displayName;
 	var card = await Card.findOne({_id: task.cardId});
 	var list = await List.findOne({_id: card.listId})
