@@ -159,6 +159,7 @@ module.exports.toggleStatus = async (req, res)=>{
 
 	var task = await Task.findOne({_id: taskId});
 	await Task.updateOne({_id: taskId}, {$set: {status: (task.status + 1)%2}});
+	var task = await Task.findOne({_id: taskId});
 
 	var displayName = res.locals.user.displayName;
 	var card = await Card.findOne({_id: task.cardId});
@@ -252,6 +253,7 @@ module.exports.setDeadlineTime = async (req, res)=>{
 		console.log(req.body);
 	var task = await Task.findOne({_id: taskId});
 				await Task.updateOne({_id: taskId}, {$set: {deadlineTime: deadlineTime}});
+	var task = await Task.findOne({_id: taskId});
 	console.log(task);
 	var displayName = res.locals.user.displayName;
 	var card = await Card.findOne({_id: task.cardId});

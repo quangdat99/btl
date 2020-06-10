@@ -265,7 +265,7 @@ $(document).ready(function(){
         addEventRenameTask();
         addEventDeleteTask();
         // deadline
-        $("#select"+cardId).on('change',function(){
+        $("#select"+cardId).on('click',function(){
           var taskId = $(this).val();
           console.log(taskId);
           var deadlineTime = Date.parse($("#dl-input"+cardId).val());
@@ -274,12 +274,12 @@ $(document).ready(function(){
           // console.log(deadlineTime);
           
           var keyD = taskId.toString().trim() + "_" + deadlineTime.toString().trim();
-          if (poolDeadline[keyD] === true){
-            return;
-          }
-          else {
-            poolDeadline[keyD] = true;
-          }
+          // if (poolDeadline[keyD] === true){
+          //   return;
+          // }
+          // else {
+          //   poolDeadline[keyD] = true;
+          // }
           
           $.ajax({
             url: "/task/setDeadlineTime",
@@ -289,12 +289,11 @@ $(document).ready(function(){
             success: function(data){
               console.log(data);
               var task = data.task;
-              // task.deadlineTime= new Date(task.deadlineTime);
-              // task.deadlineTime=JSON.stringify(task.deadlineTime);
-              // task.deadlineTime = task.deadlineTime.substr(1, task.deadlineTime.length - 6);
+              var dead= new Date(task.deadlineTime);
+              var de=JSON.stringify(dead);
+              var d = de.substr(1, de.length - 6);
               $("#dl-display"+taskId).text('');
-              $("#dl-display"+taskId).text(task.deadlineTime);
-              // console.log($("#dl-display"+taskId).text());
+              $("#dl-display"+taskId).text(d);
 
             }
           });
@@ -459,7 +458,7 @@ $(document).ready(function(){
         $("#select"+cardId).append('<option class="option-task"  value='+task._id+'> '+task.title+'</option>');
 
         // deadline
-        $("#select"+cardId).on('change',function(){
+        $("#select"+cardId).on('click',function(){
           var taskId = $(this).val();
           console.log(taskId);
           var deadlineTime = $("#dl-input"+cardId).val();
@@ -472,8 +471,12 @@ $(document).ready(function(){
             data: {taskId: taskId, deadlineTime: deadlineTime},
             success: function(data){
               console.log(data);
-              $("#dl-display"+taskId).html('');
-              $("#dl-display"+taskId).append(new Date(data.task.deadlineTime))
+              var task = data.task;
+              var dead= new Date(task.deadlineTime);
+              var de=JSON.stringify(dead);
+              var d = de.substr(1, de.length - 6);
+              $("#dl-display"+taskId).text('');
+              $("#dl-display"+taskId).text(d);
 
             }
           });
