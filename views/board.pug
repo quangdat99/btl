@@ -120,11 +120,17 @@ block header
                     a.card-name(id="card-name"+_card._id href="" data-toggle="modal" data-target="#the"+_card._id cardId=_card._id boardId=board._id)= _card.title
                       .check-comment
                         i.far.fa-comment &nbsp; 
-                          span= _card.commentsCount
-                        i.far.fa-check-square &nbsp;
-                          span= _card.completedTasksCount
-                          span /
-                          span= _card.tasksCount
+                          span(id='comm'+_card._id)= _card.commentsCount
+                        if (_card.completedTasksCount == _card.tasksCount && _card.tasksCount != 0)
+                          i.far.fa-check-square(style="background-color: #61bd4f; color: #fff; padding: 5px;" id="cpl"+_card._id) &nbsp;
+                            span(id='comple'+_card._id)= _card.completedTasksCount
+                            span /
+                            span(id='tasksCount'+_card._id)= _card.tasksCount
+                        else
+                          i.far.fa-check-square(id="cpl"+_card._id) &nbsp;
+                            span(id='comple'+_card._id)= _card.completedTasksCount
+                            span /
+                            span(id='tasksCount'+_card._id)= _card.tasksCount
                         
 
                     .modal.fade(id="the"+_card._id)
@@ -227,8 +233,14 @@ block header
                                       a.button-link
                                         i.far.fa-user(style='font-size: 18;font-weight: 400;') &nbsp; Thành viên 
                                     .dropdown
-                                      a.button-link
+                                      a.button-link(type='button' data-toggle="dropdown")
                                         i.fas.fa-clock(style='font-size: 18;font-weight: 400;') &nbsp; Ngày hết hạn
+                                      .dropdown-menu.dropdown-menu-left(style='color=#003333; width: 300px; padding: 10px;')
+                                        h6(style="text-align: center; color: #666;") Thêm danh sách công việc
+                                        input.vieccanlam.form-control(id="themviec"+_card._id  placeholder='Việc cần làm')
+                                        br
+                                        button.themcongviec.btn.btn-success(type="button" style='float: right; margin: 8px;' cardId=_card._id) Thêm 
+
 
                              
                               
