@@ -56,8 +56,8 @@ block header
             div(style='padding: 5px;color: #777;margin-bottom: 5px;')
               i.fas.fa-tasks &nbsp; Hoạt động 
             .hoat-dong-boardId(id="hd"+board._id)
-              if board.histories
-                -for (var i = board.histories.length -1; i>=0; i--)
+              if histories
+                -for (var i = histories.length -1; i>=0; i--)
                   .js-menu-action-list
                     .phenom
                       .phenom-creator
@@ -65,10 +65,10 @@ block header
                           span.member-initials
                             i.far.fa-user 
                       .phenom-desc
-                        span.inline-member= board.histories[i].header
-                        div(style="color:#777;")= board.histories[i].content
+                        span.inline-member= histories[i].header
+                        div(style="color:#777;")= histories[i].content
                         -
-                          var date = new Date(board.histories[i].timeCreated)
+                          var date = new Date(histories[i].timeCreated)
                         -
                           var day = date.getDate()
                         -
@@ -87,12 +87,13 @@ block header
                         span=year+" "
                         span=hour+":"
                         span=minute+":"
-                        span=second
+                        span=second 
+                        span &nbsp;
 
       .dropdown.right(style='float: right;')
         button.board-header-btn(type='button' data-toggle="dropdown")
           i.fas.fa-chart-bar &nbsp; Thống Kê
-        .dropdown-menu.dropdown-menu-right(style='color:#003333; width: 500px; height: 900px; padding: 15px; overflow: auto;')
+        .dropdown-menu.dropdown-menu-right(style='color:#003333; width: 550px; height: 900px; padding: 15px; overflow: auto;')
           p(style='text-align:center; margin: 0px; padding: 5px;')     THỐNG KÊ 
           div#taskDistribution(style='width: 500px; height: 260px ; margin-top : 12px' taskDistribution=taskDistribution taskComplement=taskComplement taskOverDeadline=taskOverDeadline userDisplayName=userDisplayName)
           div#taskComplement(style='width: 500px; height: 260px ; margin-top : 12px' taskDistribution=taskDistribution taskComplement=taskComplement taskOverDeadline=taskOverDeadline userDisplayName=userDisplayName)

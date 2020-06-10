@@ -91,7 +91,7 @@ module.exports.index = async function(req, res){
 	board = JSON.parse(JSON.stringify(board));
 	board.lists = _lists;
 
-
+	// console.log(histories);
 
 	res.render('board',{
 		board: board,
