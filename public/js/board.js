@@ -219,6 +219,7 @@ $(document).ready(function(){
   })
 
   //index card
+  var poolDeadline = {};
   
   $("a.card-name").click(function(){
     var cardId = $(this).attr('cardId');
@@ -271,6 +272,14 @@ $(document).ready(function(){
           console.log(deadlineTime);
           // deadlineTime = Date.parse(deadlineTime);
           // console.log(deadlineTime);
+          
+          var keyD = taskId + "_" + deadlineTime;
+          if (poolDeadline[keyD] === true){
+            return;
+          }
+          else {
+            poolDeadline[keyD] = true;
+          }
           
           $.ajax({
             url: "/task/setDeadlineTime",
