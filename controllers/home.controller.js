@@ -18,6 +18,7 @@ module.exports.index = async function(req, res){
 	var privateBoardsId = privateBoards.map((board)=>{
 		return board._id;
 	});
+	privateBoards = JSON.parse(JSON.stringify(privateBoards));
 	for (var b in privateBoards){
 		var nextDeadline = await getNextDeadlineTime(privateBoards[b]._id);
 		privateBoards[b].nextDeadline = nextDeadline;
