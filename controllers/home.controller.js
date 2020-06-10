@@ -20,7 +20,7 @@ module.exports.index = async function(req, res){
 	});
 	privateBoards = JSON.parse(JSON.stringify(privateBoards));
 	for (var b in privateBoards){
-		var nextDeadline = await getNextDeadlineTime(privateBoards[b]._id);
+		var nextDeadline = await getNextDeadlineTime(privateBoards[b]._id, userId);
 		privateBoards[b].nextDeadline = nextDeadline;
 	}
 
@@ -42,7 +42,7 @@ module.exports.index = async function(req, res){
 
 		boards = JSON.parse(JSON.stringify(boards));
 		for (var b in boards){
-			var nextDeadline = await getNextDeadlineTime(boards[b]._id);
+			var nextDeadline = await getNextDeadlineTime(boards[b]._id, userId);
 			boards[b].nextDeadline = nextDeadline;
 		}
 
@@ -87,7 +87,7 @@ module.exports.index = async function(req, res){
 
 
 
-const getNextDeadlineTime = async (boardId)=>{
+const getNextDeadlineTime = async (boardId, userId)=>{
 	var lists = await List.find({boardId: boardId});
 	var listsId = lists.map((list)=>list._id);
 	var cards = await Card.find({listId: {$in: listsId}});
@@ -98,7 +98,7 @@ const getNextDeadlineTime = async (boardId)=>{
 	var nextDeadline = Number.MAX_SAFE_INTEGER
 
 	tasks.forEach((task)=>{
-		if (task.deadlineTime != -1)
+		if (task.deadlineTime != -1 && task.userId == userId)
 			nextDeadline = Math.min(task.deadlineTime, nextDeadline)
 	});
 
