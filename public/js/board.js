@@ -285,6 +285,7 @@ $(document).ready(function(){
               task.deadlineTime = task.deadlineTime.substr(1, task.deadlineTime.length - 6);
               $("#dl-display"+taskId).text('');
               $("#dl-display"+taskId).text(task.deadlineTime);
+              console.log($("#dl-display"+taskId).text());
 
             }
           });
