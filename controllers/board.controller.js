@@ -91,15 +91,16 @@ module.exports.index = async function(req, res){
 	board = JSON.parse(JSON.stringify(board));
 	board.lists = _lists;
 
-	board.histories = _histories;
-	console.log(board.lists[0].cards);
+
+
 	res.render('board',{
 		board: board,
 		group: group,
 		taskDistribution: taskDistribution,
 		taskComplement: taskComplement,
 		taskOverDeadline: taskOverDeadline,
-		userDisplayName: userDisplayName
+		userDisplayName: userDisplayName,
+		histories: _histories
 	});
 
 	var recents = await Recent.find({userId: userId});

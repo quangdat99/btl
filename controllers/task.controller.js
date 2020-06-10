@@ -155,14 +155,16 @@ module.exports.toggleStatus = async (req, res)=>{
 	var userId = req.signedCookies.userId;
 	var taskId = req.body.taskId;
 
+	console.log(task);
+
 	var task = await Task.findOne({_id: taskId});
-			 await Task.updateOne({_id: taskId}, {$set: {status: (task.status + 1)%2}});
+	await Task.updateOne({_id: taskId}, {$set: {status: (task.status + 1)%2}});
 
 	var displayName = res.locals.user.displayName;
 	var card = await Card.findOne({_id: task.cardId});
 	var list = await List.findOne({_id: card.listId})
 
-	var header = displayName  + " đã đổi trạng thái công việc \"" + task.title + "\" sang " + (task.status == 1 ? "Hoàn Thành" : "Chưa Hoàn Thành") + " trong thẻ \"" + card.title + "\" của danh sách \"" + list.title + "\"";
+	var header = displayName  + " đã đổi trạng thái công việc \"" + task.title + "\" sang " + (task.status == 0 ? "Hoàn Thành" : "Chưa Hoàn Thành") + " trong thẻ \"" + card.title + "\" của danh sách \"" + list.title + "\"";
 
 	try {
 		res.send({task: task, header: header});
