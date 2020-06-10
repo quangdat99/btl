@@ -273,7 +273,7 @@ $(document).ready(function(){
           // deadlineTime = Date.parse(deadlineTime);
           // console.log(deadlineTime);
           
-          var keyD = taskId + "_" + deadlineTime;
+          var keyD = taskId.toString().trim() + "_" + deadlineTime.toString().trim();
           if (poolDeadline[keyD] === true){
             return;
           }
