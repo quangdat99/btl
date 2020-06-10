@@ -232,17 +232,19 @@ block header
                                     .dropdown
                                       a.button-link
                                         i.far.fa-user(style='font-size: 18;font-weight: 400;') &nbsp; Thành viên 
-                                    .dropdown
+                                    .dropdown(id="dl"+_card._id)
                                       a.button-link(type='button' data-toggle="dropdown")
                                         i.fas.fa-clock(style='font-size: 18;font-weight: 400;') &nbsp; Ngày hết hạn
-                                      .dropdown-menu.dropdown-menu-left(style='color=#003333; width: 300px; padding: 10px;')
-                                        h6(style="text-align: center; color: #666;") Thêm danh sách công việc
-                                        input.vieccanlam.form-control(id="themviec"+_card._id  placeholder='Việc cần làm')
-                                        br
-                                        button.themcongviec.btn.btn-success(type="button" style='float: right; margin: 8px;' cardId=_card._id) Thêm 
-
-
-                             
+                                      .dropdown-menu.dropdown-menu-left(style='color=#003333; width: 400px; padding: 10px;')
+                                        h5(style="text-align: center; color: #666;") Thêm Deadline Việc cần làm
+                                        hr
+                                        .form-group(id="deadline"+_card._id)
+                                          input#example-datetime-local-input.form-control(type='datetime-local', value='2011-08-19T13:45:00')
+                                          hr
+                                          select.browser-default.custom-select(name='groupId') Nhóm 
+                                            option(selected='' value _group._id)  _group.title
+                                    
+                                                                     
                               
 
                      

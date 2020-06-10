@@ -92,6 +92,7 @@ module.exports.index = async function(req, res){
 	board.lists = _lists;
 
 	board.histories = _histories;
+	console.log(board.lists[0].cards);
 	res.render('board',{
 		board: board,
 		group: group,
