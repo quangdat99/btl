@@ -118,7 +118,8 @@ block header
               .list-card(id="list-card"+_list._id)
                 if _list.cards
                   each _card in _list.cards
-                    a.card-name(id="card-name"+_card._id href="" data-toggle="modal" data-target="#the"+_card._id cardId=_card._id boardId=board._id)= _card.title
+                    a.card-name( href="" data-toggle="modal" data-target="#the"+_card._id cardId=_card._id boardId=board._id)
+                      span(id="card-name"+_card._id)= _card.title
                       .check-comment
                         i.far.fa-comment &nbsp; 
                           span(id='comm'+_card._id)= _card.commentsCount

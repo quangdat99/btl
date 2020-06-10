@@ -78,7 +78,7 @@ module.exports.index = async function(req, res){
 	recents = recents.slice(0, slicer);
 
 	// console.log(groups.boards);
-	// console.log(privateBoards);
+	console.log(privateBoards);
 	res.render('home',{
 		privateBoards: privateBoards,
 		recents:recents,

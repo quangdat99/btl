@@ -617,7 +617,7 @@ $(document).ready(function(){
         valuee = value;
         $(this).val(valuee);
       }
-      $("a#card-name"+cardId).text(valuee);
+      $("span#card-name"+cardId).text(valuee);
       if(valuee!==value){
         $.ajax({
           url: "/card/rename",

@@ -125,7 +125,10 @@ block header
           i.fas.fa-user  &nbsp; Bảng cá nhân
         if privateBoards 
           each _board in privateBoards  
-            a(href="/board/"+_board._id style='background-image:url('+_board.image+')')=_board.title 
+            if  (_board.nextDeadline.taskTitle !="" && _board.nextDeadline.time !=-1)
+              a(href="/board/"+_board._id style='background-image:url('+_board.image+')'  title=_board.nextDeadline.taskTitle +" sẽ hết hạn vào "+_board.nextDeadline.time )=_board.title 
+            else 
+              a(href="/board/"+_board._id style='background-image:url('+_board.image+')')=_board.title
               
         a.new(href="#" data-toggle="modal" data-target="#taobang")  Tạo bảng mới
         p
@@ -135,7 +138,11 @@ block header
               span= _group.title 
             br
             each _board in _group.boards 
-              a(href="/board/"+_board._id style='background-image:url('+_board.image+')')=_board.title
+              if  (_board.nextDeadline.taskTitle !="" && _board.nextDeadline.time !=-1)
+                a(href="/board/"+_board._id style='background-image:url('+_board.image+')'  title=_board.nextDeadline.taskTitle +" sẽ hết hạn vào "+_board.nextDeadline.time )=_board.title 
+              else 
+                a(href="/board/"+_board._id style='background-image:url('+_board.image+')')=_board.title
+     
             a.new(href="#" data-toggle="modal" data-target="#taobangnhom"+_group._id)  Tạo bảng mới
             br
             div(id="taobangnhom"+_group._id).modal.fade
@@ -153,4 +160,8 @@ block header
              
                       button.btn.btn-info(style='float: right;margin-top:10px;') Tạo bảng   
 
+  script.
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+    });
       

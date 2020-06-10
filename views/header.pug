@@ -144,7 +144,7 @@ html
             if histories
               //- each _his in histories 
               -for ( var i=histories.length-1; i>=0; i--)
-                a.dropdown-item.thongbao(href='/board/'+histories[i].boardId)= histories[i].header
+                a.thongbao(style="padding:15px; display: block;" href='/board/'+histories[i].boardId)= histories[i].header
                 hr
            
         .dropdown
