@@ -1,0 +1,11 @@
+{"_id":{"$oid":"5ee1d7cdb034f539ac04fc21"},"title":"Bài Tập Tuần","description":"Kế hoạch thực hiện bài tập tuần được lưu ở đây","deadlineTime":"-1","listId":"5ee1d7b1b034f539ac04fc1b","__v":0}
+{"_id":{"$oid":"5ee1d7d5b034f539ac04fc23"},"title":"Bài Tập Lớn","description":"","deadlineTime":"-1","listId":"5ee1d7b1b034f539ac04fc1b","__v":0}
+{"_id":{"$oid":"5ee1d7e6b034f539ac04fc25"},"title":"Ôn Thi Cuối Kì","description":"","deadlineTime":"-1","listId":"5ee1d7b1b034f539ac04fc1b","__v":0}
+{"_id":{"$oid":"5ee1d88cb034f539ac04fc31"},"title":"Nhận Đề Tài","description":"","deadlineTime":"-1","listId":"5ee1d87eb034f539ac04fc2f","__v":0}
+{"_id":{"$oid":"5ee1d895b034f539ac04fc33"},"title":"Liên Hệ Giảng Viên","description":"","deadlineTime":"-1","listId":"5ee1d87eb034f539ac04fc2f","__v":0}
+{"_id":{"$oid":"5ee1d8b9b034f539ac04fc35"},"title":"Tìm Hiểu Các Nghiên Cứu","description":"","deadlineTime":"-1","listId":"5ee1d87eb034f539ac04fc2f","__v":0}
+{"_id":{"$oid":"5ee1daa4b034f539ac04fc50"},"title":"Tìm Kiếm Đề Tài","description":"Chọn 1 đề tài lập trình trang web","deadlineTime":"-1","listId":"5ee1da6db034f539ac04fc48","__v":0}
+{"_id":{"$oid":"5ee1dac5b034f539ac04fc52"},"title":"Code trước các Module cần dùng","description":"","deadlineTime":"-1","listId":"5ee1da6db034f539ac04fc48","__v":0}
+{"_id":{"$oid":"5ee1db35b034f539ac04fc5d"},"title":"Phân Tích, Thiết Kế","description":"","deadlineTime":"-1","listId":"5ee1da78b034f539ac04fc4a","__v":0}
+{"_id":{"$oid":"5ee1db92b034f539ac04fc66"},"title":"Lập Trình","description":"","deadlineTime":"-1","listId":"5ee1da81b034f539ac04fc4c","__v":0}
+{"_id":{"$oid":"5ee1dbd3b034f539ac04fc6e"},"title":"Kiểm Thử","description":"","deadlineTime":"-1","listId":"5ee1da88b034f539ac04fc4e","__v":0}

@@ -1,0 +1,16 @@
+{"_id":{"$oid":"5ee1d839b034f539ac04fc29"},"title":"Bài Tập Tuần 1","completedIndexsCount":0,"indexsCount":0,"cardId":"5ee1d7cdb034f539ac04fc21","status":0,"deadlineTime":-1,"userId":"-1","__v":0}
+{"_id":{"$oid":"5ee1d843b034f539ac04fc2b"},"title":"Bài Tập Tuần 2","completedIndexsCount":0,"indexsCount":0,"cardId":"5ee1d7cdb034f539ac04fc21","status":0,"deadlineTime":-1,"userId":"-1","__v":0}
+{"_id":{"$oid":"5ee1d850b034f539ac04fc2d"},"title":"Bài Tập Tuần 3","completedIndexsCount":0,"indexsCount":0,"cardId":"5ee1d7cdb034f539ac04fc21","status":0,"deadlineTime":-1,"userId":"-1","__v":0}
+{"_id":{"$oid":"5ee1dad2b034f539ac04fc54"},"title":"Chọn đề tài cho nhóm","completedIndexsCount":0,"indexsCount":0,"cardId":"5ee1daa4b034f539ac04fc50","status":0,"deadlineTime":-1,"userId":"-1","__v":0}
+{"_id":{"$oid":"5ee1db03b034f539ac04fc57"},"title":"Khởi tạo Project","completedIndexsCount":0,"indexsCount":0,"cardId":"5ee1dac5b034f539ac04fc52","status":0,"deadlineTime":-1,"userId":"-1","__v":0}
+{"_id":{"$oid":"5ee1db12b034f539ac04fc59"},"title":"Code Đăng Nhập","completedIndexsCount":0,"indexsCount":0,"cardId":"5ee1dac5b034f539ac04fc52","status":0,"deadlineTime":-1,"userId":"-1","__v":0}
+{"_id":{"$oid":"5ee1db20b034f539ac04fc5b"},"title":"Kết Nối Data Base","completedIndexsCount":0,"indexsCount":0,"cardId":"5ee1dac5b034f539ac04fc52","status":0,"deadlineTime":-1,"userId":"-1","__v":0}
+{"_id":{"$oid":"5ee1db4db034f539ac04fc5f"},"title":"Phân Tích Chức Năng","completedIndexsCount":0,"indexsCount":0,"cardId":"5ee1db35b034f539ac04fc5d","status":0,"deadlineTime":-1,"userId":"-1","__v":0}
+{"_id":{"$oid":"5ee1db57b034f539ac04fc61"},"title":"Phân Tích Cơ Sở Dữ Liệu","completedIndexsCount":0,"indexsCount":0,"cardId":"5ee1db35b034f539ac04fc5d","status":0,"deadlineTime":-1,"userId":"-1","__v":0}
+{"_id":{"$oid":"5ee1db64b034f539ac04fc63"},"title":"Thiết Kế CSDL","completedIndexsCount":0,"indexsCount":0,"cardId":"5ee1db35b034f539ac04fc5d","status":0,"deadlineTime":-1,"userId":"-1","__v":0}
+{"_id":{"$oid":"5ee1dba5b034f539ac04fc68"},"title":"Chức Năng Đăng Nhập - Đăng Kí","completedIndexsCount":0,"indexsCount":0,"cardId":"5ee1db92b034f539ac04fc66","status":0,"deadlineTime":-1,"userId":"-1","__v":0}
+{"_id":{"$oid":"5ee1dbb3b034f539ac04fc6a"},"title":"Chức Năng Tạo Nhóm + Tạo Bảng","completedIndexsCount":0,"indexsCount":0,"cardId":"5ee1db92b034f539ac04fc66","status":0,"deadlineTime":-1,"userId":"-1","__v":0}
+{"_id":{"$oid":"5ee1dbc4b034f539ac04fc6c"},"title":"Chức Năng Bình Luận","completedIndexsCount":0,"indexsCount":0,"cardId":"5ee1db92b034f539ac04fc66","status":0,"deadlineTime":-1,"userId":"-1","__v":0}
+{"_id":{"$oid":"5ee1dbefb034f539ac04fc70"},"title":"Kiểm Thử Chức Năng Liên Quan Đến Nhóm","completedIndexsCount":0,"indexsCount":0,"cardId":"5ee1dbd3b034f539ac04fc6e","status":1,"deadlineTime":-1,"userId":"5ee1d6c9b034f539ac04fc16","__v":0}
+{"_id":{"$oid":"5ee1dbfeb034f539ac04fc72"},"title":"Kiếm Thử Chức Năng Liên Quan Đến Bảng","completedIndexsCount":0,"indexsCount":0,"cardId":"5ee1dbd3b034f539ac04fc6e","status":0,"deadlineTime":-1,"userId":"5ee1d6bdb034f539ac04fc15","__v":0}
+{"_id":{"$oid":"5ee1dc10b034f539ac04fc74"},"title":"Kiểm Thử Chức Năng Gửi Email","completedIndexsCount":0,"indexsCount":0,"cardId":"5ee1dbd3b034f539ac04fc6e","status":0,"deadlineTime":-1,"userId":"-1","__v":0}
