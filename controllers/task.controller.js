@@ -175,7 +175,7 @@ module.exports.toggleStatus = async (req, res)=>{
 	var card = await Card.findOne({_id: task.cardId});
 	var list = await List.findOne({_id: card.listId})
 
-	var header = displayName  + " đã đổi trạng thái công việc \"" + task.title + "\" sang " + (task.status == 0 ? "Hoàn Thành" : "Chưa Hoàn Thành") + " trong thẻ \"" + card.title + "\" của danh sách \"" + list.title + "\"";
+	var header = displayName  + " đã đổi trạng thái công việc \"" + task.title + "\" sang " + (task.status == 1 ? "Hoàn Thành" : "Chưa Hoàn Thành") + " trong thẻ \"" + card.title + "\" của danh sách \"" + list.title + "\"";
 
 	try {
 		res.send({task: task, header: header});

@@ -1,0 +1,4 @@
+{"_id":{"$oid":"5ee1d7a1b034f539ac04fc19"},"title":"Kế Hoạch Kì 20201","boardType":"PRIVATE","groupId":"#null","userId":"5ee1d6c9b034f539ac04fc16","image":"/image/bg/6.jpg","__v":0}
+{"_id":{"$oid":"5ee1d8e4b034f539ac04fc37"},"title":"Chi Tiêu 7-2020","boardType":"PRIVATE","groupId":"#null","userId":"5ee1d6c9b034f539ac04fc16","image":"/image/bg/1.jpg","__v":0}
+{"_id":{"$oid":"5ee1d9bcb034f539ac04fc3e"},"title":"Bài Tập Tuần","boardType":"SHARED","groupId":"5ee1d982b034f539ac04fc39","userId":"5ee1d6c9b034f539ac04fc16","image":"/image/bg/6.jpg","__v":0}
+{"_id":{"$oid":"5ee1d9c5b034f539ac04fc40"},"title":"Bài Tập Lớn","boardType":"SHARED","groupId":"5ee1d982b034f539ac04fc39","userId":"5ee1d6c9b034f539ac04fc16","image":"/image/bg/7.jpg","__v":0}
