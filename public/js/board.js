@@ -544,32 +544,29 @@ $(document).ready(function(){
           var deadlineTime = $("#dl-input"+cardId).val();
           deadlineTime = Date.parse(deadlineTime);
           console.log(deadlineTime);
-          if($(this).val()!== "Chọn công việc"){
-            $.ajax({
-              url: "/task/setDeadlineTime",
-              method: "POST",
-              dataType: "json",
-              data: {taskId: taskId, deadlineTime: deadlineTime},
-              success: function(data){
-                console.log(data);
-                var task = data.task;
-                var dead= new Date(task.deadlineTime);
-                var de=JSON.stringify(dead);
-                var d = de.substr(1, de.length - 6);
-                $("#dl-display"+taskId).text('');
-                $("#dl-display"+taskId).text(d);
+          $.ajax({
+            url: "/task/setDeadlineTime",
+            method: "POST",
+            dataType: "json",
+            data: {taskId: taskId, deadlineTime: deadlineTime},
+            success: function(data){
+              console.log(data);
+              var task = data.task;
+              var dead= new Date(task.deadlineTime);
+              var de=JSON.stringify(dead);
+              var d = de.substr(1, de.length - 6);
+              $("#dl-display"+taskId).text('');
+              $("#dl-display"+taskId).text(d);
 
-              },
-              error: (e)=>{
-                console.log("Request Failed: " + e.toString())
-              },
-              timeout: ()=>{
-                console.log("Request time out")
-              }
-            });
-            $(this).val('Chọn công việc');
-          }
-          
+            },
+            error: (e)=>{
+              console.log("Request Failed: " + e.toString())
+            },
+            timeout: ()=>{
+              console.log("Request time out")
+            }
+          });
+          $(this).val('Chọn công việc');
 
         })
 
