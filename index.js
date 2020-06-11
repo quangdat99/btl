@@ -52,7 +52,7 @@ var server = app.listen(PORT, function () {
 
 const io = require("socket.io")(server);
 io.on("connection", (socket) => {
-  console.log("new Connection")
+  	console.log("new Connection")
 });
 io.on('disconnect', (_socket) => {
 	console.log("socket disconnect");
