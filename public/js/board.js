@@ -17,6 +17,12 @@ var addEventRenameTask = ()=>{
           data: {title: valuee, taskId: taskId},
           success: function(data){
             console.log(data);
+          },
+          error: (e)=>{
+            console.log("Request Failed: " + e.toString())
+          },
+          timeout: ()=>{
+            console.log("Request time out")
           }
         })
       }
@@ -40,6 +46,12 @@ var addEventDeleteTask =()=>{
       data: {taskTitle: taskTitle, taskId: taskId},
       success: function(data){
         console.log(data);
+      },
+      error: (e)=>{
+        console.log("Request Failed: " + e.toString())
+      },
+      timeout: ()=>{
+        console.log("Request time out")
       }
     })
   })  
@@ -164,6 +176,12 @@ $(document).ready(function(){
       data: {boardId: boardId, imgUrl: bg},
       success: function(data){
         console.log(data);
+      },
+      error: (e)=>{
+        console.log("Request Failed: " + e.toString())
+      },
+      timeout: ()=>{
+        console.log("Request time out")
       }
     })
   })
@@ -211,6 +229,12 @@ $(document).ready(function(){
         data: {content: content, cardId: cardId},
         success: function(data){
           console.log(data);
+        },
+        error: (e)=>{
+          console.log("Request Failed: " + e.toString())
+        },
+        timeout: ()=>{
+          console.log("Request time out")
         }
       })
 
@@ -296,6 +320,12 @@ $(document).ready(function(){
               $("#dl-display"+taskId).text('');
               $("#dl-display"+taskId).text(d);
 
+            },
+            error: (e)=>{
+              console.log("Request Failed: " + e.toString())
+            },
+            timeout: ()=>{
+              console.log("Request time out")
             }
           });
           // $(this).val('Chọn công việc');
@@ -332,6 +362,12 @@ $(document).ready(function(){
             data: {taskId: taskId},
             success: function(data){
               console.log(data);
+            },
+            error: (e)=>{
+              console.log("Request Failed: " + e.toString())
+            },
+            timeout: ()=>{
+              console.log("Request time out")
             }
           })
         });
@@ -371,6 +407,12 @@ $(document).ready(function(){
                 $('#result-'+taskId).append("<li userId="+ user._id+" taskId="+taskId+" class='list-group-item' style=' display:flex; '><img src='/image/group.png' style='height:40px;width:40px;' class='img-thumbnail'><div style='margin-left: 15px;'><div style='font-weight: 600;'>"+ user.displayName+ "</div><div style='font-size: 14px;color:#777;'>"+user.email+"</div></div></li>")
               });
 
+            },
+            error: (e)=>{
+              console.log("Request Failed: " + e.toString())
+            },
+            timeout: ()=>{
+              console.log("Request time out")
             }
           })
 
@@ -398,6 +440,12 @@ $(document).ready(function(){
                 $('#result'+taskId).html('');
                 $('#result'+taskId).append(data.displayName+'<span  style="font-size: 14px;font-weight: 400;">&nbsp;đã được chỉ định thực hiện</span>');
                 $("#chidinh"+taskId).remove();
+              },
+              error: (e)=>{
+                console.log("Request Failed: " + e.toString())
+              },
+              timeout: ()=>{
+                console.log("Request time out")
               }
             })
             event.stopPropagation();
@@ -423,6 +471,12 @@ $(document).ready(function(){
 
 
 
+      },
+      error: (e)=>{
+        console.log("Request Failed: " + e.toString())
+      },
+      timeout: ()=>{
+        console.log("Request time out")
       }
     })
 
@@ -479,6 +533,12 @@ $(document).ready(function(){
               $("#dl-display"+taskId).text('');
               $("#dl-display"+taskId).text(d);
 
+            },
+            error: (e)=>{
+              console.log("Request Failed: " + e.toString())
+            },
+            timeout: ()=>{
+              console.log("Request time out")
             }
           });
           $(this).val('Chọn công việc');
@@ -513,6 +573,12 @@ $(document).ready(function(){
             data: {taskId: taskId},
             success: function(data){
               console.log(data);
+            },
+            error: (e)=>{
+              console.log("Request Failed: " + e.toString())
+            },
+            timeout: ()=>{
+              console.log("Request time out")
             }
           })
         });
@@ -557,6 +623,12 @@ $(document).ready(function(){
                 $('#result-'+taskId).append("<li userId="+ user._id+" taskId="+taskId+" class='list-group-item' style=' display:flex; '><img src='/image/group.png' style='height:40px;width:40px;' class='img-thumbnail'><div style='margin-left: 15px;'><div style='font-weight: 600;'>"+ user.displayName+ "</div><div style='font-size: 14px;color:#777;'>"+user.email+"</div></div></li>")
               });
 
+            },
+            error: (e)=>{
+              console.log("Request Failed: " + e.toString())
+            },
+            timeout: ()=>{
+              console.log("Request time out")
             }
           })
 
@@ -585,6 +657,12 @@ $(document).ready(function(){
                 $('#result'+taskId).html('');
                 $('#result'+taskId).append(data.displayName+'<span  style="font-size: 14px;font-weight: 400;">&nbsp;đã được chỉ định thực hiện</span>');
                 $("#chidinh"+taskId).remove();
+              },
+              error: (e)=>{
+                console.log("Request Failed: " + e.toString())
+              },
+              timeout: ()=>{
+                console.log("Request time out")
               }
             })
             event.stopPropagation();
@@ -596,6 +674,12 @@ $(document).ready(function(){
 
 
 
+      },
+      error: (e)=>{
+        console.log("Request Failed: " + e.toString())
+      },
+      timeout: ()=>{
+        console.log("Request time out")
       }
     });
 
@@ -627,6 +711,12 @@ $(document).ready(function(){
           data: {title: valuee, cardId: cardId},
           success: function(data){
             console.log(data);
+          },
+          error: (e)=>{
+            console.log("Request Failed: " + e.toString())
+          },
+          timeout: ()=>{
+            console.log("Request time out")
           }
         })
       }
@@ -657,6 +747,12 @@ $(document).ready(function(){
           data: { title: valuee, listId: listId},
           success: function(data){
             console.log(data);
+          },
+          error: (e)=>{
+            console.log("Request Failed: " + e.toString())
+          },
+          timeout: ()=>{
+            console.log("Request time out")
           }
         })
       }
@@ -687,6 +783,12 @@ $(document).ready(function(){
       data: {listTitle: listTitle, listId: listId},
       success: function(data){
         console.log(data);
+      },
+      error: (e)=>{
+        console.log("Request Failed: " + e.toString())
+      },
+      timeout: ()=>{
+        console.log("Request time out")
       }
     })
   });
@@ -722,6 +824,12 @@ $(document).ready(function(){
       data: {description: description, cardId: cardId},
       success: function(data){
         console.log(data);
+      },
+      error: (e)=>{
+        console.log("Request Failed: " + e.toString())
+      },
+      timeout: ()=>{
+        console.log("Request time out")
       }
     })
   })
