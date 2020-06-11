@@ -267,20 +267,21 @@ $(document).ready(function(){
         // deadline
         $("#select"+cardId).on('click',function(){
           var taskId = $(this).val();
-          console.log(taskId);
+          
           var deadlineTime = Date.parse($("#dl-input"+cardId).val());
-          console.log(deadlineTime);
+          
           // deadlineTime = Date.parse(deadlineTime);
           // console.log(deadlineTime);
           
           var keyD = taskId.toString().trim() + "_" + deadlineTime.toString().trim();
-          // if (poolDeadline[keyD] === true){
-          //   return;
-          // }
-          // else {
-          //   poolDeadline[keyD] = true;
-          // }
+          if (poolDeadline[keyD] === true){
+            return;
+          }
+          else {
+            poolDeadline[keyD] = true;
+          }
           
+
           $.ajax({
             url: "/task/setDeadlineTime",
             method: "POST",
