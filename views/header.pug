@@ -142,11 +142,12 @@ html
             i.far.fa-bell &nbsp; Thông báo
           .dropdown-menu.dropdown-menu-right(style="height: 800px;width: 600px;overflow-x: hidden;")
             p(style='text-align:center;background-color:#e5ffec; margin: 0px; padding: 10px;')      Thông báo 
-            if histories
-              //- each _his in histories 
-              -for ( var i=histories.length-1; i>=0; i--)
-                a.thongbao(style="padding:15px; display: block;" href='/board/'+histories[i].boardId)= histories[i].header
-                hr
+            div(id="thongbao1")
+              if histories
+                //- each _his in histories 
+                -for ( var i=histories.length-1; i>=0; i--)
+                  a.thongbao(style="padding:15px; display: block;" href='/board/'+histories[i].boardId)= histories[i].header
+                  hr
            
         .dropdown
           button(type='button' data-toggle="dropdown")

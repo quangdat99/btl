@@ -908,6 +908,10 @@ $(document).ready(function(){
     if(data.history.boardId== his_boardId){
       $("#hd"+his_boardId).prepend('<div class="js-menu-action-list"><div class="phenom"><div class="phenom-creator"><div class="member"><span class="member-initials"><i class="far fa-user" aria-hidden="true"> </i></span></div></div><div class="phenom-desc"><span class="inline-member">'+data.history.header+'</span><div style="color:#777;">  &nbsp; '+data.history.content +'</div></div><div class="phenom-meta">'+day+'-'+month+'-'+year+' '+hour+':'+minute+':'+second+'</div></div></div>')
     }
+
+    if(data.history.boardId== his_boardId){
+      $("#thongbao1").prepend('<a class="thongbao" style="padding:15px; display: block;" href="/board/'+his_boardId+'">'+data.history.header+'</a><hr>')
+    }
     // console.log("alllllllll");
     // console.log(his_taskId);
     // if(data.action.taskId == his_taskId  ){
