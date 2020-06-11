@@ -1,3 +1,12 @@
+var poolTask = {};
+var poolCheck ={};
+var poolNameCard = {};
+var poolNameList = {};
+var poolNameTask = {};
+
+
+
+  
 var addEventRenameTask = ()=>{
   //rename task
   $("input.title-task").focus(function(){
@@ -5,6 +14,18 @@ var addEventRenameTask = ()=>{
     var taskId = $(this).attr("taskId");
     $(this).focusout(function(){
       var valuee = $(this).val();
+
+
+      var keyT = value.toString().trim() + "_" + taskId.toString().trim();
+      if (poolNameTask[keyT] === true){
+        return;
+      }
+      else {
+        poolNameTask[keyT] = true;
+      }
+
+
+
       if (valuee==''){
         valuee = value;
         $(this).val(valuee);
@@ -192,8 +213,6 @@ $(document).ready(function(){
   });
 
 
-  var poolTask = {};
-  var poolCheck ={};
   var his_cardId;
   
   //create comment
@@ -614,6 +633,16 @@ $(document).ready(function(){
     console.log(cardId);
     $(this).focusout(function(){
       var valuee = $(this).val();
+
+      var keyC = value.toString().trim() + "_" + cardId.toString().trim();
+      if (poolNameCard[keyC] === true){
+        return;
+      }
+      else {
+        poolNameCard[keyc] = true;
+      }
+
+
       if (valuee==''){
         valuee = value;
         $(this).val(valuee);
@@ -644,6 +673,15 @@ $(document).ready(function(){
     console.log(listId);
     $(this).focusout(function(){
       var valuee = $(this).val();
+
+      var keyL = value.toString().trim() + "_" + listId.toString().trim();
+      if (poolNameList[keyL] === true){
+        return;
+      }
+      else {
+        poolNameList[keyL] = true;
+      }
+
       if (valuee=='') {
         valuee = value;
         $(this).val(valuee);
