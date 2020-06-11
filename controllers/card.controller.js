@@ -30,21 +30,16 @@ module.exports.index = async (req, res)=>{
 	for (var t in tasks){
 		var taskId = tasks[t]._id;
 		var user_task = await User_Task.findOne({taskId: taskId});
-		// console.log(user_task);
 		if (user_task){
 			userId = user_task.userId;
-			// console.log(userId);
 
 			var user = await User.findOne({_id: userId});
 			user = JSON.parse(JSON.stringify(user));
-			// console.log(user);
 			tasks[t] = JSON.parse(JSON.stringify(tasks[t]));
 			tasks[t].user = user;
-			// console.log(tasks[t]);	
 		}
 		
 	}
-	// console.log(tasks);
 	card.tasks = tasks;
 	res.json({card: card});
 }
@@ -70,7 +65,6 @@ module.exports.create = async (req, res)=>{
 		res.send("Create card failed " + e.toString());
 	};
 	var user = await User.findOne({_id: req.signedCookies.userId });
-	// console.log(card);
 
 	var displayName = res.locals.user.displayName;
 	var list = await List.findOne({_id: listId});
