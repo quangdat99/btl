@@ -6,7 +6,7 @@ var poolNameTask = {};
 
 
 
-  
+
 var addEventRenameTask = ()=>{
   //rename task
   $("input.title-task").focus(function(){
@@ -214,6 +214,7 @@ $(document).ready(function(){
 
 
   var his_cardId;
+  var his_taskId;
   
   //create comment
   $("input.comment-his").on("keydown", function search(e){
@@ -244,6 +245,7 @@ $(document).ready(function(){
     var cardId = $(this).attr('cardId');
     var boardId = $(this).attr('boardId');
     his_cardId = cardId;
+    
 
     $("#checklist"+cardId).html('');
     $("#hd"+cardId).html('');
@@ -283,10 +285,12 @@ $(document).ready(function(){
         });
         addEventRenameTask();
         addEventDeleteTask();
+
         // deadline
         $("#select"+cardId).on('click',function(){
           var taskId = $(this).val();
-          
+          his_taskId=taskId;
+          console.log(his_taskId);
           var deadlineTime = Date.parse($("#dl-input"+cardId).val());
           
           // deadlineTime = Date.parse(deadlineTime);
@@ -325,6 +329,7 @@ $(document).ready(function(){
         // update checkbox task
         $("input.checkbox-task").click(function(){
           var taskId =$(this).attr("taskId");
+          his_taskId=taskId;
           console.log(taskId);
           var value = $(this).prop("checked");
           console.log(value);
@@ -395,6 +400,7 @@ $(document).ready(function(){
 
           $('#result-'+taskId).on("click", "li", function(event){             
             var taskId = $(this).attr("taskId");   
+            his_taskId=taskId;
             $('#result-'+taskId).html('');
             $('input.search-member-group').val('');
             var userId=($(this).attr('userId'));
@@ -786,7 +792,7 @@ $(document).ready(function(){
     var hour = date.getHours();
     var minute = date.getMinutes();
     var second = date.getSeconds();
-
+    console.log(his_cardId);
     if(data.history.cardId== his_cardId){
       $("#hd"+his_cardId).prepend('<div class="js-menu-action-list"><div class="phenom"><div class="phenom-creator"><div class="member"><span class="member-initials"><i class="far fa-user" aria-hidden="true"> </i></span></div></div><div class="phenom-desc"><span class="inline-member">'+data.history.header+'</span><div style="color:#777;">  &nbsp; '+data.history.content +'</div></div><div class="phenom-meta">'+day+'-'+month+'-'+year+' '+hour+':'+minute+':'+second+'</div></div></div>')
     }
@@ -794,6 +800,20 @@ $(document).ready(function(){
     if(data.history.boardId== his_boardId){
       $("#hd"+his_boardId).prepend('<div class="js-menu-action-list"><div class="phenom"><div class="phenom-creator"><div class="member"><span class="member-initials"><i class="far fa-user" aria-hidden="true"> </i></span></div></div><div class="phenom-desc"><span class="inline-member">'+data.history.header+'</span><div style="color:#777;">  &nbsp; '+data.history.content +'</div></div><div class="phenom-meta">'+day+'-'+month+'-'+year+' '+hour+':'+minute+':'+second+'</div></div></div>')
     }
+    // console.log("alllllllll");
+    // console.log(his_taskId);
+    // if(data.action.taskId == his_taskId  ){
+
+    //           console.log("helllooooo")
+    //           var dead= new Date(data.action.deadlineTime);
+    //           var de=JSON.stringify(dead);
+    //           var d = de.substr(1, de.length - 6);
+    //           alert(d);
+    //           $("#dl-display"+his_taskId).text('');
+    //           $("#dl-display"+his_taskId).text(d);
+
+    // }
+
   });
 
   loadChartDistribution();
