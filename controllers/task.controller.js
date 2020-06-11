@@ -118,7 +118,6 @@ module.exports.delete = async (req, res)=>{
 	var taskId = req.body.taskId;
 
 	
-	console.log(req.body);
 	var displayName = res.locals.user.displayName;
 	var task = await Task.findOne({_id: taskId});
 	var card = await Card.findOne({_id: task.cardId});
@@ -167,8 +166,6 @@ module.exports.delete = async (req, res)=>{
 module.exports.toggleStatus = async (req, res)=>{
 	var userId = req.signedCookies.userId;
 	var taskId = req.body.taskId;
-
-	console.log(task);
 
 	var task = await Task.findOne({_id: taskId});
 	await Task.updateOne({_id: taskId}, {$set: {status: (task.status + 1)%2}});

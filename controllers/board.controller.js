@@ -30,6 +30,7 @@ module.exports.index = async function(req, res){
 		var users = [res.locals.user];
 	};
 
+	var _boardType = board.boardType;
 
 	var taskDistribution = {};
 	var taskComplement = {};
@@ -103,10 +104,12 @@ module.exports.index = async function(req, res){
 		histories: _histories
 	});
 
+	userId = req.signedCookies.userId;
 	var recents = await Recent.find({userId: userId});
-	if (recents.filter((recent)=>{
-		return (recent.userId == userId && recent.boardId == boardId)
-	}).length !=0 ){
+	var __recents = recents.filter((recent)=>{
+		return (recent.userId == userId && recent.boardId == boardId);
+	})
+	if (__recents.length != 0){
 		await Recent.updateOne(
 			{ userId: userId, boardId: boardId },
 			{ $set: { timeVisited : new Date().getTime() } }
@@ -127,9 +130,10 @@ module.exports.index = async function(req, res){
 				title: board.title,
 				timeVisited: new Date().getTime(),
 				userId: req.signedCookies.userId,
+				boardType: _boardType,
 				image: board.image
 			});
-			recent.save();
+			await recent.save();
 		}
 	}
 }
