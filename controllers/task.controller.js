@@ -56,7 +56,11 @@ module.exports.create = async (req, res)=>{
 	
 	global.socket.emit("NEW_HISTORY", {
 		userId: userId,
-		history: history
+		history: history,
+		action: {
+			type: "NEW_TASK",
+			title: title
+		}
 	})
 };
 
@@ -99,7 +103,12 @@ module.exports.rename = async (req, res)=>{
 
 	global.socket.emit("NEW_HISTORY", {
 		userId: userId,
-		history: history
+		history: history,
+		action: {
+			type: "RENAME_TASK",
+			title: title,
+			taskId: taskId
+		}
 	})
 };
 
@@ -146,6 +155,10 @@ module.exports.delete = async (req, res)=>{
 	global.socket.emit("NEW_HISTORY", {
 		userId: userId,
 		history: history,
+		action: {
+			type: "DELETE_TASK",
+			taskId: taskId
+		}
 	})
 
 };
@@ -191,6 +204,11 @@ module.exports.toggleStatus = async (req, res)=>{
 	global.socket.emit("NEW_HISTORY", {
 		userId: userId,
 		history: history,
+		action: {
+			type: "tASK_TOGGLE_STATUS",
+			taskId: taskId,
+			status: (task.status + 1)%2
+		}
 	})
 };
 
@@ -242,6 +260,11 @@ module.exports.appoint = async (req, res) => {
 	global.socket.emit("NEW_HISTORY", {
 		userId: userId,
 		history: history,
+		action: {
+			type: "TASK_APPOINT",
+			taskId: taskId,
+			appointedUserName: appointedUserName
+		}
 	})
 };
 
@@ -249,12 +272,10 @@ module.exports.setDeadlineTime = async (req, res)=>{
 	var userId = req.signedCookies.userId;
 	var taskId = req.body.taskId;
 	var deadlineTime = req.body.deadlineTime;
-		deadlineTime = Number(deadlineTime);
-		console.log(req.body);
+	deadlineTime = Number(deadlineTime);
 	var task = await Task.findOne({_id: taskId});
 				await Task.updateOne({_id: taskId}, {$set: {deadlineTime: deadlineTime}});
 	var task = await Task.findOne({_id: taskId});
-	console.log(task);
 	var displayName = res.locals.user.displayName;
 	var card = await Card.findOne({_id: task.cardId});
 	var list = await List.findOne({_id: card.listId})
@@ -285,6 +306,11 @@ module.exports.setDeadlineTime = async (req, res)=>{
 	global.socket.emit("NEW_HISTORY", {
 		userId: userId,
 		history: history,
+		action: {
+			type: "TASK_SET_DEADLINE_TIME",
+			taskId: taskId,
+			deadlineTime: deadlineTime
+		}
 	})
 };
 
