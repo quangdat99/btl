@@ -11,6 +11,8 @@ router.post('/addMember',authMiddleware.req, authMiddleware.requireLogin, contro
 router.post('/remove',authMiddleware.req, authMiddleware.requireLogin, controller.remove);
 router.post('/join',authMiddleware.req, authMiddleware.requireLogin, controller.join);
 router.post('/search',authMiddleware.req, authMiddleware.requireLogin, controller.search)
+router.post('/accept',authMiddleware.req, authMiddleware.requireLogin, controller.accept)
+
 router.post("/create",authMiddleware.requireLogin, controller.create);
 
 module.exports = router;

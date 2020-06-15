@@ -133,6 +133,8 @@ module.exports.join = async(req, res)=>{
 
 	await history.save();
 
+	res.send({result: "success"});
+
 	global.socket.emit("NEW_HISTORY", {
 		userId: userId, 
 		history: history
@@ -140,5 +142,43 @@ module.exports.join = async(req, res)=>{
 }
 
 module.exports.accept = async(req, res)=>{
+	var userId = req.body.userId;
+	var groupId = req.body.groupId;
+	var user = res.locals.user;
 
+	var user_group = await User_Group.find({userId: userId, groupId: groupId});
+	if (user_group.length != 0){
+		res.send({err: "Yêu Cầu Này Đã Được Chấp Nhận"});
+		return;
+	}
+
+	user_group = new User_Group({
+		userId: userId,
+		groupId: groupId
+	});
+	
+	await user_group.save();
+
+	var group = await Group.findOne({_id: groupId});
+	var header = "Yêu cầu tham gia nhóm " + group.title + " đã được chấp nhận"
+	var content = "";
+	var timeCreated = new Date().getTime();
+
+	var history = new History({
+		header: header,
+		content: content,
+		timeCreated: timeCreated,
+		cardId: "",
+		boardId: "",
+		groupId: groupId
+	});
+
+	await history.save();
+
+	res.redirect("group/"+ groupId);
+
+	global.socket.emit("NEW_HISTORY", {
+		userId: userId, 
+		history: history
+	});
 }
