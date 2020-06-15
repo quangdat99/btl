@@ -3,7 +3,7 @@ var List = require('../models/list.model');
 var Board = require('../models/board.model');
 var Group = require('../models/group.model');
 var User_Group = require('../models/user_group.model');
-var Recent = require("../models/recent.model");
+var History = require("../models/history.model");
 const {BOARD_TYPE, MAX_RECENT} = require("./const/Const");
 
 module.exports.index = async function(req, res) {
@@ -125,7 +125,7 @@ module.exports.join = async(req, res)=>{
 	var history = new History({
 		header: header,
 		content: content,
-		timeCreated: time,
+		timeCreated: timeCreated,
 		cardId: "",
 		boardId: "",
 		groupId: groupId
