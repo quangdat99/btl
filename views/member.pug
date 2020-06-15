@@ -37,7 +37,6 @@ block header
     background: rgba(9, 30, 66, 0.09);
     }
     .org-profile-avatar{
-    background-color: white;
     height: 120px;
     width: 120px;
     }
@@ -108,6 +107,8 @@ block header
     img.avt{
     height: 120px;
     width: 120px;
+    border-radius: 10px;
+    border: 2px solid #17a2b8;
     }
     #result{
     position: absolute;
@@ -242,59 +243,59 @@ block header
     user-select: none;
     z-index: 0;
     }
+  .bg-group(style=' background-image: url("/image/bg-group.jpg"); background-position: center;   background-size: cover;   height: -webkit-fill-available;')
+    .tabbed-pane-header
+      .tabbed-pane-header-wrapper
+        .tabbed-pane-header-content
+          .org-profile-avatar
+            img.avt(src="/image/group.png", alt="")
+          .tabbed-pane-header-details
+            .js-current-details
+              .js-react-root
+                #groupId._1mh0u4cBAMhD4p(groupId=group._id)=group.title 
+                button._2DZdmHnY2Nw7gI.css-1a1cwqg
+                  i.fas.fa-pencil-alt   
+                  span &nbsp; Chỉnh Sửa Lý Lịch Nhóm 
+    .tabbed-pane-nav
+      ul(style='margin-bottom: 0px;')
+        li.tabbed-pane-nav-item
+          a(href="/group/"+group._id).tabbed-pane-nav-item-button.a2 Bảng 
+        li.tabbed-pane-nav-item
+          a.disabled.tabbed-pane-nav-item-button.a1 Thành viên 
+    .tabbed-pane-
+      .container
 
-  .tabbed-pane-header
-    .tabbed-pane-header-wrapper
-      .tabbed-pane-header-content
-        .org-profile-avatar
-          img.avt(src="/image/group.png", alt="")
-        .tabbed-pane-header-details
-          .js-current-details
-            .js-react-root
-              #groupId._1mh0u4cBAMhD4p(groupId=group._id)=group.title 
-              button._2DZdmHnY2Nw7gI.css-1a1cwqg
-                i.fas.fa-pencil-alt   
-                span &nbsp; Chỉnh Sửa Lý Lịch Nhóm 
-  .tabbed-pane-nav
-    ul(style='margin-bottom: 0px;')
-      li.tabbed-pane-nav-item
-        a(href="/group/"+group._id).tabbed-pane-nav-item-button.a2 Bảng 
-      li.tabbed-pane-nav-item
-        a.disabled.tabbed-pane-nav-item-button.a1 Thành viên 
-  .tabbed-pane-
-    .container
+        .members(style='margin-top:20px;')
+          h4 Thành viên của nhóm (
+            span#count=members.length 
+            span )
+          p Các thành viên trong nhóm có thể xem và tham gia tất cả các bảng Nhóm Hiển Thị và tạo ra các bảng mới trong nhóm.
+        
+          .input-group.mb-3
+            input#add.form-control.col-8(placeholder='Thêm thành viên mới...' name='field')
 
-      .members(style='margin-top:20px;')
-        h4 Thành viên của nhóm (
-          span#count=members.length 
-          span )
-        p Các thành viên trong nhóm có thể xem và tham gia tất cả các bảng Nhóm Hiển Thị và tạo ra các bảng mới trong nhóm.
-      
-        .input-group.mb-3
-          input#add.form-control.col-8(placeholder='Thêm thành viên mới...' name='field')
-
-        ul#result.list-group
-            //- if data 
-              //-   each _user in data
-              //-     li.list-group-item _user.displayName
-      .out-group
-        form(action='/group/remove' method='POST')
-          input(value=group._id name='groupId' style="display:none")
-          button.btn.btn-secondary Rời khỏi nhóm 
-      .org-members-list
-        if members
-          each _member in members
-            
-            .member-list-item-detail
-              .member.member-no-menu
-                span.member-initials MB
-              .details
-                p.name-line
-                  span.full-name(style="font-weight:600;")= _member.displayName 
-                p.u-bottom.quiet
-                    span= _member.email
-              // .options
-              //   a.option.button-link.remove-button(href='#' style='color:#172b4d') Lo&#x1EA1;i b&#x1ECF;...
+          ul#result.list-group
+              //- if data 
+                //-   each _user in data
+                //-     li.list-group-item _user.displayName
+        .out-group
+          form(action='/group/remove' method='POST')
+            input(value=group._id name='groupId' style="display:none")
+            button.btn.btn-secondary Rời khỏi nhóm 
+        .org-members-list
+          if members
+            each _member in members
+              
+              .member-list-item-detail
+                .member.member-no-menu
+                  span.member-initials MB
+                .details
+                  p.name-line
+                    span.full-name(style="font-weight:600;")= _member.displayName 
+                  p.u-bottom.quiet
+                      span= _member.email
+                // .options
+                //   a.option.button-link.remove-button(href='#' style='color:#172b4d') Lo&#x1EA1;i b&#x1ECF;...
 
       
         script.

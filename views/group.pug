@@ -183,46 +183,49 @@ block header
     img.avt{
     height: 120px;
     width: 120px;
+    border-radius: 10px;
+    border: 2px solid #17a2b8;
     }
+  .bg-group(style=' background-image: url("/image/bg-group.jpg"); background-position: center;   background-size: cover;   height: -webkit-fill-available;')
 
-  .tabbed-pane-header
-    .tabbed-pane-header-wrapper
-      .tabbed-pane-header-content
-        .org-profile-avatar
-          img.avt(src="/image/group.png", alt="")
-        .tabbed-pane-header-details
-          .js-current-details
-            .js-react-root
-              ._1mh0u4cBAMhD4p=group.title 
-              button._2DZdmHnY2Nw7gI.css-1a1cwqg
-                i.fas.fa-pencil-alt   
-                span &nbsp; Chỉnh Sửa Lý Lịch Nhóm 
-  .tabbed-pane-nav
-    ul(style='margin-bottom: 0px;')
-      li.tabbed-pane-nav-item
-        a.disabled.tabbed-pane-nav-item-button.a1 Bảng 
-      li.tabbed-pane-nav-item
-        a(href="/group/member/"+ group._id ).tabbed-pane-nav-item-button.a2 Thành viên&nbsp;
-          span (
-          span=memberCount
-          span )
-  .container
-    .bodyright
-      if boards 
-        each _board in boards  
-          a(href="/board/"+ _board._id  style='background-image:url('+_board.image+')')=_board.title 
-      a.new(href="#" data-toggle="modal" data-target="#taobangnhom"+group._id)  Tạo bảng mới      
-      div(id="taobangnhom"+group._id).modal.fade
-        form(action="/board/create" method='POST')
-          .modal-dialog
-            .modal-content
-              // Modal Header
-              .modal-header
-                input.modal-title.form-control(placeholder='Thêm tiêu đề bảng' name='title')
-                button.close(type='button', data-dismiss='modal') &times;
-              // Modal body
-              .modal-body
-                select.browser-default.custom-select(name='groupId') Nhóm 
-                  option(selected='' value=group._id)= group.title
-       
-                button.btn.btn-info(style='float: right;margin-top:10px;') Tạo bảng         
+    .tabbed-pane-header
+      .tabbed-pane-header-wrapper
+        .tabbed-pane-header-content
+          .org-profile-avatar
+            img.avt(src="/image/group.png", alt="")
+          .tabbed-pane-header-details
+            .js-current-details
+              .js-react-root
+                ._1mh0u4cBAMhD4p=group.title 
+                button._2DZdmHnY2Nw7gI.css-1a1cwqg
+                  i.fas.fa-pencil-alt   
+                  span &nbsp; Chỉnh Sửa Lý Lịch Nhóm 
+    .tabbed-pane-nav
+      ul(style='margin-bottom: 0px;')
+        li.tabbed-pane-nav-item
+          a.disabled.tabbed-pane-nav-item-button.a1 Bảng 
+        li.tabbed-pane-nav-item
+          a(href="/group/member/"+ group._id ).tabbed-pane-nav-item-button.a2 Thành viên&nbsp;
+            span (
+            span=memberCount
+            span )
+    .container
+      .bodyright
+        if boards 
+          each _board in boards  
+            a(href="/board/"+ _board._id  style='background-image:url('+_board.image+')')=_board.title 
+        a.new(href="#" data-toggle="modal" data-target="#taobangnhom"+group._id)  Tạo bảng mới      
+        div(id="taobangnhom"+group._id).modal.fade
+          form(action="/board/create" method='POST')
+            .modal-dialog
+              .modal-content
+                // Modal Header
+                .modal-header
+                  input.modal-title.form-control(placeholder='Thêm tiêu đề bảng' name='title')
+                  button.close(type='button', data-dismiss='modal') &times;
+                // Modal body
+                .modal-body
+                  select.browser-default.custom-select(name='groupId') Nhóm 
+                    option(selected='' value=group._id)= group.title
+         
+                  button.btn.btn-info(style='float: right;margin-top:10px;') Tạo bảng         
