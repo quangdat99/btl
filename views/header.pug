@@ -153,7 +153,10 @@ html
                         input(name='groupId' value=histories[i].groupId style="display:none")
                         button.btn.btn-success(style="padding: 2px;color: #fff;background-color: #28a745;border-color: #28a745;margin: 5px 0 0 20px;") Đồng ý 
                     hr
-                  else
+                  else if(histories[i].groupId)
+                    a.thongbao(style="padding:15px; display: block;" href='/group/member/'+histories[i].groupId)= histories[i].header
+                    hr
+                  else  
                     a.thongbao(style="padding:15px; display: block;" href='/board/'+histories[i].boardId)= histories[i].header
                     hr
            
