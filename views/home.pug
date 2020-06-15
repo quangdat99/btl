@@ -180,7 +180,7 @@ block header
             success: function(data){
               console.log(data);
               data.groups.forEach(group =>{
-                $('#result').append("<li groupId="+ group._id+" class='list-group-item' style=' display:flex; '><img src='/image/group.png' style='height:30px;width:30px;' class='img-thumbnail'><div style='margin-left: 15px;'><div style='font-weight: 600;'>"+ group.title+ "</div></div></li>")
+                $('#result').append("<li groupId="+ group._id+" class='list-group-item' style=' display:flex; cursor: pointer'><img src='/image/group.png' style='height:30px;width:30px;' class='img-thumbnail'><div style='margin-left: 15px;'><div style='font-weight: 600;'>"+ group.title+ "</div></div></li>")
               })
             },
             eror: function(err){
