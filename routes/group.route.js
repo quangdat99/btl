@@ -10,7 +10,7 @@ router.get('/member/:groupId',authMiddleware.req, authMiddleware.requireLogin, c
 router.post('/addMember',authMiddleware.req, authMiddleware.requireLogin, controller.addMember);
 router.post('/remove',authMiddleware.req, authMiddleware.requireLogin, controller.remove);
 router.post('/join',authMiddleware.req, authMiddleware.requireLogin, controller.join);
-
+router.post('/search',authMiddleware.req, authMiddleware.requireLogin, controller.search)
 router.post("/create",authMiddleware.requireLogin, controller.create);
 
 module.exports = router;

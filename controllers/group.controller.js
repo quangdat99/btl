@@ -118,7 +118,7 @@ module.exports.join = async(req, res)=>{
 	var user = res.locals.user;
 
 	var group = await Group.findOne({_id: groupId});
-	var header = user.name + " yêu cầu tham gia nhóm " + group.title;
+	var header = user.displayName + " yêu cầu tham gia nhóm " + group.title;
 	var content = "Nhấn vào đây để chấp nhận";
 	var timeCreated = new Date().getTime();
 

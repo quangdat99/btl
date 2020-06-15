@@ -180,7 +180,7 @@ block header
             success: function(data){
               console.log(data);
               data.groups.forEach(group =>{
-                $('#result').append("<li groupId="+ group._id+" class='list-group-item' style=' display:flex; '><img src='/image/group.png' style='height:40px;width:40px;' class='img-thumbnail'><div style='margin-left: 15px;'><div style='font-weight: 600;'>"+ group.title+ "</div></div></li>")
+                $('#result').append("<li groupId="+ group._id+" class='list-group-item' style=' display:flex; '><img src='/image/group.png' style='height:30px;width:30px;' class='img-thumbnail'><div style='margin-left: 15px;'><div style='font-weight: 600;'>"+ group.title+ "</div></div></li>")
               })
             },
             eror: function(err){
@@ -192,18 +192,17 @@ block header
         $('#result').on('click','li',function(){
           var click_text =$(this).text();
           $('#add').val('');
-          var groupId=($(this).attr('userId'));
+          var groupId=($(this).attr('groupId'));
           // var groupId=($('#groupId').attr('groupId'));
           $('#result').html('');
           
           $.ajax({
-            url: "/group/addMember",
+            url: "/group/join",
             method: 'POST',
             dataType: "json",
-            data: { groupId: groupId, userId: userId},
+            data: { groupId: groupId},
             success: function(data){
               console.log(data);
-              $('.org-members-list').append('<div class="member-list-item-detail"><div class="member member-no-menu"><span class="member-initials">MB</span></div><div class="details"><p class="name-line"><span class="full-name" style="font-weight:600;">'+data.displayName+'</span></p><p class="u-bottom quiet"><span>'+data.email+'</span></p></div></div>')
             }
           });
         })
