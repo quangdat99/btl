@@ -277,6 +277,10 @@ block header
             //- if data 
               //-   each _user in data
               //-     li.list-group-item _user.displayName
+      .out-group
+        form(action='/group/remove' method='POST')
+          input(value=group._id name='groupId' style="display:none")
+          button.btn.btn-secondary Rời khỏi nhóm 
       .org-members-list
         if members
           each _member in members
@@ -289,8 +293,8 @@ block header
                   span.full-name(style="font-weight:600;")= _member.displayName 
                 p.u-bottom.quiet
                     span= _member.email
-              .options
-                a.option.button-link.remove-button(href='#' style='color:#172b4d') Lo&#x1EA1;i b&#x1ECF;...
+              // .options
+              //   a.option.button-link.remove-button(href='#' style='color:#172b4d') Lo&#x1EA1;i b&#x1ECF;...
 
       
         script.
@@ -332,7 +336,7 @@ block header
                 data: { groupId: groupId, userId: userId},
                 success: function(data){
                   console.log(data);
-                  $('.org-members-list').append('<div class="member-list-item-detail"><div class="member member-no-menu"><span class="member-initials">MB</span></div><div class="details"><p class="name-line"><span class="full-name" style="font-weight:600;">'+data.displayName+'</span></p><p class="u-bottom quiet"><span>'+data.email+'</span></p></div><div class="options"><a class="option button-link remove-button" href="#" style="color:#172b4d">Loại bỏ...</a></div></div>')
+                  $('.org-members-list').append('<div class="member-list-item-detail"><div class="member member-no-menu"><span class="member-initials">MB</span></div><div class="details"><p class="name-line"><span class="full-name" style="font-weight:600;">'+data.displayName+'</span></p><p class="u-bottom quiet"><span>'+data.email+'</span></p></div></div>')
                 }
               });
             })

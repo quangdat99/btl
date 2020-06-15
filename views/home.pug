@@ -113,6 +113,10 @@ block header
               i.fas.fa-users  &nbsp;
                 span=_group.title 
 
+        p(style='color: #fff')   TÌM KIẾM NHÓM
+        input#add.form-control(placeholder='tìm theo tên...' name='field') 
+        ul#result.list-group
+
       .col-10.bodyright
         p
           i.fas.fa-history  &nbsp; Đã xem gần đây 
@@ -160,3 +164,47 @@ block header
              
                       button.btn.btn-info(style='float: right;margin-top:10px;') Tạo bảng   
 
+
+    script.
+      $(document).ready(function(){
+        $('#add').keyup(function(){
+          var value = $(this).val();
+          $('#result').html('');
+          console.log(value);
+          // var groupId=($('#groupId').attr('groupId'));
+          $.ajax({
+            url: "/group/search",
+            method: 'POST',
+            dataType: "json",
+            data: { field: value},
+            success: function(data){
+              console.log(data);
+              data.groups.forEach(group =>{
+                $('#result').append("<li groupId="+ group._id+" class='list-group-item' style=' display:flex; '><img src='/image/group.png' style='height:40px;width:40px;' class='img-thumbnail'><div style='margin-left: 15px;'><div style='font-weight: 600;'>"+ group.title+ "</div></div></li>")
+              })
+            },
+            eror: function(err){
+              console.log(err.status);
+            }
+          });
+        });
+
+        $('#result').on('click','li',function(){
+          var click_text =$(this).text();
+          $('#add').val('');
+          var groupId=($(this).attr('userId'));
+          // var groupId=($('#groupId').attr('groupId'));
+          $('#result').html('');
+          
+          $.ajax({
+            url: "/group/addMember",
+            method: 'POST',
+            dataType: "json",
+            data: { groupId: groupId, userId: userId},
+            success: function(data){
+              console.log(data);
+              $('.org-members-list').append('<div class="member-list-item-detail"><div class="member member-no-menu"><span class="member-initials">MB</span></div><div class="details"><p class="name-line"><span class="full-name" style="font-weight:600;">'+data.displayName+'</span></p><p class="u-bottom quiet"><span>'+data.email+'</span></p></div></div>')
+            }
+          });
+        })
+      })
