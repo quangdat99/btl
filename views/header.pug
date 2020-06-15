@@ -146,8 +146,16 @@ html
               if histories
                 //- each _his in histories 
                 -for ( var i=histories.length-1; i>=0; i--)
-                  a.thongbao(style="padding:15px; display: block;" href='/board/'+histories[i].boardId)= histories[i].header
-                  hr
+                  if (histories[i].userId  && histories[i].groupId )
+                    a.thongbao(style="padding:15px; display: block;" )= histories[i].header
+                      form(action='/group/accept' method="POST")
+                        input(name='userId' value=histories[i].userId style="display:none")
+                        input(name='groupId' value=histories[i].groupId style="display:none")
+                        button.btn.btn-success(style="padding: 2px;color: #fff;background-color: #28a745;border-color: #28a745;margin: 5px 0 0 20px;") Đồng ý 
+                    hr
+                  else
+                    a.thongbao(style="padding:15px; display: block;" href='/board/'+histories[i].boardId)= histories[i].header
+                    hr
            
         .dropdown
           button(type='button' data-toggle="dropdown")

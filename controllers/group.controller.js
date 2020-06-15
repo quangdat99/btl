@@ -128,7 +128,8 @@ module.exports.join = async(req, res)=>{
 		timeCreated: timeCreated,
 		cardId: "",
 		boardId: "",
-		groupId: groupId
+		groupId: groupId,
+		userId: userId
 	});
 
 	await history.save();
@@ -145,11 +146,14 @@ module.exports.join = async(req, res)=>{
 module.exports.accept = async(req, res)=>{
 	var userId = req.body.userId;
 	var groupId = req.body.groupId;
-	var user = res.locals.user;
+	// var user = res.locals.user;
+
+	var user1 = await User.findOne({_id: req.signedCookies.userId});
+	var user2 =await User.findOne({_id: userId});
 
 	var user_group = await User_Group.find({userId: userId, groupId: groupId});
 	if (user_group.length != 0){
-		res.send({err: "Yêu Cầu Này Đã Được Chấp Nhận"});
+		res.redirect("/group/member/"+ groupId);
 		return;
 	}
 
@@ -161,7 +165,9 @@ module.exports.accept = async(req, res)=>{
 	await user_group.save();
 
 	var group = await Group.findOne({_id: groupId});
-	var header = "Yêu cầu tham gia nhóm " + group.title + " đã được chấp nhận"
+	// var header = "Yêu cầu tham gia nhóm " + group.title + " đã được chấp nhận"
+	var header = user1.displayName + " đã chấp nhận cho "+ user2.displayName + " vào nhóm " + group.title;
+
 	var content = "";
 	var timeCreated = new Date().getTime();
 
@@ -176,7 +182,7 @@ module.exports.accept = async(req, res)=>{
 
 	await history.save();
 
-	res.redirect("group/"+ groupId);
+	res.redirect("/group/member/"+ groupId);
 
 	global.socket.emit("NEW_HISTORY", {
 		userId: userId, 

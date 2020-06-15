@@ -8,7 +8,8 @@ var historySchema = new mongoose.Schema({
     timeCreated: Number,
     cardId: String,
     boardId: String,
-    groupId: String
+    groupId: String,
+    userId: String
 });
 var History = mongoose.model('History', historySchema, 'history');
 

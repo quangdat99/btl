@@ -53,19 +53,19 @@ module.exports.index = async function(req, res){
 	var boardIds = privateBoardsId.concat(sharedBoardsId);
 	var histories = await History.find({$or: [{boardId: {$in: boardIds}}, {groupId: {$in: groupIds}}]});
 	
-	histories = histories.map((history)=>{
-		return {
-			_id: history._id,
-			header: history.header,
-			content: history.content,
-			timeCreated: history.timeCreated,
-			cardId: history.cardId,
-			boardId: history.boardId
-		}
-	})
+	// histories = histories.map((history)=>{
+	// 	return {
+	// 		_id: history._id,
+	// 		header: history.header,
+	// 		content: history.content,
+	// 		timeCreated: history.timeCreated,
+	// 		cardId: history.cardId,
+	// 		boardId: history.boardId
+	// 	}
+	// })
 
 	histories = histories.sort((h0, h1)=>{
-		return h1.timeCreated - h0.timeCreated
+		return h0.timeCreated - h1.timeCreated
 	});
 
 	
@@ -76,6 +76,7 @@ module.exports.index = async function(req, res){
 	});
 	var slicer = Math.min(recents.length, MAX_RECENT);
 	recents = recents.slice(0, slicer);
+	console.log(">>")
 	console.log(histories);
 	res.render('home',{
 		privateBoards: privateBoards,
