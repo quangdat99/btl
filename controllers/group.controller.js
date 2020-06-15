@@ -171,6 +171,8 @@ module.exports.accept = async(req, res)=>{
 	var content = "";
 	var timeCreated = new Date().getTime();
 
+	await History.remove({userId: userId, groupId: groupId});
+
 	var history = new History({
 		header: header,
 		content: content,
