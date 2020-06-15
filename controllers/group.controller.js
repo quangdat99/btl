@@ -105,10 +105,9 @@ module.exports.search = async(req, res)=>{
 	var groups = [];
 	if (field == "")
 		res.send({groups: groups});
-	var user_group = User_Group.find({userId: userId});
+	var user_group = await User_Group.find({userId: userId});
 	var groupsId = user_group.map((ug)=>ug.groupId);
-
 	var reg = new RegExp(field, "gi");
-	var groups = await Group.find({title: reg, id: {$nin: {groupsId}}});
+	var groups = await Group.find({title: reg, _id: {$nin: groupsId}});
 	res.send({groups: groups});
 }
