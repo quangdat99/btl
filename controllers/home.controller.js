@@ -51,7 +51,7 @@ module.exports.index = async function(req, res){
 
 	// history
 	var boardIds = privateBoardsId.concat(sharedBoardsId);
-	var histories = await History.find({boardId: {$in: boardIds}});
+	var histories = await History.find({$or: [{boardId: {$in: boardIds}}, {groupId: {$in: groupIds}}]});
 	
 	histories = histories.map((history)=>{
 		return {
