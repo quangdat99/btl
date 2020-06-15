@@ -9,7 +9,7 @@ router.get('/:groupId',authMiddleware.req, authMiddleware.requireLogin, controll
 router.get('/member/:groupId',authMiddleware.req, authMiddleware.requireLogin, controller.member);
 router.post('/addMember',authMiddleware.req, authMiddleware.requireLogin, controller.addMember);
 router.post('/remove',authMiddleware.req, authMiddleware.requireLogin, controller.remove);
-router.post('/search',authMiddleware.req, authMiddleware.requireLogin, controller.search);
+router.post('/join',authMiddleware.req, authMiddleware.requireLogin, controller.join);
 
 router.post("/create",authMiddleware.requireLogin, controller.create);
 

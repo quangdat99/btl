@@ -111,3 +111,34 @@ module.exports.search = async(req, res)=>{
 	var groups = await Group.find({title: reg, _id: {$nin: groupsId}});
 	res.send({groups: groups});
 }
+
+module.exports.join = async(req, res)=>{
+	var userId = req.signedCookies.userId;
+	var groupId = req.body.groupId;
+	var user = res.locals.user;
+
+	var group = await Group.findOne({_id: groupId});
+	var header = user.name + " yêu cầu tham gia nhóm " + group.title;
+	var content = "Nhấn vào đây để chấp nhận";
+	var timeCreated = new Date().getTime();
+
+	var history = new History({
+		header: header,
+		content: console,
+		timeCreated: time,
+		cardId: "",
+		boardId: "",
+		groupId: groupId
+	});
+
+	await history.save();
+
+	global.socket.emit("NEW_HISTORY", {
+		userId: userId, 
+		history: history
+	});
+}
+
+module.exports.accept = async(req, res)=>{
+
+}
