@@ -97,3 +97,18 @@ module.exports.remove = async(req, res)=>{
 	await User_Group.remove({userId: userId, groupId: groupId});
 	res.redirect("/home")
 }
+
+module.exports.search = async(req, res)=>{
+	var userId = req.signedCookies.userId;
+	// var userId = req.body.userId;
+	var field = req.body.field;
+	var groups = [];
+	if (field == "")
+		res.send({groups: groups});
+	var user_group = User_Group.find({userId: userId});
+	var groupsId = user_group.map((ug)=>ug.groupId);
+
+	var reg = new RegExp(field, "gi");
+	var groups = await Group.find({title: reg, id: {$nin: {groupsId}}});
+	res.send({groups: groups});
+}
