@@ -89,3 +89,11 @@ module.exports.addMember = async(req, res)=>{
 	}
 
 }
+
+module.exports.remove = async(req, res)=>{
+	var groupId = req.body.groupId;
+	var userId = req.signedCookies.userId;
+
+	await User_Group.remove({userId: userId, groupId: groupId});
+	res.redirect("/home")
+}
