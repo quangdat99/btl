@@ -124,7 +124,7 @@ module.exports.join = async(req, res)=>{
 
 	var history = new History({
 		header: header,
-		content: console,
+		content: content,
 		timeCreated: time,
 		cardId: "",
 		boardId: "",
