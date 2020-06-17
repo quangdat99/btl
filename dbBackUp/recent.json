@@ -1,6 +1,7 @@
-{"_id":{"$oid":"5ee9a76e9f449e3c9cf139ae"},"boardId":"5ee9a7559f449e3c9cf139ac","title":"Kế Hoạch Chi Tiêu 7-2020","timeVisited":1.592407495439E+12,"userId":"5ee9a6e69f449e3c9cf139aa","image":"/image/bg/3.jpg","__v":0}
-{"_id":{"$oid":"5eea320438300d3c60ea36a5"},"boardId":"5ee9a7609f449e3c9cf139ad","title":"KH Học Tập Năm 2020","timeVisited":1.592408785425E+12,"userId":"5ee9a6e69f449e3c9cf139aa","image":"/image/bg/4.jpg","__v":0}
-{"_id":{"$oid":"5eea3d1109972a171c10735b"},"boardId":"5eea3c3709972a171c107353","title":"Bài Tập Lớn","timeVisited":1.592411984262E+12,"userId":"5ee9a6e69f449e3c9cf139aa","image":"/image/bg/4.jpg","__v":0}
-{"_id":{"$oid":"5eea3d1809972a171c10735c"},"boardId":"5eea3c4609972a171c107355","title":"Project 3","timeVisited":1.59240936853E+12,"userId":"5ee9a6e69f449e3c9cf139aa","image":"/image/bg/5.jpg","__v":0}
-{"_id":{"$oid":"5eea3e1d09972a171c10735e"},"boardId":"5eea3c2e09972a171c107351","title":"Bài Tập Tuần","timeVisited":1.592411652175E+12,"userId":"5ee9a6e69f449e3c9cf139aa","image":"/image/bg/6.jpg","__v":0}
-{"_id":{"$oid":"5eea46d709972a171c1073d7"},"boardId":"5eea3d7709972a171c10735d","title":"Thể Dục Thể Thao","timeVisited":1.592411970575E+12,"userId":"5ee9a6e69f449e3c9cf139aa","image":"/image/bg/4.jpg","__v":0}
+{"_id":{"$oid":"5ee9a76e9f449e3c9cf139ae"},"boardId":"5ee9a7559f449e3c9cf139ac","title":"Kế Hoạch Chi Tiêu 7-2020","timeVisited":1.592407495439e+12,"userId":"5ee9a6e69f449e3c9cf139aa","image":"/image/bg/3.jpg","__v":0}
+{"_id":{"$oid":"5eea320438300d3c60ea36a5"},"boardId":"5ee9a7609f449e3c9cf139ad","title":"KH Học Tập Năm 2020","timeVisited":1.592408785425e+12,"userId":"5ee9a6e69f449e3c9cf139aa","image":"/image/bg/4.jpg","__v":0}
+{"_id":{"$oid":"5eea3d1109972a171c10735b"},"boardId":"5eea3c3709972a171c107353","title":"Bài Tập Lớn","timeVisited":1.592415197005e+12,"userId":"5ee9a6e69f449e3c9cf139aa","image":"/image/bg/5.jpg","__v":0}
+{"_id":{"$oid":"5eea3d1809972a171c10735c"},"boardId":"5eea3c4609972a171c107355","title":"Project 3","timeVisited":1.59240936853e+12,"userId":"5ee9a6e69f449e3c9cf139aa","image":"/image/bg/5.jpg","__v":0}
+{"_id":{"$oid":"5eea3e1d09972a171c10735e"},"boardId":"5eea3c2e09972a171c107351","title":"Bài Tập Tuần","timeVisited":1.592411652175e+12,"userId":"5ee9a6e69f449e3c9cf139aa","image":"/image/bg/6.jpg","__v":0}
+{"_id":{"$oid":"5eea46d709972a171c1073d7"},"boardId":"5eea3d7709972a171c10735d","title":"Thể Dục Thể Thao","timeVisited":1.592411970575e+12,"userId":"5ee9a6e69f449e3c9cf139aa","image":"/image/bg/4.jpg","__v":0}
+{"_id":{"$oid":"5eea4fba20fd1e17e5bb7397"},"boardId":"5eea3c3709972a171c107353","title":"Bài Tập Lớn","timeVisited":1.592415017566e+12,"userId":"5eea47b809972a171c1073ea","image":"/image/bg/4.jpg","__v":0}
