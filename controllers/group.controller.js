@@ -140,7 +140,7 @@ module.exports.join = async(req, res)=>{
 		userId: userId, 
 		history: history
 	});
-	console.log(history);
+	// console.log(history);
 }
 
 module.exports.accept = async(req, res)=>{

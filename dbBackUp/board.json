@@ -1,4 +1,8 @@
-{"_id":{"$oid":"5ee1d7a1b034f539ac04fc19"},"title":"Kế Hoạch Kì 20201","boardType":"PRIVATE","groupId":"#null","userId":"5ee1d6c9b034f539ac04fc16","image":"/image/bg/6.jpg","__v":0}
-{"_id":{"$oid":"5ee1d8e4b034f539ac04fc37"},"title":"Chi Tiêu 7-2020","boardType":"PRIVATE","groupId":"#null","userId":"5ee1d6c9b034f539ac04fc16","image":"/image/bg/1.jpg","__v":0}
-{"_id":{"$oid":"5ee1d9bcb034f539ac04fc3e"},"title":"Bài Tập Tuần","boardType":"SHARED","groupId":"5ee1d982b034f539ac04fc39","userId":"5ee1d6c9b034f539ac04fc16","image":"/image/bg/6.jpg","__v":0}
-{"_id":{"$oid":"5ee1d9c5b034f539ac04fc40"},"title":"Bài Tập Lớn","boardType":"SHARED","groupId":"5ee1d982b034f539ac04fc39","userId":"5ee1d6c9b034f539ac04fc16","image":"/image/bg/7.jpg","__v":0}
+{"_id":{"$oid":"5ee9a7559f449e3c9cf139ac"},"title":"Kế Hoạch Chi Tiêu 7-2020","boardType":"PRIVATE","groupId":"#null","userId":"5ee9a6e69f449e3c9cf139aa","image":"/image/bg/3.jpg","__v":0}
+{"_id":{"$oid":"5ee9a7609f449e3c9cf139ad"},"title":"KH Học Tập Năm 2020","boardType":"PRIVATE","groupId":"#null","userId":"5ee9a6e69f449e3c9cf139aa","image":"/image/bg/4.jpg","__v":0}
+{"_id":{"$oid":"5eea3c2e09972a171c107351"},"title":"Bài Tập Tuần","boardType":"SHARED","groupId":"5eea3bf309972a171c10734b","userId":"5ee9a6e69f449e3c9cf139aa","image":"/image/bg/6.jpg","__v":0}
+{"_id":{"$oid":"5eea3c3709972a171c107353"},"title":"Bài Tập Lớn","boardType":"SHARED","groupId":"5eea3bf309972a171c10734b","userId":"5ee9a6e69f449e3c9cf139aa","image":"/image/bg/4.jpg","__v":0}
+{"_id":{"$oid":"5eea3c4609972a171c107355"},"title":"Project 3","boardType":"SHARED","groupId":"5eea3c0509972a171c10734d","userId":"5ee9a6e69f449e3c9cf139aa","image":"/image/bg/5.jpg","__v":0}
+{"_id":{"$oid":"5eea3c6309972a171c107357"},"title":"Dọn Dẹp Vệ Sinh","boardType":"SHARED","groupId":"5eea3c0f09972a171c10734f","userId":"5ee9a6e69f449e3c9cf139aa","image":"/image/bg/2.jpg","__v":0}
+{"_id":{"$oid":"5eea3c6e09972a171c107359"},"title":"Nấu Ăn","boardType":"SHARED","groupId":"5eea3c0f09972a171c10734f","userId":"5ee9a6e69f449e3c9cf139aa","image":"/image/bg/5.jpg","__v":0}
+{"_id":{"$oid":"5eea3d7709972a171c10735d"},"title":"Thể Dục Thể Thao","boardType":"PRIVATE","groupId":"#null","userId":"5ee9a6e69f449e3c9cf139aa","image":"/image/bg/4.jpg","__v":0}

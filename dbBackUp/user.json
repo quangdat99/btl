@@ -1,4 +1,3 @@
-{"_id":{"$oid":"5ee1d6bdb034f539ac04fc15"},"email":"dat21051999@gmail.com","password":"123456","displayName":"Đinh Quang Đạt","__v":0}
-{"_id":{"$oid":"5ee1d6c9b034f539ac04fc16"},"email":"duydoan0907@gmail.com","password":"123456","displayName":"Nguyễn Duy Đoàn","__v":0}
-{"_id":{"$oid":"5ee1d6feb034f539ac04fc17"},"email":"dev_1@devmail.com","password":"123456","displayName":"dev_1","__v":0}
-{"_id":{"$oid":"5ee1d70ab034f539ac04fc18"},"email":"dev_2@devmail.com","password":"123456","displayName":"dev_2","__v":0}
+{"_id":{"$oid":"5ee9a6e69f449e3c9cf139aa"},"email":"duydoan0907@gmail.com","password":"123456","displayName":"Nguyễn Duy Đoàn","__v":0}
+{"_id":{"$oid":"5eea47b809972a171c1073ea"},"email":"dat21051999@gmail.com","password":"123456","displayName":"Đinh Quang Đạt","__v":0}
+{"_id":{"$oid":"5eea47d809972a171c1073eb"},"email":"dat.nt@sis.hust.edu.vn","password":"123456","displayName":"Nông Thanh Đạt","__v":0}

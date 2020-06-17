@@ -1,11 +1,42 @@
-{"_id":{"$oid":"5ee1d7cdb034f539ac04fc21"},"title":"Bài Tập Tuần","description":"Kế hoạch thực hiện bài tập tuần được lưu ở đây","deadlineTime":"-1","listId":"5ee1d7b1b034f539ac04fc1b","__v":0}
-{"_id":{"$oid":"5ee1d7d5b034f539ac04fc23"},"title":"Bài Tập Lớn","description":"","deadlineTime":"-1","listId":"5ee1d7b1b034f539ac04fc1b","__v":0}
-{"_id":{"$oid":"5ee1d7e6b034f539ac04fc25"},"title":"Ôn Thi Cuối Kì","description":"","deadlineTime":"-1","listId":"5ee1d7b1b034f539ac04fc1b","__v":0}
-{"_id":{"$oid":"5ee1d88cb034f539ac04fc31"},"title":"Nhận Đề Tài","description":"","deadlineTime":"-1","listId":"5ee1d87eb034f539ac04fc2f","__v":0}
-{"_id":{"$oid":"5ee1d895b034f539ac04fc33"},"title":"Liên Hệ Giảng Viên","description":"","deadlineTime":"-1","listId":"5ee1d87eb034f539ac04fc2f","__v":0}
-{"_id":{"$oid":"5ee1d8b9b034f539ac04fc35"},"title":"Tìm Hiểu Các Nghiên Cứu","description":"","deadlineTime":"-1","listId":"5ee1d87eb034f539ac04fc2f","__v":0}
-{"_id":{"$oid":"5ee1daa4b034f539ac04fc50"},"title":"Tìm Kiếm Đề Tài","description":"Chọn 1 đề tài lập trình trang web","deadlineTime":"-1","listId":"5ee1da6db034f539ac04fc48","__v":0}
-{"_id":{"$oid":"5ee1dac5b034f539ac04fc52"},"title":"Code trước các Module cần dùng","description":"","deadlineTime":"-1","listId":"5ee1da6db034f539ac04fc48","__v":0}
-{"_id":{"$oid":"5ee1db35b034f539ac04fc5d"},"title":"Phân Tích, Thiết Kế","description":"","deadlineTime":"-1","listId":"5ee1da78b034f539ac04fc4a","__v":0}
-{"_id":{"$oid":"5ee1db92b034f539ac04fc66"},"title":"Lập Trình","description":"","deadlineTime":"-1","listId":"5ee1da81b034f539ac04fc4c","__v":0}
-{"_id":{"$oid":"5ee1dbd3b034f539ac04fc6e"},"title":"Kiểm Thử","description":"","deadlineTime":"-1","listId":"5ee1da88b034f539ac04fc4e","__v":0}
+{"_id":{"$oid":"5ee9a7cf9f449e3c9cf139b8"},"title":"Đóng tiền Thuê Nhà","description":"Chi Phí Sinh Hoạt, Chi Phí Phát Sinh Hằng Ngày","deadlineTime":"-1","listId":"5ee9a7a79f449e3c9cf139af","__v":0}
+{"_id":{"$oid":"5eea2fd738300d3c60ea3686"},"title":"Mua Sắm Đồ Dùng","description":"","deadlineTime":"-1","listId":"5ee9a7a79f449e3c9cf139af","__v":0}
+{"_id":{"$oid":"5eea302d38300d3c60ea368d"},"title":"Tiếng Anh","description":"","deadlineTime":"-1","listId":"5ee9a7b09f449e3c9cf139b1","__v":0}
+{"_id":{"$oid":"5eea31be38300d3c60ea369f"},"title":"Lập Trình","description":"","deadlineTime":"-1","listId":"5ee9a7b09f449e3c9cf139b1","__v":0}
+{"_id":{"$oid":"5eea322b38300d3c60ea36a6"},"title":"Build PC Mới","description":"","deadlineTime":"-1","listId":"5ee9a7bf9f449e3c9cf139b6","__v":0}
+{"_id":{"$oid":"5eea32e238300d3c60ea36b7"},"title":"Liên Hệ Giảng Viên","description":"","deadlineTime":"-1","listId":"5eea32ad38300d3c60ea36b0","__v":0}
+{"_id":{"$oid":"5eea332b09972a171c1072dc"},"title":"Chọn Đề Tài + Định Hướng","description":"","deadlineTime":"-1","listId":"5eea32ad38300d3c60ea36b0","__v":0}
+{"_id":{"$oid":"5eea339a09972a171c1072e3"},"title":"Phân Tích + Thiết Kế","description":"","deadlineTime":"-1","listId":"5eea32ad38300d3c60ea36b0","__v":0}
+{"_id":{"$oid":"5eea33a109972a171c1072e5"},"title":"Lập Trình","description":"","deadlineTime":"-1","listId":"5eea32ad38300d3c60ea36b0","__v":0}
+{"_id":{"$oid":"5eea33ae09972a171c1072e7"},"title":"Kiểm Thử","description":"","deadlineTime":"-1","listId":"5eea32ad38300d3c60ea36b0","__v":0}
+{"_id":{"$oid":"5eea356809972a171c107306"},"title":"Bài Tập Lớn","description":"","deadlineTime":"-1","listId":"5eea32b438300d3c60ea36b2","__v":0}
+{"_id":{"$oid":"5eea357309972a171c107308"},"title":"Ôn Thi Cuối Kì","description":"","deadlineTime":"-1","listId":"5eea32b438300d3c60ea36b2","__v":0}
+{"_id":{"$oid":"5eea36ab09972a171c107316"},"title":"Bài Tập Tuần","description":"","deadlineTime":"-1","listId":"5eea32bf38300d3c60ea36b4","__v":0}
+{"_id":{"$oid":"5eea36b409972a171c107318"},"title":"Bài Tập Lớn","description":"","deadlineTime":"-1","listId":"5eea32bf38300d3c60ea36b4","__v":0}
+{"_id":{"$oid":"5eea36c209972a171c10731a"},"title":"Ôn Thi Cuối Kì","description":"","deadlineTime":"-1","listId":"5eea32bf38300d3c60ea36b4","__v":0}
+{"_id":{"$oid":"5eea3e5809972a171c107367"},"title":"Bài Số 1","description":"","deadlineTime":"-1","listId":"5eea3e2d09972a171c10735f","__v":0}
+{"_id":{"$oid":"5eea3e6109972a171c107369"},"title":"Bài Số 2","description":"","deadlineTime":"-1","listId":"5eea3e2d09972a171c10735f","__v":0}
+{"_id":{"$oid":"5eea3e6909972a171c10736b"},"title":"Bài Số 3","description":"","deadlineTime":"-1","listId":"5eea3e2d09972a171c10735f","__v":0}
+{"_id":{"$oid":"5eea3e7909972a171c10736d"},"title":"Thiết Kế Trang Facebook","description":"","deadlineTime":"-1","listId":"5eea3e3609972a171c107361","__v":0}
+{"_id":{"$oid":"5eea3e8209972a171c10736f"},"title":"Thiết Kế Trang Google","description":"","deadlineTime":"-1","listId":"5eea3e3609972a171c107361","__v":0}
+{"_id":{"$oid":"5eea3e8e09972a171c107371"},"title":"Thiết Kế Trang Zalo","description":"","deadlineTime":"-1","listId":"5eea3e3609972a171c107361","__v":0}
+{"_id":{"$oid":"5eea3e9a09972a171c107373"},"title":"Form Đăng Kí FB","description":"","deadlineTime":"-1","listId":"5eea3e3e09972a171c107363","__v":0}
+{"_id":{"$oid":"5eea3ea209972a171c107375"},"title":"Form Đăng Nhập FB","description":"","deadlineTime":"-1","listId":"5eea3e3e09972a171c107363","__v":0}
+{"_id":{"$oid":"5eea3eb209972a171c107377"},"title":"Form Tìm Kiếm Google","description":"","deadlineTime":"-1","listId":"5eea3e3e09972a171c107363","__v":0}
+{"_id":{"$oid":"5eea3ef609972a171c107379"},"title":"Form Tính Toán Với JQuery","description":"","deadlineTime":"-1","listId":"5eea3e4d09972a171c107365","__v":0}
+{"_id":{"$oid":"5eea3f0509972a171c10737b"},"title":"Form Sử Dụng JS Có Validate","description":"","deadlineTime":"-1","listId":"5eea3e4d09972a171c107365","__v":0}
+{"_id":{"$oid":"5eea402b09972a171c10737d"},"title":"Form Tính Số Nguyên Tố","description":"","deadlineTime":"-1","listId":"5eea3e4d09972a171c107365","__v":0}
+{"_id":{"$oid":"5eea410309972a171c107389"},"title":"Tìm Kiếm Đề Tài","description":"","deadlineTime":"-1","listId":"5eea40bd09972a171c10737f","__v":0}
+{"_id":{"$oid":"5eea413c09972a171c10738b"},"title":"Phân Tích + Thiết Kế","description":"","deadlineTime":"-1","listId":"5eea40c609972a171c107381","__v":0}
+{"_id":{"$oid":"5eea415009972a171c10738d"},"title":"Tìm Hiểu Công Nghệ, FrameWork","description":"","deadlineTime":"-1","listId":"5eea40bd09972a171c10737f","__v":0}
+{"_id":{"$oid":"5eea415d09972a171c10738f"},"title":"Kết Nối CSDL","description":"","deadlineTime":"-1","listId":"5eea40cf09972a171c107383","__v":0}
+{"_id":{"$oid":"5eea416409972a171c107391"},"title":"Lập Trình BackEnd","description":"","deadlineTime":"-1","listId":"5eea40cf09972a171c107383","__v":0}
+{"_id":{"$oid":"5eea416d09972a171c107393"},"title":"Lập Trình FrontEnd","description":"","deadlineTime":"-1","listId":"5eea40cf09972a171c107383","__v":0}
+{"_id":{"$oid":"5eea41a109972a171c107395"},"title":"Kiểm Thử","description":"","deadlineTime":"-1","listId":"5eea40d509972a171c107385","__v":0}
+{"_id":{"$oid":"5eea41a609972a171c107397"},"title":"Bảo Vệ","description":"","deadlineTime":"-1","listId":"5eea40da09972a171c107387","__v":0}
+{"_id":{"$oid":"5eea463809972a171c1073cf"},"title":"Phân Tích + Thiết Kế","description":"","deadlineTime":"-1","listId":"5eea40bd09972a171c10737f","__v":0}
+{"_id":{"$oid":"5eea470e09972a171c1073de"},"title":"Buổi Sáng","description":"","deadlineTime":"-1","listId":"5eea46eb09972a171c1073d8","__v":0}
+{"_id":{"$oid":"5eea471509972a171c1073e0"},"title":"Buổi Chiều","description":"","deadlineTime":"-1","listId":"5eea46eb09972a171c1073d8","__v":0}
+{"_id":{"$oid":"5eea471a09972a171c1073e2"},"title":"Buổi Sáng","description":"","deadlineTime":"-1","listId":"5eea46f709972a171c1073da","__v":0}
+{"_id":{"$oid":"5eea472009972a171c1073e4"},"title":"Buổi Chiều","description":"","deadlineTime":"-1","listId":"5eea46f709972a171c1073da","__v":0}
+{"_id":{"$oid":"5eea472609972a171c1073e6"},"title":"Buổi Sáng","description":"","deadlineTime":"-1","listId":"5eea470809972a171c1073dc","__v":0}
+{"_id":{"$oid":"5eea472c09972a171c1073e8"},"title":"Buổi Chiều","description":"","deadlineTime":"-1","listId":"5eea470809972a171c1073dc","__v":0}
