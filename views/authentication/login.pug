@@ -189,10 +189,10 @@ body
       br
       .form-group
         label(for='') Email 
-        input.form-control(name='email', type='text', id='', value=values?values.email: "")
+        input.form-control(name='email', type='text', id='', value=values?values.email: "",required='')
       .form-group
         label(for='') M&#x1EAD;t kh&#x1EA9;u
-        input.form-control(name='password', type='password', id='', value=values?values.password: "")
+        input.form-control(name='password', type='password', id='', value=values?values.password: "",required='')
       if errors
           each error in errors
             li

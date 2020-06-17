@@ -183,7 +183,7 @@ html
           .modal-content
             // Modal Header
             .modal-header
-              input.modal-title.form-control(placeholder='Thêm tiêu đề bảng' name='title')
+              input.modal-title.form-control(placeholder='Thêm tiêu đề bảng' name='title' required='')
               button.close(type='button', data-dismiss='modal') &times;
             // Modal body
             .modal-body
@@ -221,10 +221,10 @@ html
             form(action="/group/create" method="POST")
               .form-group
                 label(for='exampleFormControlInput1') Tên nhóm 
-                input#exampleFormControlInput1.form-control(type='text', placeholder='', name="title")
+                input#exampleFormControlInput1.form-control(type='text', placeholder='', name="title", required='')
               .form-group
                 label(for='exampleFormControlTextarea1') Mô tả của nhóm 
-                textarea#exampleFormControlTextarea1(placeholder='Nhóm của chúng tôi tổ chức mọi thứ ở đây.' rows='3', name="description").form-control
+                textarea#exampleFormControlTextarea1(placeholder='Nhóm của chúng tôi tổ chức mọi thứ ở đây.' rows='3', name="description", required='').form-control
               //- .form-group
               //-   label(for='search-member') Thêm Thành viên
               //-   input#search-member.form-control(type='text', placeholder='') 
