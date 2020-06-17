@@ -65,15 +65,14 @@ module.exports.index = async function(req, res){
 			for (var t in tasks){
 				var task = tasks[t];
 				var userId = task.userId;
-				if (!isNaN(taskDistribution[userId])){
+				if ((taskDistribution[userId]) != undefined){
 					taskDistribution[userId] ++;
 					var completed = task.status == 1 && task.deadlineTime <= new Date().getTime();
-					if (completed) {
+					if (completed) 
 						taskComplement[userId] ++;
 					var overDeadline = task.status == 0 && task.deadlineTime >= new Date().getTime();
 					if (overDeadline)
 						taskOverDeadline[userId] ++;
-					}
 				}
 			}
 		}
@@ -92,7 +91,6 @@ module.exports.index = async function(req, res){
 	board = JSON.parse(JSON.stringify(board));
 	board.lists = _lists;
 
-	// console.log(histories);
 
 	res.render('board',{
 		board: board,
